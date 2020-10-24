@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/edit_recipe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="17dp"
+        android:text="@string/edit"
+        android:background = "@drawable/roundedbutton"
+        app:layout_constraintBaseline_toBaselineOf="@+id/brew_recipe"
+        app:layout_constraintEnd_toStartOf="@+id/brew_recipe"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/brew_recipe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="17dp"
+        android:layout_marginBottom="23dp"
+        android:text="@string/brew"
+        android:background = "@drawable/roundedbutton"
+        app:layout_constraintBottom_toTopOf="@+id/footer_recipe"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/edit_recipe"
+        app:layout_constraintTop_toBottomOf="@+id/input_recipe" />
+
+    <ImageView
+        android:id="@+id/image_recipe"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="65dp"
+        android:layout_marginEnd="35dp"
+        android:layout_marginBottom="21dp"
+        app:layout_constraintBottom_toTopOf="@+id/text_recipe"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_launcher_foreground" />
+
+    <TextView
+        android:id="@+id/text_recipe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/input_recipe"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image_recipe" />
+
+    <EditText
+        android:id="@+id/input_recipe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="35dp"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/brew_recipe"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_recipe" />
+
+    <ImageView
+        android:id="@+id/footer_recipe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/brew_recipe"
+        app:srcCompat="@drawable/footer" />
+</androidx.constraintlayout.widget.ConstraintLayout>
