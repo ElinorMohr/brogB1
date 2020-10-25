@@ -6,9 +6,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
-public class StartSide extends AppCompatActivity implements View.OnClickListener{
+public class StartSide extends AppCompatActivity implements View.OnClickListener  {
     Button visit;
     ImageButton settings;
 
@@ -16,7 +17,6 @@ public class StartSide extends AppCompatActivity implements View.OnClickListener
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_side);
-
         Button brew = findViewById(R.id.Brew);
         Button clean = findViewById(R.id.Clean);
         Button community = findViewById(R.id.Community);
@@ -31,11 +31,13 @@ public class StartSide extends AppCompatActivity implements View.OnClickListener
 
     }
 
+
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.Brew:
-                Toast.makeText(this, "Brew clicked", Toast.LENGTH_SHORT).show();
+                BrygMenu brygMenu = new BrygMenu();
+                brygMenu.show(getSupportFragmentManager(),"FragmentBrygMenu");
                 break;
             case R.id.Clean:
                 Toast.makeText(this, "Clean clicked", Toast.LENGTH_SHORT).show();
