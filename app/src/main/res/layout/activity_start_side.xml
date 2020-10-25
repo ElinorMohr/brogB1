@@ -1,133 +1,90 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#FFFFFF"
-    android:backgroundTint="#FFFFFF"
-    tools:context=".StartSide">
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="0dp"
-        android:layout_height="432dp"
-        android:layout_marginStart="122dp"
-        android:layout_marginTop="308dp"
-        android:layout_marginEnd="26dp"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/brog_tekst"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:gravity="center">
 
+    <ImageButton
+        android:id="@+id/Settings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#FFFFFF"
+        android:layout_gravity="right"
+        android:src="@drawable/ic_baseline_settings_24" />
+
+    <ImageView
+        android:id="@+id/BrewLogo"
+        android:layout_width="169dp"
+        android:layout_height="183dp"
+        android:src="@drawable/Logo_uden_tekst" />
+
+
+    <ImageView
+        android:src="@drawable/Logo_tekst"
+        android:id="@+id/BrogTekst"
+        android:layout_width="176dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="70dp"
+        />
         <Button
             android:id="@+id/Brew"
-            android:layout_width="match_parent"
-            android:layout_height="69dp"
-            android:layout_marginBottom="52dp"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
             android:background="@drawable/rounded_button"
             android:backgroundTint="@color/colorplate1"
             android:fontFamily="@font/ubuntu_bold"
-            android:text="Brew"
+            android:text="@string/brew"
             android:textAllCaps="false"
             android:textColor="@android:color/black"
-            android:textSize="19dp"
+            android:textSize="19sp"
             android:textStyle="bold"
-            app:iconTint="#FFFFFF" />
+            />
 
         <Button
             android:id="@+id/Clean"
-            android:layout_width="match_parent"
-            android:layout_height="69dp"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
             android:backgroundTint="@color/colorplate1"
             android:fontFamily="@font/ubuntu_bold"
-            android:text="Clean"
+            android:text="@string/clean"
             android:textAllCaps="false"
             android:textColor="@android:color/black"
-            android:textSize="19dp"
+            android:textSize="19sp"
             android:textStyle="bold" />
 
         <Button
             android:id="@+id/Community"
-            android:layout_width="match_parent"
-            android:layout_height="69dp"
-            android:layout_marginTop="40dp"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
             android:background="@drawable/rounded_button"
             android:backgroundTint="@color/colorplate1"
             android:fontFamily="@font/ubuntu_bold"
-            android:text="Community"
+            android:text="@string/community"
             android:textAllCaps="false"
             android:textColor="@android:color/black"
-            android:textSize="19dp"
+            android:textSize="19sp"
             android:textStyle="bold" />
 
-        <Button
-            android:id="@+id/Guide"
-            android:layout_width="match_parent"
-            android:layout_height="69dp"
-            android:layout_marginTop="44dp"
-            android:backgroundTint="@color/colorplate1"
-            android:fontFamily="@font/ubuntu_bold"
-            android:text="Guide"
-            android:textAllCaps="false"
-            android:textColor="@android:color/black"
-            android:textSize="19dp"
-            android:textStyle="bold" />
 
-    </LinearLayout>
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="637dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="1dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton2"
-        app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/footer"
-        tools:layout_editor_absoluteX="-60dp" />
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="171dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="108dp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imageButton2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/Logo_uden_tekst" />
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="176dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="445dp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        app:srcCompat="@drawable/Logo_tekst" />
-
-    <ImageButton
-        android:id="@+id/imageButton2"
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/Guide"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="620dp"
-        android:backgroundTint="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/imageView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_baseline_settings_24" />
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/rounded_button"
+        android:backgroundTint="@color/colorplate1"
+        android:fontFamily="@font/ubuntu_bold"
+        android:text="@string/guide"
+        android:textAllCaps="false"
+        android:textColor="@android:color/black"
+        android:textSize="19sp"
+        android:textStyle="bold"
+        />
+
 
     <TextView
         android:id="@+id/brog_tekst"
@@ -135,12 +92,18 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="3dp"
         android:background="#FFFFFF"
-        android:textColor="@color/colorplate2"
-        android:backgroundTint="@color/white"
         android:fontFamily="@font/ubuntu_bold"
-        android:text="© 2020 BRØG. "
-        app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/linearLayout" />
+        android:text="@string/_2020_br_g"
+        android:layout_gravity="right"
+        android:layout_marginTop="70dp"
+        android:textColor="@color/colorplate2"
+        />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="800dp"
+        android:layout_height="100dp"
+        android:src="@drawable/footer" />
+
+
+</LinearLayout>
