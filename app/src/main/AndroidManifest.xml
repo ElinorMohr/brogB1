@@ -9,6 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BrogB1">
+        <activity android:name=".CleanActivityStep3"></activity>
+        <activity android:name=".CleanActivityStep2Working" />
+        <activity android:name=".CleanActivityStep1Working" />
+        <activity android:name=".CleanActivityStep2" />
+        <activity android:name=".CleanActivityStep1" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
