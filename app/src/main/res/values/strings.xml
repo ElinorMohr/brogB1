@@ -42,4 +42,6 @@
     <string name="clean_step2_working">Cleaning...</string>
     <string name="clean_step3_text">Done!</string>
     <string name="clean_step3_button">Go back</string>
+    <string name="footer_with_copyright_description">Footer with copyright</string>
+    <string name="footer_description">Footer without copyright</string>
 </resources>
