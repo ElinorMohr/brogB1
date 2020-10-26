@@ -4,6 +4,7 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
+    android:id="@id/BrygMenuSheet"
     android:background="#8B5A39"
     android:padding="20dp">
 

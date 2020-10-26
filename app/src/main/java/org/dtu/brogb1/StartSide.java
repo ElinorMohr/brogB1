@@ -6,28 +6,31 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.TextView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+
 public class StartSide extends AppCompatActivity implements View.OnClickListener  {
-    Button visit;
+    Button brew,clean,community,guide,bsmquickBrew, bsmrecipes, bsmnewBrew;
     ImageButton settings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_side);
-        Button brew = findViewById(R.id.Brew);
-        Button clean = findViewById(R.id.Clean);
-        Button community = findViewById(R.id.Community);
-        Button guide = findViewById(R.id.Guide);
-        ImageButton setting = findViewById(R.id.Settings);
+        brew = findViewById(R.id.Brew);
+        clean = findViewById(R.id.Clean);
+        community = findViewById(R.id.Community);
+        guide = findViewById(R.id.Guide);
+        settings = findViewById(R.id.Settings);
+
 
         brew.setOnClickListener(this);
         clean.setOnClickListener(this);
         community.setOnClickListener(this);
         guide.setOnClickListener(this);
-        setting.setOnClickListener(this);
+        settings.setOnClickListener(this);
 
     }
 
@@ -36,7 +39,7 @@ public class StartSide extends AppCompatActivity implements View.OnClickListener
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.Brew:
-                BrygMenu brygMenu = new BrygMenu();
+                BrygSheetMenu brygMenu = new BrygSheetMenu();
                 brygMenu.show(getSupportFragmentManager(),"FragmentBrygMenu");
                 break;
             case R.id.Clean:
