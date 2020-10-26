@@ -23,6 +23,7 @@
         android:background="@drawable/rounded_button"
         android:backgroundTint="@color/colorplate1"
 
+
         android:fontFamily="@font/ubuntu_bold"
         android:text="@string/quick_brew"
         android:textAllCaps="false"
