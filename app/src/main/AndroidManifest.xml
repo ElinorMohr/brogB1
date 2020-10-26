@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BrogB1">
-        <activity android:name=".CleanActivityStep3"></activity>
+        <activity android:name=".CommunityActivity"></activity>
+        <activity android:name=".CleanActivityStep3" />
         <activity android:name=".CleanActivityStep2Working" />
         <activity android:name=".CleanActivityStep1Working" />
         <activity android:name=".CleanActivityStep2" />
