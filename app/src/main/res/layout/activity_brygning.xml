@@ -44,40 +44,40 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_marginTop="0dp"
+        android:layout_marginTop="100dp"
         android:orientation="horizontal"
         android:layout_below="@id/layout_1">
         <Button
             android:id="@+id/EditAmount"
-            android:layout_width="150dp"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_marginRight="40dp"
+            android:layout_marginEnd="80dp"
             android:background="@drawable/rounded_button"
             android:backgroundTint="@color/colorplate1"
 
 
             android:fontFamily="@font/ubuntu_bold"
-            android:text="@string/quick_brew"
+            android:text="@string/edit"
             android:textAllCaps="false"
             android:textColor="@android:color/black"
             android:textSize="19sp" />
         <Button
             android:id="@+id/BrewNow"
-            android:layout_width="150dp"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_button"
             android:backgroundTint="@color/colorplate1"
 
 
             android:fontFamily="@font/ubuntu_bold"
-            android:text="@string/quick_brew"
+            android:text="@string/brew"
             android:textAllCaps="false"
             android:textColor="@android:color/black"
             android:textSize="19sp" />
     </LinearLayout>
 
     <ImageView
-        android:layout_marginTop="250dp"
+        android:layout_marginTop="200dp"
 
         android:id="@+id/imageView"
         android:layout_width="480dp"
