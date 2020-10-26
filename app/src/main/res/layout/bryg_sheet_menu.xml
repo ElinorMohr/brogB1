@@ -1,21 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/bryg_sheet_background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#8B5A39"
-    android:paddingTop="32dp">
+    >
 
     <ImageView
         android:id="@+id/BrygMenuSheet"
         android:layout_width="800dp"
-        android:layout_height="50dp"
-        android:background="@drawable/bryg_menu_sheet" />
+        android:layout_height="100dp"
+        android:layout_marginTop="-40dp"
+        android:background="@drawable/menutop" />
 
     <LinearLayout
         android:id="@+id/layout_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:layout_marginTop="-50dp"
         android:orientation="vertical"
         android:layout_below="@id/BrygMenuSheet">
 

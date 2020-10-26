@@ -1,6 +1,5 @@
 package org.dtu.brogb1;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -18,7 +17,7 @@ public class BrygSheetMenu extends BottomSheetDialogFragment {
 
     Button quickBrew, recipes, newBrew;
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.bryg_fragment_menu, container, false);
+        View v = inflater.inflate(R.layout.bryg_sheet_menu, container, false);
 
 
         quickBrew = v.findViewById(R.id.QuickBrew);
@@ -28,7 +27,7 @@ public class BrygSheetMenu extends BottomSheetDialogFragment {
         quickBrew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), StartSide.class);
+                Intent intent = new Intent(getActivity(), Brygning.class);
                 startActivity(intent);
             }
         });
