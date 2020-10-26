@@ -15,12 +15,9 @@ public class CleanActivityStep3 extends AppCompatActivity {
         setContentView(R.layout.activity_clean_step3);
 
         Button next = (Button) findViewById(R.id.clean_step3_button);
-        next.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(CleanActivityStep3.this, MainActivity.class);
-                startActivity(intent);
-            }
+        next.setOnClickListener(v -> {
+            Intent intent = new Intent(CleanActivityStep3.this, MainActivity.class);
+            startActivity(intent);
         });
     }
 }
