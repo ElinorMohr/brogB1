@@ -19,16 +19,17 @@
 
 
         <ImageView
-            android:id="@+id/imageView8"
+            android:id="@+id/logo"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:srcCompat="@tools:sample/avatars" />
+            android:layout_height="200dp"
+            android:contentDescription="@string/logo_with_text_description"
+            app:srcCompat="@drawable/ic_logo_w_text" />
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="0dp"
             android:text="@string/clean_step1_instruction"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
