@@ -7,7 +7,7 @@
     tools:context=".CleanActivityStep3">
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/clean_step3_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
