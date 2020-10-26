@@ -4,9 +4,9 @@
 
     <stroke android:color="@color/colorplate2"
         android:width="6dp"
+        android:layout_width="227dp"
+        android:layout_height="247dp"
         >
-
-
     </stroke>
 
 </shape>

@@ -1,16 +1,90 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
 
     <ImageView
+        android:id="@+id/kaffeborder"
         android:layout_width="227dp"
         android:layout_height="247dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="70dp"
         android:background="@drawable/picture_border" />
 
+    <ImageView
+        android:id="@+id/kaffebillede"
+        android:layout_width="220dp"
+        android:layout_height="236dp"
+        android:layout_marginTop="77dp"
+        android:layout_centerHorizontal="true"
+        app:srcCompat="@drawable/kaffevinter" />
 
+    <LinearLayout
+        android:id="@+id/layout_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        android:layout_below="@id/kaffeborder">
+
+        <TextView
+            android:id="@+id/BeanAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="the amount of beans is 50g"
+            android:fontFamily="@font/ubuntu_bold"
+            android:textColor="@color/colorplate1"
+            android:textSize="15sp"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/layout_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="0dp"
+        android:orientation="horizontal"
+        android:layout_below="@id/layout_1">
+        <Button
+            android:id="@+id/EditAmount"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="40dp"
+            android:background="@drawable/rounded_button"
+            android:backgroundTint="@color/colorplate1"
+
+
+            android:fontFamily="@font/ubuntu_bold"
+            android:text="@string/quick_brew"
+            android:textAllCaps="false"
+            android:textColor="@android:color/black"
+            android:textSize="19sp" />
+        <Button
+            android:id="@+id/BrewNow"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_button"
+            android:backgroundTint="@color/colorplate1"
+
+
+            android:fontFamily="@font/ubuntu_bold"
+            android:text="@string/quick_brew"
+            android:textAllCaps="false"
+            android:textColor="@android:color/black"
+            android:textSize="19sp" />
+    </LinearLayout>
+
+    <ImageView
+        android:layout_marginTop="250dp"
+
+        android:id="@+id/imageView"
+        android:layout_width="480dp"
+        android:layout_height="76dp"
+        android:src="@drawable/footer_copyright_xl"
+        android:layout_below="@id/layout_2"
+        />
 
 </RelativeLayout>
 
