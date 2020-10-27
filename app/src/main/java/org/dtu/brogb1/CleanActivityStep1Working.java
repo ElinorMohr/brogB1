@@ -16,7 +16,9 @@ public class CleanActivityStep1Working extends AppCompatActivity {
             new Runnable() {
                 public void run() {
                     Intent intent = new Intent(CleanActivityStep1Working.this, CleanActivityStep2.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_TASK_ON_HOME);
                     startActivity(intent);
+                    CleanActivityStep1Working.this.finish();
                 }
             },
             1500
