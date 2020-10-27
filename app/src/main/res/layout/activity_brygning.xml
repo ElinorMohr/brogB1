@@ -26,18 +26,39 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:layout_marginTop="10dp"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:layout_below="@id/kaffeborder">
 
         <TextView
             android:id="@+id/BeanAmount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="the amount of beans is 50g"
+            android:text="the amount of beans is:"
+            android:layout_marginEnd="1dp"
             android:fontFamily="@font/ubuntu_bold"
             android:textColor="@color/colorplate1"
             android:textSize="15sp"
             />
+
+        <EditText
+            android:id="@+id/BeanEditAmount"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:ems="2"
+            android:inputType="textPersonName"
+            android:text="50"
+            android:textSize="16sp"/>
+        <TextView
+            android:id="@+id/g_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="g"
+            android:layout_marginEnd="1dp"
+            android:fontFamily="@font/ubuntu_bold"
+            android:textColor="@color/colorplate1"
+            android:textSize="15sp"
+            />
+
     </LinearLayout>
     <LinearLayout
         android:id="@+id/layout_2"
@@ -45,22 +66,9 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:layout_marginTop="100dp"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_below="@id/layout_1">
-        <Button
-            android:id="@+id/EditAmount"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="80dp"
-            android:background="@drawable/rounded_button"
-            android:backgroundTint="@color/colorplate1"
 
-
-            android:fontFamily="@font/ubuntu_bold"
-            android:text="@string/edit"
-            android:textAllCaps="false"
-            android:textColor="@android:color/black"
-            android:textSize="19sp" />
         <Button
             android:id="@+id/BrewNow"
             android:layout_width="100dp"
@@ -85,6 +93,7 @@
         android:src="@drawable/footer_copyright_xl"
         android:layout_below="@id/layout_2"
         />
+
 
 </RelativeLayout>
 
