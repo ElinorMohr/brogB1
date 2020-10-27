@@ -45,4 +45,6 @@
     <string name="footer_with_copyright_description">Footer with copyright</string>
     <string name="footer_description">Footer without copyright</string>
     <string name="logo_with_text_description">BRØG logo with text</string>
+    <string name="start">Start</string>
+    <string name="_2020_br_g">© 2020 BRØG.</string>
 </resources>
