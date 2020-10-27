@@ -1,25 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@drawable/bryg_sheet_background"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    android:background="@android:color/transparent">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:background="@android:color/transparent"
+        app:srcCompat="@drawable/bryg_sheet_background" />
 
     <ImageView
         android:id="@+id/BrygMenuSheet"
         android:layout_width="800dp"
         android:layout_height="100dp"
         android:layout_marginTop="-40dp"
-        android:background="@drawable/menutop" />
+        android:background="@android:color/transparent"
+        app:srcCompat="@drawable/ic_menutop" />
 
     <LinearLayout
         android:id="@+id/layout_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:layout_below="@id/BrygMenuSheet"
         android:layout_marginTop="-50dp"
-        android:orientation="vertical"
-        android:layout_below="@id/BrygMenuSheet">
+        android:gravity="center"
+        android:orientation="vertical">
 
         <Button
             android:id="@+id/QuickBrew"

@@ -6,6 +6,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:paddingTop="0dp">
 
+    <ImageView
+        android:id="@+id/logo2"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="32dp"
+        android:contentDescription="@string/logo_with_text_description"
+        app:srcCompat="@drawable/ic_logo_w_text" />
+
     <ImageButton
         android:id="@+id/Settings"
         android:layout_width="wrap_content"
@@ -17,31 +25,14 @@
         />
 
 
-    <ImageView
-        android:id="@+id/BrewLogo"
-        android:layout_width="127dp"
-        android:layout_height="147dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="64dp"
-        app:srcCompat="@drawable/logo_uden_tekst" />
-
-    <ImageView
-        android:id="@+id/BrogTekst"
-        android:layout_width="148dp"
-        android:layout_height="34dp"
-        android:layout_below="@id/BrewLogo"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="5dp"
-        app:srcCompat="@drawable/logo_tekst" />
-
     <LinearLayout
         android:id="@+id/layout_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/logo2"
+        android:layout_marginTop="32dp"
         android:gravity="center"
-        android:orientation="vertical"
-        android:layout_marginTop="60dp"
-        android:layout_below="@id/BrogTekst">
+        android:orientation="vertical">
 
         <Button
             android:id="@+id/Brew"
@@ -96,12 +87,15 @@
     </LinearLayout>
 
     <ImageView
-        android:layout_marginTop="64dp"
-        android:id="@+id/imageView"
-        android:layout_width="480dp"
-        android:layout_height="76dp"
-        android:src="@drawable/footer_copyright_xl"
-        android:layout_below="@id/layout_1"
-        />
+        android:id="@+id/footer4"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="-65dp"
+        android:contentDescription="@string/footer_with_copyright_description"
+        app:srcCompat="@drawable/ic_footer_copyright" />
 
 </RelativeLayout>

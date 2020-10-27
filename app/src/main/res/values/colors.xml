@@ -10,4 +10,7 @@
     <color name="colorplate1">#DCCEC4</color>
     <color name="colorplate2">#8B5A39</color>
     <color name="colorplate3">#4E321F</color>
+    <color name="brown_3">#8B5A39</color>
+    <color name="brown_2">#DCCEC4</color>
+    <color name="brown_1">#EEE6E1</color>
 </resources>

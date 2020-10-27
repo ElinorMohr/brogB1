@@ -2,6 +2,7 @@ package org.dtu.brogb1;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -37,16 +38,19 @@ public class StartSide extends AppCompatActivity implements View.OnClickListener
 
     @Override
     public void onClick(View v) {
+        Intent intent;
         switch (v.getId()){
             case R.id.Brew:
                 BrygSheetMenu brygMenu = new BrygSheetMenu();
                 brygMenu.show(getSupportFragmentManager(),"FragmentBrygMenu");
                 break;
             case R.id.Clean:
-                Toast.makeText(this, "Clean clicked", Toast.LENGTH_SHORT).show();
+                intent = new Intent(this, CleanActivityStep1.class);
+                startActivity(intent);
                 break;
             case R.id.Community:
-                Toast.makeText(this, "Community clicked", Toast.LENGTH_SHORT).show();
+                intent = new Intent(this, CommunityActivity.class);
+                startActivity(intent);
                 break;
             case R.id.Guide:
                 Toast.makeText(this, "Guide clicked", Toast.LENGTH_SHORT).show();

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="32dp"
+    >
+
+    <TextView
+        android:id="@+id/name_recipe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NAME"
+        android:layout_centerHorizontal="true"/>
+
+    <ImageView
+        android:id="@+id/image_recipe"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="35dp"
+        android:layout_marginBottom="21dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/name_recipe"
+        android:src="@drawable/ic_launcher_background" />
+    <LinearLayout
+        android:id="@+id/layout_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_below="@id/layout_2"
+        android:gravity="center">
+        <Button
+            android:id="@+id/edit_recipe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/edit"
+            android:textColor="@color/black"
+            android:layout_margin="10dp"
+            android:background = "@drawable/roundedbutton"/>
+
+        <Button
+            android:id="@+id/brew_recipe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/brew"
+            android:textColor="@color/black"
+            android:layout_margin="10dp"
+            android:background = "@drawable/roundedbutton"/>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/layout_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_below="@id/image_recipe"
+        android:layout_margin="20dp">
+            <TextView
+                android:id="@+id/text_recipe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/amount_of_beans"
+                />
+
+            <EditText
+                android:id="@+id/input_recipe"
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number" />
+
+            <TextView
+                android:id="@+id/text_g_recipe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/g" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/footer2"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="-65dp"
+        android:contentDescription="@string/footer_with_copyright_description"
+        app:srcCompat="@drawable/ic_footer_copyright" />
+</RelativeLayout>

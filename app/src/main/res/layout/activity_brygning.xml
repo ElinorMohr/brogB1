@@ -85,14 +85,16 @@
     </LinearLayout>
 
     <ImageView
-        android:layout_marginTop="200dp"
-
-        android:id="@+id/imageView"
-        android:layout_width="480dp"
-        android:layout_height="76dp"
-        android:src="@drawable/footer_copyright_xl"
-        android:layout_below="@id/layout_2"
-        />
+        android:id="@+id/footer3"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="-65dp"
+        android:contentDescription="@string/footer_with_copyright_description"
+        app:srcCompat="@drawable/ic_footer_copyright" />
 
 
 </RelativeLayout>

@@ -1,10 +1,6 @@
 <resources>
     <string name="app_name">BrogB1</string>
-    <string name="cleaning_solution">cleaning solution...</string>
     <string name="coming_soon">Coming soon</string>
-    <string name="cleaning">Cleaning...</string>
-    <string name="add_water">Add water...</string>
-    <string name="done">Done!</string>
     <string name="recipes">Recipes</string>
     <string name="brew">Brew</string>
     <string name="history">History</string>
@@ -38,6 +34,17 @@
     <string name="language">Language</string>
     <string name="connections">Connections</string>
     <string name="info">Info</string>
+    <string name="clean_step1_instruction">Add cleaning solution...</string>
+    <string name="clean_step1_button">Next</string>
+    <string name="clean_step1_working">Cleaning...</string>
+    <string name="clean_step2_instruction">Add water...</string>
+    <string name="clean_step2_button">Next</string>
+    <string name="clean_step2_working">Cleaning...</string>
+    <string name="clean_step3_text">Done!</string>
+    <string name="clean_step3_button">Go back</string>
+    <string name="footer_with_copyright_description">Footer with copyright</string>
+    <string name="footer_description">Footer without copyright</string>
+    <string name="logo_with_text_description">BRØG logo with text</string>
     <string name="start">Start</string>
     <string name="_2020_br_g">© 2020 BRØG.</string>
 </resources>
