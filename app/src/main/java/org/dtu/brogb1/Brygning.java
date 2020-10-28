@@ -3,6 +3,7 @@ package org.dtu.brogb1;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.animation.ObjectAnimator;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -19,21 +20,16 @@ Button brygNu;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_brygning);
-        brygNu = (Button) findViewById(R.id.BrewNow);
-        BrewingLoading brewingLoading = new BrewingLoading(Brygning.this);
+        brygNu = findViewById(R.id.BrewNow);
 
         brygNu.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
-                brewingLoading.startLoadingDialog();
-                Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        brewingLoading.dismissDialog();
-                    }
-                }, 5000);
+                Dialog dialogue = new Dialog(v.getContext(), android.R.style.Theme_Black_NoTitleBar);
+                //fbDialogue.getWindow().setBackgroundDrawable(new ColorDrawable(Color.argb(100, 0, 0, 0)));
+                dialogue.setContentView(R.layout.brewing_progress);
+                dialogue.setCancelable(true);
+                dialogue.show();
             }
         });
     }
