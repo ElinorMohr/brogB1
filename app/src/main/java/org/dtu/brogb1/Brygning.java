@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.animation.ObjectAnimator;
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -26,10 +28,22 @@ Button brygNu;
             @Override
             public void onClick(View v) {
                 Dialog dialogue = new Dialog(v.getContext(), android.R.style.Theme_Black_NoTitleBar);
-                //fbDialogue.getWindow().setBackgroundDrawable(new ColorDrawable(Color.argb(100, 0, 0, 0)));
+                dialogue.getWindow().setBackgroundDrawable(new ColorDrawable(Color.argb(100, 0, 0, 0)));
                 dialogue.setContentView(R.layout.brewing_progress);
+                Button button = dialogue.findViewById(R.id.done_brew);
                 dialogue.setCancelable(true);
                 dialogue.show();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                button.setVisibility(View.VISIBLE);
+                            }
+                        });
+                    }
+                }, 5000);
             }
         });
     }
