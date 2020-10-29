@@ -11,6 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="NAME"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:layout_centerHorizontal="true"/>
 
     <ImageView
@@ -31,23 +32,25 @@
         android:layout_margin="10dp"
         android:layout_below="@id/layout_2"
         android:gravity="center">
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/edit_recipe"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/edit"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:layout_margin="10dp"
-            android:background = "@drawable/roundedbutton"/>
+            android:backgroundTint="@color/colorplate1"
+            app:cornerRadius="70dp"/>
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/brew_recipe"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/brew"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:layout_margin="10dp"
-            android:background = "@drawable/roundedbutton"/>
+            android:backgroundTint="@color/colorplate1"
+            app:cornerRadius="70dp"/>
     </LinearLayout>
     <LinearLayout
         android:id="@+id/layout_2"
@@ -60,6 +63,7 @@
                 android:id="@+id/text_recipe"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                 android:text="@string/amount_of_beans"
                 />
 
@@ -74,6 +78,7 @@
                 android:id="@+id/text_g_recipe"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                 android:text="@string/g" />
     </LinearLayout>
 
