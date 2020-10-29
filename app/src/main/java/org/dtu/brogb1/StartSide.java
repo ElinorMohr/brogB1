@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
+import org.dtu.brogb1.service.Option;
+
 public class StartSide extends AppCompatActivity implements View.OnClickListener  {
     Button brew,clean,community,guide,bsmquickBrew, bsmrecipes, bsmnewBrew;
     ImageButton settings;
@@ -56,7 +58,8 @@ public class StartSide extends AppCompatActivity implements View.OnClickListener
                 Toast.makeText(this, "Guide clicked", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.Settings:
-                Toast.makeText(this, "Setting clicked", Toast.LENGTH_SHORT).show();
+                intent = new Intent(this, Option.class);
+                startActivity(intent);
                 break;
         }
 

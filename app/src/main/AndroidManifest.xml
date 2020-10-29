@@ -12,6 +12,7 @@
         <activity android:name=".MainActivity2" />
         <activity android:name=".NyOpskrift"/>
         <activity android:name=".Brygning" />
+        <activity android:name=".service.Option" />
         <activity android:name=".StartSide" />
         <activity android:name=".CommunityActivity" />
         <activity android:name=".CleanActivityStep3" />
