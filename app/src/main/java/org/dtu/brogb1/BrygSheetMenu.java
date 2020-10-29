@@ -41,7 +41,8 @@ public class BrygSheetMenu extends BottomSheetDialogFragment {
         newBrew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "new brew click", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(), NyOpskrift.class);
+                startActivity(intent);
             }
         });
 
