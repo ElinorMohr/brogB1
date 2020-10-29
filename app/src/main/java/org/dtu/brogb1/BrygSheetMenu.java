@@ -12,6 +12,9 @@ import android.widget.Toast;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
+import org.dtu.brogb1.activity.RecipeActivity;
+import org.dtu.brogb1.ui.main.PlaceholderFragment;
+
 
 public class BrygSheetMenu extends BottomSheetDialogFragment {
 
@@ -35,7 +38,8 @@ public class BrygSheetMenu extends BottomSheetDialogFragment {
         recipes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "recipes click", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(), MainActivity2.class);
+                startActivity(intent);
             }
         });
         newBrew.setOnClickListener(new View.OnClickListener() {

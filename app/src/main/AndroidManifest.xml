@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BrogB1">
-        <activity android:name=".NyOpskrift"></activity>
+        <activity android:name=".MainActivity2" />
+        <activity android:name=".NyOpskrift"/>
         <activity android:name=".Brygning" />
         <activity android:name=".StartSide" />
         <activity android:name=".CommunityActivity" />

@@ -35,6 +35,11 @@
     <string name="language">Language</string>
     <string name="connections">Connections</string>
     <string name="info">Info</string>
+    <string name="title_activity_main2">MainActivity2</string>
+    <string name="tab_text_1">Recipes</string>
+    <string name="tab_text_2">History</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="loading">Loading ...</string>
     <string name="clean_step1_instruction">Add cleaning solution...</string>
     <string name="clean_step1_button">Next</string>
