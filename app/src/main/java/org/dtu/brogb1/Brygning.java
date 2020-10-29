@@ -14,7 +14,7 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 
 public class Brygning extends AppCompatActivity {
-Button brygNu;
+    Button brygNu;
     private ProgressBar progressBarAnimation;
     private ObjectAnimator progressAnimator;
 

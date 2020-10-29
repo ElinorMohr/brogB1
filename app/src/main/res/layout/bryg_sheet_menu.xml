@@ -3,15 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/transparent">
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="20dp"
-        android:background="@android:color/transparent"
-        app:srcCompat="@drawable/bryg_sheet_background" />
+    android:gravity="center_horizontal"
+    android:background="@drawable/bryg_sheet_background"
+    >
 
     <ImageView
         android:id="@+id/BrygMenuSheet"
@@ -19,6 +13,7 @@
         android:layout_height="100dp"
         android:layout_marginTop="-40dp"
         android:background="@android:color/transparent"
+        android:layout_marginBottom="20dp"
         app:srcCompat="@drawable/ic_menutop" />
 
     <LinearLayout
@@ -26,7 +21,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/BrygMenuSheet"
-        android:layout_marginTop="-50dp"
+        android:layout_marginTop="-70dp"
+
         android:gravity="center"
         android:orientation="vertical">
 
@@ -64,7 +60,6 @@
             android:id="@+id/NewBrew"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
 
             android:background="@drawable/rounded_button"
             android:backgroundTint="@color/colorplate1"
@@ -72,6 +67,7 @@
             android:fontFamily="@font/ubuntu_bold"
             android:text="@string/new_brew"
             android:textAllCaps="false"
+            android:layout_marginBottom="40dp"
             android:textColor="@android:color/black"
             android:textSize="19sp" />
 
