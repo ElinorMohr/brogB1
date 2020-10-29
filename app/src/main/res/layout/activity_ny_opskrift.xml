@@ -7,8 +7,8 @@
 
     <ImageView
         android:id="@+id/ny_opskrift"
-        android:layout_width="175dp"
-        android:layout_height="181dp"
+        android:layout_width="136dp"
+        android:layout_height="139dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
         app:srcCompat="@drawable/kaffevinter" />
@@ -18,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/ny_opskrift"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:gravity="center"
         android:orientation="vertical">
 
