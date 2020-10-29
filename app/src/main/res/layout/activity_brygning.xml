@@ -48,7 +48,7 @@
             android:inputType="textPersonName"
             android:textColor="@color/colorplate1"
             android:text="50"
-            android: android:gravity="center"
+            android:gravity="center"
             android:textSize="16sp"/>
         <TextView
             android:id="@+id/g_text"
