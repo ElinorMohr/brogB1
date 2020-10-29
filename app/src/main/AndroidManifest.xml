@@ -18,7 +18,7 @@
         <activity android:name=".CleanActivityStep2" />
         <activity android:name=".CleanActivityStep1" />
         <activity android:name=".activity.RecipeActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".FirstTime">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,6 +29,8 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+        <activity android:name=".service.Loading">
+        </activity>
     </application>
 
 </manifest>

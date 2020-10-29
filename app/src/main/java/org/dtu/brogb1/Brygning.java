@@ -31,7 +31,7 @@ Button brygNu;
                 dialogue.getWindow().setBackgroundDrawable(new ColorDrawable(Color.argb(100, 0, 0, 0)));
                 dialogue.setContentView(R.layout.brewing_progress);
                 Button button = dialogue.findViewById(R.id.done_brew);
-                ProgressBar bar = dialogue.findViewById(R.id.BrewingProcessBar)
+                ProgressBar bar = dialogue.findViewById(R.id.BrewingProcessBar);
                 dialogue.setCancelable(true);
                 dialogue.show();
                 new Handler().postDelayed(new Runnable() {
