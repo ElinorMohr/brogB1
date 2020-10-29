@@ -23,6 +23,7 @@
     <string name="bloom_water">Bloom water</string>
     <string name="bloom_time">Bloom time</string>
     <string name="total_brewing_time">Total brewing time</string>
+    <string name="save">save</string>
     <string name="g">g</string>
     <string name="l">l</string>
     <string name="c">c</string>
