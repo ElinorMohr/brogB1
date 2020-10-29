@@ -16,7 +16,7 @@ public class CleanActivityStep1 extends AppCompatActivity {
 
         Button next = (Button) findViewById(R.id.clean_step1_button);
         next.setOnClickListener(v -> {
-            Intent intent = new Intent(CleanActivityStep1.this, CleanActivityStep1Working.class);
+            Intent intent = new Intent(this, CleanActivityStep1Working.class);
             startActivity(intent);
         });
     }

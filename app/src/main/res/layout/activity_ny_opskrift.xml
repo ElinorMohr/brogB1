@@ -46,9 +46,10 @@
 
             <SeekBar
                 android:id="@+id/SBGroundCoffee"
+                style="@style/BrogSeekBar"
                 android:layout_width="280dp"
-                android:gravity="center"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:gravity="center" />
 
             <EditText
                 android:id="@+id/editGroundCoffee"
@@ -100,6 +101,7 @@
         <SeekBar
             android:id="@+id/SBGrindSize"
             android:layout_width="280dp"
+            style="@style/BrogSeekBar"
             android:gravity="center"
             android:layout_height="match_parent" />
 
@@ -146,6 +148,7 @@
             <SeekBar
                 android:id="@+id/SBRatio"
                 android:layout_width="280dp"
+                style="@style/BrogSeekBar"
                 android:gravity="center"
                 android:layout_height="match_parent" />
 
@@ -198,6 +201,7 @@
             <SeekBar
                 android:id="@+id/SBTemperature"
                 android:layout_width="280dp"
+                style="@style/BrogSeekBar"
                 android:gravity="center"
                 android:layout_height="match_parent" />
 
@@ -250,6 +254,7 @@
             <SeekBar
                 android:id="@+id/SBBloomWater"
                 android:layout_width="280dp"
+                style="@style/BrogSeekBar"
                 android:gravity="center"
                 android:layout_height="match_parent" />
 
@@ -301,6 +306,7 @@
             <SeekBar
                 android:id="@+id/SBBloomTime"
                 android:layout_width="280dp"
+                style="@style/BrogSeekBar"
                 android:gravity="center"
                 android:layout_height="match_parent" />
 
@@ -350,6 +356,7 @@
             <SeekBar
                 android:id="@+id/SBTotalTime"
                 android:layout_width="280dp"
+                style="@style/BrogSeekBar"
                 android:gravity="center"
                 android:layout_height="match_parent" />
 

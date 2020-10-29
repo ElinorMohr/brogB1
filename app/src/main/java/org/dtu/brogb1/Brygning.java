@@ -24,7 +24,13 @@ public class Brygning extends AppCompatActivity {
         setContentView(R.layout.activity_brygning);
         brygNu = findViewById(R.id.BrewNow);
 
-        brygNu.setOnClickListener(new View.OnClickListener() {
+        brygNu.setOnClickListener(v -> {
+            Intent intent = new Intent(this, StartSide.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+        });
+
+       /* brygNu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Dialog dialogue = new Dialog(v.getContext(), android.R.style.Theme_Black_NoTitleBar);
@@ -47,6 +53,6 @@ public class Brygning extends AppCompatActivity {
                     }
                 }, 5000);
             }
-        });
+        });*/
     }
 }
