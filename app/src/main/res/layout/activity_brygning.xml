@@ -73,17 +73,10 @@
 
         <Button
             android:id="@+id/BrewNow"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/rounded_button"
-            android:backgroundTint="@color/colorplate1"
 
 
-            android:fontFamily="@font/ubuntu_bold"
-            android:text="@string/brew"
-            android:textAllCaps="false"
-            android:textColor="@android:color/black"
-            android:textSize="19sp" />
+            style="@style/DefaultButton"
+            android:text="@string/brew" />
     </LinearLayout>
 
     <ImageView

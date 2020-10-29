@@ -35,8 +35,7 @@
 
         <Button
             android:id="@+id/clean_step1_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/DefaultButton"
             android:layout_marginTop="48dp"
             android:text="@string/clean_step1_button" />
 
