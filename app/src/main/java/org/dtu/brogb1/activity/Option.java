@@ -1,4 +1,4 @@
-package org.dtu.brogb1.service;
+package org.dtu.brogb1.activity;
 
 import android.os.Bundle;
 

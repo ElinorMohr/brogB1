@@ -1,4 +1,4 @@
-package org.dtu.brogb1;
+package org.dtu.brogb1.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,16 +6,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
-public class NyOpskrift extends AppCompatActivity {
+import org.dtu.brogb1.R;
+
+public class NewBrew extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ny_opskrift);
+        setContentView(R.layout.activity_new_brew);
 
-        Button brygNu = (Button) findViewById(R.id.BrewNowRecipe);
-        brygNu.setOnClickListener(v -> {
-            Intent intent = new Intent(this, StartSide.class);
+        Button brewNow = (Button) findViewById(R.id.BrewNowRecipe);
+        brewNow.setOnClickListener(v -> {
+            Intent intent = new Intent(this, HomePage.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
         });

@@ -1,6 +1,4 @@
-package org.dtu.brogb1;
-
-import androidx.appcompat.app.AppCompatActivity;
+package org.dtu.brogb1.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,9 +6,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import org.dtu.brogb1.service.Loading;
+import androidx.appcompat.app.AppCompatActivity;
 
-public class FirstTime extends AppCompatActivity implements View.OnClickListener {
+import org.dtu.brogb1.R;
+import org.dtu.brogb1.activity.Loading;
+
+public class LandingPage extends AppCompatActivity implements View.OnClickListener {
 
     Button bluetooth;
     TextView logo;
@@ -27,7 +28,7 @@ public class FirstTime extends AppCompatActivity implements View.OnClickListener
 
     @Override
     public void onClick(View v) {
-        if(v == bluetooth){
+        if (v == bluetooth) {
             Intent intent = new Intent(this, Loading.class);
             startActivity(intent);
         }

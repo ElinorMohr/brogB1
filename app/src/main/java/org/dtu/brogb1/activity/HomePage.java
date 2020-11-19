@@ -1,4 +1,4 @@
-package org.dtu.brogb1;
+package org.dtu.brogb1.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,14 +7,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import org.dtu.brogb1.R;
+import org.dtu.brogb1.activity.BrewSheetMenu;
+import org.dtu.brogb1.activity.Option;
+import org.dtu.brogb1.activity.clean.CleanActivityStep1;
+import org.dtu.brogb1.activity.community.CommunityActivity;
 
-import org.dtu.brogb1.service.Option;
-
-public class StartSide extends AppCompatActivity implements View.OnClickListener  {
+public class HomePage extends AppCompatActivity implements View.OnClickListener  {
     Button brew,clean,community,guide,bsmquickBrew, bsmrecipes, bsmnewBrew;
     ImageButton settings;
 
@@ -43,7 +44,7 @@ public class StartSide extends AppCompatActivity implements View.OnClickListener
         Intent intent;
         switch (v.getId()){
             case R.id.Brew:
-                BrygSheetMenu brygMenu = new BrygSheetMenu();
+                BrewSheetMenu brygMenu = new BrewSheetMenu();
                 brygMenu.show(getSupportFragmentManager(),"FragmentBrygMenu");
                 break;
             case R.id.Clean:

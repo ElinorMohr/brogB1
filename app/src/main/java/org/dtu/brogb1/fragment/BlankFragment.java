@@ -1,4 +1,4 @@
-package org.dtu.brogb1.ui.main;
+package org.dtu.brogb1.fragment;
 
 import android.os.Bundle;
 

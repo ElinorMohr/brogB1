@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".ui.main.PlaceholderFragment">
+    tools:context=".fragment.PlaceholderFragment">
 
     <ListView
         android:id="@+id/list_view_main"

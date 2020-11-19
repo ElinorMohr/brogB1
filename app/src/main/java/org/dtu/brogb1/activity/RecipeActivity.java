@@ -15,6 +15,7 @@ public class RecipeActivity extends AppCompatActivity {
     Button edit, brew;
     EditText input;
     ImageView image;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

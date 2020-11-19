@@ -1,4 +1,4 @@
-package org.dtu.brogb1.ui.main;
+package org.dtu.brogb1.adapter;
 
 import android.content.Context;
 
@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import org.dtu.brogb1.R;
+import org.dtu.brogb1.fragment.PlaceholderFragment;
 
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to

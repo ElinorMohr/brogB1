@@ -1,4 +1,4 @@
-package org.dtu.brogb1;
+package org.dtu.brogb1.activity;
 
 import android.os.Bundle;
 
@@ -6,29 +6,25 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 
-import org.dtu.brogb1.ui.main.BlankFragment;
-import org.dtu.brogb1.ui.main.Historik;
-import org.dtu.brogb1.ui.main.Opskrifter;
-import org.dtu.brogb1.ui.main.PlaceholderFragment;
-import org.dtu.brogb1.ui.main.SectionsPagerAdapter;
+import org.dtu.brogb1.R;
+import org.dtu.brogb1.fragment.History;
+import org.dtu.brogb1.fragment.Recipes;
+import org.dtu.brogb1.adapter.SectionsPagerAdapter;
 
-public class MainActivity2 extends AppCompatActivity {
+public class Sections extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main2);
+        setContentView(R.layout.sections);
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
         ViewPager viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(sectionsPagerAdapter);
@@ -55,10 +51,10 @@ public class MainActivity2 extends AppCompatActivity {
             Fragment fragment = null;
             switch (position) {
                 case 0:
-                    fragment = new Opskrifter();
+                    fragment = new Recipes();
                     break;
                 case 1:
-                    fragment = new Historik();
+                    fragment = new History();
                     break;
             }
             return fragment;

@@ -1,38 +1,29 @@
-package org.dtu.brogb1.service;
+package org.dtu.brogb1.activity.clean;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import org.dtu.brogb1.CleanActivityStep1Working;
-import org.dtu.brogb1.CleanActivityStep2;
 import org.dtu.brogb1.R;
-import org.dtu.brogb1.StartSide;
 
-public class Loading extends AppCompatActivity {
-
-    TextView loading;
+public class CleanActivityStep2Working extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_loading);
-
-        loading = findViewById(R.id.loading);
+        setContentView(R.layout.activity_clean_step2_working);
 
         new android.os.Handler().postDelayed(
                 new Runnable() {
                     public void run() {
-                        Intent intent = new Intent(Loading.this, StartSide.class);
+                        Intent intent = new Intent(CleanActivityStep2Working.this, CleanActivityStep3.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_TASK_ON_HOME);
                         startActivity(intent);
-                        Loading.this.finish();
+                        CleanActivityStep2Working.this.finish();
                     }
                 },
                 1500
         );
-
     }
 }
