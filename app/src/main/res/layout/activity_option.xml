@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -14,9 +14,6 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="120dp"
         android:layout_marginBottom="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo_uden_tekst" />
 
     <ImageView
@@ -26,80 +23,45 @@
         android:layout_marginStart="104dp"
         android:layout_marginEnd="104dp"
         android:layout_marginBottom="56dp"
-        app:layout_constraintBottom_toTopOf="@+id/clearTekst"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
         app:srcCompat="@drawable/logo_tekst" />
 
     <TextView
         android:id="@+id/clearTekst"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="159dp"
-        android:layout_marginTop="56dp"
-        android:layout_marginEnd="160dp"
-        android:layout_marginBottom="27dp"
+        android:layout_gravity="center"
         android:text="@string/clear_standard"
-        app:layout_constraintBottom_toTopOf="@+id/sprogTekst"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
     <TextView
         android:id="@+id/sprogTekst"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="159dp"
-        android:layout_marginTop="56dp"
-        android:layout_marginEnd="190dp"
-        android:layout_marginBottom="21dp"
+        android:layout_gravity="center"
         android:text="@string/language"
-        app:layout_constraintBottom_toTopOf="@+id/infoTekst"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/clearTekst" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
     <TextView
         android:id="@+id/connectTekst"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="159dp"
-        android:layout_marginTop="21dp"
-        android:layout_marginEnd="174dp"
-        android:layout_marginBottom="10dp"
         android:text="@string/connections"
-        app:layout_constraintBottom_toTopOf="@+id/guideTekst"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/clearTekst" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:layout_gravity="center" />
 
     <TextView
         android:id="@+id/guideTekst"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="159dp"
-        android:layout_marginTop="21dp"
-        android:layout_marginEnd="216dp"
-        android:layout_marginBottom="21dp"
         android:text="@string/guide"
-        app:layout_constraintBottom_toTopOf="@+id/sprogTekst"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/connectTekst" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:layout_gravity="center" />
 
     <TextView
         android:id="@+id/infoTekst"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="159dp"
-        android:layout_marginTop="7dp"
-        android:layout_marginEnd="213dp"
-        android:layout_marginBottom="131dp"
         android:text="@string/info"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sprogTekst" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:layout_gravity="center" />
+</LinearLayout>

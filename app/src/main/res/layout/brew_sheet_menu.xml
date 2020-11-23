@@ -26,24 +26,23 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <Button
-            android:id="@+id/QuickBrew"
-
-
+        <com.google.android.material.button.MaterialButton
+            app:cornerRadius="70dp"
             style="@style/DefaultButton"
+            android:id="@+id/QuickBrew"
             android:layout_marginTop="40dp"
             android:text="@string/quick_brew" />
 
-        <Button
-            android:id="@+id/Recipes"
-
+        <com.google.android.material.button.MaterialButton
+            app:cornerRadius="70dp"
             style="@style/DefaultButton"
+            android:id="@+id/Recipes"
             android:text="@string/recipes" />
 
-        <Button
-            android:id="@+id/NewBrew"
-
+        <com.google.android.material.button.MaterialButton
+            app:cornerRadius="70dp"
             style="@style/DefaultButton"
+            android:id="@+id/NewBrew"
             android:text="@string/new_brew" />
 
     </LinearLayout>

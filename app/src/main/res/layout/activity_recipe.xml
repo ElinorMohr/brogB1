@@ -24,7 +24,9 @@
         android:layout_marginBottom="21dp"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/name_recipe"
-        android:src="@drawable/ic_launcher_background" />
+        android:src="@drawable/kaffevinter"
+        android:background="@color/colorplate3"
+        android:padding="4dp"/>
     <LinearLayout
         android:id="@+id/layout_1"
         android:layout_width="match_parent"
@@ -72,7 +74,8 @@
                 android:layout_width="20dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="number" />
+                android:inputType="number"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"/>
 
             <TextView
                 android:id="@+id/text_g_recipe"

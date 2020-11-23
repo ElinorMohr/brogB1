@@ -25,9 +25,10 @@ android:paddingTop="32dp">
         android:contentDescription="@string/logo_with_text_description"
         app:srcCompat="@drawable/ic_logo_w_text" />
 
-    <Button
-        android:id="@+id/bluetooth"
+    <com.google.android.material.button.MaterialButton
+        app:cornerRadius="70dp"
         style="@style/DefaultButton"
+        android:id="@+id/bluetooth"
         android:text="@string/bluetooth"
         android:layout_marginTop="72dp"
         app:layout_constraintBottom_toBottomOf="parent"
