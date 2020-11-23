@@ -33,9 +33,10 @@
             android:text="@string/clean_step1_instruction"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
-        <Button
-            android:id="@+id/clean_step1_button"
+        <com.google.android.material.button.MaterialButton
+            app:cornerRadius="70dp"
             style="@style/DefaultButton"
+            android:id="@+id/clean_step1_button"
             android:layout_marginTop="48dp"
             android:text="@string/clean_step1_button" />
 

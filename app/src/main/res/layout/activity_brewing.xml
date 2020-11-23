@@ -5,19 +5,13 @@
     >
 
     <ImageView
-        android:id="@+id/kaffeborder"
-        android:layout_width="227dp"
-        android:layout_height="247dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="70dp"
-        android:background="@drawable/picture_border" />
-
-    <ImageView
         android:id="@+id/kaffebillede"
         android:layout_width="220dp"
         android:layout_height="236dp"
         android:layout_marginTop="77dp"
         android:layout_centerHorizontal="true"
+        android:background="@color/colorplate3"
+        android:padding="4dp"
         app:srcCompat="@drawable/kaffevinter" />
 
     <LinearLayout
@@ -27,17 +21,15 @@
         android:gravity="center"
         android:layout_marginTop="10dp"
         android:orientation="horizontal"
-        android:layout_below="@id/kaffeborder">
+        android:layout_below="@id/kaffebillede">
 
         <TextView
             android:id="@+id/BeanAmount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="the amount of beans is:"
+            android:text="@string/amount_of_beans"
             android:layout_marginEnd="1dp"
-            android:fontFamily="@font/ubuntu_bold"
-            android:textColor="@color/colorplate1"
-            android:textSize="15sp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
             />
 
         <EditText
@@ -46,19 +38,15 @@
             android:layout_height="wrap_content"
             android:ems="2"
             android:inputType="textPersonName"
-            android:textColor="@color/colorplate1"
-            android:text="50"
-            android:gravity="center"
-            android:textSize="16sp"/>
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:gravity="center" />
         <TextView
             android:id="@+id/g_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="g"
             android:layout_marginEnd="1dp"
-            android:fontFamily="@font/ubuntu_bold"
-            android:textColor="@color/colorplate1"
-            android:textSize="15sp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
             />
 
     </LinearLayout>
@@ -71,11 +59,10 @@
         android:orientation="vertical"
         android:layout_below="@id/layout_1">
 
-        <Button
-            android:id="@+id/BrewNow"
-
-
+        <com.google.android.material.button.MaterialButton
+            app:cornerRadius="70dp"
             style="@style/DefaultButton"
+            android:id="@+id/BrewNow"
             android:text="@string/brew" />
     </LinearLayout>
 

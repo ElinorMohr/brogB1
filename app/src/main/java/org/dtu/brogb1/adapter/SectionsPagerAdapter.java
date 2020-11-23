@@ -9,7 +9,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import org.dtu.brogb1.R;
-import org.dtu.brogb1.fragment.PlaceholderFragment;
+import org.dtu.brogb1.fragment.History;
+import org.dtu.brogb1.fragment.Recipes;
 
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to
@@ -28,9 +29,16 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        // getItem is called to instantiate the fragment for the given page.
-        // Return a PlaceholderFragment (defined as a static inner class below).
-        return PlaceholderFragment.newInstance(position + 1);
+        Fragment fragment = null;
+        switch (position) {
+            case 0:
+                fragment = new Recipes();
+                break;
+            case 1:
+                fragment = new History();
+                break;
+        }
+        return fragment;
     }
 
     @Nullable

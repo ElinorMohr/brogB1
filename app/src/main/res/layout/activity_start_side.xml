@@ -34,24 +34,28 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <Button
-            android:id="@+id/Brew"
-            android:text="@string/brew"
-            style="@style/DefaultButton" />
-
-        <Button
-            android:id="@+id/Clean"
+        <com.google.android.material.button.MaterialButton
+            app:cornerRadius="70dp"
             style="@style/DefaultButton"
+            android:id="@+id/Brew"
+            android:text="@string/brew" />
+
+        <com.google.android.material.button.MaterialButton
+            app:cornerRadius="70dp"
+            style="@style/DefaultButton"
+            android:id="@+id/Clean"
             android:text="@string/clean" />
 
-        <Button
-            android:id="@+id/Community"
+        <com.google.android.material.button.MaterialButton
+            app:cornerRadius="70dp"
             style="@style/DefaultButton"
+            android:id="@+id/Community"
             android:text="@string/community" />
 
-        <Button
-            android:id="@+id/Guide"
+        <com.google.android.material.button.MaterialButton
+            app:cornerRadius="70dp"
             style="@style/DefaultButton"
+            android:id="@+id/Guide"
             android:text="@string/guide" />
 
     </LinearLayout>
