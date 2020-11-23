@@ -25,15 +25,14 @@ android:paddingTop="32dp">
         android:contentDescription="@string/logo_with_text_description"
         app:srcCompat="@drawable/ic_logo_w_text" />
 
-    <ProgressBar
-        android:id="@+id/progressBar2"
-        android:indeterminate="true"
-        android:indeterminateTintMode="src_atop"
-        android:indeterminateTint="@color/brown_3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
-        app:layout_constraintBottom_toTopOf="@+id/loading" />
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/beansAnimation1"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="8dp"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/beans" />
 
     <TextView
         android:id="@+id/loading"

@@ -17,17 +17,14 @@
         android:layout_margin="30dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"/>
 
-    <ProgressBar
-        android:id="@+id/BrewingProcessBar"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="179dp"
-        android:layout_height="20dp"
-        android:layout_margin="30dp"
-        android:max="100"
-        android:progress="50"
-        android:background="#FFFFFF"
-        android:progressTint="@color/colorplate1"
-        android:secondaryProgressTint="@color/colorplate2"/>
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/logoAnimation"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="8dp"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="false"
+        app:lottie_rawRes="@raw/logo_loader" />
 
     <Button
         android:id="@+id/done_brew"

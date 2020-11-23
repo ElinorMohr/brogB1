@@ -37,10 +37,10 @@ public class Brewing extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(v.getContext(), HomePage.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
                     }
                 });
-                ProgressBar bar = dialogue.findViewById(R.id.BrewingProcessBar);
                 dialogue.setCancelable(true);
                 dialogue.show();
                 new Handler().postDelayed(new Runnable() {
@@ -49,12 +49,11 @@ public class Brewing extends AppCompatActivity {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                bar.setProgress(100);
                                 button.setVisibility(View.VISIBLE);
                             }
                         });
                     }
-                }, 5000);
+                }, 10000);
             }
         });
     }
