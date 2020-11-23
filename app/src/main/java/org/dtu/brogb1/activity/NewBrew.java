@@ -17,7 +17,7 @@ public class NewBrew extends AppCompatActivity {
 
         Button brewNow = (Button) findViewById(R.id.BrewNowRecipe);
         brewNow.setOnClickListener(v -> {
-            Intent intent = new Intent(this, HomePage.class);
+            Intent intent = new Intent(this, Brewing.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
         });
