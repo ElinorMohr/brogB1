@@ -117,6 +117,13 @@
                     android:text="(fine)"
                     android:textSize="9dp" />
 
+                <TextView
+                    android:id="@+id/txtGrindSizeAmount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/blank"
+                    android:textSize="10dp" />
+
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
