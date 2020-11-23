@@ -4,23 +4,21 @@
     android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical"
-    tools:context=".fragment.PlaceholderFragment">
+    android:orientation="vertical">
 
     <ListView
-        android:id="@+id/list_view_main"
-        android:layout_width="wrap_content"
+        android:id="@+id/list_view_main_recipes"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
     </ListView>
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_launcher_background">
+        android:src="@drawable/ic_footer">
     </ImageView>
     <ListView
-        android:id="@+id/list_view_sec"
-        android:layout_width="wrap_content"
+        android:id="@+id/list_view_sec_recipes"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
     </ListView>
 
