@@ -1,5 +1,6 @@
 package org.dtu.brogb1.activity;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import org.dtu.brogb1.R;
+import org.dtu.brogb1.model.Brew;
 
 public class RecipeActivity extends AppCompatActivity {
     Button edit, brew;
@@ -30,16 +32,18 @@ public class RecipeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_recipe);
 
 
-        edit.setOnClickListener(new View.OnClickListener() {
+        brew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(v.getContext(), Brewing.class);
+                startActivity(intent);
             }
         });
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(v.getContext(), NewBrew.class);
+                startActivity(intent);
             }
         });
     }
