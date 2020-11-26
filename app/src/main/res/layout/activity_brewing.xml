@@ -8,9 +8,8 @@
         android:id="@+id/kaffebillede"
         android:layout_width="220dp"
         android:layout_height="236dp"
-        android:layout_marginTop="77dp"
+        android:layout_marginTop="30dp"
         android:layout_centerHorizontal="true"
-        android:background="@color/colorplate3"
         android:padding="4dp"
         app:srcCompat="@drawable/kaffevinter" />
 
@@ -18,44 +17,49 @@
         android:id="@+id/layout_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/kaffebillede"
+        android:layout_marginTop="60dp"
         android:gravity="center"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal"
-        android:layout_below="@id/kaffebillede">
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/BeanAmount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="2dp"
             android:text="@string/amount_of_beans"
-            android:layout_marginEnd="1dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-            />
+            android:textColor="@color/colorplate3" />
 
         <EditText
             android:id="@+id/BeanEditAmount"
-            android:layout_width="30dp"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
-            android:ems="2"
+            android:ems="1"
+            android:gravity="center"
+            android:hint="30"
             android:inputType="textPersonName"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-            android:gravity="center" />
+            android:textColor="@color/colorplate3"
+            android:textColorHint="@color/colorplate3"/>
+
         <TextView
             android:id="@+id/g_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="2dp"
             android:text="g"
-            android:layout_marginEnd="1dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-            />
+            android:textColor="@color/colorplate3" />
 
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/layout_2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="50dp"
         android:orientation="vertical"
         android:layout_below="@id/layout_1">
 
