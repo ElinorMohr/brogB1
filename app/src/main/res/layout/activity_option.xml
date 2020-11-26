@@ -7,29 +7,20 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="172dp"
-        android:layout_height="247dp"
-        android:layout_marginStart="119dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="120dp"
-        android:layout_marginBottom="8dp"
-        app:srcCompat="@drawable/logo_uden_tekst" />
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="203dp"
-        android:layout_height="77dp"
-        android:layout_marginStart="104dp"
-        android:layout_marginEnd="104dp"
-        android:layout_marginBottom="56dp"
-        app:srcCompat="@drawable/logo_tekst" />
+        android:id="@+id/logo2"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="32dp"
+        android:contentDescription="@string/logo_with_text_description"
+        app:srcCompat="@drawable/ic_logo_w_text" />
 
     <TextView
         android:id="@+id/clearTekst"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:textColor="@color/colorplate3"
         android:text="@string/clear_standard"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
@@ -38,6 +29,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/colorplate3"
         android:text="@string/language"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
@@ -45,6 +38,8 @@
         android:id="@+id/connectTekst"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/colorplate3"
         android:text="@string/connections"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:layout_gravity="center" />
@@ -53,6 +48,8 @@
         android:id="@+id/guideTekst"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/colorplate3"
         android:text="@string/guide"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:layout_gravity="center" />
@@ -60,8 +57,11 @@
     <TextView
         android:id="@+id/infoTekst"
         android:layout_width="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/colorplate3"
         android:layout_height="wrap_content"
         android:text="@string/info"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:layout_gravity="center" />
+
 </LinearLayout>

@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.BrogB1" parent="Theme.MaterialComponents.Light.DarkActionBar">
+    <style name="Theme.BrogB1" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/brown_2</item>
         <item name="colorPrimaryVariant">@color/brown_3</item>
@@ -11,7 +11,7 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
+        <!-- Customize your theme  here. -->
     </style>
 
     <style name="Theme.BrogB1.NoActionBar">
