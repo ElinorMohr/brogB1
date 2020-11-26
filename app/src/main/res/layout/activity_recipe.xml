@@ -11,6 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="NAME"
+        android:textColor="@color/colorplate3"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:layout_centerHorizontal="true"/>
 
@@ -25,7 +26,6 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@id/name_recipe"
         android:src="@drawable/kaffevinter"
-        android:background="@color/colorplate3"
         android:padding="4dp"/>
     <LinearLayout
         android:id="@+id/layout_1"
@@ -39,7 +39,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/edit"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:layout_margin="10dp"
             android:backgroundTint="@color/colorplate1"
             app:cornerRadius="70dp"/>
@@ -49,7 +49,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/brew"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:layout_margin="10dp"
             android:backgroundTint="@color/colorplate1"
             app:cornerRadius="70dp"/>
@@ -65,22 +65,30 @@
                 android:id="@+id/text_recipe"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="2dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                 android:text="@string/amount_of_beans"
+                android:textColor="@color/colorplate3"
                 />
 
             <EditText
                 android:id="@+id/input_recipe"
-                android:layout_width="20dp"
+                android:layout_width="60dp"
                 android:layout_height="wrap_content"
-                android:ems="10"
+                android:ems="1"
+                android:hint="30"
+                android:gravity="center"
                 android:inputType="number"
-                android:textAppearance="@style/TextAppearance.AppCompat.Display1"/>
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textColor="@color/colorplate3"
+                android:textColorHint="@color/colorplate3"/>
 
             <TextView
                 android:id="@+id/text_g_recipe"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="2dp"
+                android:textColor="@color/colorplate3"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                 android:text="@string/g" />
     </LinearLayout>
