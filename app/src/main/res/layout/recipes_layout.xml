@@ -7,7 +7,19 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+   <TextView
+        android:id="@+id/saved_machine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginStart="4dp"
+        android:textColor="@color/black"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+       android:text="@string/saved_on_machine_underline" />
+
     <ListView
+        android:layout_marginTop="6dp"
         android:id="@+id/list_view_main_recipes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -19,7 +31,18 @@
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/ic_splitter">
     </ImageView>
+    <TextView
+        android:id="@+id/Recipes_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginStart="4dp"
+        android:textColor="@color/black"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:text="@string/recipes_underline" />
     <ListView
+        android:layout_marginTop="6dp"
         android:id="@+id/list_view_sec_recipes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

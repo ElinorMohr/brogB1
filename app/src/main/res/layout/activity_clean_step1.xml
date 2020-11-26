@@ -34,11 +34,11 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
         <com.google.android.material.button.MaterialButton
-            app:cornerRadius="70dp"
-            style="@style/DefaultButton"
             android:id="@+id/clean_step1_button"
+            style="@style/DefaultButton"
             android:layout_marginTop="48dp"
-            android:text="@string/clean_step1_button" />
+            android:text="@string/clean_step1_button"
+            app:cornerRadius="70dp" />
 
     </LinearLayout>
 

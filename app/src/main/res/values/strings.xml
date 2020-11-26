@@ -56,4 +56,6 @@
     <string name="start">Start</string>
     <string name="_2020_br_g">© 2020 BRØG.</string>
     <string name="done">Done</string>
+    <string name="saved_on_machine_underline"><u>Saved on the machine</u></string>
+    <string name="recipes_underline"><u>Recipes</u></string>
 </resources>
