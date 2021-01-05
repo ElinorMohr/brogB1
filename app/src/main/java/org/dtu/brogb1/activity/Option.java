@@ -9,6 +9,7 @@ import org.dtu.brogb1.R;
 /**
  * @author Elinor Mikkelsen s191242
  * @author Betina Hansen s195389
+ * @author Asim Raja s040727
  */
 
 public class Option extends AppCompatActivity {
