@@ -35,8 +35,10 @@ public class RecipeActivity extends AppCompatActivity {
         brew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), Brewing.class);
-                startActivity(intent);
+                if(v==edit) {
+                    Intent intent = new Intent(v.getContext(), Brewing.class);
+                    startActivity(intent);
+                }
             }
         });
         edit.setOnClickListener(new View.OnClickListener() {
