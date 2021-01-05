@@ -9,6 +9,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import org.dtu.brogb1.R;
 import org.dtu.brogb1.activity.HomePage;
 
+/**
+ * @author Elinor Mikkelsen s191242
+ * @author Theis Villumsen s195461
+ */
+
 public class CleanActivityStep3 extends AppCompatActivity {
 
     @Override

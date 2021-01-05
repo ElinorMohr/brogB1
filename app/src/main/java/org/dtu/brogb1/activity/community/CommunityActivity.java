@@ -6,6 +6,11 @@ import android.os.Bundle;
 
 import org.dtu.brogb1.R;
 
+/**
+ * @author Elinor Mikkelsen s191242
+ * @author Theis Villumsen s195461
+ */
+
 public class CommunityActivity extends AppCompatActivity {
 
     @Override

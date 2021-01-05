@@ -1,5 +1,9 @@
 package org.dtu.brogb1.model;
 
+/**
+ * @author Elinor Mikkelsen s191242
+ */
+
 public class Brew {
 
     private double groundCoffee, grindSize, coffeeWaterRatio, brewingTemperature, bloomWater, bloomTime, totalBrewingTime;

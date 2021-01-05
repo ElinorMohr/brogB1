@@ -11,6 +11,11 @@ import android.view.ViewGroup;
 import org.dtu.brogb1.R;
 
 /**
+ * @author Elinor Mikkelsen s191242
+ * @author Betina Hansen s195389
+ */
+
+/**
  * A simple {@link Fragment} subclass.
  * Use the {@link BlankFragment#newInstance} factory method to
  * create an instance of this fragment.

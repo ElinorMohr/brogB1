@@ -15,6 +15,11 @@ import org.dtu.brogb1.activity.Option;
 import org.dtu.brogb1.activity.clean.CleanActivityStep1;
 import org.dtu.brogb1.activity.community.CommunityActivity;
 
+/**
+ * @author Elinor Mikkelsen s191242
+ * @author Theis Villumsen s195461
+ */
+
 public class HomePage extends AppCompatActivity implements View.OnClickListener  {
     Button brew,clean,community,guide,bsmquickBrew, bsmrecipes, bsmnewBrew;
     ImageButton settings;

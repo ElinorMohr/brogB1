@@ -13,6 +13,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import org.dtu.brogb1.R;
 import org.dtu.brogb1.model.Brew;
 
+/**
+ * @author Elinor Mikkelsen s191242
+ * @author Betina Hansen s195389
+ */
+
 public class RecipeActivity extends AppCompatActivity {
     Button edit, brew;
     EditText input;

@@ -19,6 +19,11 @@ import org.dtu.brogb1.fragment.History;
 import org.dtu.brogb1.fragment.Recipes;
 import org.dtu.brogb1.adapter.SectionsPagerAdapter;
 
+/**
+ * @author Elinor Mikkelsen s191242
+ * @author Betina Hansen s195389
+ */
+
 public class Sections extends AppCompatActivity {
 
     @Override

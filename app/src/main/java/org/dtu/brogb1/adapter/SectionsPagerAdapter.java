@@ -13,6 +13,11 @@ import org.dtu.brogb1.fragment.History;
 import org.dtu.brogb1.fragment.Recipes;
 
 /**
+ * @author Elinor Mikkelsen s191242
+ * @author Betina Hansen s195389
+ */
+
+/**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to
  * one of the sections/tabs/pages.
  */

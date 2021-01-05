@@ -19,6 +19,11 @@ import org.dtu.brogb1.activity.Sections;
 
 import java.util.ArrayList;
 
+/**
+ * @author Elinor Mikkelsen s191242
+ * @author Betina Hansen s195389
+ */
+
 public class History extends Fragment {
 
     @Nullable

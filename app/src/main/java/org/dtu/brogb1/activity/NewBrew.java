@@ -8,6 +8,11 @@ import android.widget.Button;
 
 import org.dtu.brogb1.R;
 
+/**
+ * @author Elinor Mikkelsen s191242
+ * @author Kristoffer Baumgarten s180500
+ */
+
 public class NewBrew extends AppCompatActivity {
 
     @Override

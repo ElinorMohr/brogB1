@@ -11,6 +11,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import org.dtu.brogb1.R;
 import org.dtu.brogb1.activity.Loading;
 
+/**
+ * @author Elinor Mikkelsen s191242
+ * @author Betina Hansen s195389
+ */
+
 public class LandingPage extends AppCompatActivity implements View.OnClickListener {
 
     Button bluetooth;

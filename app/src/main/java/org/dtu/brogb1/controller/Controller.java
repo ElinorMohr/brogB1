@@ -3,6 +3,10 @@ package org.dtu.brogb1.controller;
 import org.dtu.brogb1.model.Brew;
 import org.dtu.brogb1.model.BrewFactory;
 
+/**
+ * @author Elinor Mikkelsen s191242
+ */
+
 public class Controller {
     private static Controller single_instance;
     private Brew brew;
