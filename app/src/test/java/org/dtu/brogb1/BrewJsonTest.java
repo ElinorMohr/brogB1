@@ -7,14 +7,16 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+/**
+ * @author Mohammad Asim Raja s040727
+ */
+
 public class BrewJsonTest {
     @Test
-    public void SaveTest()
-    {
-        Brew brew = new Brew (1,1,1,1,1,
+    public void SaveTest() {
+        Brew brew = new Brew(1,1,1,1,1,
                 1,1,"1","1");
         try {
-
             String Json = brew.toJson();
             Brew brew2 = BrewFactory.fromJson(Json);
             assertTrue(brew.equals(brew2));
