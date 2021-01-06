@@ -77,7 +77,7 @@ public class StorageServiceSharedPref implements IStorageService {
     }
 
     @Override
-    public int saveBrew(Brew value) {
+    public int saveBrew(Brew value) throws BrewException {
         this.preferences.edit().putString(this.brewKey + this.brewCount, value.toJson()).apply();
         this.brewCount++;
         this.preferences.edit().putInt(this.countKey, this.brewCount).apply();
@@ -126,7 +126,7 @@ public class StorageServiceSharedPref implements IStorageService {
     }
 
     @Override
-    public void overwriteBrew(int key, Brew value) {
+    public void overwriteBrew(int key, Brew value) throws BrewException {
         this.preferences.edit().putString(this.brewKey + key, value.toJson()).apply();
     }
 

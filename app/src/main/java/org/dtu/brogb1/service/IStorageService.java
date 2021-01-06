@@ -16,12 +16,12 @@ public interface IStorageService {
     float getFloat(String key);
     void unset(String key);
 
-    int saveBrew(Brew value);
+    int saveBrew(Brew value) throws BrewException;
     Brew getBrew(int key) throws StorageServiceException, BrewException;
     List<Brew> getAllBrews() throws StorageServiceException, BrewException;
     int getBrewCount();
     void deleteBrew(int key) throws StorageServiceException, BrewException;
-    void overwriteBrew(int key, Brew value);
+    void overwriteBrew(int key, Brew value) throws BrewException;
     void setQuickBrew(int value);
     Brew getQuickBrew() throws StorageServiceException, BrewException;
 }
