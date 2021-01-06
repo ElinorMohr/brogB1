@@ -2,6 +2,7 @@ package org.dtu.brogb1.model;
 
 /**
  * @author Elinor Mikkelsen s191242
+ * @author Theis Villumsen s195461
  */
 
 public class Brew {
@@ -19,5 +20,15 @@ public class Brew {
         this.totalBrewingTime = totalBrewingTime;
     }
 
-
+    public String toJson() {
+        return "{" +
+                    "\"groundCoffee\": " + this.groundCoffee + "," +
+                    "\"grindSize\": " + this.grindSize + "," +
+                    "\"coffeeWaterRatio\": " + this.coffeeWaterRatio + "," +
+                    "\"brewingTemperature\": " + this.brewingTemperature + "," +
+                    "\"bloomWater\": " + this.bloomWater + "," +
+                    "\"bloomTime\": " + this.bloomTime + "," +
+                    "\"totalBrewingTime\": " + this.totalBrewingTime +
+                "}";
+    }
 }
