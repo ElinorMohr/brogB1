@@ -17,6 +17,7 @@ public class BrewJsonTest {
 
             String Json = brew.toJson();
             Brew brew2 = BrewFactory.fromJson(Json);
+            assertTrue(brew.equals(brew2));
         } catch (BrewException e) {
             e.printStackTrace();
             fail();
