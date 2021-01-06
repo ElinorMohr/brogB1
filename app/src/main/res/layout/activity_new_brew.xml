@@ -9,6 +9,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <ImageButton
+            android:id="@+id/IGroundCoffee"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            app:srcCompat="@android:drawable/ic_menu_info_details"/>
+
         <ImageView
             android:id="@+id/ny_opskrift"
             android:layout_width="136dp"
@@ -22,361 +29,292 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/ny_opskrift"
-            android:layout_marginTop="20dp"
+            android:layout_margin="50dp"
             android:gravity="center"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/txtGround_coffee"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/ground_coffee"
-                android:textColor="@color/colorplate2" />
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:gravity="center"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:thumb="@color/colorplate2"
-                android:thumbTint="@color/colorplate2">
+                android:thumbTint="@color/colorplate2"
+                >
 
-                <ImageButton
-                    android:id="@+id/IGroundCoffee"
+
+                <TextView
+                    android:id="@+id/txtGround_coffee"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:backgroundTint="@color/white"
-                    app:srcCompat="@android:drawable/ic_menu_info_details" />
+                    android:layout_height="wrap_content"
+                    android:text="@string/ground_coffee"
+                    android:textColor="@color/colorplate2"
+                    />
 
-                <SeekBar
-                    android:id="@+id/SBGroundCoffee"
-                    style="@style/BrogSeekBar"
-                    android:layout_width="280dp"
-                    android:layout_height="match_parent"
-                    android:gravity="center" />
 
                 <EditText
                     android:id="@+id/editGroundCoffee"
-                    android:layout_width="20dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="5"
                     android:gravity="center"
                     android:inputType="textPersonName"
                     android:text="60"
-                    android:textSize="7dp" />
+                    android:textColor="@color/colorplate2"
+                    />
 
                 <TextView
-                    android:id="@+id/txtCoffeeAmount"
-                    android:layout_width="match_parent"
+                    android:id="@+id/Ground_coffee"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/g"
-                    android:textSize="10dp" />
+                    android:layout_gravity="center"
+                    android:textColor="@color/colorplate2"/>
 
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
 
-            <TextView
-                android:id="@+id/txtGrindSize"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="@string/grind_size"
-                android:textColor="@color/colorplate2" />
-
-
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:gravity="center"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:thumb="@color/colorplate2"
-                android:thumbTint="@color/colorplate2">
+                android:thumbTint="@color/colorplate2"
+                >
 
-                <ImageButton
-                    android:id="@+id/IGrindSize"
+
+
+                <TextView
+                    android:id="@+id/txtGrindSize"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:backgroundTint="@color/white"
-                    app:srcCompat="@android:drawable/ic_menu_info_details" />
+                    android:layout_height="wrap_content"
+                    android:text="@string/grind_size"
+                    android:textColor="@color/colorplate2"
+                    android:layout_gravity="center"/>
 
-                <SeekBar
-                    android:id="@+id/SBGrindSize"
-                    style="@style/BrogSeekBar"
-                    android:layout_width="280dp"
-                    android:layout_height="match_parent"
-                    android:gravity="center" />
 
                 <EditText
                     android:id="@+id/editgrindsize"
-                    android:layout_width="60dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="5"
                     android:gravity="center"
                     android:inputType="textPersonName"
                     android:text="(fine)"
-                    android:textSize="9dp" />
+                    android:layout_gravity="center"
+                    android:textColor="@color/colorplate2"/>
 
                 <TextView
-                    android:id="@+id/txtGrindSizeAmount"
-                    android:layout_width="match_parent"
+                    android:id="@+id/txtCoffeeAmount"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/blank"
-                    android:textSize="10dp" />
-
+                    android:text="@string/g"
+                    android:textColor="@color/colorplate2"
+                    android:layout_gravity="center"/>
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
 
-            <TextView
-                android:id="@+id/txtRatio"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="@string/coffee_water_ratio"
-                android:textColor="@color/colorplate2" />
-
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:gravity="center"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:thumb="@color/colorplate2"
-                android:thumbTint="@color/colorplate2">
+                android:thumbTint="@color/colorplate2"
+                >
 
-                <ImageButton
-                    android:id="@+id/IRatio"
+
+
+                <TextView
+                    android:id="@+id/txtRatio"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:backgroundTint="@color/white"
-                    app:srcCompat="@android:drawable/ic_menu_info_details" />
+                    android:layout_height="wrap_content"
+                    android:text="@string/coffee_water_ratio"
+                    android:textColor="@color/colorplate2"
+                    android:layout_gravity="center"/>
 
-                <SeekBar
-                    android:id="@+id/SBRatio"
-                    style="@style/BrogSeekBar"
-                    android:layout_width="280dp"
-                    android:layout_height="match_parent"
-                    android:gravity="center" />
 
                 <EditText
                     android:id="@+id/editRatio"
-                    android:layout_width="20dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="5"
-                    android:gravity="center"
                     android:inputType="textPersonName"
                     android:text="60"
-                    android:textSize="7dp" />
+                    android:textColor="@color/colorplate2"
+                    android:layout_gravity="center"/>
 
                 <TextView
                     android:id="@+id/txtRatioAmount"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="g/L"
-                    android:textSize="10dp" />
+                    android:textColor="@color/colorplate2"
+                    android:layout_gravity="center"/>
 
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
-
-            <TextView
-                android:id="@+id/txtTemperature"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="@string/brewing_temperature"
-                android:textColor="@color/colorplate2" />
-
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:gravity="center"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:thumb="@color/colorplate2"
-                android:thumbTint="@color/colorplate2">
+                android:thumbTint="@color/colorplate2"
+                >
 
-                <ImageButton
-                    android:id="@+id/ITemperature"
+
+
+                <TextView
+                    android:id="@+id/txtTemperature"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:backgroundTint="@color/white"
-                    app:srcCompat="@android:drawable/ic_menu_info_details" />
+                    android:layout_height="wrap_content"
+                    android:text="@string/brewing_temperature"
+                    android:textColor="@color/colorplate2"
+                    android:layout_gravity="center"/>
 
-                <SeekBar
-                    android:id="@+id/SBTemperature"
-                    style="@style/BrogSeekBar"
-                    android:layout_width="280dp"
-                    android:layout_height="match_parent"
-                    android:gravity="center" />
 
                 <EditText
                     android:id="@+id/editTemperature"
-                    android:layout_width="20dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="5"
-                    android:gravity="center"
                     android:inputType="textPersonName"
                     android:text="60"
-                    android:textSize="7dp" />
+                    android:textColor="@color/colorplate2"
+                    android:layout_gravity="center"/>
 
                 <TextView
                     android:id="@+id/txtHowHot"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="°C"
-                    android:textSize="10dp" />
+                    android:textColor="@color/colorplate2"
+                    android:layout_gravity="center"/>
 
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
 
-            <TextView
-                android:id="@+id/txtBloomWater"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="@string/bloom_water"
-                android:textColor="@color/colorplate2" />
-
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:gravity="center"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:thumb="@color/colorplate2"
-                android:thumbTint="@color/colorplate2">
+                android:thumbTint="@color/colorplate2"
+                >
 
-                <ImageButton
-                    android:id="@+id/IBloomWater"
+
+
+                <TextView
+                    android:id="@+id/txtBloomWater"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:backgroundTint="@color/white"
-                    app:srcCompat="@android:drawable/ic_menu_info_details" />
+                    android:layout_height="wrap_content"
+                    android:text="@string/bloom_water"
+                    android:textColor="@color/colorplate2"
+                    android:layout_gravity="center"/>
 
-                <SeekBar
-                    android:id="@+id/SBBloomWater"
-                    style="@style/BrogSeekBar"
-                    android:layout_width="280dp"
-                    android:layout_height="match_parent"
-                    android:gravity="center" />
 
                 <EditText
                     android:id="@+id/editBloomWater"
-                    android:layout_width="20dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="5"
-                    android:gravity="center"
                     android:inputType="textPersonName"
                     android:text="60"
-                    android:textSize="7dp" />
+                    android:textColor="@color/colorplate2"
+                    android:layout_gravity="center"/>
 
                 <TextView
                     android:id="@+id/txtBloomWaterAmount"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/ml"
-                    android:textSize="10dp" />
+                    android:textColor="@color/colorplate2"
+                    android:layout_gravity="center"/>
 
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
 
-            <TextView
-                android:id="@+id/txtBloomTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="@string/bloom_time"
-                android:textColor="@color/colorplate2" />
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:gravity="center"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:thumb="@color/colorplate2"
-                android:thumbTint="@color/colorplate2">
+                android:thumbTint="@color/colorplate2"
+                >
 
-                <ImageButton
-                    android:id="@+id/IBloomTime"
+
+                <TextView
+                    android:id="@+id/txtBloomTime"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:backgroundTint="@color/white"
-                    app:srcCompat="@android:drawable/ic_menu_info_details" />
+                    android:layout_height="wrap_content"
+                    android:text="@string/bloom_time"
+                    android:textColor="@color/colorplate2"
+                    android:layout_gravity="center"/>
 
-                <SeekBar
-                    android:id="@+id/SBBloomTime"
-                    style="@style/BrogSeekBar"
-                    android:layout_width="280dp"
-                    android:layout_height="match_parent"
-                    android:gravity="center" />
+
 
                 <EditText
                     android:id="@+id/editBloomTime"
-                    android:layout_width="20dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="5"
-                    android:gravity="center"
                     android:inputType="textPersonName"
                     android:text="60"
-                    android:textSize="7dp" />
+                    android:textColor="@color/colorplate2"
+                    android:layout_gravity="center"/>
 
                 <TextView
                     android:id="@+id/txtBloomTimeAmount"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/s"
-                    android:textSize="10dp" />
+                    android:textColor="@color/colorplate2"
+                    android:layout_gravity="center"/>
 
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
-            <TextView
-                android:id="@+id/txtTotalTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="@string/total_brewing_time"
-                android:textColor="@color/colorplate2" />
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:gravity="center"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:thumb="@color/colorplate2"
-                android:thumbTint="@color/colorplate2">
+                android:thumbTint="@color/colorplate2"
+                >
 
-                <ImageButton
-                    android:id="@+id/ITotalTime"
+                <TextView
+                    android:id="@+id/txtTotalTime"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:backgroundTint="@color/white"
-                    app:srcCompat="@android:drawable/ic_menu_info_details" />
+                    android:layout_height="wrap_content"
+                    android:text="@string/total_brewing_time"
+                    android:textColor="@color/colorplate2"
+                    android:layout_gravity="center"/>
 
-                <SeekBar
-                    android:id="@+id/SBTotalTime"
-                    style="@style/BrogSeekBar"
-                    android:layout_width="280dp"
-                    android:layout_height="match_parent"
-                    android:gravity="center" />
 
                 <EditText
                     android:id="@+id/editTotalTime"
-                    android:layout_width="20dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="5"
-                    android:gravity="center"
                     android:inputType="textPersonName"
                     android:text="60"
-                    android:textSize="7dp" />
+                    android:textColor="@color/colorplate2"
+                    android:layout_gravity="center"/>
 
                 <TextView
                     android:id="@+id/txtTotalTimeInAll"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/min"
-                    android:textSize="10dp" />
+                    android:textColor="@color/colorplate2"
+                    android:layout_gravity="center"/>
+
             </androidx.appcompat.widget.LinearLayoutCompat>
         </androidx.appcompat.widget.LinearLayoutCompat>
 
