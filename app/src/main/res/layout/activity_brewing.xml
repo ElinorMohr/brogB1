@@ -13,55 +13,274 @@
         android:padding="4dp"
         app:srcCompat="@drawable/kaffevinter" />
 
-    <LinearLayout
-        android:id="@+id/layout_1"
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/brew_resume"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/kaffebillede"
-        android:layout_marginTop="60dp"
+        android:layout_margin="50dp"
         android:gravity="center"
-        android:orientation="horizontal">
+        android:orientation="vertical"
+        >
 
-        <TextView
-            android:id="@+id/BeanAmount"
-            android:layout_width="wrap_content"
+
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="2dp"
-            android:text="@string/amount_of_beans"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-            android:textColor="@color/colorplate3" />
+            android:orientation="horizontal"
+            android:thumb="@color/colorplate2"
+            android:thumbTint="@color/colorplate2"
+            >
 
-        <EditText
-            android:id="@+id/BeanEditAmount"
-            android:layout_width="60dp"
+
+            <TextView
+                android:id="@+id/txtGround_coffee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ground_coffee"
+                android:textColor="@color/colorplate2"
+                />
+
+
+            <TextView
+                android:id="@+id/editGroundCoffee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="5"
+                android:layout_alignParentRight="true"
+                android:inputType="textPersonName"
+                android:text="60"
+                android:textColor="@color/colorplate2"
+                android:background="@drawable/textinputboarder"
+                android:layout_margin="5dp"
+                android:gravity="center"
+                />
+
+
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="1"
-            android:gravity="center"
-            android:hint="30"
-            android:inputType="number"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-            android:textColor="@color/colorplate3"
-            android:textColorHint="@color/colorplate3"/>
+            android:orientation="horizontal"
+            android:thumb="@color/colorplate2"
+            android:thumbTint="@color/colorplate2"
+            >
 
-        <TextView
-            android:id="@+id/g_text"
-            android:layout_width="wrap_content"
+
+
+            <TextView
+                android:id="@+id/txtGrindSize"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/grind_size"
+                android:textColor="@color/colorplate2"
+                />
+
+
+            <TextView
+                android:id="@+id/editgrindsize"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/textinputboarder"
+                android:text="fine"
+                android:ems="5"
+                android:gravity="center"
+                android:textColor="@color/colorplate2" />
+
+
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="2dp"
-            android:text="g"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-            android:textColor="@color/colorplate3" />
+            android:orientation="horizontal"
+            android:thumb="@color/colorplate2"
+            android:thumbTint="@color/colorplate2"
+            >
 
-    </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/txtRatio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/coffee_water_ratio"
+                android:textColor="@color/colorplate2"
+                />
+
+
+            <TextView
+                android:id="@+id/editRatio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="5"
+                android:inputType="textPersonName"
+                android:text="60"
+                android:textColor="@color/colorplate2"
+                android:background="@drawable/textinputboarder"
+                android:layout_alignParentRight="true"
+                android:layout_margin="5dp"
+                android:gravity="center"/>
+
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:thumb="@color/colorplate2"
+            android:thumbTint="@color/colorplate2"
+            >
+
+
+
+            <TextView
+                android:id="@+id/txtTemperature"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/brewing_temperature"
+                android:textColor="@color/colorplate2"
+                />
+
+
+            <TextView
+                android:id="@+id/editTemperature"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="5"
+                android:inputType="textPersonName"
+                android:text="60"
+                android:textColor="@color/colorplate2"
+                android:background="@drawable/textinputboarder"
+                android:layout_alignParentRight="true"
+                android:layout_margin="5dp"
+                android:gravity="center"/>
+
+
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:thumb="@color/colorplate2"
+            android:thumbTint="@color/colorplate2"
+            >
+
+
+
+            <TextView
+                android:id="@+id/txtBloomWater"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/bloom_water"
+                android:textColor="@color/colorplate2"
+                />
+
+
+            <TextView
+                android:id="@+id/editBloomWater"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="5"
+                android:inputType="textPersonName"
+                android:text="60"
+                android:textColor="@color/colorplate2"
+                android:background="@drawable/textinputboarder"
+                android:layout_alignParentRight="true"
+                android:layout_margin="5dp"
+                android:gravity="center"/>
+
+
+        </RelativeLayout>
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:thumb="@color/colorplate2"
+            android:thumbTint="@color/colorplate2"
+            >
+
+
+            <TextView
+                android:id="@+id/txtBloomTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/bloom_time"
+                android:textColor="@color/colorplate2"
+                />
+
+
+
+            <TextView
+                android:id="@+id/editBloomTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="5"
+                android:inputType="textPersonName"
+                android:text="60"
+                android:textColor="@color/colorplate2"
+                android:background="@drawable/textinputboarder"
+                android:layout_alignParentRight="true"
+                android:layout_margin="5dp"
+                android:gravity="center"/>
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:thumb="@color/colorplate2"
+            android:thumbTint="@color/colorplate2"
+            >
+
+            <TextView
+                android:id="@+id/txtTotalTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/total_brewing_time"
+                android:textColor="@color/colorplate2"
+                />
+
+
+            <TextView
+                android:id="@+id/editTotalTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="5"
+                android:inputType="textPersonName"
+                android:text="60"
+                android:textColor="@color/colorplate2"
+                android:background="@drawable/textinputboarder"
+                android:layout_alignParentRight="true"
+                android:layout_margin="5dp"
+                android:gravity="center"/>
+        </RelativeLayout>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
     <LinearLayout
         android:id="@+id/layout_2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_marginTop="50dp"
         android:orientation="vertical"
-        android:layout_below="@id/layout_1">
+        android:layout_below="@id/brew_resume">
 
         <com.google.android.material.button.MaterialButton
             app:cornerRadius="70dp"
