@@ -28,27 +28,21 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_below="@id/ny_opskrift"
             android:layout_margin="50dp"
             android:gravity="center"
-            android:orientation="vertical"
-            >
-
+            android:orientation="vertical">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:thumb="@color/colorplate2"
-                android:thumbTint="@color/colorplate2"
-                >
-
+                android:thumbTint="@color/colorplate2">
 
                 <TextView
                     android:id="@+id/txtGround_coffee"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/ground_coffee"
-                    android:textColor="@color/colorplate2"
-                    />
-
+                    android:textColor="@color/colorplate2" />
 
                 <EditText
                     android:id="@+id/editGroundCoffee"
@@ -61,32 +55,23 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:textColor="@color/colorplate2"
                     android:background="@drawable/textinputboarder"
                     android:layout_margin="5dp"
-                    android:gravity="center"
-                    />
-
-
+                    android:gravity="center" />
 
             </RelativeLayout>
-
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:thumb="@color/colorplate2"
-                android:thumbTint="@color/colorplate2"
-                >
-
-
+                android:thumbTint="@color/colorplate2">
 
                 <TextView
                     android:id="@+id/txtGrindSize"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/grind_size"
-                    android:textColor="@color/colorplate2"
-                    />
-
+                    android:textColor="@color/colorplate2" />
 
                 <Spinner
                     android:id="@+id/editgrindsize"
@@ -101,29 +86,21 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:gravity="center"
                     android:textColor="@color/colorplate2" />
 
-
-
             </RelativeLayout>
-
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:thumb="@color/colorplate2"
-                android:thumbTint="@color/colorplate2"
-                >
-
-
+                android:thumbTint="@color/colorplate2">
 
                 <TextView
                     android:id="@+id/txtRatio"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/coffee_water_ratio"
-                    android:textColor="@color/colorplate2"
-                    />
-
+                    android:textColor="@color/colorplate2" />
 
                 <EditText
                     android:id="@+id/editRatio"
@@ -138,8 +115,6 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:layout_margin="5dp"
                     android:gravity="center"/>
 
-
-
             </RelativeLayout>
 
             <RelativeLayout
@@ -147,19 +122,14 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:thumb="@color/colorplate2"
-                android:thumbTint="@color/colorplate2"
-                >
-
-
+                android:thumbTint="@color/colorplate2">
 
                 <TextView
                     android:id="@+id/txtTemperature"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/brewing_temperature"
-                    android:textColor="@color/colorplate2"
-                    />
-
+                    android:textColor="@color/colorplate2" />
 
                 <EditText
                     android:id="@+id/editTemperature"
@@ -174,29 +144,21 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:layout_margin="5dp"
                     android:gravity="center"/>
 
-
-
             </RelativeLayout>
-
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:thumb="@color/colorplate2"
-                android:thumbTint="@color/colorplate2"
-                >
-
-
+                android:thumbTint="@color/colorplate2">
 
                 <TextView
                     android:id="@+id/txtBloomWater"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/bloom_water"
-                    android:textColor="@color/colorplate2"
-                    />
-
+                    android:textColor="@color/colorplate2" />
 
                 <EditText
                     android:id="@+id/editBloomWater"
@@ -211,29 +173,21 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:layout_margin="5dp"
                     android:gravity="center"/>
 
-
             </RelativeLayout>
-
-
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:thumb="@color/colorplate2"
-                android:thumbTint="@color/colorplate2"
-                >
-
+                android:thumbTint="@color/colorplate2">
 
                 <TextView
                     android:id="@+id/txtBloomTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/bloom_time"
-                    android:textColor="@color/colorplate2"
-                    />
-
-
+                    android:textColor="@color/colorplate2" />
 
                 <EditText
                     android:id="@+id/editBloomTime"
@@ -248,28 +202,22 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:layout_margin="5dp"
                     android:gravity="center"/>
 
-
-
             </RelativeLayout>
-
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:thumb="@color/colorplate2"
-                android:thumbTint="@color/colorplate2"
-                >
+                android:thumbTint="@color/colorplate2">
 
                 <TextView
                     android:id="@+id/txtTotalTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/total_brewing_time"
-                    android:textColor="@color/colorplate2"
-                    />
-
-
+                    android:textColor="@color/colorplate2" />
+                
                 <EditText
                     android:id="@+id/editTotalTime"
                     android:layout_width="wrap_content"
