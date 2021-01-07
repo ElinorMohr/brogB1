@@ -54,15 +54,53 @@ public class NewBrew extends AppCompatActivity {
         //når der brygges
         brewNow.setOnClickListener(v -> {
 
-            // gemmer inputtet fra ui'en til værdierne
-            groundCoffee = Double.parseDouble(editGroundCoffee.getText().toString());
-            grindSize = Spinnerinputgrindsize.getSelectedItem().toString();
-            coffeeWaterRatio = Double.parseDouble(editRatio.getText().toString());
-            brewingTemperature = Double.parseDouble(editTemp.getText().toString());
-            bloomWater = Double.parseDouble(editBloomWater.getText().toString());
-            bloomTime = Double.parseDouble(editBloomTime.getText().toString());
-            totalBrewingTime = Double.parseDouble(editTotal.getText().toString());
 
+            // gemmer inputtet fra ui'en til værdierne
+            try {
+                groundCoffee = Double.parseDouble(editGroundCoffee.getText().toString());
+            }catch (Exception e) {
+                Toast.makeText(this, "Need input at ground coffee", Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
+                return;
+            }
+            grindSize = Spinnerinputgrindsize.getSelectedItem().toString();
+
+            try {
+                coffeeWaterRatio = Double.parseDouble(editRatio.getText().toString());
+            }catch (Exception e) {
+                Toast.makeText(this, "Need input at Coffee/water ratio", Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
+                return;
+            }
+            try {
+                brewingTemperature = Double.parseDouble(editTemp.getText().toString());
+            }catch (Exception e) {
+                Toast.makeText(this, "Need input at brewing temperature", Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                bloomWater = Double.parseDouble(editBloomWater.getText().toString());
+            }catch (Exception e) {
+                Toast.makeText(this, "Need input at bloom water", Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
+                return;
+            }
+            try {
+                bloomTime = Double.parseDouble(editBloomTime.getText().toString());
+            }catch (Exception e) {
+                Toast.makeText(this, "Need input at bloom time", Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
+                return;
+            }
+            try {
+                totalBrewingTime = Double.parseDouble(editTotal.getText().toString());
+            }catch (Exception e) {
+                Toast.makeText(this, "Need input at total brewing time", Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
+                return;
+            }
             // gemmer det i en newBrew
             newBrew.setGroundCoffee(groundCoffee);
             newBrew.setGrindSize(grindSize);
