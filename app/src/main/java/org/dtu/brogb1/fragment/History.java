@@ -14,8 +14,6 @@ import androidx.fragment.app.Fragment;
 
 import org.dtu.brogb1.R;
 import org.dtu.brogb1.activity.Brewing;
-import org.dtu.brogb1.activity.RecipeActivity;
-import org.dtu.brogb1.activity.Sections;
 
 import java.util.ArrayList;
 
@@ -41,7 +39,7 @@ public class History extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapter, View v, int position,
                                     long arg3) {
-                Intent intent = new Intent(new Intent(getContext(), RecipeActivity.class));
+                Intent intent = new Intent(new Intent(getContext(), Brewing.class));
                 startActivity(intent);
             }
         });

@@ -64,4 +64,14 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:layout_gravity="center" />
 
+    <TextView
+        android:id="@+id/cleanTekst"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/colorplate3"
+        android:layout_height="wrap_content"
+        android:text="@string/clean"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:layout_gravity="center" />
+
 </LinearLayout>
