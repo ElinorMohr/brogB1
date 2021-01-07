@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import org.dtu.brogb1.R;
 
@@ -21,10 +22,15 @@ public class NewBrew extends AppCompatActivity {
         setContentView(R.layout.activity_new_brew);
 
         Button brewNow = (Button) findViewById(R.id.BrewNowRecipe);
+        ImageButton info =  findViewById(R.id.IGroundCoffee);
         brewNow.setOnClickListener(v -> {
             Intent intent = new Intent(this, Brewing.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
+        });
+        info.setOnClickListener(v -> {
+            BrewSheetMenu brygMenu = new BrewSheetMenu();
+            brygMenu.show(getSupportFragmentManager(),"FragmentBrygMenu");
         });
     }
 }

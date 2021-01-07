@@ -20,37 +20,36 @@ import org.dtu.brogb1.R;
 
 public class BrewSheetMenu extends BottomSheetDialogFragment {
 
-    Button quickBrew, recipes, newBrew;
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.brew_sheet_menu, container, false);
 
 
-        quickBrew = v.findViewById(R.id.QuickBrew);
-        recipes = v.findViewById(R.id.Recipes);
-        newBrew = v.findViewById(R.id.NewBrew);
-
-        quickBrew.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), Brewing.class);
-                startActivity(intent);
-            }
-        });
-
-        recipes.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), Sections.class);
-                startActivity(intent);
-            }
-        });
-        newBrew.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), NewBrew.class);
-                startActivity(intent);
-            }
-        });
+//        quickBrew = v.findViewById(R.id.QuickBrew);
+//        recipes = v.findViewById(R.id.Recipes);
+//        newBrew = v.findViewById(R.id.NewBrew);
+//
+//        quickBrew.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(getActivity(), Brewing.class);
+//                startActivity(intent);
+//            }
+//        });
+//
+//        recipes.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(getActivity(), Sections.class);
+//                startActivity(intent);
+//            }
+//        });
+//        newBrew.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(getActivity(), NewBrew.class);
+//                startActivity(intent);
+//            }
+//        });
 
         return v;
     }

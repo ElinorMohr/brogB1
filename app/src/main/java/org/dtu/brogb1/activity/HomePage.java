@@ -10,8 +10,6 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import org.dtu.brogb1.R;
-import org.dtu.brogb1.activity.BrewSheetMenu;
-import org.dtu.brogb1.activity.Option;
 import org.dtu.brogb1.activity.clean.CleanActivityStep1;
 import org.dtu.brogb1.activity.community.CommunityActivity;
 
@@ -21,24 +19,22 @@ import org.dtu.brogb1.activity.community.CommunityActivity;
  */
 
 public class HomePage extends AppCompatActivity implements View.OnClickListener  {
-    Button brew,clean,community,guide,bsmquickBrew, bsmrecipes, bsmnewBrew;
+    Button brew,list,quick,bsmquickBrew, bsmrecipes, bsmnewBrew;
     ImageButton settings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_side);
-        brew = findViewById(R.id.Brew);
-        clean = findViewById(R.id.Clean);
-        community = findViewById(R.id.Community);
-        guide = findViewById(R.id.Guide);
+        brew = findViewById(R.id.brew_now);
+        list = findViewById(R.id.see_list);
+        quick = findViewById(R.id.quick_brew);
         settings = findViewById(R.id.Settings);
 
 
         brew.setOnClickListener(this);
-        clean.setOnClickListener(this);
-        community.setOnClickListener(this);
-        guide.setOnClickListener(this);
+        list.setOnClickListener(this);
+        quick.setOnClickListener(this);
         settings.setOnClickListener(this);
 
     }
@@ -48,20 +44,17 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
     public void onClick(View v) {
         Intent intent;
         switch (v.getId()){
-            case R.id.Brew:
-                BrewSheetMenu brygMenu = new BrewSheetMenu();
-                brygMenu.show(getSupportFragmentManager(),"FragmentBrygMenu");
-                break;
-            case R.id.Clean:
-                intent = new Intent(this, CleanActivityStep1.class);
+            case R.id.brew_now:
+                intent = new Intent(this, NewBrew.class);
                 startActivity(intent);
                 break;
-            case R.id.Community:
-                intent = new Intent(this, CommunityActivity.class);
+            case R.id.see_list:
+                intent = new Intent(this, RecipeActivity.class);
                 startActivity(intent);
                 break;
-            case R.id.Guide:
-                Toast.makeText(this, "Guide clicked", Toast.LENGTH_SHORT).show();
+            case R.id.quick_brew:
+                intent = new Intent(this, Brewing.class);
+                startActivity(intent);
                 break;
             case R.id.Settings:
                 intent = new Intent(this, Option.class);
