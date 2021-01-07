@@ -22,6 +22,19 @@ public interface IStorageService {
     int getBrewCount();
     void deleteBrew(int key) throws StorageServiceException, BrewException;
     void overwriteBrew(int key, Brew value) throws BrewException;
+
     void setQuickBrew(int value);
     Brew getQuickBrew() throws StorageServiceException, BrewException;
+
+    void saveBrewToHistory(Brew value) throws BrewException, StorageServiceException;
+    Brew getBrewFromHistory(int key) throws StorageServiceException, BrewException;
+    List<Brew> getBrewHistory() throws StorageServiceException, BrewException;
+    int getBrewHistoryCount();
+
+    int saveBrewToFavorites(Brew value) throws BrewException;
+    Brew getBrewFromFavorites(int key) throws StorageServiceException, BrewException;
+    List<Brew> getFavoriteBrews() throws StorageServiceException, BrewException;
+    int getBrewFavoriteCount();
+    void deleteFavoriteBrew(int key) throws StorageServiceException, BrewException;
+    void overwriteFavoriteBrew(int key, Brew value) throws BrewException;
 }
