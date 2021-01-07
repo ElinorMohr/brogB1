@@ -7,6 +7,13 @@
     android:paddingTop="0dp">
 
     <ImageView
+        android:id="@+id/Bagground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType = "centerCrop"
+        app:srcCompat="@drawable/bg" />
+
+    <ImageView
         android:id="@+id/logo2"
         android:layout_width="match_parent"
         android:layout_height="275dp"
@@ -21,8 +28,7 @@
         android:layout_alignParentEnd="true"
         android:layout_gravity="right"
         android:backgroundTint="#FFFFFF"
-        android:src="@drawable/ic_baseline_settings_24"
-        />
+        android:src="@drawable/ic_cog" />
 
 
     <LinearLayout
@@ -36,30 +42,34 @@
 
         <Button
             app:cornerRadius="70dp"
-            android:drawableTop="@drawable/frontpage_placeholder"
-            android:id="@+id/brew_now"
-            android:layout_height="70dp"
-            android:layout_width="70dp"
-            android:layout_margin="20dp"
-            style="@style/DefaultButton"/>
-
-        <Button
-            app:cornerRadius="70dp"
-            android:drawableTop="@drawable/frontpage_placeholder"
+            android:drawableTop="@drawable/ic_list"
             android:id="@+id/see_list"
             android:layout_height="70dp"
             android:layout_width="70dp"
             android:layout_margin="20dp"
+            android:paddingTop="6dp"
             style="@style/DefaultButton"/>
 
         <Button
             app:cornerRadius="70dp"
-            android:drawableTop="@drawable/frontpage_placeholder"
-            android:id="@+id/quick_brew"
+            android:drawableTop="@drawable/ic_plus"
+            android:id="@+id/brew_now"
             android:layout_height="70dp"
             android:layout_width="70dp"
             android:layout_margin="20dp"
+            android:paddingTop="1dp"
             style="@style/DefaultButton"/>
+
+        <Button
+            android:id="@+id/quick_brew"
+            style="@style/DefaultButton"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_margin="20dp"
+            android:paddingTop="6dp"
+            android:paddingLeft="22dp"
+            android:drawableTop="@drawable/ic_mug_hot"
+            app:cornerRadius="70dp" />
 
     </LinearLayout>
 
