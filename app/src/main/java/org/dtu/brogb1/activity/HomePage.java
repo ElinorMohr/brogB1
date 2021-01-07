@@ -16,6 +16,7 @@ import android.widget.Toast;
 import org.dtu.brogb1.R;
 import org.dtu.brogb1.activity.clean.CleanActivityStep1;
 import org.dtu.brogb1.activity.community.CommunityActivity;
+import org.dtu.brogb1.activity.community.Guide;
 
 /**
  * @author Elinor Mikkelsen s191242
@@ -39,34 +40,31 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
         brew.setOnClickListener(this);
         list.setOnClickListener(this);
         quick.setOnClickListener(this);
-        settings.setOnClickListener(this);
-
-        //settings contextMenuTextView = view.findViewById<TextView>(R.id.context_menu_tv)
-                // Register context menu for TextView
-                //registerForContextMenu(contextMenuTextView)
-
         registerForContextMenu(settings);
-
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu, menu);
-        return true;
     }
     
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onContextItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.option_1:
-                Intent intent = new Intent(this, CleanActivityStep1.class);
-                startActivity(intent);
-                return false;
+                startActivity(new Intent(this, CleanActivityStep1.class));
+                return true;
             case R.id.option_2:
-                Intent intent1 = new Intent(this, CommunityActivity.class);
-                startActivity(intent1);
-                default:
+                startActivity(new Intent(this, CommunityActivity.class));
+                return true;
+            case R.id.option_3:
+                startActivity(new Intent(this, Guide.class));
+                return true;
+            case R.id.option_4:
+                startActivity(new Intent(this, Option.class));
+                return true;
+            default:
                 return super.onOptionsItemSelected(item);
         }
     }
@@ -85,10 +83,6 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
                 break;
             case R.id.quick_brew:
                 intent = new Intent(this, Brewing.class);
-                startActivity(intent);
-                break;
-            case R.id.Settings:
-                intent = new Intent(this, Option.class);
                 startActivity(intent);
                 break;
         }
