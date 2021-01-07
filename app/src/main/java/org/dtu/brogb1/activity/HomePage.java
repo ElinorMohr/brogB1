@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -37,6 +38,17 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
         quick.setOnClickListener(this);
         settings.setOnClickListener(this);
 
+        //settings contextMenuTextView = view.findViewById<TextView>(R.id.context_menu_tv)
+                // Register context menu for TextView
+                //registerForContextMenu(contextMenuTextView)
+
+        registerForContextMenu(settings);
+
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo){
+        menu.add(R.string.clean).setOnMenuItemClickListener()
     }
 
 
