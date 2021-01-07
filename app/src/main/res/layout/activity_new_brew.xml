@@ -45,7 +45,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:textColor="@color/colorplate2" />
 
                 <EditText
-                    android:id="@+id/editGroundCoffee"
+                    android:id="@+id/inputGroundCoffee"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="5"
@@ -74,7 +74,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:textColor="@color/colorplate2" />
 
                 <Spinner
-                    android:id="@+id/editgrindsize"
+                    android:id="@+id/inputgrindsize"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -102,7 +102,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:textColor="@color/colorplate2" />
 
                 <EditText
-                    android:id="@+id/editRatio"
+                    android:id="@+id/inputRatio"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="5"
@@ -131,7 +131,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:textColor="@color/colorplate2" />
 
                 <EditText
-                    android:id="@+id/editTemperature"
+                    android:id="@+id/inputTemperature"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="5"
@@ -160,7 +160,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:textColor="@color/colorplate2" />
 
                 <EditText
-                    android:id="@+id/editBloomWater"
+                    android:id="@+id/inputBloomWater"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="5"
@@ -189,7 +189,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:textColor="@color/colorplate2" />
 
                 <EditText
-                    android:id="@+id/editBloomTime"
+                    android:id="@+id/inputBloomTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="5"
@@ -218,7 +218,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:textColor="@color/colorplate2" />
 
                 <EditText
-                    android:id="@+id/editTotalTime"
+                    android:id="@+id/inputTotalTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="5"

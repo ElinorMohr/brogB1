@@ -36,7 +36,7 @@
                 android:textColor="@color/colorplate2"/>
 
             <TextView
-                android:id="@+id/editGroundCoffee"
+                android:id="@+id/valueGroundCoffee"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="5"
@@ -62,7 +62,7 @@
                 android:textColor="@color/colorplate2" />
 
             <TextView
-                android:id="@+id/editgrindsize"
+                android:id="@+id/valuegrindsize"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -89,7 +89,7 @@
                 android:textColor="@color/colorplate2"/>
 
             <TextView
-                android:id="@+id/editRatio"
+                android:id="@+id/valueRatio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="5"
@@ -117,7 +117,7 @@
                 android:textColor="@color/colorplate2"/>
 
             <TextView
-                android:id="@+id/editTemperature"
+                android:id="@+id/valueTemperature"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="5"
@@ -145,7 +145,7 @@
                 android:textColor="@color/colorplate2" />
 
             <TextView
-                android:id="@+id/editBloomWater"
+                android:id="@+id/valueBloomWater"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="5"
@@ -174,7 +174,7 @@
                 android:textColor="@color/colorplate2" />
 
             <TextView
-                android:id="@+id/editBloomTime"
+                android:id="@+id/valueBloomTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="5"
@@ -202,7 +202,7 @@
                 android:textColor="@color/colorplate2" />
 
             <TextView
-                android:id="@+id/editTotalTime"
+                android:id="@+id/valueTotalTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="5"
