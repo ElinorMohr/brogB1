@@ -5,7 +5,7 @@ import android.text.Spanned;
 
 /**
  * Fundet på tutorialspoint
- * https://www.tutorialspoint.com/how-to-define-a-min-and-max-value-for-edittext-in-android
+     * https://www.tutorialspoint.com/how-to-define-a-min-and-max-value-for-edittext-in-android
  */
 public class MinMaxFilter implements InputFilter {
     private int mIntMin, mIntMax;

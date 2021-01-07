@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -13,6 +14,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import org.dtu.brogb1.R;
+import org.dtu.brogb1.filters.MinMaxFilter;
 import org.dtu.brogb1.model.Brew;
 import org.dtu.brogb1.model.BrewException;
 import org.dtu.brogb1.service.IStorageService;
@@ -52,6 +54,12 @@ public class NewBrew extends AppCompatActivity {
         editBloomTime = findViewById(R.id.inputBloomTime);
         editTotal = findViewById(R.id.inputTotalTime);
 
+        editGroundCoffee.setFilters( new InputFilter[]{ new MinMaxFilter( "1" , "99" )});
+        editRatio.setFilters( new InputFilter[]{ new MinMaxFilter( "1" , "99" )});
+        editTemp.setFilters( new InputFilter[]{ new MinMaxFilter( "1" , "99" )});
+        editBloomWater.setFilters( new InputFilter[]{ new MinMaxFilter( "1" , "99" )});
+        editBloomTime.setFilters( new InputFilter[]{ new MinMaxFilter( "1" , "99" )});
+        editTotal.setFilters( new InputFilter[]{ new MinMaxFilter( "1" , "99" )});
 
         //når der brygges
         brewNow.setOnClickListener(v -> {
