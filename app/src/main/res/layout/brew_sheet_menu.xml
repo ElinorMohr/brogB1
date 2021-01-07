@@ -21,30 +21,78 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/BrygMenuSheet"
-        android:layout_marginTop="-70dp"
-
-        android:gravity="center"
+        android:layout_margin="10dp"
         android:orientation="vertical">
-
-        <com.google.android.material.button.MaterialButton
-            app:cornerRadius="70dp"
-            style="@style/DefaultButton"
-            android:id="@+id/QuickBrew"
-            android:layout_marginTop="40dp"
-            android:text="@string/quick_brew" />
-
-        <com.google.android.material.button.MaterialButton
-            app:cornerRadius="70dp"
-            style="@style/DefaultButton"
-            android:id="@+id/Recipes"
-            android:text="@string/recipes" />
-
-        <com.google.android.material.button.MaterialButton
-            app:cornerRadius="70dp"
-            style="@style/DefaultButton"
-            android:id="@+id/NewBrew"
-            android:text="@string/new_brew" />
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ground_coffee">
+        </TextView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ground_coffee_info">
+        </TextView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/grind_size">
+        </TextView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/grind_size_info">
+        </TextView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/coffee_water_ratio">
+        </TextView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/coffee_water_ratio_info">
+        </TextView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/brewing_temperature">
+        </TextView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/brewing_temperature_info">
+        </TextView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/bloom_water">
+        </TextView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/bloom_water_info">
+        </TextView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/bloom_time">
+        </TextView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/bloom_time_info">
+        </TextView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/total_brewing_time">
+        </TextView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/total_brewing_time_info">
+        </TextView>
     </LinearLayout>
 
 
