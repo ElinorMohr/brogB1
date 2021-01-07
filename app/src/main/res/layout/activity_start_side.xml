@@ -29,39 +29,42 @@
         android:id="@+id/layout_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/logo2"
-        android:layout_marginTop="32dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="65dp"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             app:cornerRadius="70dp"
-            style="@style/DefaultButton"
-            android:id="@+id/Brew"
-            android:text="@string/brew" />
+            android:drawableTop="@drawable/frontpage_placeholder"
+            android:id="@+id/brew_now"
+            android:layout_height="70dp"
+            android:layout_width="70dp"
+            android:layout_margin="20dp"
+            style="@style/DefaultButton"/>
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             app:cornerRadius="70dp"
-            style="@style/DefaultButton"
-            android:id="@+id/Clean"
-            android:text="@string/clean" />
+            android:drawableTop="@drawable/frontpage_placeholder"
+            android:id="@+id/see_list"
+            android:layout_height="70dp"
+            android:layout_width="70dp"
+            android:layout_margin="20dp"
+            style="@style/DefaultButton"/>
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             app:cornerRadius="70dp"
-            style="@style/DefaultButton"
-            android:id="@+id/Community"
-            android:text="@string/community" />
-
-        <com.google.android.material.button.MaterialButton
-            app:cornerRadius="70dp"
-            style="@style/DefaultButton"
-            android:id="@+id/Guide"
-            android:text="@string/guide" />
+            android:drawableTop="@drawable/frontpage_placeholder"
+            android:id="@+id/quick_brew"
+            android:layout_height="70dp"
+            android:layout_width="70dp"
+            android:layout_margin="20dp"
+            style="@style/DefaultButton"/>
 
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/footer4"
+        android:id="@+id/footer_home"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_alignParentBottom="true"
