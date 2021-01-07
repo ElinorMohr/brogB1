@@ -49,7 +49,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
                 startActivity(intent);
                 break;
             case R.id.see_list:
-                intent = new Intent(this, RecipeActivity.class);
+                intent = new Intent(this, Sections.class);
                 startActivity(intent);
                 break;
             case R.id.quick_brew:
