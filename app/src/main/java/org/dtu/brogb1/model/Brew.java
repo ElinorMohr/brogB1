@@ -10,10 +10,22 @@ import org.json.JSONObject;
 
 public class Brew {
 
-    private String brewName, brewPics ;
-    private double groundCoffee, grindSize, coffeeWaterRatio, brewingTemperature, bloomWater, bloomTime, totalBrewingTime;
+    private String brewName, brewPics, grindSize;
+    private double groundCoffee, coffeeWaterRatio, brewingTemperature, bloomWater, bloomTime, totalBrewingTime;
 
-    public Brew(double groundCoffee, double grindSize, double coffeeWaterRatio, double brewingTemperature,
+    public Brew(){
+        this.groundCoffee = 0;
+        this.grindSize = null;
+        this.coffeeWaterRatio = 0;
+        this.brewingTemperature = 0;
+        this.bloomWater = 0;
+        this.bloomTime = 0;
+        this.totalBrewingTime = 0;
+        this.brewName = null;
+        this.brewPics = null;
+    }
+
+    public Brew(double groundCoffee, String grindSize, double coffeeWaterRatio, double brewingTemperature,
                 double bloomWater, double bloomTime, double totalBrewingTime, String brewName, String brewPics) {
         this.groundCoffee = groundCoffee;
         this.grindSize = grindSize;
@@ -74,11 +86,11 @@ public class Brew {
         this.groundCoffee = groundCoffee;
     }
 
-    public double getGrindSize() {
+    public String getGrindSize() {
         return grindSize;
     }
 
-    public void setGrindSize(double grindSize) {
+    public void setGrindSize(String grindSize) {
         this.grindSize = grindSize;
     }
 
@@ -125,7 +137,7 @@ public class Brew {
     public boolean equals(Brew brew) {
         return (
                 this.groundCoffee == brew.getGroundCoffee() &&
-                this.grindSize == brew.getGrindSize() &&
+                this.grindSize.equals(brew.getGrindSize()) &&
                 this.coffeeWaterRatio == brew.getCoffeeWaterRatio() &&
                 this.brewingTemperature == brew.getBrewingTemperature() &&
                 this.bloomWater == brew.getBloomWater() &&

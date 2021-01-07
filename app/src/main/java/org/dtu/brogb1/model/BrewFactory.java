@@ -11,9 +11,9 @@ import org.json.JSONObject;
 public class BrewFactory {
     public Brew getBrew(String option){
         if(option.equals("")){
-            return new Brew(1,1,1,1,1,1,1," ", "");
+            return new Brew(1," ",1,1,1,1,1," ", "");
         }
-        return new Brew(1,1,1,1,1,1,1, " ", " ");
+        return new Brew(1," ",1,1,1,1,1, " ", " ");
     }
 
     public static Brew fromJson(String input) throws BrewException {
@@ -24,7 +24,7 @@ public class BrewFactory {
             JSONObject jObject = new JSONObject(input);
             return new Brew(
                     jObject.getDouble("groundCoffee"),
-                    jObject.getDouble("grindSize"),
+                    jObject.getString("grindSize"),
                     jObject.getDouble("coffeeWaterRatio"),
                     jObject.getDouble("brewingTemperature"),
                     jObject.getDouble("bloomWater"),
