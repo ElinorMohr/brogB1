@@ -63,7 +63,10 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
                 Intent intent = new Intent(this, CleanActivityStep1.class);
                 startActivity(intent);
                 return false;
-            default:
+            case R.id.option_2:
+                Intent intent1 = new Intent(this, CommunityActivity.class);
+                startActivity(intent1);
+                default:
                 return super.onOptionsItemSelected(item);
         }
     }
