@@ -14,64 +14,20 @@
         android:contentDescription="@string/logo_with_text_description"
         app:srcCompat="@drawable/ic_logo_w_text" />
 
-    <TextView
-        android:id="@+id/clearTekst"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="35dp"
-        android:textColor="@color/colorplate3"
-        android:text="@string/clear_standard"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
-
-    <TextView
-        android:id="@+id/sprogTekst"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:textColor="@color/colorplate3"
+    <com.google.android.material.button.MaterialButton
+        app:cornerRadius="70dp"
+        style="@style/DefaultButton"
+        android:id="@+id/language"
         android:text="@string/language"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+        android:layout_gravity="center"/>
 
-    <TextView
-        android:id="@+id/connectTekst"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:textColor="@color/colorplate3"
+    <com.google.android.material.button.MaterialButton
+        app:cornerRadius="70dp"
+        style="@style/DefaultButton"
+        android:id="@+id/connections"
         android:text="@string/connections"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        android:layout_gravity="center" />
+        android:layout_gravity="center"/>
 
-    <TextView
-        android:id="@+id/guideTekst"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:textColor="@color/colorplate3"
-        android:text="@string/guide"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        android:layout_gravity="center" />
 
-    <TextView
-        android:id="@+id/infoTekst"
-        android:layout_width="wrap_content"
-        android:layout_marginTop="20dp"
-        android:textColor="@color/colorplate3"
-        android:layout_height="wrap_content"
-        android:text="@string/info"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        android:layout_gravity="center" />
-
-    <TextView
-        android:id="@+id/cleanTekst"
-        android:layout_width="wrap_content"
-        android:layout_marginTop="20dp"
-        android:textColor="@color/colorplate3"
-        android:layout_height="wrap_content"
-        android:text="@string/clean"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        android:layout_gravity="center" />
 
 </LinearLayout>
