@@ -34,6 +34,7 @@ public class BrewFactory {
                     jObject.getString("brewPics")
             );
         } catch (JSONException e) {
+            System.out.println(input);
             e.printStackTrace();
             throw new BrewException("Fejl under parse af JSON");
         }

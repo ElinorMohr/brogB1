@@ -15,14 +15,14 @@ public class Brew {
 
     public Brew(){
         this.groundCoffee = 0;
-        this.grindSize = null;
+        this.grindSize = " ";
         this.coffeeWaterRatio = 0;
         this.brewingTemperature = 0;
         this.bloomWater = 0;
         this.bloomTime = 0;
         this.totalBrewingTime = 0;
-        this.brewName = null;
-        this.brewPics = null;
+        this.brewName = " ";
+        this.brewPics = " ";
     }
 
     public Brew(double groundCoffee, String grindSize, double coffeeWaterRatio, double brewingTemperature,

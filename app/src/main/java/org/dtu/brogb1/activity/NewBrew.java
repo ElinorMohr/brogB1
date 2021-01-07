@@ -28,7 +28,7 @@ import java.lang.reflect.Array;
 public class NewBrew extends AppCompatActivity {
     private String brewName, brewPics, grindSize ;
     private double groundCoffee, coffeeWaterRatio, brewingTemperature, bloomWater, bloomTime, totalBrewingTime;
-    EditText editGroundCoffee, editRatio, editTemp, editBloomWater, editBloomTime, editTotal ;
+    EditText editBrewName, editGroundCoffee, editRatio, editTemp, editBloomWater, editBloomTime, editTotal ;
     Spinner Spinnerinputgrindsize;
 
  Brew newBrew = new Brew();
@@ -42,6 +42,8 @@ public class NewBrew extends AppCompatActivity {
         ImageButton info =  findViewById(R.id.IGroundCoffee);
 
         // instansere alle vores givende værdier til et bryg
+
+        editBrewName = findViewById(R.id.Opskrifts_navn);
         editGroundCoffee = findViewById(R.id.inputGroundCoffee);
         Spinnerinputgrindsize = findViewById(R.id.inputgrindsize);
         editRatio = findViewById(R.id.inputRatio);
@@ -110,12 +112,20 @@ public class NewBrew extends AppCompatActivity {
             newBrew.setBloomTime(bloomTime);
             newBrew.setTotalBrewingTime(totalBrewingTime);
 
+            brewName = editBrewName.getText().toString();
+            if(brewName.isEmpty()){
+                Toast.makeText(this, "your brew needs a name", Toast.LENGTH_SHORT).show();
+                return;
+            }else{
+                newBrew.setBrewName(brewName);
+            }
 
             CheckBox saveBrew =(CheckBox) findViewById(R.id.savebox);
 
             // her tjekker vi, hvis den er markeret som save. bliver denne bryg gemt i storage
             if(saveBrew.isChecked()){
                 IStorageService storage = StorageServiceSharedPref.getInstance();
+
                 try {
                     storage.saveBrew(newBrew);
                 } catch (BrewException e) {
@@ -126,6 +136,11 @@ public class NewBrew extends AppCompatActivity {
 
             Intent intent = new Intent(this, Brewing.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            try {
+                intent.putExtra("Brew", newBrew.toJson());
+            } catch (BrewException e) {
+                e.printStackTrace();
+            }
             startActivity(intent);
         });
         info.setOnClickListener(v -> {
