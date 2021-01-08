@@ -31,6 +31,7 @@ public class Loading extends AppCompatActivity {
                         Intent intent = new Intent(Loading.this, HomePage.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_TASK_ON_HOME);
                         startActivity(intent);
+                        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                         Loading.this.finish();
                     }
                 },

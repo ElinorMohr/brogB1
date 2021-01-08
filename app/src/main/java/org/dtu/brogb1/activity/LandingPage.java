@@ -43,6 +43,7 @@ public class LandingPage extends AppCompatActivity implements View.OnClickListen
         if (v == bluetooth) {
             Intent intent = new Intent(this, Loading.class);
             startActivity(intent);
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         }
 
     }
