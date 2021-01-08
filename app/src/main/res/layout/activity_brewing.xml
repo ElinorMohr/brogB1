@@ -21,6 +21,18 @@
         android:gravity="center"
         android:orientation="vertical">
 
+        <EditText
+            android:id="@+id/Opskriftens_navn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="5"
+            android:inputType="textPersonName"
+            android:hint="name"
+            android:layout_gravity="center"
+            android:textColor="@color/colorplate2"
+            android:layout_margin="5dp"
+            android:gravity="center" />
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
