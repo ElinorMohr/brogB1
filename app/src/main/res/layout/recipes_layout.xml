@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
    <TextView
@@ -13,19 +13,42 @@
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:textStyle="bold"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:layout_marginStart="4dp"
         android:textColor="@color/black"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-       android:text="@string/favorites" />
 
-    <ListView
+        android:text="@string/favorites" />
+    <LinearLayout
         android:layout_marginTop="6dp"
-        android:id="@+id/list_view_main_recipes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center">
-    </ListView>
-    <ImageView
+        android:orientation="horizontal">
+        <ListView
+
+            android:id="@+id/list_view_favorites"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="30dp"
+            android:layout_weight="2"
+            />
+
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="20dp"
+            android:layout_weight="1"
+            android:background="#00ffffff"
+            app:srcCompat="@android:drawable/btn_star"
+            tools:srcCompat="@android:drawable/btn_star_big_on" />
+
+
+    </LinearLayout>
+
+
+ <ImageView
         android:layout_width="match_parent"
         android:layout_marginTop="-80dp"
         android:layout_marginBottom="-70dp"
@@ -48,7 +71,10 @@
         android:layout_marginTop="6dp"
         android:id="@+id/list_view_sec_recipes"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        >
     </ListView>
 
 </LinearLayout>

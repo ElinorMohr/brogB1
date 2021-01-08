@@ -65,6 +65,7 @@
     <string name="done">Done</string>
     <string name="saved_on_machine_underline"><u>Saved on the machine</u></string>
     <string name="favorites"><u>favorites</u></string>
+    <string name="brewName">name</string>
     <string name="recipes_underline"><u>Recipes</u></string>
     <string name="settings">Settings</string>
     <string name="offline">Offline</string>

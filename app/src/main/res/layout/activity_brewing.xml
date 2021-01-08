@@ -12,27 +12,30 @@
         android:padding="4dp"
         app:srcCompat="@drawable/kaffevinter" />
 
+    <TextView
+        android:layout_below="@id/kaffebillede"
+        android:id="@+id/Opskriftens_navn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="5"
+        android:textSize="25sp"
+        android:text="@string/brewName"
+
+        android:maxLength="20"
+        android:layout_gravity="center"
+        android:textColor="@color/colorplate2"
+        android:layout_marginHorizontal="50dp"
+        android:gravity="center" />
+
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/brew_resume"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/kaffebillede"
-        android:layout_margin="50dp"
+        android:layout_below="@id/Opskriftens_navn"
+        android:layout_marginHorizontal="50dp"
         android:gravity="center"
-        android:orientation="vertical"
-        >
-
-        <EditText
-            android:id="@+id/Opskriftens_navn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="5"
-            android:inputType="textPersonName"
-            android:hint="name"
-            android:layout_gravity="center"
-            android:textColor="@color/colorplate2"
-            android:layout_margin="5dp"
-            android:gravity="center" />
+        android:layout_marginTop="50dp"
+        android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -106,7 +109,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="5"
-                android:inputType="textPersonName"
                 android:text="60"
                 android:textColor="@color/colorplate2"
                 android:background="@drawable/textinputboarder"
@@ -133,14 +135,15 @@
                 android:id="@+id/valueTemperature"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:ems="5"
-                android:inputType="textPersonName"
-                android:text="60"
-                android:textColor="@color/colorplate2"
-                android:background="@drawable/textinputboarder"
                 android:layout_alignParentRight="true"
-                android:layout_margin="5dp"
-                android:gravity="center"/>
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:background="@drawable/textinputboarder"
+                android:ems="5"
+                android:gravity="center"
+                android:text="60"
+                android:textColor="@color/colorplate2" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -162,7 +165,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="5"
-                android:inputType="textPersonName"
                 android:text="60"
                 android:textColor="@color/colorplate2"
                 android:background="@drawable/textinputboarder"
@@ -231,6 +233,7 @@
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <LinearLayout
+        android:layout_marginTop="50dp"
         android:id="@+id/layout_2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -238,11 +241,18 @@
         android:orientation="vertical"
         android:layout_below="@id/brew_resume">
 
+
+
         <com.google.android.material.button.MaterialButton
             app:cornerRadius="70dp"
             style="@style/DefaultButton"
             android:id="@+id/BrewNow"
-            android:text="@string/brew"/>
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/brew"
+            android:textAllCaps="false"
+           />
     </LinearLayout>
 
     <ImageView
