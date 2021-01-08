@@ -17,6 +17,11 @@ import org.dtu.brogb1.R;
 import org.dtu.brogb1.activity.clean.CleanActivityStep1;
 import org.dtu.brogb1.activity.community.CommunityActivity;
 import org.dtu.brogb1.activity.community.Guide;
+import org.dtu.brogb1.model.Brew;
+import org.dtu.brogb1.model.BrewException;
+import org.dtu.brogb1.service.IStorageService;
+import org.dtu.brogb1.service.StorageServiceException;
+import org.dtu.brogb1.service.StorageServiceSharedPref;
 
 /**
  * @author Elinor Mikkelsen s191242
@@ -26,10 +31,12 @@ import org.dtu.brogb1.activity.community.Guide;
 public class HomePage extends AppCompatActivity implements View.OnClickListener  {
     Button brew,list,quick,bsmquickBrew, bsmrecipes, bsmnewBrew;
     ImageButton settings;
+    IStorageService storage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        storage = StorageServiceSharedPref.getInstance();
         setContentView(R.layout.activity_start_side);
         brew = findViewById(R.id.brew_now);
         list = findViewById(R.id.see_list);
@@ -82,8 +89,15 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
                 startActivity(intent);
                 break;
             case R.id.quick_brew:
-                intent = new Intent(this, Brewing.class);
-                startActivity(intent);
+                try {
+                    Brew quickbrew = storage.getQuickBrew();
+                    intent = new Intent(this, Brewing.class);
+                    intent.putExtra("Brew", quickbrew.toJson());
+                    startActivity(intent);
+                } catch (StorageServiceException | BrewException e) {
+                    e.printStackTrace();
+                    Toast.makeText(this, "Du har ikke valgt en quick-brew", Toast.LENGTH_LONG).show();
+                }
                 break;
         }
 

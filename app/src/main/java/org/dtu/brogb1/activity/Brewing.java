@@ -37,14 +37,18 @@ public class Brewing extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_brewing);
         brewNow = findViewById(R.id.BrewNow);
-        Brew brew;
+        Brew brew = new Brew();
         try {
-            brew = BrewFactory.fromJson(getIntent().getExtras().getString("Brew"));
+            if (getIntent().hasExtra("Brew")) {
+                brew = BrewFactory.fromJson(getIntent().getExtras().getString("Brew"));
+            } else {
+                Toast.makeText(this, "Der blev ikke givet information om en bryg", Toast.LENGTH_SHORT).show();
+                finish();
+            }
         } catch (BrewException e) {
             e.printStackTrace();
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
             finish();
-            brew = new Brew();
         }
 
         TVBrewName = findViewById(R.id.Opskriftens_navn);
