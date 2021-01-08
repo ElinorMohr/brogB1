@@ -14,6 +14,10 @@ import androidx.fragment.app.Fragment;
 
 import org.dtu.brogb1.R;
 import org.dtu.brogb1.activity.Brewing;
+import org.dtu.brogb1.model.BrewException;
+import org.dtu.brogb1.service.IStorageService;
+import org.dtu.brogb1.service.StorageServiceException;
+import org.dtu.brogb1.service.StorageServiceSharedPref;
 
 import java.util.ArrayList;
 
@@ -23,10 +27,20 @@ import java.util.ArrayList;
  */
 
 public class Recipes extends Fragment {
+    IStorageService storage;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        storage = StorageServiceSharedPref.getInstance();
+        try {
+            ArrayList arrayList = (ArrayList) storage.getAllBrews();
+        } catch (StorageServiceException e) {
+            e.printStackTrace();
+        } catch (BrewException e) {
+            e.printStackTrace();
+        }
+
         View root =  inflater.inflate(R.layout.recipes_layout, container, false);
         ListView listMain = root.findViewById(R.id.list_view_main_recipes);
         ListView listSec = root.findViewById(R.id.list_view_sec_recipes);

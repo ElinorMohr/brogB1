@@ -27,6 +27,7 @@ import org.dtu.brogb1.adapter.SectionsPagerAdapter;
 public class Sections extends AppCompatActivity {
 
     @Override
+    //højre og venstre side i vores fragment
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sections);
