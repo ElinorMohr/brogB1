@@ -45,6 +45,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/logotekst" />
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/offline"
+            style="@style/DefaultButton"
+            android:layout_height="wrap_content"
+            android:text="@string/offline"
+            app:cornerRadius="70dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/logotekst" />
+
     </LinearLayout>
 
     <ImageView

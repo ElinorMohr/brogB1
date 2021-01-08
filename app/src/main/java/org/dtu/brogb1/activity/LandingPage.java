@@ -11,7 +11,6 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import org.dtu.brogb1.R;
-import org.dtu.brogb1.activity.Loading;
 import org.dtu.brogb1.service.IStorageService;
 import org.dtu.brogb1.service.StorageServiceSharedPref;
 
@@ -22,13 +21,13 @@ import org.dtu.brogb1.service.StorageServiceSharedPref;
 
 public class LandingPage extends AppCompatActivity implements View.OnClickListener {
     public static SharedPreferences mySharedPreferences = null;
-    Button bluetooth;
+    Button bluetooth, offline;
     TextView logo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_firsttime);
+        setContentView(R.layout.activity_landing_page);
 
         mySharedPreferences = getApplicationContext().getSharedPreferences("preferences", Activity.MODE_PRIVATE);
         IStorageService storage = StorageServiceSharedPref.getInstance();
@@ -36,6 +35,8 @@ public class LandingPage extends AppCompatActivity implements View.OnClickListen
         bluetooth = findViewById(R.id.bluetooth);
         bluetooth.setOnClickListener(this);
 
+        offline = findViewById(R.id.offline);
+        offline.setOnClickListener(this);
     }
 
     @Override
@@ -44,7 +45,10 @@ public class LandingPage extends AppCompatActivity implements View.OnClickListen
             Intent intent = new Intent(this, Loading.class);
             startActivity(intent);
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        } else if (v == offline) {
+            Intent intent = new Intent(this, HomePage.class);
+            startActivity(intent);
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         }
-
     }
 }
