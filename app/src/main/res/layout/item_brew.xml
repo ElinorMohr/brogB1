@@ -22,8 +22,8 @@
         android:layout_width="275dp"
         android:layout_height="40dp"
         android:layout_weight="1"
-        android:clickable="false"
-        android:focusable="false"
+        android:clickable="true"
+        android:focusable="true"
         android:overScrollMode="never"
         android:textAlignment="textStart"
         android:textSize="18dp" />
