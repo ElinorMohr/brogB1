@@ -123,19 +123,18 @@ public class NewBrew extends AppCompatActivity {
             newBrew.setTotalBrewingTime(totalBrewingTime);
 
             brewName = editBrewName.getText().toString();
-            if(brewName.isEmpty()){
-                Toast.makeText(this, "your brew needs a name", Toast.LENGTH_SHORT).show();
-                return;
-            }else{
-                newBrew.setBrewName(brewName);
-            }
+            newBrew.setBrewName(brewName);
+
 
             CheckBox saveBrew =(CheckBox) findViewById(R.id.savebox);
 
             // her tjekker vi, hvis den er markeret som save. bliver denne bryg gemt i storage
             if(saveBrew.isChecked()){
                 IStorageService storage = StorageServiceSharedPref.getInstance();
-
+                if(brewName.isEmpty()){
+                    Toast.makeText(this, "your brew needs a name", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 try {
                     storage.saveBrew(newBrew);
                 } catch (BrewException e) {

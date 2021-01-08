@@ -28,7 +28,7 @@ public class Recipes extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root =  inflater.inflate(R.layout.recipes_layout, container, false);
-        ListView listMain = root.findViewById(R.id.list_view_main_recipes);
+        ListView listMain = root.findViewById(R.id.list_view_favorites);
         ListView listSec = root.findViewById(R.id.list_view_sec_recipes);
         ArrayList<String> viewMain = new ArrayList<String>();
         ArrayList<String> viewSes = new ArrayList<String>();

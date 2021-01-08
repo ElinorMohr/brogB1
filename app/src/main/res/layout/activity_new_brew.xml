@@ -21,28 +21,31 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_marginTop="30dp"
             app:srcCompat="@drawable/kaffevinter" />
 
+    <EditText
+        android:layout_below="@id/ny_opskrift"
+        android:id="@+id/Opskrifts_navn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="5"
+        android:inputType="textPersonName"
+        android:hint="name"
+        android:maxLength="20"
+        android:layout_gravity="center"
+        android:textColor="@color/colorplate2"
+        android:layout_marginHorizontal="50dp"
+        android:gravity="center" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/seekbarLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/ny_opskrift"
-            android:layout_margin="50dp"
+            android:layout_below="@id/Opskrifts_navn"
+            android:layout_marginHorizontal="50dp"
+            android:layout_marginTop="50dp"
             android:gravity="center"
             android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/Opskrifts_navn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="5"
-                android:inputType="textPersonName"
-                android:hint="name"
-                android:maxLength="20"
-                android:layout_gravity="center"
-                android:textColor="@color/colorplate2"
-                android:layout_margin="5dp"
-                android:gravity="center" />
+
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -248,6 +251,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <LinearLayout
+            android:layout_marginTop="40dp"
             android:id="@+id/saveboxandbrew"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -272,16 +276,15 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                 app:cornerRadius="70dp" />
         </LinearLayout>
 
-        <ImageView
-            android:id="@+id/footer3"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_alignParentBottom="true"
-            android:layout_below="@id/saveboxandbrew"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="0dp"
-            android:layout_marginEnd="0dp"
-            android:layout_marginBottom="-65dp"
-            android:contentDescription="@string/footer_with_copyright_description"
-            app:srcCompat="@drawable/ic_footer_copyright" />
+    <ImageView
+        android:id="@+id/footer3"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="-65dp"
+        android:contentDescription="@string/footer_with_copyright_description"
+        app:srcCompat="@drawable/ic_footer_copyright" />
     </RelativeLayout>

@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Html;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -63,7 +64,7 @@ public class Brewing extends AppCompatActivity {
         TVTotal = findViewById(R.id.valueTotalTime);
 
 
-        TVBrewName.setText(brew.getBrewName());
+        TVBrewName.setText(Html.fromHtml("<u>" + brew.getBrewName() + "</u>"));
         TVGroundCoffee.setText(Double.toString(brew.getGroundCoffee()));
         TVGrindSize.setText(brew.getGrindSize());
         TVRatio.setText(Double.toString(brew.getCoffeeWaterRatio()));
