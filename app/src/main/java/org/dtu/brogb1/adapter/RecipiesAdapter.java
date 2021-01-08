@@ -24,69 +24,80 @@ import org.dtu.brogb1.service.StorageServiceSharedPref;
 import java.util.ArrayList;
 
 public class RecipiesAdapter extends ArrayAdapter<Brew> {
-    private boolean favorites = false;
+    private String mode = "normal";
     private final IStorageService storage;
     private final Context context;
 
+    // Adapteren kan states på 3 måder, i "favorit" og "normal"
     public RecipiesAdapter(@NonNull Context context, ArrayList<Brew> objects) {
         super(context, 0, objects);
         this.storage = StorageServiceSharedPref.getInstance();
         this.context = context;
     }
-    public RecipiesAdapter(@NonNull Context context, ArrayList<Brew> objects, boolean favorites) {
+    public RecipiesAdapter(@NonNull Context context, ArrayList<Brew> objects, String mode) {
         super(context, 0, objects);
-        this.favorites = favorites;
+        if (!mode.equals("normal") && !mode.equals("favorite") && !mode.equals("history"))
+            mode = "normal";
+        this.mode = mode;
         this.storage = StorageServiceSharedPref.getInstance();
         this.context = context;
-    }
-
-    @Override
-    public boolean  areAllItemsEnabled() {
-        return false;
-    }
-
-    @Override
-    public boolean isEnabled(int position) {
-        return false;
     }
 
     @SuppressLint("SetTextI18n")
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        // Get the data item for this position
-        Brew brew = getItem(position);
+        // Find information om den Brew der skal vises i dette element
+        Brew brew = this.getItem(position);
+
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_brew, parent, false);
+            convertView = LayoutInflater.from(this.getContext()).inflate(R.layout.item_brew, parent, false);
         }
-        // Lookup view for data population
+        // Find de steder i template hvor der skal sættes data ind
         TextView favCount = (TextView) convertView.findViewById(R.id.favNumber);
         Button brewName = (Button) convertView.findViewById(R.id.brewName);
         ImageView star = convertView.findViewById(R.id.quickBrew);
 
-        // Populate the data into the template view using the data object
-        if (favorites) {
-            favCount.setText((position+1) + ".");
+        // Put data ind i templaten der er valgt tidligere
+        // Hvis det er en "favorit"-liste, så skal der gøres noget ekstra, ellers så skal tælleren og stjernen bare skjules
+        if (this.mode.equals("favorite")) {
+            // Sæt favorit-nummeret
+            favCount.setText((position + 1) + ".");
+            // Forsøg at sætte stjernen, hvis denne Brew er den samme som quick-brew
             try {
-                if (brew.equals(storage.getQuickBrew()))
-                    star.setImageDrawable(getContext().getDrawable(R.drawable.ic_star));
+                if (brew.equals(this.storage.getQuickBrew()))
+                    star.setImageDrawable(this.getContext().getDrawable(R.drawable.ic_star));
+
+                // Gem noget data, så man kan trykke på stjernen
                 star.setTag(brew);
-                star.setOnClickListener(onStarClickListener);
+                star.setOnClickListener(this.onStarClickListener);
             } catch (StorageServiceException | BrewException e) {
                 e.printStackTrace();
             }
+        } else if (this.mode.equals("history")) {
+            favCount.setAlpha(0);
+            star.setImageAlpha(0);
         } else {
             favCount.setAlpha(0);
             star.setImageAlpha(0);
         }
+        // Sæt navnet på Brew ind og tilføj data så man kan trykke på det
         brewName.setText(brew.getBrewName());
         brewName.setTag(brew);
-        brewName.setOnClickListener(onButtonClickListener);
+        brewName.setOnClickListener(this.onButtonClickListener);
 
-        // Return the completed view to render on screen
+        // Returner det viewet, som er klar til at blive renderet
         return convertView;
     }
 
+    // Følgende stumper er til at få klik på under-elementer til at virke
+    // De første to metoder gør at der ikke sker noget når man trykker på selve liste-punktet
+    @Override
+    public boolean  areAllItemsEnabled() { return false; }
+    @Override
+    public boolean isEnabled(int position) { return false; }
+
+    // Håndterer at der bliver trykket på "knappen" i templaten og sender videre til "Brewing"
     private View.OnClickListener onButtonClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -102,11 +113,13 @@ public class RecipiesAdapter extends ArrayAdapter<Brew> {
         }
     };
 
+    // Håndterer at der bliver trykket på stjernen i templaten og gemmer at det er gen der er quick-brew
     private View.OnClickListener onStarClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             Brew brew = (Brew) v.getTag();
             System.out.println("Star clicked, row " + brew.getBrewName());
+            //storage.setQuickBrew(brew);
         }
     };
 }
