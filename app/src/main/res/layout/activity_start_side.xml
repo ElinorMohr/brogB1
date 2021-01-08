@@ -41,35 +41,35 @@
         android:orientation="horizontal">
 
         <Button
-            app:cornerRadius="70dp"
-            android:drawableTop="@drawable/ic_list"
             android:id="@+id/see_list"
-            android:layout_height="70dp"
+            style="@style/DefaultButton"
             android:layout_width="70dp"
+            android:layout_height="80dp"
             android:layout_margin="20dp"
-            android:paddingTop="6dp"
-            style="@style/DefaultButton"/>
+            android:drawableTop="@drawable/ic_list"
+            android:paddingTop="11dp"
+            app:cornerRadius="100dp" />
 
         <Button
-            app:cornerRadius="70dp"
-            android:drawableTop="@drawable/ic_plus"
             android:id="@+id/brew_now"
-            android:layout_height="70dp"
+            style="@style/DefaultButton"
             android:layout_width="70dp"
+            android:layout_height="80dp"
             android:layout_margin="20dp"
-            android:paddingTop="1dp"
-            style="@style/DefaultButton"/>
+            android:drawableTop="@drawable/ic_plus"
+            android:paddingTop="6dp"
+            app:cornerRadius="100dp" />
 
         <Button
             android:id="@+id/quick_brew"
             style="@style/DefaultButton"
             android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_height="80dp"
             android:layout_margin="20dp"
-            android:paddingTop="6dp"
-            android:paddingLeft="22dp"
             android:drawableTop="@drawable/ic_mug_hot"
-            app:cornerRadius="70dp" />
+            android:paddingLeft="22dp"
+            android:paddingTop="11dp"
+            app:cornerRadius="100dp" />
 
     </LinearLayout>
 
