@@ -1,18 +1,21 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:baselineAligned="false">
+    android:layout_height="50dp"
+    android:orientation="horizontal"
+    >
 
     <TextView
         android:id="@+id/favNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="4dp"
+        android:layout_marginStart="3dp"
         android:layout_weight="1"
         android:paddingTop="8dp"
+        android:gravity="center"
+        android:textAlignment="center"
         android:text="1."
-        android:textSize="16dp"
+        android:textSize="16sp"
         android:textStyle="bold" />
 
     <Button
@@ -20,21 +23,22 @@
         style="@style/DefaultButton"
 
         android:layout_width="275dp"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:layout_weight="1"
         android:clickable="false"
         android:focusable="false"
         android:overScrollMode="never"
-        android:textAlignment="textStart"
-        android:textSize="18dp" />
+        android:textAlignment="center"
+        android:textSize="18sp" />
 
     <ImageView
+        android:gravity="center"
         android:id="@+id/quickBrew"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="4dp"
+        android:layout_marginStart="4dp"
         android:layout_weight="1"
-        android:paddingTop="8dp"
+        android:paddingTop="12dp"
         app:srcCompat="@drawable/ic_star_empty" />
 
 </LinearLayout>

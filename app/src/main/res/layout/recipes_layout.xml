@@ -24,7 +24,6 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <ListView
-
             android:id="@+id/list_view_favorites"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -32,19 +31,6 @@
             android:layout_marginEnd="30dp"
             android:layout_weight="2"
             />
-
-        <ImageButton
-            android:id="@+id/imageButton"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:layout_marginEnd="20dp"
-            android:layout_weight="1"
-            android:background="#00ffffff"
-            app:srcCompat="@android:drawable/btn_star"
-            tools:srcCompat="@android:drawable/btn_star_big_on" />
-
-
     </LinearLayout>
 
 
@@ -72,8 +58,6 @@
         android:id="@+id/list_view_sec_recipes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginEnd="40dp"
         >
     </ListView>
 
