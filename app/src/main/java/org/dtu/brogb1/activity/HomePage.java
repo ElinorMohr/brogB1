@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.PopupMenu;
 import android.widget.Toast;
 
 import org.dtu.brogb1.R;
@@ -28,7 +29,7 @@ import org.dtu.brogb1.service.StorageServiceSharedPref;
  * @author Theis Villumsen s195461
  */
 
-public class HomePage extends AppCompatActivity implements View.OnClickListener  {
+public class HomePage extends AppCompatActivity implements View.OnClickListener, PopupMenu.OnMenuItemClickListener {
     Button brew,list,quick,bsmquickBrew, bsmrecipes, bsmnewBrew;
     ImageButton settings;
     IStorageService storage;
@@ -47,6 +48,15 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
         brew.setOnClickListener(this);
         list.setOnClickListener(this);
         quick.setOnClickListener(this);
+        settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PopupMenu popup = new PopupMenu(HomePage.this, v);
+                popup.setOnMenuItemClickListener(HomePage.this);
+                popup.inflate(R.menu.menu);
+                popup.show();
+            }
+        });
         registerForContextMenu(settings);
     }
 
@@ -77,6 +87,11 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
     }
 
     @Override
+    public boolean onMenuItemClick(MenuItem menuItem) {
+        return this.onContextItemSelected(menuItem);
+    }
+
+    @Override
     public void onClick(View v) {
         Intent intent;
         switch (v.getId()){
@@ -98,6 +113,9 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
                     e.printStackTrace();
                     Toast.makeText(this, "Du har ikke valgt en quick-brew", Toast.LENGTH_LONG).show();
                 }
+                break;
+            case R.id.Settings:
+                openContextMenu(settings);
                 break;
         }
 
