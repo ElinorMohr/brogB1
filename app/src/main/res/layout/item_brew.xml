@@ -1,0 +1,40 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:baselineAligned="false">
+
+    <TextView
+        android:id="@+id/favNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="4dp"
+        android:layout_weight="1"
+        android:paddingTop="8dp"
+        android:text="1."
+        android:textSize="16dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/brewName"
+        style="@style/DefaultButton"
+
+        android:layout_width="275dp"
+        android:layout_height="40dp"
+        android:layout_weight="1"
+        android:clickable="false"
+        android:focusable="false"
+        android:overScrollMode="never"
+        android:textAlignment="textStart"
+        android:textSize="18dp" />
+
+    <ImageView
+        android:id="@+id/quickBrew"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dp"
+        android:layout_weight="1"
+        android:paddingTop="8dp"
+        app:srcCompat="@drawable/ic_star_empty" />
+
+</LinearLayout>

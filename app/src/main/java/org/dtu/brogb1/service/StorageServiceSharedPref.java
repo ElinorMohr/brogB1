@@ -104,7 +104,7 @@ public class StorageServiceSharedPref implements IStorageService {
     }
 
     @Override
-    public List<Brew> getAllBrews() throws StorageServiceException, BrewException {
+    public ArrayList<Brew> getAllBrews() throws StorageServiceException, BrewException {
         ArrayList list = new ArrayList<Brew>();
         for (int i = 0; i < this.brewCount; i++) {
             list.add(BrewFactory.fromJson(this.getString(this.brewKey + i)));
@@ -170,7 +170,7 @@ public class StorageServiceSharedPref implements IStorageService {
     }
 
     @Override
-    public List<Brew> getBrewHistory() throws StorageServiceException, BrewException {
+    public ArrayList<Brew> getBrewHistory() throws StorageServiceException, BrewException {
         ArrayList list = new ArrayList<Brew>();
         for (int i = 0; i < this.historyCount; i++) {
             list.add(BrewFactory.fromJson(this.getString(this.historyKey + i)));
@@ -199,7 +199,7 @@ public class StorageServiceSharedPref implements IStorageService {
     }
 
     @Override
-    public List<Brew> getFavoriteBrews() throws StorageServiceException, BrewException {
+    public ArrayList<Brew> getFavoriteBrews() throws StorageServiceException, BrewException {
         ArrayList list = new ArrayList<Brew>();
         for (int i = 0; i < this.favoriteCount; i++) {
             list.add(BrewFactory.fromJson(this.getString(this.favoritesKey + i)));
