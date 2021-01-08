@@ -46,7 +46,6 @@ dependencies {
     def lottieVersion = "3.5.0"
     implementation "com.airbnb.android:lottie:$lottieVersion"
 
-    testCompile 'junit:junit:4.12'
-    testCompile "org.mockito:mockito-core:1.9.5"
+    testImplementation "org.mockito:mockito-core:1.9.5"
     testImplementation 'org.json:json:20201115'
 }

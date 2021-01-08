@@ -14,7 +14,7 @@ import static org.junit.Assert.*;
 public class BrewJsonTest {
     @Test
     public void SaveTest() {
-        Brew brew = new Brew(1,1,1,1,1,
+        Brew brew = new Brew(1,"Fine",1,1,1,
                 1,1,"1","1");
         try {
             String Json = brew.toJson();
