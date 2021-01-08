@@ -23,6 +23,8 @@ import org.dtu.brogb1.model.BrewFactory;
 /**
  * @author Elinor Mikkelsen s191242
  * @author Theis Villumsen s195461
+ * @author Kristoffer Baumgarten s180500
+ * @author Asim Raja s040727
  */
 
 public class Brewing extends AppCompatActivity {

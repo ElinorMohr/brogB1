@@ -25,6 +25,8 @@ import java.lang.reflect.Array;
 /**
  * @author Elinor Mikkelsen s191242
  * @author Kristoffer Baumgarten s180500
+ * @author Theis Villumsen s195461
+ * @author Asim Raja s040727
  */
 
 public class NewBrew extends AppCompatActivity {
