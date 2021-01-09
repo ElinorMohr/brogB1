@@ -3,6 +3,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:text="@string/EditUnderline" />
+
+
+
+
+    <ImageButton
+        android:id="@+id/BrewingFavoriteBT"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="15dp"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
+        android:layout_marginEnd="15dp"
+        android:background="@null"
+        app:srcCompat="@drawable/ic_heart_empty">
+    </ImageButton>
+
+
     <ImageView
         android:id="@+id/kaffebillede"
         android:layout_width="220dp"
@@ -269,11 +297,7 @@
         android:contentDescription="@string/footer_with_copyright_description"
         app:srcCompat="@drawable/ic_footer_copyright" />
 
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="52dp"
-        android:layout_height="41dp"
-        app:srcCompat="@drawable/ic_heart_empty" />
+
 
 
 </RelativeLayout>
