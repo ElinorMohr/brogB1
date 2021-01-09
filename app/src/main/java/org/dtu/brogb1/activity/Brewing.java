@@ -79,7 +79,7 @@ public class Brewing extends AppCompatActivity {
         TVTotal.setText(Double.toString(brew.getTotalBrewingTime()));
 
 
-        favoriteBT = (ImageButton) findViewById(R.id.NewBrewFavoriteBT);
+        favoriteBT = (ImageButton) findViewById(R.id.BrewingFavoriteBT);
         favoriteBT.setOnClickListener(imgButtonHandler);
 
         brewNow.setOnClickListener(new View.OnClickListener() {
