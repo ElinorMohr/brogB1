@@ -77,6 +77,7 @@
             <TextView
                 android:id="@+id/txtGround_coffee"
                 android:layout_width="wrap_content"
+                android:layout_centerVertical="true"
                 android:layout_height="wrap_content"
                 android:text="@string/ground_coffee"
                 android:textColor="@color/colorplate2"/>
@@ -103,6 +104,7 @@
             <TextView
                 android:id="@+id/txtGrindSize"
                 android:layout_width="wrap_content"
+                android:layout_centerVertical="true"
                 android:layout_height="wrap_content"
                 android:text="@string/grind_size"
                 android:textColor="@color/colorplate2" />
@@ -129,6 +131,7 @@
 
             <TextView
                 android:id="@+id/txtRatio"
+                android:layout_centerVertical="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/coffee_water_ratio"
@@ -156,6 +159,7 @@
 
             <TextView
                 android:id="@+id/txtTemperature"
+                android:layout_centerVertical="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/brewing_temperature"
@@ -167,8 +171,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_marginStart="5dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="5dp"
+                android:layout_margin="5dp"
                 android:background="@drawable/textinputboarder"
                 android:ems="5"
                 android:gravity="center"
@@ -188,6 +191,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/bloom_water"
+                android:layout_centerVertical="true"
                 android:textColor="@color/colorplate2" />
 
             <TextView
@@ -195,6 +199,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="5"
+                android:layout_centerVertical="true"
                 android:text="60"
                 android:textColor="@color/colorplate2"
                 android:background="@drawable/textinputboarder"
@@ -216,6 +221,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/bloom_time"
+                android:layout_centerVertical="true"
                 android:textColor="@color/colorplate2" />
 
             <TextView
@@ -243,6 +249,7 @@
                 android:id="@+id/txtTotalTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
                 android:text="@string/total_brewing_time"
                 android:textColor="@color/colorplate2" />
 
