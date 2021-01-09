@@ -13,82 +13,97 @@
         android:layout_height="100dp"
         android:layout_marginTop="-40dp"
         android:background="@android:color/transparent"
-        android:layout_marginBottom="20dp"
         app:srcCompat="@drawable/ic_menutop" />
 
     <LinearLayout
+
         android:id="@+id/layout_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/BrygMenuSheet"
-        android:layout_margin="10dp"
+        android:layout_marginTop="-30dp"
+        android:layout_marginBottom="10dp"
         android:orientation="vertical">
         <TextView
+            android:textColor="@color/colorplate1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/ground_coffee">
         </TextView>
         <TextView
+            android:textColor="@color/colorplate1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/ground_coffee_info">
         </TextView>
         <TextView
+            android:textColor="@color/colorplate1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/grind_size">
         </TextView>
         <TextView
+            android:textColor="@color/colorplate1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/grind_size_info">
         </TextView>
         <TextView
+            android:textColor="@color/colorplate1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/coffee_water_ratio">
         </TextView>
         <TextView
+            android:textColor="@color/colorplate1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/coffee_water_ratio_info">
         </TextView>
         <TextView
+            android:textColor="@color/colorplate1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/brewing_temperature">
         </TextView>
         <TextView
+            android:textColor="@color/colorplate1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/brewing_temperature_info">
         </TextView>
         <TextView
+            android:textColor="@color/colorplate1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/bloom_water">
         </TextView>
         <TextView
+            android:textColor="@color/colorplate1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/bloom_water_info">
         </TextView>
         <TextView
+            android:textColor="@color/colorplate1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/bloom_time">
         </TextView>
         <TextView
+            android:textColor="@color/colorplate1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/bloom_time_info">
         </TextView>
         <TextView
+            android:textColor="@color/colorplate1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/total_brewing_time">
         </TextView>
         <TextView
+            android:textColor="@color/colorplate1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/total_brewing_time_info">

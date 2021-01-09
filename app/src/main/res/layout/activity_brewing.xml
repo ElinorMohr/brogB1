@@ -10,6 +10,7 @@
         android:layout_marginTop="30dp"
         android:layout_centerHorizontal="true"  
         android:padding="4dp"
+
         app:srcCompat="@drawable/kaffevinter" />
 
     <TextView
@@ -17,6 +18,7 @@
         android:id="@+id/Opskriftens_navn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:ems="5"
         android:textSize="25sp"
         android:text="@string/brewName"
@@ -266,6 +268,12 @@
         android:layout_marginBottom="-65dp"
         android:contentDescription="@string/footer_with_copyright_description"
         app:srcCompat="@drawable/ic_footer_copyright" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="52dp"
+        android:layout_height="41dp"
+        app:srcCompat="@drawable/ic_heart_empty" />
 
 
 </RelativeLayout>
