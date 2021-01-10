@@ -62,7 +62,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/Opskriftens_navn"
-        android:layout_marginHorizontal="50dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="21dp"
         android:gravity="center"
         android:layout_marginTop="50dp"
         android:orientation="vertical">
@@ -87,12 +88,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="5"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:text="60"
                 android:textColor="@color/colorplate2"
                 android:background="@drawable/textinputboarder"
-                android:layout_margin="5dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginTop="2.5dp"
+                android:layout_marginBottom="2.5dp"
                 android:gravity="center" />
+
+            <TextView
+                android:id="@+id/txtG"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@id/valueGroundCoffee"
+                android:layout_marginEnd="20dp"
+                android:layout_alignParentEnd="true"
+                android:text="g"
+                android:textColor="@color/colorplate2" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -116,7 +129,9 @@
                 android:layout_alignParentRight="true"
                 android:background="@drawable/textinputboarder"
                 android:text="fine"
-                android:layout_margin="5dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginTop="2.5dp"
+                android:layout_marginBottom="2.5dp"
                 android:ems="5"
                 android:gravity="center"
                 android:textColor="@color/colorplate2" />
@@ -146,8 +161,21 @@
                 android:textColor="@color/colorplate2"
                 android:background="@drawable/textinputboarder"
                 android:layout_alignParentRight="true"
-                android:layout_margin="5dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginTop="2.5dp"
+                android:layout_marginBottom="2.5dp"
                 android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/txtGl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@id/valueRatio"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="5dp"
+                android:text="g/L"
+                android:textColor="@color/colorplate2" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -169,13 +197,24 @@
                 android:id="@+id/valueTemperature"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_marginStart="5dp"
-                android:layout_margin="5dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="30dp"
+                android:layout_marginTop="2.5dp"
+                android:layout_marginBottom="2.5dp"
                 android:background="@drawable/textinputboarder"
                 android:ems="5"
                 android:gravity="center"
                 android:text="60"
+                android:textColor="@color/colorplate2" />
+            <TextView
+                android:id="@+id/txtC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignBaseline="@id/valueTemperature"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="12dp"
+                android:text="°C"
                 android:textColor="@color/colorplate2" />
         </RelativeLayout>
 
@@ -204,8 +243,20 @@
                 android:textColor="@color/colorplate2"
                 android:background="@drawable/textinputboarder"
                 android:layout_alignParentRight="true"
-                android:layout_margin="5dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginTop="2.5dp"
+                android:layout_marginBottom="2.5dp"
                 android:gravity="center"/>
+            <TextView
+                android:id="@+id/txtml"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@id/valueBloomWater"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="11dp"
+                android:text="ml"
+                android:textColor="@color/colorplate2" />
 
         </RelativeLayout>
 
@@ -234,8 +285,21 @@
                 android:textColor="@color/colorplate2"
                 android:background="@drawable/textinputboarder"
                 android:layout_alignParentRight="true"
-                android:layout_margin="5dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginTop="2.5dp"
+                android:layout_marginBottom="2.5dp"
                 android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/txts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignBaseline="@id/valueBloomTime"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="19dp"
+                android:text="s"
+                android:textColor="@color/colorplate2" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -263,8 +327,21 @@
                 android:textColor="@color/colorplate2"
                 android:background="@drawable/textinputboarder"
                 android:layout_alignParentRight="true"
-                android:layout_margin="5dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginTop="2.5dp"
+                android:layout_marginBottom="2.5dp"
                 android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/txtmin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignBaseline="@id/valueTotalTime"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="3dp"
+                android:text="min"
+                android:textColor="@color/colorplate2" />
         </RelativeLayout>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
