@@ -32,7 +32,7 @@ import org.dtu.brogb1.model.BrewFactory;
 public class Brewing extends AppCompatActivity {
     Button brewNow;
     Dialog dialogue;
-    TextView TVBrewName, TVGrindSize, TVGroundCoffee, TVRatio, TVTemp, TVBloomWater, TVBloomTime, TVTotal;
+    TextView TVBrewName, TVGrindSize, TVGroundCoffee, TVRatio, TVTemp, TVBloomWater, TVBloomTime, TVTotal, TVEdit;
     ImageButton favoriteBT;
     boolean buttonOn;
 
@@ -68,6 +68,7 @@ public class Brewing extends AppCompatActivity {
         TVBloomTime = findViewById(R.id.valueBloomTime);
         TVTotal = findViewById(R.id.valueTotalTime);
 
+        // Edit teksten
 
         TVBrewName.setText(Html.fromHtml("<u>" + brew.getBrewName() + "</u>"));
         TVGroundCoffee.setText(Double.toString(brew.getGroundCoffee()));
@@ -114,7 +115,16 @@ public class Brewing extends AppCompatActivity {
             }
         });
 
+        TVEdit = findViewById(R.id.EditBrew);
+        brewNow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), NewBrew.class);
+                startActivity(intent);
+            }
+        });
     }
+
 
     View.OnClickListener imgButtonHandler = new View.OnClickListener() {
 
