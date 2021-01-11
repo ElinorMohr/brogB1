@@ -10,7 +10,7 @@ import org.dtu.brogb1.model.BrewFactory;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StorageServiceSharedPref implements IStorageService {
+public class    StorageServiceSharedPref implements IStorageService {
     private static StorageServiceSharedPref instance = null;
     public static StorageServiceSharedPref getInstance() {
         if (instance == null) {

@@ -6,6 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import org.dtu.brogb1.R;
 
+/**
+ * @author Betina Hansen s195389
+ */
+
 public class Guide extends AppCompatActivity {
 
         @Override

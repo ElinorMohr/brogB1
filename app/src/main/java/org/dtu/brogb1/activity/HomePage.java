@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import org.dtu.brogb1.R;
 import org.dtu.brogb1.activity.clean.CleanActivityStep1;
+import org.dtu.brogb1.activity.community.About;
 import org.dtu.brogb1.activity.community.CommunityActivity;
 import org.dtu.brogb1.activity.community.Guide;
 import org.dtu.brogb1.model.Brew;
@@ -27,6 +28,7 @@ import org.dtu.brogb1.service.StorageServiceSharedPref;
 /**
  * @author Elinor Mikkelsen s191242
  * @author Theis Villumsen s195461
+ * @author Betina Hansen s195389
  */
 
 public class HomePage extends AppCompatActivity implements View.OnClickListener, PopupMenu.OnMenuItemClickListener {
@@ -81,6 +83,8 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener,
             case R.id.option_4:
                 startActivity(new Intent(this, Option.class));
                 return true;
+            case R.id.option_5:
+                startActivity(new Intent(this, About.class));
             default:
                 return super.onOptionsItemSelected(item);
         }
