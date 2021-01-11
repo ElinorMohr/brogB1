@@ -20,7 +20,9 @@ import org.dtu.brogb1.model.BrewException;
 import org.dtu.brogb1.model.BrewFactory;
 import org.dtu.brogb1.service.IStorageService;
 import org.dtu.brogb1.service.StorageServiceSharedPref;
-
+/**
+ * @author Kristoffer Baumgarten s180500
+ */
 public class EditBrew extends AppCompatActivity {
     Dialog dialogue;
     private String brewName, brewPics, grindSize;
