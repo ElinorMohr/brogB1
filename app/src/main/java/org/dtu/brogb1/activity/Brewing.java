@@ -34,7 +34,7 @@ import org.dtu.brogb1.service.StorageServiceSharedPref;
 public class Brewing extends AppCompatActivity {
     Button brewNow;
     Dialog dialogue;
-    TextView TVBrewName, TVGrindSize, TVGroundCoffee, TVRatio, TVTemp, TVBloomWater, TVBloomTime, TVTotal, TVEdit;
+    TextView TVBrewName, TVGrindSize, TVGroundCoffee, TVRatio, TVTemp, TVBloomWater, TVBloomTime, TVTimeMin, TVTimeSec, TVEdit;
     ImageButton favoriteBT;
     boolean buttonOn;
     Brew brew;
@@ -69,7 +69,8 @@ public class Brewing extends AppCompatActivity {
         TVTemp = findViewById(R.id.valueTemperature);
         TVBloomWater = findViewById(R.id.valueBloomWater);
         TVBloomTime = findViewById(R.id.valueBloomTime);
-        TVTotal = findViewById(R.id.valueTotalTime);
+        TVTimeMin = findViewById(R.id.valueTimeMin);
+        TVTimeSec = findViewById(R.id.valueTimeSec);
 
         // Edit teksten
         if (brew != null){
@@ -80,7 +81,9 @@ public class Brewing extends AppCompatActivity {
             TVTemp.setText(Double.toString(brew.getBrewingTemperature()));
             TVBloomWater.setText(Double.toString(brew.getBloomWater()));
             TVBloomTime.setText(Double.toString(brew.getBloomTime()));
-            TVTotal.setText(Double.toString(brew.getTotalBrewingTime()));
+            TVTimeMin.setText(brew.getBrewTimeMin());
+            TVTimeSec.setText(brew.getBrewTimeSec());
+
         }
         favoriteBT = (ImageButton) findViewById(R.id.BrewingFavoriteBT);
         favoriteBT.setOnClickListener(imgButtonHandler);

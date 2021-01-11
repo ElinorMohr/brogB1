@@ -316,7 +316,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignEnd="@+id/edit_txtTotalmin"
                 android:layout_marginTop="2.5dp"
-                android:layout_marginEnd="28dp"
+                android:layout_marginEnd="27dp"
                 android:layout_marginBottom="2.5dp"
                 android:background="@drawable/textinputboarder"
                 android:ems="5"
@@ -331,7 +331,7 @@
                 android:layout_alignEnd="@+id/edit_inputTotalTimeSec"
                 android:layout_alignBaseline="@id/edit_inputTotalTimeMin"
                 android:layout_marginTop="2dp"
-                android:layout_marginEnd="45dp"
+                android:layout_marginEnd="46dp"
                 android:text="min"
                 android:textColor="@color/colorplate2" />
 

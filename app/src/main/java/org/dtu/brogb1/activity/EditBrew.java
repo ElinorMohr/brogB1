@@ -24,7 +24,8 @@ import org.dtu.brogb1.service.StorageServiceSharedPref;
 public class EditBrew extends AppCompatActivity {
     Dialog dialogue;
     private String brewName, brewPics, grindSize;
-    private double groundCoffee, coffeeWaterRatio, brewingTemperature, bloomWater, bloomTime, totalBrewingTime;
+    private int brewTimeMin, brewTimeSec;
+    private double groundCoffee, coffeeWaterRatio, brewingTemperature, bloomWater, bloomTime;
     EditText Edit_ETBrewName, Edit_ETGroundCoffee, Edit_ETRatio, Edit_ETTemp, Edit_ETBloomWater, Edit_ETBloomTime, Edit_ETTotalMin, Edit_ETTotalSec;
     Spinner Edit_SpinnerInputGrindSize;
     Brew brew;
@@ -80,11 +81,11 @@ public class EditBrew extends AppCompatActivity {
             Edit_ETBloomWater.setText(Double.toString(brew.getBloomWater()));
             Edit_ETBloomTime.setText(Double.toString(brew.getBloomTime()));
 
-            if(!(brew.getTotalBrewingTime() == 0.0 )){
-                Edit_ETTotalMin.setText(Double.toString(brew.getTotalBrewingTime()));
+            if(!(brew.getBrewTimeMin() == 0 )){
+                Edit_ETTotalMin.setText(brew.getBrewTimeMin());
             }else
-            if(!(brew.getTotalBrewingTime() == 0.0 )) {
-                Edit_ETTotalSec.setText(Double.toString(brew.getTotalBrewingTime()));
+            if(!(brew.getBrewTimeSec() == 0 )) {
+                Edit_ETTotalSec.setText(brew.getBrewTimeSec());
             }
         }
         // intervallerne for hver af inputs
@@ -138,29 +139,29 @@ public class EditBrew extends AppCompatActivity {
                         e.printStackTrace();
                         return;
                     }
-                    totalBrewingTime = 0;
-                    // tiden skal blive lagt sammen
-                        if(Edit_ETTotalMin.getText().toString().isEmpty()){
-                            totalBrewingTime = 0;
-                        } else {
-                            totalBrewingTime += Double.parseDouble(Edit_ETTotalMin.getText().toString());
-                        }
-                    try {
-                        if(Edit_ETTotalSec.getText().toString().isEmpty()){
-                            totalBrewingTime = 0;
-                        } else {
-                            totalBrewingTime +=  Double.parseDouble(Edit_ETTotalSec.getText().toString());
-                        }
 
-                        if(totalBrewingTime == 0.0){
-                            Toast.makeText(this, "time can't be 0.0", Toast.LENGTH_SHORT).show();
-                            return;
-                        }
-                    } catch (Exception e) {
+            // tiden skal blive lagt sammen
+            if(Edit_ETTotalMin.getText().toString().isEmpty()){
+                brewTimeMin = 0;
+            } else {
+                brewTimeMin = Integer.parseInt(Edit_ETTotalMin.getText().toString());
+            }
+
+            if(Edit_ETTotalSec.getText().toString().isEmpty()){
+                brewTimeSec = 0;
+            } else {
+                brewTimeSec = Integer.parseInt(Edit_ETTotalSec.getText().toString());
+            }
+            try {
+                if(Edit_ETTotalMin.getText().toString().isEmpty() && Edit_ETTotalSec.getText().toString().isEmpty() ){
+                    Toast.makeText(this, "time can't be empty", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+            } catch (Exception e) {
                 Toast.makeText(this, "Need input at total brewing time", Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
                 return;
-                    }
+            }
 
 
                      //TODO den skal gemme brew hvis den er gemt ellers skal den bare gå videre med værdierne.

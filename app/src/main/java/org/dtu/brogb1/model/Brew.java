@@ -78,6 +78,14 @@ public class Brew {
         return brewTimeSec;
     }
 
+    public void setBrewTimeMin(int brewTimeMin) {
+        this.brewTimeMin = brewTimeMin;
+    }
+
+    public void setBrewTimeSec(int brewTimeSec) {
+        this.brewTimeSec = brewTimeSec;
+    }
+
     public String getBrewName() {
         return brewName;
     }

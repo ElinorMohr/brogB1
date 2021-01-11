@@ -320,29 +320,54 @@
                 android:textColor="@color/colorplate2" />
 
             <TextView
-                android:id="@+id/valueTotalTime"
-                android:layout_width="wrap_content"
+                android:id="@+id/valueTimeMin"
+                android:layout_width="40dp"
                 android:layout_height="wrap_content"
                 android:ems="5"
-                android:inputType="textPersonName"
                 android:text="60"
                 android:textColor="@color/colorplate2"
                 android:background="@drawable/textinputboarder"
-                android:layout_alignParentRight="true"
+                android:layout_alignEnd="@+id/txtTimemin"
+                android:layout_marginEnd="27dp"
+                android:layout_marginTop="2.5dp"
+                android:layout_marginBottom="2.5dp"
+                android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/txtTimemin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="46dp"
+                android:layout_alignBaseline="@id/valueTimeMin"
+                android:layout_marginTop="2dp"
+                android:layout_alignEnd="@+id/valueTimeSec"
+                android:text="min"
+                android:textColor="@color/colorplate2" />
+
+            <TextView
+                android:id="@+id/valueTimeSec"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:ems="5"
+                android:text="60"
+                android:layout_alignEnd="@+id/txtTimeS"
+                android:textColor="@color/colorplate2"
+                android:background="@drawable/textinputboarder"
+                android:layout_alignParentEnd="true"
                 android:layout_marginEnd="30dp"
                 android:layout_marginTop="2.5dp"
                 android:layout_marginBottom="2.5dp"
                 android:gravity="center"/>
 
             <TextView
-                android:id="@+id/txtmin"
+                android:id="@+id/txtTimeS"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:layout_alignBaseline="@id/valueTotalTime"
+                android:layout_marginEnd="19dp"
+                android:layout_alignBaseline="@id/valueTimeSec"
                 android:layout_marginTop="2dp"
-                android:layout_marginEnd="3dp"
-                android:text="min"
+                android:text="s"
                 android:textColor="@color/colorplate2" />
         </RelativeLayout>
 

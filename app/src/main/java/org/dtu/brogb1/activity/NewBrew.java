@@ -29,7 +29,8 @@ import org.dtu.brogb1.service.StorageServiceSharedPref;
 
 public class NewBrew extends AppCompatActivity {
     private String brewName, brewPics, grindSize;
-    private double groundCoffee, coffeeWaterRatio, brewingTemperature, bloomWater, bloomTime, totalBrewingTime;
+    private int brewTimeMin, brewTimeSec;
+    private double groundCoffee, coffeeWaterRatio, brewingTemperature, bloomWater, bloomTime;
     EditText editBrewName, editGroundCoffee, editRatio, editTemp, editBloomWater, editBloomTime, editTotalMin, editTotalSec;
     Spinner SpinnerInputGrindSize;
     StorageServiceSharedPref sharedPref = StorageServiceSharedPref.getInstance();
@@ -115,22 +116,21 @@ public class NewBrew extends AppCompatActivity {
                 return;
             }
 
-            totalBrewingTime = 0.0;
             // tiden skal blive lagt sammen
             if(editTotalMin.getText().toString().isEmpty()){
-                totalBrewingTime = 0;
+                brewTimeMin = 0;
             } else {
-                totalBrewingTime += Double.parseDouble(editTotalMin.getText().toString());
+                brewTimeMin = Integer.parseInt(editTotalMin.getText().toString());
+            }
+
+            if(editTotalSec.getText().toString().isEmpty()){
+                brewTimeSec = 0;
+            } else {
+                brewTimeSec = Integer.parseInt(editTotalSec.getText().toString());
             }
             try {
-                if(editTotalSec.getText().toString().isEmpty()){
-                    totalBrewingTime = 0;
-                } else {
-                    totalBrewingTime += 0.01 * (Double.parseDouble(editTotalSec.getText().toString()));
-                }
-
-                if(totalBrewingTime == 0.0){
-                    Toast.makeText(this, "time can't be 0.0", Toast.LENGTH_SHORT).show();
+                if(editTotalMin.getText().toString().isEmpty() && editTotalSec.getText().toString().isEmpty() ){
+                    Toast.makeText(this, "time can't be empty", Toast.LENGTH_SHORT).show();
                     return;
                 }
             } catch (Exception e) {
@@ -208,7 +208,8 @@ public class NewBrew extends AppCompatActivity {
         newBrew.setBrewingTemperature(brewingTemperature);
         newBrew.setBloomWater(bloomWater);
         newBrew.setBloomTime(bloomTime);
-        newBrew.setTotalBrewingTime(totalBrewingTime);
+        newBrew.setBrewTimeMin(brewTimeMin);
+        newBrew.setBrewTimeSec(brewTimeSec);
         brewName = editBrewName.getText().toString();
         newBrew.setBrewName(brewName);
     }
