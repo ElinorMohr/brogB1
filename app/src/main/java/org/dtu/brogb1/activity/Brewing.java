@@ -75,14 +75,14 @@ public class Brewing extends AppCompatActivity {
         // Edit teksten
         if (brew != null){
             TVBrewName.setText(Html.fromHtml("<u>" + brew.getBrewName() + "</u>"));
-            TVGroundCoffee.setText(Double.toString(brew.getGroundCoffee()));
+            TVGroundCoffee.setText(Integer.toString(brew.getGroundCoffee()));
             TVGrindSize.setText(brew.getGrindSize());
-            TVRatio.setText(Double.toString(brew.getCoffeeWaterRatio()));
-            TVTemp.setText(Double.toString(brew.getBrewingTemperature()));
-            TVBloomWater.setText(Double.toString(brew.getBloomWater()));
-            TVBloomTime.setText(Double.toString(brew.getBloomTime()));
-            TVTimeMin.setText(brew.getBrewTimeMin());
-            TVTimeSec.setText(brew.getBrewTimeSec());
+            TVRatio.setText(Integer.toString(brew.getCoffeeWaterRatio()));
+            TVTemp.setText(Integer.toString(brew.getBrewingTemperature()));
+            TVBloomWater.setText(Integer.toString(brew.getBloomWater()));
+            TVBloomTime.setText(Integer.toString(brew.getBloomTime()));
+            TVTimeMin.setText(Integer.toString(brew.getBrewTimeMin()));
+            TVTimeSec.setText(Integer.toString(brew.getBrewTimeSec()));
 
         }
         favoriteBT = (ImageButton) findViewById(R.id.BrewingFavoriteBT);
@@ -135,7 +135,7 @@ public class Brewing extends AppCompatActivity {
                 Intent intent = new Intent(view.getContext(), EditBrew.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             try {
-               intent.putExtra("EditBrew", brew.toJson());
+               intent.putExtra("Brew", brew.toJson());
              } catch (BrewException e) {
                e.printStackTrace();
             }

@@ -1,5 +1,7 @@
 package org.dtu.brogb1.model;
 
+import android.os.Build;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -13,8 +15,7 @@ import java.time.LocalDateTime;
 public class Brew {
 
     private String brewName, brewPics, grindSize;
-    private double groundCoffee, coffeeWaterRatio, brewingTemperature, bloomWater, bloomTime;
-    private int brewTimeMin, brewTimeSec;
+    private int brewTimeMin, brewTimeSec, groundCoffee, coffeeWaterRatio, brewingTemperature, bloomWater, bloomTime;
     private LocalDateTime lastBrew;
 
     public Brew(){
@@ -24,24 +25,26 @@ public class Brew {
         this.brewingTemperature = 0;
         this.bloomWater = 0;
         this.bloomTime = 0;
-        this.brewName = " ";
-        this.brewPics = " ";
         this.brewTimeMin = 0;
         this.brewTimeSec = 0;
+        this.brewName = " ";
+        this.brewPics = " ";
+
     }
 
-    public Brew(double groundCoffee, String grindSize, double coffeeWaterRatio, double brewingTemperature,
-                double bloomWater, double bloomTime, String brewName, String brewPics, int brewTimeMin, int brewTimeSec ) {
+    public Brew(int groundCoffee, String grindSize, int coffeeWaterRatio, int brewingTemperature,
+                int bloomWater, int bloomTime, int brewTimeMin, int brewTimeSec,String brewName, String brewPics) {
         this.groundCoffee = groundCoffee;
         this.grindSize = grindSize;
         this.coffeeWaterRatio = coffeeWaterRatio;
         this.brewingTemperature = brewingTemperature;
         this.bloomWater = bloomWater;
         this.bloomTime = bloomTime;
-        this.brewName = brewName;
-        this.brewPics = brewPics;
         this.brewTimeMin = brewTimeMin;
         this.brewTimeSec = brewTimeSec;
+        this.brewName = brewName;
+        this.brewPics = brewPics;
+
     }
 
 
@@ -57,7 +60,7 @@ public class Brew {
             json.put("bloomWater", this.bloomWater);
             json.put("bloomTime", this.bloomTime);
             json.put("brewTimeMin", this.brewTimeMin);
-            json.put("brewTimeSec", this.brewTimeMin);
+            json.put("brewTimeSec", this.brewTimeSec);
             json.put("brewName", this.brewName);
             json.put("brewPics", this.brewPics);
             json.put("lastBrew", this.lastBrew);
@@ -68,22 +71,6 @@ public class Brew {
         }
 
         return json.toString();
-    }
-
-    public int getBrewTimeMin() {
-        return brewTimeMin;
-    }
-
-    public int getBrewTimeSec() {
-        return brewTimeSec;
-    }
-
-    public void setBrewTimeMin(int brewTimeMin) {
-        this.brewTimeMin = brewTimeMin;
-    }
-
-    public void setBrewTimeSec(int brewTimeSec) {
-        this.brewTimeSec = brewTimeSec;
     }
 
     public String getBrewName() {
@@ -102,14 +89,6 @@ public class Brew {
         this.brewPics = brewPics;
     }
 
-    public double getGroundCoffee() {
-        return groundCoffee;
-    }
-
-    public void setGroundCoffee(double groundCoffee) {
-        this.groundCoffee = groundCoffee;
-    }
-
     public String getGrindSize() {
         return grindSize;
     }
@@ -118,38 +97,61 @@ public class Brew {
         this.grindSize = grindSize;
     }
 
-    public double getCoffeeWaterRatio() {
+    public int getBrewTimeMin() {
+        return brewTimeMin;
+    }
+
+    public void setBrewTimeMin(int brewTimeMin) {
+        this.brewTimeMin = brewTimeMin;
+    }
+
+    public int getBrewTimeSec() {
+        return brewTimeSec;
+    }
+
+    public void setBrewTimeSec(int brewTimeSec) {
+        this.brewTimeSec = brewTimeSec;
+    }
+
+    public int getGroundCoffee() {
+        return groundCoffee;
+    }
+
+    public void setGroundCoffee(int groundCoffee) {
+        this.groundCoffee = groundCoffee;
+    }
+
+    public int getCoffeeWaterRatio() {
         return coffeeWaterRatio;
     }
 
-    public void setCoffeeWaterRatio(double coffeeWaterRatio) {
+    public void setCoffeeWaterRatio(int coffeeWaterRatio) {
         this.coffeeWaterRatio = coffeeWaterRatio;
     }
 
-    public double getBrewingTemperature() {
+    public int getBrewingTemperature() {
         return brewingTemperature;
     }
 
-    public void setBrewingTemperature(double brewingTemperature) {
+    public void setBrewingTemperature(int brewingTemperature) {
         this.brewingTemperature = brewingTemperature;
     }
 
-    public double getBloomWater() {
+    public int getBloomWater() {
         return bloomWater;
     }
 
-    public void setBloomWater(double bloomWater) {
+    public void setBloomWater(int bloomWater) {
         this.bloomWater = bloomWater;
     }
 
-    public double getBloomTime() {
+    public int getBloomTime() {
         return bloomTime;
     }
 
-    public void setBloomTime(double bloomTime) {
+    public void setBloomTime(int bloomTime) {
         this.bloomTime = bloomTime;
     }
-
 
     public boolean equals(Brew brew) {
         return (
@@ -167,6 +169,8 @@ public class Brew {
     }
 
     public void setLastBrewTime(){
-        lastBrew = LocalDateTime.now();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            lastBrew = LocalDateTime.now();
+        }
     }
 }

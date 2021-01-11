@@ -24,8 +24,7 @@ import org.dtu.brogb1.service.StorageServiceSharedPref;
 public class EditBrew extends AppCompatActivity {
     Dialog dialogue;
     private String brewName, brewPics, grindSize;
-    private int brewTimeMin, brewTimeSec;
-    private double groundCoffee, coffeeWaterRatio, brewingTemperature, bloomWater, bloomTime;
+    private int brewTimeMin, brewTimeSec, groundCoffee, coffeeWaterRatio, brewingTemperature, bloomWater, bloomTime;
     EditText Edit_ETBrewName, Edit_ETGroundCoffee, Edit_ETRatio, Edit_ETTemp, Edit_ETBloomWater, Edit_ETBloomTime, Edit_ETTotalMin, Edit_ETTotalSec;
     Spinner Edit_SpinnerInputGrindSize;
     Brew brew;
@@ -38,8 +37,8 @@ public class EditBrew extends AppCompatActivity {
         StorageServiceSharedPref storageServiceSharedPref = StorageServiceSharedPref.getInstance();
 
         try {
-            if (getIntent().hasExtra("EditBrew")) {
-                brew = BrewFactory.fromJson(getIntent().getExtras().getString("EditBrew"));
+            if (getIntent().hasExtra("Brew")) {
+                brew = BrewFactory.fromJson(getIntent().getExtras().getString("Brew"));
             } else {
                 Toast.makeText(this, "Der blev ikke givet information om en bryg", Toast.LENGTH_SHORT).show();
                 finish();
@@ -58,36 +57,7 @@ public class EditBrew extends AppCompatActivity {
         Edit_ETBloomWater = findViewById(R.id.edit_inputBloomWater);
         Edit_ETBloomTime = findViewById(R.id.edit_inputBloomTime);
         Edit_ETTotalMin = findViewById(R.id.edit_inputTotalTimeMin);
-        Edit_ETTotalSec =findViewById(R.id.inputTotalTimeSec);
-
-        // Her lægges alle værdierne ind i edit teksene. Så de kommer frem.
-        if (brew != null){
-            if(!brew.getBrewName().isEmpty()) {
-                Edit_ETBrewName.setText(brew.getBrewName());
-            }
-            Edit_ETGroundCoffee.setText(Double.toString(brew.getGroundCoffee()));
-
-            grindSize = brew.getGrindSize();
-            ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.grind_array, android.R.layout.simple_spinner_item);
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            Edit_SpinnerInputGrindSize.setAdapter(adapter);
-            if (grindSize != null) {
-                int spinnerPosition = adapter.getPosition(grindSize);
-                Edit_SpinnerInputGrindSize.setSelection(spinnerPosition);
-            }
-
-            Edit_ETRatio.setText(Double.toString(brew.getCoffeeWaterRatio()));
-            Edit_ETTemp.setText(Double.toString(brew.getBrewingTemperature()));
-            Edit_ETBloomWater.setText(Double.toString(brew.getBloomWater()));
-            Edit_ETBloomTime.setText(Double.toString(brew.getBloomTime()));
-
-            if(!(brew.getBrewTimeMin() == 0 )){
-                Edit_ETTotalMin.setText(brew.getBrewTimeMin());
-            }else
-            if(!(brew.getBrewTimeSec() == 0 )) {
-                Edit_ETTotalSec.setText(brew.getBrewTimeSec());
-            }
-        }
+        Edit_ETTotalSec =findViewById(R.id.edit_inputTotalTimeSec);
         // intervallerne for hver af inputs
 
         Edit_ETGroundCoffee.setFilters(new InputFilter[]{new MinMaxFilter("1", "99")});
@@ -98,11 +68,39 @@ public class EditBrew extends AppCompatActivity {
         Edit_ETTotalMin.setFilters(new InputFilter[]{new MinMaxFilter("0", "99")});
         Edit_ETTotalSec.setFilters(new InputFilter[]{new MinMaxFilter("0", "59")});
 
+
+        // Her lægges alle værdierne ind i edit teksene. Så de kommer frem.
+        if (brew != null){
+            if(!(brew.getBrewName().isEmpty())) {
+                Edit_ETBrewName.setText(brew.getBrewName());
+            }
+            Edit_ETGroundCoffee.setText(Integer.toString(brew.getGroundCoffee()));
+            System.out.println(Edit_ETGroundCoffee);
+
+            // vi tjekker for hvilken en i spinneren er valgt
+            grindSize = brew.getGrindSize();
+            ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.grind_array, android.R.layout.simple_spinner_item);
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            Edit_SpinnerInputGrindSize.setAdapter(adapter);
+            if (grindSize != null) {
+                int spinnerPosition = adapter.getPosition(grindSize);
+                Edit_SpinnerInputGrindSize.setSelection(spinnerPosition);
+            }
+
+            Edit_ETRatio.setText(Integer.toString(brew.getCoffeeWaterRatio()));
+            Edit_ETTemp.setText(Integer.toString(brew.getBrewingTemperature()));
+            Edit_ETBloomWater.setText(Integer.toString(brew.getBloomWater()));
+            Edit_ETBloomTime.setText(Integer.toString(brew.getBloomTime()));
+            Edit_ETTotalMin.setText(Integer.toString(brew.getBrewTimeMin()));
+            Edit_ETTotalSec.setText(Integer.toString(brew.getBrewTimeSec()));
+        }
+
+
         //når der brygges
         EditNow.setOnClickListener(v -> {
                     // gemmer inputtet fra ui'en til værdierne
                     try {
-                        groundCoffee = Double.parseDouble(Edit_ETGroundCoffee.getText().toString());
+                        groundCoffee = Integer.parseInt(Edit_ETGroundCoffee.getText().toString());
                     } catch (Exception e) {
                         Toast.makeText(this, "Need input at ground coffee", Toast.LENGTH_SHORT).show();
                         e.printStackTrace();
@@ -111,14 +109,14 @@ public class EditBrew extends AppCompatActivity {
                     grindSize = Edit_SpinnerInputGrindSize.getSelectedItem().toString();
 
                     try {
-                        coffeeWaterRatio = Double.parseDouble(Edit_ETRatio.getText().toString());
+                        coffeeWaterRatio = Integer.parseInt(Edit_ETRatio.getText().toString());
                     } catch (Exception e) {
                         Toast.makeText(this, "Need input at Coffee/water ratio", Toast.LENGTH_SHORT).show();
                         e.printStackTrace();
                         return;
                     }
                     try {
-                        brewingTemperature = Double.parseDouble(Edit_ETTemp.getText().toString());
+                        brewingTemperature = Integer.parseInt(Edit_ETTemp.getText().toString());
                     } catch (Exception e) {
                         Toast.makeText(this, "Need input at brewing temperature", Toast.LENGTH_SHORT).show();
                         e.printStackTrace();
@@ -126,14 +124,14 @@ public class EditBrew extends AppCompatActivity {
                     }
 
                     try {
-                        bloomWater = Double.parseDouble(Edit_ETBloomWater.getText().toString());
+                        bloomWater = Integer.parseInt(Edit_ETBloomWater.getText().toString());
                     } catch (Exception e) {
                         Toast.makeText(this, "Need input at bloom water", Toast.LENGTH_SHORT).show();
                         e.printStackTrace();
                         return;
                     }
                     try {
-                        bloomTime = Double.parseDouble(Edit_ETBloomTime.getText().toString());
+                        bloomTime = Integer.parseInt(Edit_ETBloomTime.getText().toString());
                     } catch (Exception e) {
                         Toast.makeText(this, "Need input at bloom time", Toast.LENGTH_SHORT).show();
                         e.printStackTrace();

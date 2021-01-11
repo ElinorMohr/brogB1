@@ -11,9 +11,9 @@ import org.json.JSONObject;
 public class BrewFactory {
     public static Brew getBrew(String option){
         if(option.equals("Default")){
-            return new Brew(18,"Medium",60,93,45,30, "Golden Cup", " ", 3 , 0);
+            return new Brew(18,"Medium",60,93,45,30, 3 , 0, "Golden Cup", " ");
         }
-        return new Brew(1," ",1,1,1,1, " ", " ",1,1);
+        return new Brew(1," ",1,1,1,1, 1 , 1 ," "," ");
     }
 
     public static Brew fromJson(String input) throws BrewException {
@@ -23,16 +23,17 @@ public class BrewFactory {
         try {
             JSONObject jObject = new JSONObject(input);
             return new Brew(
-                    jObject.getDouble("groundCoffee"),
+                    jObject.getInt("groundCoffee"),
                     jObject.getString("grindSize"),
-                    jObject.getDouble("coffeeWaterRatio"),
-                    jObject.getDouble("brewingTemperature"),
-                    jObject.getDouble("bloomWater"),
-                    jObject.getDouble("bloomTime"),
-                    jObject.getString("brewName"),
-                    jObject.getString("brewPics"),
+                    jObject.getInt("coffeeWaterRatio"),
+                    jObject.getInt("brewingTemperature"),
+                    jObject.getInt("bloomWater"),
+                    jObject.getInt("bloomTime"),
                     jObject.getInt("brewTimeMin"),
-                    jObject.getInt("brewTimeSec")
+                    jObject.getInt("brewTimeSec"),
+                    jObject.getString("brewName"),
+                    jObject.getString("brewPics")
+
             );
         } catch (JSONException e) {
             System.out.println(input);
