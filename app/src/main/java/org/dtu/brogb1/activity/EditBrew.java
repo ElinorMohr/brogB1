@@ -33,7 +33,6 @@ public class EditBrew extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_brew);
         ImageButton info = findViewById(R.id.IGroundCoffee);
-        Button EditNow = (Button) findViewById(R.id.editBT);
         StorageServiceSharedPref storageServiceSharedPref = StorageServiceSharedPref.getInstance();
 
         try {
@@ -95,12 +94,16 @@ public class EditBrew extends AppCompatActivity {
             Edit_ETTotalSec.setText(Integer.toString(brew.getBrewTimeSec()));
         }
 
-
+        Button EditNow = (Button) findViewById(R.id.editBT);
         //når der brygges
         EditNow.setOnClickListener(v -> {
                     // gemmer inputtet fra ui'en til værdierne
                     try {
                         groundCoffee = Integer.parseInt(Edit_ETGroundCoffee.getText().toString());
+                        if(groundCoffee == 0){
+                            Toast.makeText(this, "input in ground coffee is 0", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
                     } catch (Exception e) {
                         Toast.makeText(this, "Need input at ground coffee", Toast.LENGTH_SHORT).show();
                         e.printStackTrace();
@@ -110,6 +113,10 @@ public class EditBrew extends AppCompatActivity {
 
                     try {
                         coffeeWaterRatio = Integer.parseInt(Edit_ETRatio.getText().toString());
+                        if(coffeeWaterRatio == 0) {
+                            Toast.makeText(this, "input in coffee Water Ratio is 0", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
                     } catch (Exception e) {
                         Toast.makeText(this, "Need input at Coffee/water ratio", Toast.LENGTH_SHORT).show();
                         e.printStackTrace();
@@ -117,6 +124,10 @@ public class EditBrew extends AppCompatActivity {
                     }
                     try {
                         brewingTemperature = Integer.parseInt(Edit_ETTemp.getText().toString());
+                        if(brewingTemperature == 0) {
+                            Toast.makeText(this, "input in brewing Temperature is 0", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
                     } catch (Exception e) {
                         Toast.makeText(this, "Need input at brewing temperature", Toast.LENGTH_SHORT).show();
                         e.printStackTrace();
@@ -125,6 +136,10 @@ public class EditBrew extends AppCompatActivity {
 
                     try {
                         bloomWater = Integer.parseInt(Edit_ETBloomWater.getText().toString());
+                        if(bloomWater == 0) {
+                            Toast.makeText(this, "input in Bloom Water is 0", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
                     } catch (Exception e) {
                         Toast.makeText(this, "Need input at bloom water", Toast.LENGTH_SHORT).show();
                         e.printStackTrace();
@@ -132,6 +147,10 @@ public class EditBrew extends AppCompatActivity {
                     }
                     try {
                         bloomTime = Integer.parseInt(Edit_ETBloomTime.getText().toString());
+                        if(bloomTime == 0) {
+                            Toast.makeText(this, "input in Bloom Time is 0", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
                     } catch (Exception e) {
                         Toast.makeText(this, "Need input at bloom time", Toast.LENGTH_SHORT).show();
                         e.printStackTrace();
@@ -165,34 +184,48 @@ public class EditBrew extends AppCompatActivity {
                     return;
                 }
                 try {
-                    storage.overwriteBrew(brew);
+                    //TODO her skal vi tilføje den key som det skal overskrive
+                    storage.overwriteBrew(1,brew);
                 } catch (BrewException e) {
                     Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
                 }
             }
+
+            setBrewValues();
+
             // vores ændret brew bliver sendt til brewing
             Intent intent = new Intent(this, Brewing.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             try {
                 intent.putExtra("Brew", brew.toJson());
+            } catch (BrewException e) {
+                e.printStackTrace();
+            }
+            try {
+                System.out.println(brew.toJson());
             } catch (BrewException e) {
                 e.printStackTrace();
             }
             startActivity(intent);
         });
 
-        info.setOnClickListener(v -> {
-            BrewSheetMenu brygMenu = new BrewSheetMenu();
-            brygMenu.show(getSupportFragmentManager(), "FragmentBrygMenu");
-        });
-
-
-
         // info knappen
         info.setOnClickListener(v -> {
             BrewSheetMenu brygMenu = new BrewSheetMenu();
             brygMenu.show(getSupportFragmentManager(), "FragmentBrygMenu");
         });
+    }
+
+    private void setBrewValues(){
+        brew.setGroundCoffee(groundCoffee);
+        brew.setGrindSize(grindSize);
+        brew.setCoffeeWaterRatio(coffeeWaterRatio);
+        brew.setBrewingTemperature(brewingTemperature);
+        brew.setBloomWater(bloomWater);
+        brew.setBloomTime(bloomTime);
+        brew.setBrewTimeMin(brewTimeMin);
+        brew.setBrewTimeSec(brewTimeSec);
+        brewName = Edit_ETBrewName.getText().toString();
+        brew.setBrewName(brewName);
     }
 }

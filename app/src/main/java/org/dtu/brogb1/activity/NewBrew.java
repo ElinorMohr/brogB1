@@ -78,6 +78,10 @@ public class NewBrew extends AppCompatActivity {
             // gemmer inputtet fra ui'en til værdierne
             try {
                 groundCoffee = Integer.parseInt(editGroundCoffee.getText().toString());
+                if(groundCoffee == 0){
+                    Toast.makeText(this, "input in ground coffee is 0", Toast.LENGTH_SHORT).show();
+                    return;
+                }
             } catch (Exception e) {
                 Toast.makeText(this, "Need input at ground coffee", Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
@@ -86,7 +90,12 @@ public class NewBrew extends AppCompatActivity {
             grindSize = SpinnerInputGrindSize.getSelectedItem().toString();
 
             try {
-                coffeeWaterRatio = Integer.parseInt(editRatio.getText().toString());
+                    coffeeWaterRatio = Integer.parseInt(editRatio.getText().toString());
+
+                if(coffeeWaterRatio == 0) {
+                    Toast.makeText(this, "input in coffee Water Ratio is 0", Toast.LENGTH_SHORT).show();
+                    return;
+                }
             } catch (Exception e) {
                 Toast.makeText(this, "Need input at Coffee/water ratio", Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
@@ -94,6 +103,11 @@ public class NewBrew extends AppCompatActivity {
             }
             try {
                 brewingTemperature = Integer.parseInt(editTemp.getText().toString());
+
+                if(brewingTemperature == 0) {
+                    Toast.makeText(this, "input in brewing Temperature is 0", Toast.LENGTH_SHORT).show();
+                    return;
+                }
             } catch (Exception e) {
                 Toast.makeText(this, "Need input at brewing temperature", Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
@@ -102,6 +116,11 @@ public class NewBrew extends AppCompatActivity {
 
             try {
                 bloomWater = Integer.parseInt(editBloomWater.getText().toString());
+
+                if(bloomWater == 0) {
+                    Toast.makeText(this, "input in Bloom Water is 0", Toast.LENGTH_SHORT).show();
+                    return;
+                }
             } catch (Exception e) {
                 Toast.makeText(this, "Need input at bloom water", Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
@@ -109,6 +128,10 @@ public class NewBrew extends AppCompatActivity {
             }
             try {
                 bloomTime = Integer.parseInt(editBloomTime.getText().toString());
+                if(bloomTime == 0) {
+                    Toast.makeText(this, "input in Bloom Time is 0", Toast.LENGTH_SHORT).show();
+                    return;
+                }
             } catch (Exception e) {
                 Toast.makeText(this, "Need input at bloom time", Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
