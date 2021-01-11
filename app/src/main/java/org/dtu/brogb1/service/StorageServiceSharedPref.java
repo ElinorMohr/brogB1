@@ -149,7 +149,11 @@ public class StorageServiceSharedPref implements IStorageService {
 
     @Override
     public Brew getQuickBrew() throws StorageServiceException, BrewException {
-        return this.getBrew(this.preferences.getInt(this.quickKey, -1));
+        int id = this.preferences.getInt(this.quickKey, -1);
+        if (id == -1){
+            return BrewFactory.getBrew("Default");
+        }
+        return this.getBrew(id);
     }
 
     @Override

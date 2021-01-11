@@ -3,6 +3,8 @@ package org.dtu.brogb1.model;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.time.LocalDateTime;
+
 /**
  * @author Elinor Mikkelsen s191242
  * @author Theis Villumsen s195461
@@ -12,6 +14,7 @@ public class Brew {
 
     private String brewName, brewPics, grindSize;
     private double groundCoffee, coffeeWaterRatio, brewingTemperature, bloomWater, bloomTime, totalBrewingTime;
+    private LocalDateTime lastBrew;
 
     public Brew(){
         this.groundCoffee = 0;
@@ -53,6 +56,7 @@ public class Brew {
             json.put("totalBrewingTime", this.totalBrewingTime);
             json.put("brewName", this.brewName);
             json.put("brewPics", this.brewPics);
+            json.put("lastBrew", this.lastBrew);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -146,5 +150,9 @@ public class Brew {
                 this.brewName.equals(brew.getBrewName()) &&
                 this.brewPics.equals(brew.getBrewPics())
         );
+    }
+
+    public void setLastBrewTime(){
+        lastBrew = LocalDateTime.now();
     }
 }
