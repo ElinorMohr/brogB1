@@ -9,9 +9,9 @@ import org.json.JSONObject;
  */
 
 public class BrewFactory {
-    public Brew getBrew(String option){
-        if(option.equals("")){
-            return new Brew(1," ",1,1,1,1,1," ", "");
+    public static Brew getBrew(String option){
+        if(option.equals("Default")){
+            return new Brew(18,"Medium",60,93,45,30,180,"Standart bryg", "");
         }
         return new Brew(1," ",1,1,1,1,1, " ", " ");
     }

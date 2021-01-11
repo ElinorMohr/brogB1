@@ -32,6 +32,7 @@ public class NewBrew extends AppCompatActivity {
     private double groundCoffee, coffeeWaterRatio, brewingTemperature, bloomWater, bloomTime, totalBrewingTime;
     EditText editBrewName, editGroundCoffee, editRatio, editTemp, editBloomWater, editBloomTime, editTotal;
     Spinner SpinnerInputGrindSize;
+    StorageServiceSharedPref sharedPref = StorageServiceSharedPref.getInstance();
 
     ImageButton favoriteBT;
     boolean buttonOn;
@@ -119,16 +120,7 @@ public class NewBrew extends AppCompatActivity {
                 return;
             }
             // gemmer det i en newBrew
-            newBrew.setGroundCoffee(groundCoffee);
-            newBrew.setGrindSize(grindSize);
-            newBrew.setCoffeeWaterRatio(coffeeWaterRatio);
-            newBrew.setBrewingTemperature(brewingTemperature);
-            newBrew.setBloomWater(bloomWater);
-            newBrew.setBloomTime(bloomTime);
-            newBrew.setTotalBrewingTime(totalBrewingTime);
-
-            brewName = editBrewName.getText().toString();
-            newBrew.setBrewName(brewName);
+            setBrewValues();
 
             CheckBox saveBrew = (CheckBox) findViewById(R.id.savebox);
 
@@ -169,10 +161,34 @@ public class NewBrew extends AppCompatActivity {
             if (!buttonOn) {
                 buttonOn = true;
                 favoriteBT.setBackground(getResources().getDrawable(R.drawable.ic_heart));
+                setBrewValues();
+                try {
+                    sharedPref.saveBrewToFavorites(newBrew);
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
             } else {
                 buttonOn = false;
                 favoriteBT.setBackground(getResources().getDrawable(R.drawable.ic_heart_empty));
+                setBrewValues();
+                try {
+                    //sharedPref.deleteFavoriteBrew();
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
             }
         }
     };
+
+    private void setBrewValues(){
+        newBrew.setGroundCoffee(groundCoffee);
+        newBrew.setGrindSize(grindSize);
+        newBrew.setCoffeeWaterRatio(coffeeWaterRatio);
+        newBrew.setBrewingTemperature(brewingTemperature);
+        newBrew.setBloomWater(bloomWater);
+        newBrew.setBloomTime(bloomTime);
+        newBrew.setTotalBrewingTime(totalBrewingTime);
+        brewName = editBrewName.getText().toString();
+        newBrew.setBrewName(brewName);
+    }
 }
