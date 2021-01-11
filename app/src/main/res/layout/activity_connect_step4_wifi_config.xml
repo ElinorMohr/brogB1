@@ -81,9 +81,10 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/connect_wifi"
             style="@style/DefaultButton"
-            android:layout_height="wrap_content"
+            android:layout_marginTop="72dp"
             android:text="@string/btn_next"
             app:cornerRadius="70dp"
+            android:layout_width="325dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

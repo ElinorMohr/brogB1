@@ -24,7 +24,7 @@
         android:supportsRtl="true"
         android:requestLegacyExternalStorage="true"
         android:theme="@style/Theme.BrogB1.NoActionBar">
-        <activity android:name=".activity.connect.ConnectStep5TestActivity"></activity>
+        <activity android:name=".activity.connect.ConnectStep5ProvisionActivity"></activity>
         <activity android:name=".activity.connect.ConnectStep4WifiConfigActivity" />
         <activity android:name=".activity.connect.ConnectStep3WifiScanActivity" />
         <activity android:name=".activity.connect.ConnectStep2ManualPopActivity" />

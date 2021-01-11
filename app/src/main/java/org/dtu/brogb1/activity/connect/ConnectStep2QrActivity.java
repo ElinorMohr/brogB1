@@ -16,8 +16,6 @@ public class ConnectStep2QrActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_connect_step2_qr);
         provisionManager = ESPProvisionManager.getInstance(getApplicationContext());
-
-        //provisionManager.scanQRCode(Activity activityContext, CameraSourcePreview cameraSourcePreview, QRCodeScanListener qrCodeScanListener)
     }
 
     @Override

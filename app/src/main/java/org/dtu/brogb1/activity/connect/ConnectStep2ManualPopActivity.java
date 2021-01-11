@@ -25,7 +25,10 @@ import org.greenrobot.eventbus.ThreadMode;
 import java.util.ArrayList;
 
 /**
+ * Basically en carbon-copy af esp-idf-provisioning-android/ProofOfPossessionActivity
+ * https://github.com/espressif/esp-idf-provisioning-android/blob/master/app/src/main/java/com/espressif/ui/activities/ProofOfPossessionActivity.java
  *
+ * @author Theis Villumsen s195461
  */
 public class ConnectStep2ManualPopActivity extends AppCompatActivity {
     private static final String TAG = ConnectStep2ManualPopActivity.class.getSimpleName();

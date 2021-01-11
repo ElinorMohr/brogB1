@@ -104,6 +104,7 @@ public class ConnectStep2ManualListActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
+        provisionManager = ESPProvisionManager.getInstance(getApplicationContext());
         // Ensures Bluetooth is enabled on the device.  If Bluetooth is not currently enabled,
         // fire an intent to display a dialog asking the user to grant permission to enable it.
         if (!bleAdapter.isEnabled()) {
@@ -384,6 +385,7 @@ public class ConnectStep2ManualListActivity extends AppCompatActivity {
             BleDevice bleDevice = adapter.getItem(position);
             String uuid = bluetoothDevices.get(bleDevice.getBluetoothDevice());
             Log.d(TAG, "=================== Connect to device : " + bleDevice.getName() + " UUID : " + uuid);
+            Log.d(TAG, provisionManager.getEspDevice().toString());
 
             if (ActivityCompat.checkSelfPermission(ConnectStep2ManualListActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                 provisionManager.getEspDevice().connectBLEDevice(bleDevice.getBluetoothDevice(), uuid);
@@ -408,7 +410,8 @@ public class ConnectStep2ManualListActivity extends AppCompatActivity {
 
     private void goToPopActivity() {
         finish();
-        Intent popIntent = new Intent(getApplicationContext(), ConnectStep2ManualPopActivity.class);
+        //Intent popIntent = new Intent(getApplicationContext(), ConnectStep2ManualPopActivity.class);
+        Intent popIntent = new Intent(getApplicationContext(), ConnectStep4WifiConfigActivity.class);
         popIntent.putExtra("ble_device", deviceList.get(position).getName());
         startActivity(popIntent);
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
@@ -416,7 +419,8 @@ public class ConnectStep2ManualListActivity extends AppCompatActivity {
 
     private void goToWifiScanListActivity() {
         finish();
-        Intent wifiListIntent = new Intent(getApplicationContext(), ConnectStep3WifiScanActivity.class);
+        //Intent wifiListIntent = new Intent(getApplicationContext(), ConnectStep3WifiScanActivity.class);
+        Intent wifiListIntent = new Intent(getApplicationContext(), ConnectStep4WifiConfigActivity.class);
         wifiListIntent.putExtra("ble_device", deviceList.get(position).getName());
         startActivity(wifiListIntent);
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);

@@ -7,12 +7,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.espressif.provisioning.ESPConstants;
+import com.espressif.provisioning.ESPProvisionManager;
+
 import org.dtu.brogb1.R;
 import org.dtu.brogb1.activity.HomePage;
 import org.dtu.brogb1.activity.Loading;
 
 public class ConnectStep1Activity extends AppCompatActivity implements View.OnClickListener {
     Button qr, manual;
+    private ESPProvisionManager provisionManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,9 +25,13 @@ public class ConnectStep1Activity extends AppCompatActivity implements View.OnCl
 
         qr = findViewById(R.id.connect_qr);
         qr.setOnClickListener(this);
+        qr.setVisibility(View.INVISIBLE);
 
         manual = findViewById(R.id.connect_manual);
         manual.setOnClickListener(this);
+
+        provisionManager = ESPProvisionManager.getInstance(getApplicationContext());
+        provisionManager.createESPDevice(ESPConstants.TransportType.TRANSPORT_BLE, ESPConstants.SecurityType.SECURITY_0);
     }
 
     @Override
