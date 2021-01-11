@@ -8,6 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 import org.dtu.brogb1.R;
+import org.dtu.brogb1.activity.connect.ConnectStep1Activity;
+import org.dtu.brogb1.service.IStorageService;
+import org.dtu.brogb1.service.StorageServiceSharedPref;
 
 import io.sentry.Sentry;
 
@@ -19,7 +22,7 @@ import io.sentry.Sentry;
 public class LandingPage extends AppCompatActivity implements View.OnClickListener {
     private static final String TAG = LandingPage.class.getSimpleName();
     public static SharedPreferences mySharedPreferences = null;
-    Button bluetooth, offline;
+    Button connect, offline;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +33,8 @@ public class LandingPage extends AppCompatActivity implements View.OnClickListen
 
         mySharedPreferences = getApplicationContext().getSharedPreferences("preferences", Activity.MODE_PRIVATE);
 
-        bluetooth = findViewById(R.id.bluetooth);
-        bluetooth.setOnClickListener(this);
+        connect = findViewById(R.id.connect);
+        connect.setOnClickListener(this);
 
         offline = findViewById(R.id.offline);
         offline.setOnClickListener(this);
@@ -39,8 +42,8 @@ public class LandingPage extends AppCompatActivity implements View.OnClickListen
 
     @Override
     public void onClick(View v) {
-        if (v == bluetooth) {
-            Intent intent = new Intent(this, Loading.class);
+        if (v == connect) {
+            Intent intent = new Intent(this, ConnectStep1Activity.class);
             startActivity(intent);
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         } else if (v == offline) {

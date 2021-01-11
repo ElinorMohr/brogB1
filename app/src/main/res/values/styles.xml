@@ -25,4 +25,8 @@
         <item name="tabIndicatorColor">@color/brown_1</item>
         <item name="tabIndicatorHeight">2dp</item>
     </style>
+
+    <style name="AlertDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">@color/brown_3</item>
+    </style>
 </resources>

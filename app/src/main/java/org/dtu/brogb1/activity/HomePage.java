@@ -122,4 +122,10 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener,
         }
 
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+    }
 }
