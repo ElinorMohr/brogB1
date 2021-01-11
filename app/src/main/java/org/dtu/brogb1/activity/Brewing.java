@@ -10,6 +10,7 @@ import android.os.Handler;
 import android.text.Html;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,10 +32,13 @@ import org.dtu.brogb1.model.BrewFactory;
 public class Brewing extends AppCompatActivity {
     Button brewNow;
     Dialog dialogue;
-    TextView TVBrewName, TVGrindSize, TVGroundCoffee, TVRatio, TVTemp, TVBloomWater, TVBloomTime, TVTotal;
+    TextView TVBrewName, TVGrindSize, TVGroundCoffee, TVRatio, TVTemp, TVBloomWater, TVBloomTime, TVTotal, TVEdit;
+    ImageButton favoriteBT;
+    boolean buttonOn;
 
     private ProgressBar progressBarAnimation;
     private ObjectAnimator progressAnimator;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +58,7 @@ public class Brewing extends AppCompatActivity {
             finish();
         }
 
+
         TVBrewName = findViewById(R.id.Opskriftens_navn);
         TVGroundCoffee = findViewById(R.id.valueGroundCoffee);
         TVGrindSize = findViewById(R.id.valuegrindsize);
@@ -63,6 +68,7 @@ public class Brewing extends AppCompatActivity {
         TVBloomTime = findViewById(R.id.valueBloomTime);
         TVTotal = findViewById(R.id.valueTotalTime);
 
+        // Edit teksten
 
         TVBrewName.setText(Html.fromHtml("<u>" + brew.getBrewName() + "</u>"));
         TVGroundCoffee.setText(Double.toString(brew.getGroundCoffee()));
@@ -73,6 +79,9 @@ public class Brewing extends AppCompatActivity {
         TVBloomTime.setText(Double.toString(brew.getBloomTime()));
         TVTotal.setText(Double.toString(brew.getTotalBrewingTime()));
 
+
+        favoriteBT = (ImageButton) findViewById(R.id.BrewingFavoriteBT);
+        favoriteBT.setOnClickListener(imgButtonHandler);
 
         brewNow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,5 +114,29 @@ public class Brewing extends AppCompatActivity {
                 }, 10000);
             }
         });
+
+        TVEdit = findViewById(R.id.EditBrew);
+        brewNow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), NewBrew.class);
+                startActivity(intent);
+            }
+        });
     }
+
+
+    View.OnClickListener imgButtonHandler = new View.OnClickListener() {
+
+        public void onClick(View v) {
+
+            if (!buttonOn) {
+                buttonOn = true;
+                favoriteBT.setBackground(getResources().getDrawable(R.drawable.ic_heart));
+            } else {
+                buttonOn = false;
+                favoriteBT.setBackground(getResources().getDrawable(R.drawable.ic_heart_empty));
+            }
+        }
+    };
 }

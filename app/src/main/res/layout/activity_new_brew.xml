@@ -6,12 +6,30 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageButton
-            android:id="@+id/IGroundCoffee"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/white"
-            app:srcCompat="@android:drawable/ic_menu_info_details"/>
+    <ImageButton
+        android:id="@+id/IGroundCoffee"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:background="@null"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
+        android:tint="@color/colorplate3"
+        app:srcCompat="@android:drawable/ic_menu_info_details" />
+
+
+    <ImageButton
+        android:id="@+id/NewBrewFavoriteBT"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="15dp"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
+        android:layout_marginEnd="15dp"
+        android:background="@null"
+        app:srcCompat="@drawable/ic_heart_empty" />
 
         <ImageView
             android:id="@+id/ny_opskrift"
@@ -28,227 +46,318 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_height="wrap_content"
         android:ems="5"
         android:inputType="textPersonName"
-        android:hint="name"
+        android:hint="(Enter name)"
+        android:textColorHint="@color/colorplate2"
         android:maxLength="20"
+        android:layout_marginTop="10dp"
         android:layout_gravity="center"
+        android:backgroundTint="@color/colorplate3"
         android:textColor="@color/colorplate2"
         android:layout_marginHorizontal="50dp"
         android:gravity="center" />
 
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:id="@+id/seekbarLayout"
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/seekbarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Opskrifts_navn"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="21dp"
+        android:layout_marginTop="40dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/Opskrifts_navn"
-            android:layout_marginHorizontal="50dp"
-            android:layout_marginTop="50dp"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="horizontal"
+            android:thumb="@color/colorplate2"
+            android:thumbTint="@color/colorplate2">
 
-
-
-            <RelativeLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/txtGround_coffee"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:thumb="@color/colorplate2"
-                android:thumbTint="@color/colorplate2">
+                android:layout_centerVertical="true"
+                android:text="@string/ground_coffee"
+                android:textColor="@color/colorplate2" />
 
-                <TextView
-                    android:id="@+id/txtGround_coffee"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/ground_coffee"
-                    android:textColor="@color/colorplate2" />
-
-                <EditText
-                    android:id="@+id/inputGroundCoffee"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ems="5"
-                    android:layout_alignParentRight="true"
-                    android:inputType="textPersonName"
-                    android:hint="60"
-                    android:textColor="@color/colorplate2"
-                    android:background="@drawable/textinputboarder"
-                    android:layout_margin="5dp"
-                    android:gravity="center" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
+            <EditText
+                android:id="@+id/inputGroundCoffee"
+                android:layout_width="60dp"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:thumb="@color/colorplate2"
-                android:thumbTint="@color/colorplate2">
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="30dp"
+                android:layout_marginTop="2.5dp"
+                android:layout_marginBottom="2.5dp"
+                android:background="@drawable/textinputboarder"
+                android:ems="5"
+                android:gravity="center"
+                android:hint="1-99"
+                android:inputType="number"
+                android:textColor="@color/colorplate2" />
 
-                <TextView
-                    android:id="@+id/txtGrindSize"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/grind_size"
-                    android:textColor="@color/colorplate2" />
-
-                <Spinner
-                    android:id="@+id/inputgrindsize"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:background="@android:drawable/btn_dropdown"
-                    android:spinnerMode="dropdown"
-                    android:entries="@array/grind_array"
-                    android:ems="5"
-                    android:gravity="center"
-                    android:textColor="@color/colorplate2" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/txtG"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:thumb="@color/colorplate2"
-                android:thumbTint="@color/colorplate2">
+                android:layout_alignBaseline="@id/inputGroundCoffee"
+                android:layout_marginEnd="20dp"
+                android:layout_alignParentEnd="true"
+                android:text="g"
+                android:textColor="@color/colorplate2" />
 
-                <TextView
-                    android:id="@+id/txtRatio"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/coffee_water_ratio"
-                    android:textColor="@color/colorplate2" />
+        </RelativeLayout>
 
-                <EditText
-                    android:id="@+id/inputRatio"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ems="5"
-                    android:inputType="textPersonName"
-                    android:hint="60"
-                    android:textColor="@color/colorplate2"
-                    android:background="@drawable/textinputboarder"
-                    android:layout_alignParentRight="true"
-                    android:layout_margin="5dp"
-                    android:gravity="center"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:thumb="@color/colorplate2"
+            android:thumbTint="@color/colorplate2">
 
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/txtGrindSize"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:thumb="@color/colorplate2"
-                android:thumbTint="@color/colorplate2">
+                android:layout_centerVertical="true"
+                android:text="@string/grind_size"
+                android:textColor="@color/colorplate2" />
 
-                <TextView
-                    android:id="@+id/txtTemperature"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/brewing_temperature"
-                    android:textColor="@color/colorplate2" />
+            <Spinner
+                android:id="@+id/inputgrindsize"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="2.5dp"
+                android:layout_marginBottom="2.5dp"
+                android:background="@android:drawable/btn_dropdown"
+                android:ems="5"
+                android:entries="@array/grind_array"
+                android:gravity="center"
+                android:spinnerMode="dropdown"
+                android:textColor="@color/colorplate2" />
 
-                <EditText
-                    android:id="@+id/inputTemperature"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ems="5"
-                    android:inputType="textPersonName"
-                    android:hint="60"
-                    android:textColor="@color/colorplate2"
-                    android:background="@drawable/textinputboarder"
-                    android:layout_alignParentRight="true"
-                    android:layout_margin="5dp"
-                    android:gravity="center"/>
+        </RelativeLayout>
 
-            </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:thumb="@color/colorplate2"
+            android:thumbTint="@color/colorplate2">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/txtRatio"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:thumb="@color/colorplate2"
-                android:thumbTint="@color/colorplate2">
+                android:layout_centerVertical="true"
+                android:text="@string/coffee_water_ratio"
+                android:textColor="@color/colorplate2" />
 
-                <TextView
-                    android:id="@+id/txtBloomWater"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/bloom_water"
-                    android:textColor="@color/colorplate2" />
-
-                <EditText
-                    android:id="@+id/inputBloomWater"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ems="5"
-                    android:inputType="textPersonName"
-                    android:hint="60"
-                    android:textColor="@color/colorplate2"
-                    android:background="@drawable/textinputboarder"
-                    android:layout_alignParentRight="true"
-                    android:layout_margin="5dp"
-                    android:gravity="center"/>
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
+            <EditText
+                android:id="@+id/inputRatio"
+                android:layout_width="60dp"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:thumb="@color/colorplate2"
-                android:thumbTint="@color/colorplate2">
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="30dp"
+                android:layout_marginTop="2.5dp"
+                android:layout_marginBottom="2.5dp"
+                android:background="@drawable/textinputboarder"
+                android:ems="5"
+                android:gravity="center"
+                android:hint="1-99"
+                android:inputType="number"
+                android:textColor="@color/colorplate2" />
 
-                <TextView
-                    android:id="@+id/txtBloomTime"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/bloom_time"
-                    android:textColor="@color/colorplate2" />
-
-                <EditText
-                    android:id="@+id/inputBloomTime"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ems="5"
-                    android:inputType="textPersonName"
-                    android:hint="60"
-                    android:textColor="@color/colorplate2"
-                    android:background="@drawable/textinputboarder"
-                    android:layout_alignParentRight="true"
-                    android:layout_margin="5dp"
-                    android:gravity="center"/>
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/txtGl"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:thumb="@color/colorplate2"
-                android:thumbTint="@color/colorplate2">
+                android:layout_alignBaseline="@id/inputRatio"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="5dp"
+                android:text="g/L"
+                android:textColor="@color/colorplate2" />
 
-                <TextView
-                    android:id="@+id/txtTotalTime"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/total_brewing_time"
-                    android:textColor="@color/colorplate2" />
+        </RelativeLayout>
 
-                <EditText
-                    android:id="@+id/inputTotalTime"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ems="5"
-                    android:inputType="textPersonName"
-                    android:hint="60"
-                    android:textColor="@color/colorplate2"
-                    android:background="@drawable/textinputboarder"
-                    android:layout_alignParentRight="true"
-                    android:layout_margin="5dp"
-                    android:gravity="center"/>
-            </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:thumb="@color/colorplate2"
+            android:thumbTint="@color/colorplate2">
 
-        </androidx.appcompat.widget.LinearLayoutCompat>
+            <TextView
+                android:id="@+id/txtTemperature"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="@string/brewing_temperature"
+                android:textColor="@color/colorplate2" />
+
+            <EditText
+                android:id="@+id/inputTemperature"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="30dp"
+                android:layout_marginTop="2.5dp"
+                android:layout_marginBottom="2.5dp"
+                android:background="@drawable/textinputboarder"
+                android:ems="5"
+                android:gravity="center"
+                android:hint="1-99"
+                android:inputType="number"
+                android:textColor="@color/colorplate2" />
+            <TextView
+                android:id="@+id/txtC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignBaseline="@id/inputTemperature"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="12dp"
+                android:text="°C"
+                android:textColor="@color/colorplate2" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:thumb="@color/colorplate2"
+            android:thumbTint="@color/colorplate2">
+
+            <TextView
+                android:id="@+id/txtBloomWater"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="@string/bloom_water"
+                android:textColor="@color/colorplate2" />
+
+            <EditText
+                android:id="@+id/inputBloomWater"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="30dp"
+                android:layout_marginTop="2.5dp"
+                android:layout_marginBottom="2.5dp"
+                android:background="@drawable/textinputboarder"
+                android:ems="5"
+                android:gravity="center"
+                android:hint="1-99"
+                android:inputType="number"
+
+                android:textColor="@color/colorplate2" />
+
+            <TextView
+                android:id="@+id/txtml"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@id/inputBloomWater"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="11dp"
+                android:text="ml"
+                android:textColor="@color/colorplate2" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:thumb="@color/colorplate2"
+            android:thumbTint="@color/colorplate2">
+
+            <TextView
+                android:id="@+id/txtBloomTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="@string/bloom_time"
+                android:textColor="@color/colorplate2" />
+
+            <EditText
+                android:id="@+id/inputBloomTime"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="30dp"
+                android:layout_marginTop="2.5dp"
+                android:layout_marginBottom="2.5dp"
+                android:background="@drawable/textinputboarder"
+                android:ems="5"
+                android:gravity="center"
+                android:hint="1-99"
+                android:inputType="number"
+                android:textColor="@color/colorplate2" />
+
+            <TextView
+                android:id="@+id/txts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignBaseline="@id/inputBloomTime"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="19dp"
+                android:text="s"
+                android:textColor="@color/colorplate2" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:thumb="@color/colorplate2"
+            android:thumbTint="@color/colorplate2">
+
+            <TextView
+                android:id="@+id/txtTotalTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="@string/total_brewing_time"
+                android:textColor="@color/colorplate2" />
+
+            <EditText
+                android:id="@+id/inputTotalTime"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="30dp"
+
+                android:layout_marginTop="2.5dp"
+                android:layout_marginBottom="2.5dp"
+                android:background="@drawable/textinputboarder"
+                android:ems="5"
+                android:gravity="center"
+                android:hint="1-99"
+                android:inputType="number"
+                android:textColor="@color/colorplate2" />
+
+            <TextView
+                android:id="@+id/txtmin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignBaseline="@id/inputTotalTime"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="3dp"
+                android:text="min"
+                android:textColor="@color/colorplate2" />
+        </RelativeLayout>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
         <LinearLayout
             android:layout_marginTop="40dp"
@@ -261,6 +370,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
             <CheckBox
                 android:id="@+id/savebox"
                 android:layout_width="wrap_content"
+                android:buttonTint="@color/colorplate3"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="@string/save" />
@@ -287,4 +397,8 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_marginBottom="-65dp"
         android:contentDescription="@string/footer_with_copyright_description"
         app:srcCompat="@drawable/ic_footer_copyright" />
-    </RelativeLayout>
+
+
+
+
+</RelativeLayout>

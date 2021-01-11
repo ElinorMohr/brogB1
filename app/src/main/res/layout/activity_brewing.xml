@@ -3,6 +3,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/EditBrew"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        android:onClick="onClick"
+        android:clickable="true"
+        android:textColor="@color/black"
+        android:text="@string/EditUnderline" />
+
+
+
+
+    <ImageButton
+        android:id="@+id/BrewingFavoriteBT"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="15dp"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
+        android:layout_marginEnd="15dp"
+        android:background="@null"
+        app:srcCompat="@drawable/ic_heart_empty">
+    </ImageButton>
+
+
     <ImageView
         android:id="@+id/kaffebillede"
         android:layout_width="220dp"
@@ -10,6 +40,7 @@
         android:layout_marginTop="30dp"
         android:layout_centerHorizontal="true"  
         android:padding="4dp"
+
         app:srcCompat="@drawable/kaffevinter" />
 
     <TextView
@@ -17,6 +48,7 @@
         android:id="@+id/Opskriftens_navn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:ems="5"
         android:textSize="25sp"
         android:text="@string/brewName"
@@ -32,7 +64,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/Opskriftens_navn"
-        android:layout_marginHorizontal="50dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="21dp"
         android:gravity="center"
         android:layout_marginTop="50dp"
         android:orientation="vertical">
@@ -47,6 +80,7 @@
             <TextView
                 android:id="@+id/txtGround_coffee"
                 android:layout_width="wrap_content"
+                android:layout_centerVertical="true"
                 android:layout_height="wrap_content"
                 android:text="@string/ground_coffee"
                 android:textColor="@color/colorplate2"/>
@@ -56,12 +90,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="5"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:text="60"
                 android:textColor="@color/colorplate2"
                 android:background="@drawable/textinputboarder"
-                android:layout_margin="5dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginTop="2.5dp"
+                android:layout_marginBottom="2.5dp"
                 android:gravity="center" />
+
+            <TextView
+                android:id="@+id/txtG"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@id/valueGroundCoffee"
+                android:layout_marginEnd="20dp"
+                android:layout_alignParentEnd="true"
+                android:text="g"
+                android:textColor="@color/colorplate2" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -73,6 +119,7 @@
             <TextView
                 android:id="@+id/txtGrindSize"
                 android:layout_width="wrap_content"
+                android:layout_centerVertical="true"
                 android:layout_height="wrap_content"
                 android:text="@string/grind_size"
                 android:textColor="@color/colorplate2" />
@@ -84,7 +131,9 @@
                 android:layout_alignParentRight="true"
                 android:background="@drawable/textinputboarder"
                 android:text="fine"
-                android:layout_margin="5dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginTop="2.5dp"
+                android:layout_marginBottom="2.5dp"
                 android:ems="5"
                 android:gravity="center"
                 android:textColor="@color/colorplate2" />
@@ -99,6 +148,7 @@
 
             <TextView
                 android:id="@+id/txtRatio"
+                android:layout_centerVertical="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/coffee_water_ratio"
@@ -113,8 +163,21 @@
                 android:textColor="@color/colorplate2"
                 android:background="@drawable/textinputboarder"
                 android:layout_alignParentRight="true"
-                android:layout_margin="5dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginTop="2.5dp"
+                android:layout_marginBottom="2.5dp"
                 android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/txtGl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@id/valueRatio"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="5dp"
+                android:text="g/L"
+                android:textColor="@color/colorplate2" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -126,6 +189,7 @@
 
             <TextView
                 android:id="@+id/txtTemperature"
+                android:layout_centerVertical="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/brewing_temperature"
@@ -135,14 +199,24 @@
                 android:id="@+id/valueTemperature"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="5dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="30dp"
+                android:layout_marginTop="2.5dp"
+                android:layout_marginBottom="2.5dp"
                 android:background="@drawable/textinputboarder"
                 android:ems="5"
                 android:gravity="center"
                 android:text="60"
+                android:textColor="@color/colorplate2" />
+            <TextView
+                android:id="@+id/txtC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignBaseline="@id/valueTemperature"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="12dp"
+                android:text="°C"
                 android:textColor="@color/colorplate2" />
         </RelativeLayout>
 
@@ -158,6 +232,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/bloom_water"
+                android:layout_centerVertical="true"
                 android:textColor="@color/colorplate2" />
 
             <TextView
@@ -165,12 +240,25 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="5"
+                android:layout_centerVertical="true"
                 android:text="60"
                 android:textColor="@color/colorplate2"
                 android:background="@drawable/textinputboarder"
                 android:layout_alignParentRight="true"
-                android:layout_margin="5dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginTop="2.5dp"
+                android:layout_marginBottom="2.5dp"
                 android:gravity="center"/>
+            <TextView
+                android:id="@+id/txtml"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@id/valueBloomWater"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="11dp"
+                android:text="ml"
+                android:textColor="@color/colorplate2" />
 
         </RelativeLayout>
 
@@ -186,6 +274,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/bloom_time"
+                android:layout_centerVertical="true"
                 android:textColor="@color/colorplate2" />
 
             <TextView
@@ -198,8 +287,21 @@
                 android:textColor="@color/colorplate2"
                 android:background="@drawable/textinputboarder"
                 android:layout_alignParentRight="true"
-                android:layout_margin="5dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginTop="2.5dp"
+                android:layout_marginBottom="2.5dp"
                 android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/txts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignBaseline="@id/valueBloomTime"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="19dp"
+                android:text="s"
+                android:textColor="@color/colorplate2" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -213,6 +315,7 @@
                 android:id="@+id/txtTotalTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
                 android:text="@string/total_brewing_time"
                 android:textColor="@color/colorplate2" />
 
@@ -226,8 +329,21 @@
                 android:textColor="@color/colorplate2"
                 android:background="@drawable/textinputboarder"
                 android:layout_alignParentRight="true"
-                android:layout_margin="5dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginTop="2.5dp"
+                android:layout_marginBottom="2.5dp"
                 android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/txtmin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignBaseline="@id/valueTotalTime"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="3dp"
+                android:text="min"
+                android:textColor="@color/colorplate2" />
         </RelativeLayout>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
@@ -266,6 +382,8 @@
         android:layout_marginBottom="-65dp"
         android:contentDescription="@string/footer_with_copyright_description"
         app:srcCompat="@drawable/ic_footer_copyright" />
+
+
 
 
 </RelativeLayout>
