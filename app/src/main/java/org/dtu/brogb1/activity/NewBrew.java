@@ -127,14 +127,8 @@ public class NewBrew extends AppCompatActivity {
             } else {
                 brewTimeSec = Integer.parseInt(editTotalSec.getText().toString());
             }
-            try {
-                if(editTotalMin.getText().toString().isEmpty() && editTotalSec.getText().toString().isEmpty() ){
-                    Toast.makeText(this, "time can't be empty", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-            } catch (Exception e) {
-                Toast.makeText(this, "Need input at total brewing time", Toast.LENGTH_SHORT).show();
-                e.printStackTrace();
+            if((editTotalMin.getText().toString().isEmpty() && editTotalSec.getText().toString().isEmpty()) || (brewTimeMin == 0 && brewTimeSec == 0) ){
+                Toast.makeText(this, "time can't be empty", Toast.LENGTH_SHORT).show();
                 return;
             }
 
@@ -151,6 +145,7 @@ public class NewBrew extends AppCompatActivity {
                     return;
                 }
                 try {
+                    newBrew.setSaveBrew(true);
                     storage.saveBrew(newBrew);
                 } catch (BrewException e) {
                     Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -181,6 +176,7 @@ public class NewBrew extends AppCompatActivity {
                 buttonOn = true;
                 favoriteBT.setBackground(getResources().getDrawable(R.drawable.ic_heart));
                 setBrewValues();
+                newBrew.setFavoriteBrew(true);
                 try {
                     sharedPref.saveBrewToFavorites(newBrew);
                 } catch (Exception e){
@@ -189,6 +185,7 @@ public class NewBrew extends AppCompatActivity {
             } else {
                 buttonOn = false;
                 favoriteBT.setBackground(getResources().getDrawable(R.drawable.ic_heart_empty));
+                newBrew.setFavoriteBrew(false);
                 setBrewValues();
                 try {
                     //TODO

@@ -150,34 +150,26 @@ public class EditBrew extends AppCompatActivity {
             } else {
                 brewTimeSec = Integer.parseInt(Edit_ETTotalSec.getText().toString());
             }
-            try {
-                if(Edit_ETTotalMin.getText().toString().isEmpty() && Edit_ETTotalSec.getText().toString().isEmpty() ){
-                    Toast.makeText(this, "time can't be empty", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-            } catch (Exception e) {
-                Toast.makeText(this, "Need input at total brewing time", Toast.LENGTH_SHORT).show();
-                e.printStackTrace();
+            if((Edit_ETTotalMin.getText().toString().isEmpty() && Edit_ETTotalSec.getText().toString().isEmpty()) || (brewTimeMin == 0 && brewTimeSec == 0) ){
+                Toast.makeText(this, "time can't be empty", Toast.LENGTH_SHORT).show();
                 return;
             }
 
-
                      //TODO den skal gemme brew hvis den er gemt ellers skal den bare gå videre med værdierne.
-            /*
+
                     // vi skal gemme ændringerne
                     IStorageService storage = StorageServiceSharedPref.getInstance();
-                    if (brewName.isEmpty()) {
-                        Toast.makeText(this, "your brew needs a name", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                    try {
-                       storage.saveBrew(brew);
-                    } catch (BrewException e) {
-                        Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                        e.printStackTrace();
-                    }
+            if (brewName.isEmpty()) {
+                Toast.makeText(this, "your brew needs a name", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            try {
+                storage.saveBrew(brew);
+            } catch (BrewException e) {
+                Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
+            }
 
-             */
 
 
                     // vores ændret brew bliver sendt til brewing
@@ -190,6 +182,7 @@ public class EditBrew extends AppCompatActivity {
             }
             startActivity(intent);
         });
+
         info.setOnClickListener(v -> {
             BrewSheetMenu brygMenu = new BrewSheetMenu();
             brygMenu.show(getSupportFragmentManager(), "FragmentBrygMenu");

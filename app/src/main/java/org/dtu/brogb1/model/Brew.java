@@ -16,6 +16,7 @@ public class Brew {
 
     private String brewName, brewPics, grindSize;
     private int brewTimeMin, brewTimeSec, groundCoffee, coffeeWaterRatio, brewingTemperature, bloomWater, bloomTime;
+    boolean saveBrew, favoriteBrew;
     private LocalDateTime lastBrew;
 
     public Brew(){
@@ -29,11 +30,13 @@ public class Brew {
         this.brewTimeSec = 0;
         this.brewName = " ";
         this.brewPics = " ";
+        this.saveBrew = false;
+        this.favoriteBrew = false;
 
     }
 
     public Brew(int groundCoffee, String grindSize, int coffeeWaterRatio, int brewingTemperature,
-                int bloomWater, int bloomTime, int brewTimeMin, int brewTimeSec,String brewName, String brewPics) {
+                int bloomWater, int bloomTime, int brewTimeMin, int brewTimeSec,String brewName, String brewPics, boolean saveBrew, boolean favoriteBrew ) {
         this.groundCoffee = groundCoffee;
         this.grindSize = grindSize;
         this.coffeeWaterRatio = coffeeWaterRatio;
@@ -44,6 +47,8 @@ public class Brew {
         this.brewTimeSec = brewTimeSec;
         this.brewName = brewName;
         this.brewPics = brewPics;
+        this.saveBrew = saveBrew;
+        this.favoriteBrew = favoriteBrew;
 
     }
 
@@ -64,6 +69,8 @@ public class Brew {
             json.put("brewName", this.brewName);
             json.put("brewPics", this.brewPics);
             json.put("lastBrew", this.lastBrew);
+            json.put("saveBrew", this.saveBrew);
+            json.put("favoriteBrew", this.favoriteBrew);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -137,6 +144,22 @@ public class Brew {
         this.brewingTemperature = brewingTemperature;
     }
 
+    public boolean isSaveBrew() {
+        return saveBrew;
+    }
+
+    public void setSaveBrew(boolean saveBrew) {
+        this.saveBrew = saveBrew;
+    }
+
+    public boolean isFavoriteBrew() {
+        return favoriteBrew;
+    }
+
+    public void setFavoriteBrew(boolean favoriteBrew) {
+        this.favoriteBrew = favoriteBrew;
+    }
+
     public int getBloomWater() {
         return bloomWater;
     }
@@ -164,7 +187,9 @@ public class Brew {
                 this.brewTimeMin == brew.getBrewTimeMin() &&
                 this.brewTimeSec == brew.getBrewTimeSec() &&
                 this.brewName.equals(brew.getBrewName()) &&
-                this.brewPics.equals(brew.getBrewPics())
+                this.brewPics.equals(brew.getBrewPics()) &&
+                this.saveBrew == brew.isSaveBrew() &&
+                this.favoriteBrew == brew.isFavoriteBrew()
         );
     }
 
