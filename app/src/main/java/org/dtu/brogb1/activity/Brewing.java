@@ -121,11 +121,11 @@ public class Brewing extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), EditBrew.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-              //  try {
-                   // intent.putExtra("Brew", brew.toJson());
-             //   } catch (BrewException e) {
-                   // e.printStackTrace();
-               // }
+             //  try {
+                 //  intent.putExtra("EditBrew", brewNow.toJson());
+              // } catch (BrewException e) {
+                //   e.printStackTrace();
+              // }
                 startActivity(intent);
             }
         });
