@@ -25,7 +25,8 @@
         android:layout_marginBottom="10dp"
         android:orientation="vertical">
         <TextView
-            android:textColor="@color/colorplate1"
+            android:textColor="@color/white"
+            android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/ground_coffee">
@@ -34,11 +35,13 @@
             android:textColor="@color/colorplate1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/ground_coffee_info">
+            android:text="@string/ground_coffee_info"
+            android:layout_marginBottom="10dp">
         </TextView>
         <TextView
-            android:textColor="@color/colorplate1"
+            android:textColor="@color/white"
             android:layout_width="wrap_content"
+            android:textStyle="bold"
             android:layout_height="wrap_content"
             android:text="@string/grind_size">
         </TextView>
@@ -46,60 +49,72 @@
             android:textColor="@color/colorplate1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/grind_size_info">
+            android:text="@string/grind_size_info"
+            android:layout_marginBottom="10dp">
+        </TextView>
+        <TextView
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text="@string/coffee_water_ratio"
+            >
         </TextView>
         <TextView
             android:textColor="@color/colorplate1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/coffee_water_ratio">
+
+            android:text="@string/coffee_water_ratio_info"
+            android:layout_marginBottom="10dp">
         </TextView>
         <TextView
-            android:textColor="@color/colorplate1"
+            android:textColor="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/coffee_water_ratio_info">
-        </TextView>
-        <TextView
-            android:textColor="@color/colorplate1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:textStyle="bold"
             android:text="@string/brewing_temperature">
         </TextView>
         <TextView
             android:textColor="@color/colorplate1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/brewing_temperature_info">
+            android:text="@string/brewing_temperature_info"
+            android:layout_marginBottom="10dp">
         </TextView>
         <TextView
-            android:textColor="@color/colorplate1"
+            android:textColor="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
             android:text="@string/bloom_water">
         </TextView>
         <TextView
             android:textColor="@color/colorplate1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/bloom_water_info">
+            android:text="@string/bloom_water_info"
+            android:layout_marginBottom="10dp">
         </TextView>
         <TextView
-            android:textColor="@color/colorplate1"
+            android:textColor="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
             android:text="@string/bloom_time">
         </TextView>
         <TextView
             android:textColor="@color/colorplate1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/bloom_time_info">
+            android:text="@string/bloom_time_info"
+            android:layout_marginBottom="10dp">
         </TextView>
         <TextView
-            android:textColor="@color/colorplate1"
+            android:textColor="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
             android:text="@string/total_brewing_time">
         </TextView>
         <TextView

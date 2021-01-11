@@ -30,6 +30,8 @@ import java.util.ArrayList;
 
 public class Recipes extends Fragment {
     IStorageService storage;
+    ArrayList<Brew> favoriteList;
+    ArrayList<Brew> recipeList;
 
     @Nullable
     @Override
@@ -38,29 +40,43 @@ public class Recipes extends Fragment {
         View root = inflater.inflate(R.layout.recipes_layout, container, false);
         try {
             // Henter gemte informationer om Brew fra storage
-            ArrayList<Brew> favoriteList = storage.getFavoriteBrews();
-            ArrayList<Brew> recipeList = storage.getAllBrews();
-            ArrayList<String> viewMain = new ArrayList<String>();
-            viewMain.add("Fars morgen kaffe");
-            viewMain.add("Ekstra mælk i denne");
+            favoriteList = storage.getFavoriteBrews();
+            recipeList = storage.getAllBrews();
+
 
             // Find elementerne, som der skal udfyldes med lister
             ListView listMain = root.findViewById(R.id.list_view_favorites);
             ListView listSec = root.findViewById(R.id.list_view_sec_recipes);
 
             // Sammenkobling af elementerne og data
-            //ArrayAdapter<Brew> adapterMain = new RecipiesAdapter(getContext(), recipeList, "favorite");
-            ArrayAdapter<String> adapterMain = new ArrayAdapter<String>(getActivity(), R.layout.list_view_layout, viewMain);
+            ArrayAdapter<Brew> adapterMain = new RecipiesAdapter(getContext(), favoriteList, "favorite");
             listMain.setAdapter(adapterMain);
             listMain.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapter, View v, int position, long arg3) {
-                    Intent intent = new Intent(new Intent(getContext(), Brewing.class));
+                    Intent intent = new Intent(getContext(), Brewing.class);
+                    try {
+                        intent.putExtra("Brew", favoriteList.get(position).toJson());
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
                     startActivity(intent);
                 }
             });
             ArrayAdapter<Brew> adapterSec = new RecipiesAdapter(getContext(), recipeList);
             listSec.setAdapter(adapterSec);
+            listSec.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapter, View v, int position, long arg3) {
+                    Intent intent = new Intent(getContext(), Brewing.class);
+                    try {
+                        intent.putExtra("Brew", recipeList.get(position).toJson());
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+                    startActivity(intent);
+                }
+            });
         } catch (StorageServiceException e) {
             e.printStackTrace();
         } catch (BrewException e) {
