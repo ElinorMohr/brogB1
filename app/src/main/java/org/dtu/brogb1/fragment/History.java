@@ -14,6 +14,9 @@ import androidx.fragment.app.Fragment;
 
 import org.dtu.brogb1.R;
 import org.dtu.brogb1.activity.Brewing;
+import org.dtu.brogb1.adapter.RecipiesAdapter;
+import org.dtu.brogb1.model.Brew;
+import org.dtu.brogb1.service.StorageServiceSharedPref;
 
 import java.util.ArrayList;
 
@@ -23,23 +26,34 @@ import java.util.ArrayList;
  */
 
 public class History extends Fragment {
+    StorageServiceSharedPref sharedPref = StorageServiceSharedPref.getInstance();
+    ArrayList<Brew> viewMain;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root =  inflater.inflate(R.layout.history_layout, container, false);
         ListView listMain = root.findViewById(R.id.list_view_main_history);
-        ArrayList<String> viewMain = new ArrayList<String>();
-        viewMain.add("Fars morgen kaffe");
-        viewMain.add("Ekstra mælk i denne");
-        ArrayAdapter<String> adapterMain = new ArrayAdapter<String>(getActivity(), R.layout.list_view_layout, viewMain);
+        try {
+            viewMain = sharedPref.getBrewHistory();
+        }catch (Exception e){
+            viewMain = new ArrayList<Brew>();
+            e.printStackTrace();
+        }
+
+        RecipiesAdapter adapterMain = new RecipiesAdapter(getActivity(), viewMain, "history");
         listMain.setAdapter(adapterMain);
 
         listMain.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapter, View v, int position,
                                     long arg3) {
-                Intent intent = new Intent(new Intent(getContext(), Brewing.class));
+                Intent intent = new Intent(getContext(), Brewing.class);
+                try {
+                    intent.putExtra("Brew", viewMain.get(position).toJson());
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
                 startActivity(intent);
             }
         });
