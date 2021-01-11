@@ -77,4 +77,5 @@
     <string name="recipes_underline"><u>Recipes</u></string>
     <string name="settings">Settings</string>
     <string name="offline">Offline</string>
+    <string name="about">About</string>
 </resources>
