@@ -47,6 +47,9 @@
             android:name=".activity.community.Guide"
             android:screenOrientation="portrait" />
         <activity
+        android:name=".activity.community.About"
+        android:screenOrientation="portrait" />
+        <activity
             android:name=".activity.LandingPage"
             android:screenOrientation="portrait">
             <intent-filter>
