@@ -115,11 +115,17 @@ public class Brewing extends AppCompatActivity {
             }
         });
 
-        TVEdit = findViewById(R.id.EditBrew);
+        TVEdit = findViewById(R.id.EditBrewTxt);
         TVEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), NewBrew.class);
+                Intent intent = new Intent(view.getContext(), EditBrew.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+              //  try {
+                   // intent.putExtra("Brew", brew.toJson());
+             //   } catch (BrewException e) {
+                   // e.printStackTrace();
+               // }
                 startActivity(intent);
             }
         });

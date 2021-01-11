@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <RelativeLayout
-xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
 
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <ImageButton
         android:id="@+id/IGroundCoffee"
@@ -18,30 +18,17 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
         android:tint="@color/colorplate3"
         app:srcCompat="@android:drawable/ic_menu_info_details" />
 
-
-    <ImageButton
-        android:id="@+id/NewBrewFavoriteBT"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="15dp"
-        android:scaleType="fitCenter"
-        android:adjustViewBounds="true"
-        android:layout_marginEnd="15dp"
-        android:background="@null"
-        app:srcCompat="@drawable/ic_heart_empty" />
-
-        <ImageView
-            android:id="@+id/ny_opskrift"
-            android:layout_width="136dp"
-            android:layout_height="139dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="30dp"
-            app:srcCompat="@drawable/kaffevinter" />
+    <ImageView
+        android:id="@+id/edit_ny_opskrift"
+        android:layout_width="136dp"
+        android:layout_height="139dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        app:srcCompat="@drawable/kaffevinter" />
 
     <EditText
-        android:layout_below="@id/ny_opskrift"
-        android:id="@+id/Opskrifts_navn"
+        android:layout_below="@id/edit_ny_opskrift"
+        android:id="@+id/edit_Opskrifts_navn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="5"
@@ -57,10 +44,10 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
         android:gravity="center" />
 
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/seekbarLayout"
+        android:id="@+id/edit_seekbarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/Opskrifts_navn"
+        android:layout_below="@id/edit_Opskrifts_navn"
         android:layout_marginStart="50dp"
         android:layout_marginEnd="21dp"
         android:layout_marginTop="40dp"
@@ -76,7 +63,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
             android:thumbTint="@color/colorplate2">
 
             <TextView
-                android:id="@+id/txtGround_coffee"
+                android:id="@+id/edit_txtGround_coffee"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -84,7 +71,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:textColor="@color/colorplate2" />
 
             <EditText
-                android:id="@+id/inputGroundCoffee"
+                android:id="@+id/edit_inputGroundCoffee"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -95,14 +82,13 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:ems="5"
                 android:gravity="center"
                 android:inputType="number"
-                android:textColor="@color/colorplate2"
-                app:helperText = "10-40"/>
+                android:textColor="@color/colorplate2" />
 
             <TextView
-                android:id="@+id/txtG"
+                android:id="@+id/edit_txtG"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBaseline="@id/inputGroundCoffee"
+                android:layout_alignBaseline="@id/edit_inputGroundCoffee"
                 android:layout_marginEnd="19dp"
                 android:layout_alignParentEnd="true"
                 android:text="g"
@@ -118,7 +104,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
             android:thumbTint="@color/colorplate2">
 
             <TextView
-                android:id="@+id/txtGrindSize"
+                android:id="@+id/edit_txtGrindSize"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -126,7 +112,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:textColor="@color/colorplate2" />
 
             <Spinner
-                android:id="@+id/inputgrindsize"
+                android:id="@+id/edit_inputgrindsize"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:layout_alignParentRight="true"
@@ -150,7 +136,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
             android:thumbTint="@color/colorplate2">
 
             <TextView
-                android:id="@+id/txtRatio"
+                android:id="@+id/edit_txtRatio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -158,7 +144,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:textColor="@color/colorplate2" />
 
             <EditText
-                android:id="@+id/inputRatio"
+                android:id="@+id/edit_inputRatio"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -172,10 +158,10 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:textColor="@color/colorplate2" />
 
             <TextView
-                android:id="@+id/txtGl"
+                android:id="@+id/edit_txtGl"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBaseline="@id/inputRatio"
+                android:layout_alignBaseline="@id/edit_inputRatio"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="2dp"
                 android:layout_marginEnd="5dp"
@@ -192,7 +178,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
             android:thumbTint="@color/colorplate2">
 
             <TextView
-                android:id="@+id/txtTemperature"
+                android:id="@+id/edit_txtTemperature"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -200,7 +186,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:textColor="@color/colorplate2" />
 
             <EditText
-                android:id="@+id/inputTemperature"
+                android:id="@+id/edit_inputTemperature"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -213,11 +199,11 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:inputType="number"
                 android:textColor="@color/colorplate2" />
             <TextView
-                android:id="@+id/txtC"
+                android:id="@+id/edit_txtC"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:layout_alignBaseline="@id/inputTemperature"
+                android:layout_alignBaseline="@id/edit_inputTemperature"
                 android:layout_marginTop="2dp"
                 android:layout_marginEnd="12dp"
                 android:text="°C"
@@ -233,7 +219,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
             android:thumbTint="@color/colorplate2">
 
             <TextView
-                android:id="@+id/txtBloomWater"
+                android:id="@+id/edit_txtBloomWater"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -241,7 +227,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:textColor="@color/colorplate2" />
 
             <EditText
-                android:id="@+id/inputBloomWater"
+                android:id="@+id/edit_inputBloomWater"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -256,10 +242,10 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:textColor="@color/colorplate2" />
 
             <TextView
-                android:id="@+id/txtml"
+                android:id="@+id/edit_txtml"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBaseline="@id/inputBloomWater"
+                android:layout_alignBaseline="@id/edit_inputBloomWater"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="2dp"
                 android:layout_marginEnd="11dp"
@@ -276,7 +262,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
             android:thumbTint="@color/colorplate2">
 
             <TextView
-                android:id="@+id/txtBloomTime"
+                android:id="@+id/edit_txtBloomTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -284,7 +270,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:textColor="@color/colorplate2" />
 
             <EditText
-                android:id="@+id/inputBloomTime"
+                android:id="@+id/edit_inputBloomTime"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -298,11 +284,11 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:textColor="@color/colorplate2" />
 
             <TextView
-                android:id="@+id/txts"
+                android:id="@+id/edit_txts"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:layout_alignBaseline="@id/inputBloomTime"
+                android:layout_alignBaseline="@id/edit_inputBloomTime"
                 android:layout_marginTop="2dp"
                 android:layout_marginEnd="19dp"
                 android:text="s"
@@ -318,7 +304,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
             android:thumbTint="@color/colorplate2">
 
             <TextView
-                android:id="@+id/txtTotalTime"
+                android:id="@+id/edit_txtTotalTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -326,7 +312,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:textColor="@color/colorplate2" />
 
             <EditText
-                android:id="@+id/inputTotalTime"
+                android:id="@+id/edit_inputTotalTime"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -341,11 +327,11 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:textColor="@color/colorplate2" />
 
             <TextView
-                android:id="@+id/txtmin"
+                android:id="@+id/edit_txtmin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:layout_alignBaseline="@id/inputTotalTime"
+                android:layout_alignBaseline="@id/edit_inputTotalTime"
                 android:layout_marginTop="2dp"
                 android:layout_marginEnd="3dp"
                 android:text="min"
@@ -354,32 +340,25 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
-        <LinearLayout
-            android:layout_marginTop="40dp"
-            android:id="@+id/saveboxandbrew"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/seekbarLayout"
-            android:layout_gravity="center"
-            android:orientation="vertical">
-            <CheckBox
-                android:id="@+id/savebox"
-                android:layout_width="wrap_content"
-                android:buttonTint="@color/colorplate3"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/save" />
+    <LinearLayout
+        android:layout_marginTop="90dp"
+        android:id="@+id/saveboxandbrew"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edit_seekbarLayout"
+        android:layout_gravity="center"
+        android:orientation="vertical">
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/BrewNowRecipe"
-                style="@style/DefaultButton"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/brew"
-                android:textAllCaps="false"
-                app:cornerRadius="70dp" />
-        </LinearLayout>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/editBT"
+            style="@style/DefaultButton"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/edit"
+            android:textAllCaps="false"
+            app:cornerRadius="70dp" />
+    </LinearLayout>
 
     <ImageView
         android:id="@+id/footer3"
@@ -392,8 +371,4 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_marginBottom="-65dp"
         android:contentDescription="@string/footer_with_copyright_description"
         app:srcCompat="@drawable/ic_footer_copyright" />
-
-
-
-
 </RelativeLayout>

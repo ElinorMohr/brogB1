@@ -4,7 +4,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/EditBrew"
+        android:id="@+id/EditBrewTxt"
         android:layout_marginStart="15dp"
         android:layout_marginTop="15dp"
         android:layout_width="wrap_content"
@@ -104,7 +104,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@id/valueGroundCoffee"
-                android:layout_marginEnd="20dp"
+                android:layout_marginEnd="19dp"
                 android:layout_alignParentEnd="true"
                 android:text="g"
                 android:textColor="@color/colorplate2" />
