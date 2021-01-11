@@ -116,7 +116,7 @@ public class Brewing extends AppCompatActivity {
         });
 
         TVEdit = findViewById(R.id.EditBrew);
-        brewNow.setOnClickListener(new View.OnClickListener() {
+        TVEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), NewBrew.class);
