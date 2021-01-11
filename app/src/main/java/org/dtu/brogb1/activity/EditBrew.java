@@ -155,24 +155,23 @@ public class EditBrew extends AppCompatActivity {
                 return;
             }
 
-                     //TODO den skal gemme brew hvis den er gemt ellers skal den bare gå videre med værdierne.
+            //TODO den skal gemme brew hvis den er gemt ellers skal den bare gå videre med værdierne.
 
-                    // vi skal gemme ændringerne
-                    IStorageService storage = StorageServiceSharedPref.getInstance();
-            if (brewName.isEmpty()) {
-                Toast.makeText(this, "your brew needs a name", Toast.LENGTH_SHORT).show();
-                return;
+            if(brew.isSaveBrew() || brew.isFavoriteBrew()) {
+                // vi skal gemme ændringerne
+                IStorageService storage = StorageServiceSharedPref.getInstance();
+                if (brewName.isEmpty()) {
+                    Toast.makeText(this, "your brew needs a name", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                try {
+                    storage.overwriteBrew(brew);
+                } catch (BrewException e) {
+                    Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+                }
             }
-            try {
-                storage.saveBrew(brew);
-            } catch (BrewException e) {
-                Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                e.printStackTrace();
-            }
-
-
-
-                    // vores ændret brew bliver sendt til brewing
+            // vores ændret brew bliver sendt til brewing
             Intent intent = new Intent(this, Brewing.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             try {
