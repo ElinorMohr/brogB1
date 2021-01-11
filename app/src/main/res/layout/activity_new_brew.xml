@@ -93,7 +93,8 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_marginBottom="2.5dp"
                 android:background="@drawable/textinputboarder"
                 android:ems="5"
-                android:gravity="center"
+                android:paddingEnd="6dp"
+                android:gravity="right"
                 android:inputType="number"
                 android:textColor="@color/colorplate2"
                 app:helperText = "10-40"/>
@@ -162,13 +163,13 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:layout_marginEnd="30dp"
                 android:layout_marginTop="2.5dp"
-                android:layout_marginBottom="2.5dp"
+                android:layout_marginEnd="30dp"
                 android:background="@drawable/textinputboarder"
                 android:ems="5"
-                android:gravity="center"
+                android:gravity="right"
                 android:inputType="number"
+                android:paddingEnd="6dp"
                 android:textColor="@color/colorplate2" />
 
             <TextView
@@ -209,7 +210,8 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_marginBottom="2.5dp"
                 android:background="@drawable/textinputboarder"
                 android:ems="5"
-                android:gravity="center"
+                android:paddingEnd="6dp"
+                android:gravity="right"
                 android:inputType="number"
                 android:textColor="@color/colorplate2" />
             <TextView
@@ -245,13 +247,13 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:layout_marginEnd="30dp"
                 android:layout_marginTop="2.5dp"
-                android:layout_marginBottom="2.5dp"
+                android:layout_marginEnd="30dp"
                 android:background="@drawable/textinputboarder"
                 android:ems="5"
-                android:gravity="center"
+                android:gravity="right"
                 android:inputType="number"
+                android:paddingEnd="6dp"
 
                 android:textColor="@color/colorplate2" />
 
@@ -293,7 +295,8 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_marginBottom="2.5dp"
                 android:background="@drawable/textinputboarder"
                 android:ems="5"
-                android:gravity="center"
+                android:paddingEnd="6dp"
+                android:gravity="right"
                 android:inputType="number"
                 android:textColor="@color/colorplate2" />
 
@@ -335,7 +338,8 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_marginBottom="2.5dp"
                 android:background="@drawable/textinputboarder"
                 android:ems="5"
-                android:gravity="center"
+                android:paddingEnd="6dp"
+                android:gravity="right"
                 android:inputType="number"
                 android:textColor="@color/colorplate2" />
 
@@ -361,7 +365,8 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:inputType="number"
                 android:background="@drawable/textinputboarder"
                 android:ems="5"
-                android:gravity="center"
+                android:paddingEnd="6dp"
+                android:gravity="right"
                 android:textColor="@color/colorplate2" />
 
             <TextView

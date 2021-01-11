@@ -80,7 +80,8 @@
                 android:layout_marginBottom="2.5dp"
                 android:background="@drawable/textinputboarder"
                 android:ems="5"
-                android:gravity="center"
+                android:paddingEnd="6dp"
+                android:gravity="right"
                 android:inputType="number"
                 android:textColor="@color/colorplate2" />
 
@@ -152,7 +153,8 @@
                 android:layout_marginEnd="30dp"
                 android:background="@drawable/textinputboarder"
                 android:ems="5"
-                android:gravity="center"
+                android:paddingEnd="6dp"
+                android:gravity="right"
                 android:inputType="number"
                 android:textColor="@color/colorplate2" />
 
@@ -194,7 +196,8 @@
                 android:layout_marginBottom="2.5dp"
                 android:background="@drawable/textinputboarder"
                 android:ems="5"
-                android:gravity="center"
+                android:paddingEnd="6dp"
+                android:gravity="right"
                 android:inputType="number"
                 android:textColor="@color/colorplate2" />
             <TextView
@@ -235,7 +238,8 @@
                 android:layout_marginBottom="2.5dp"
                 android:background="@drawable/textinputboarder"
                 android:ems="5"
-                android:gravity="center"
+                android:paddingEnd="6dp"
+                android:gravity="right"
                 android:inputType="number"
 
                 android:textColor="@color/colorplate2" />
@@ -278,7 +282,8 @@
                 android:layout_marginBottom="2.5dp"
                 android:background="@drawable/textinputboarder"
                 android:ems="5"
-                android:gravity="center"
+                android:paddingEnd="6dp"
+                android:gravity="right"
                 android:inputType="number"
                 android:textColor="@color/colorplate2" />
 
@@ -320,7 +325,8 @@
                 android:layout_marginBottom="2.5dp"
                 android:background="@drawable/textinputboarder"
                 android:ems="5"
-                android:gravity="center"
+                android:paddingEnd="6dp"
+                android:gravity="right"
                 android:inputType="number"
                 android:textColor="@color/colorplate2" />
 
@@ -346,7 +352,8 @@
                 android:inputType="number"
                 android:background="@drawable/textinputboarder"
                 android:ems="5"
-                android:gravity="center"
+                android:paddingEnd="6dp"
+                android:gravity="right"
                 android:textColor="@color/colorplate2" />
 
             <TextView
