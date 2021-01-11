@@ -30,7 +30,7 @@ import org.dtu.brogb1.service.StorageServiceSharedPref;
 public class NewBrew extends AppCompatActivity {
     private String brewName, brewPics, grindSize;
     private double groundCoffee, coffeeWaterRatio, brewingTemperature, bloomWater, bloomTime, totalBrewingTime;
-    EditText editBrewName, editGroundCoffee, editRatio, editTemp, editBloomWater, editBloomTime, editTotal;
+    EditText editBrewName, editGroundCoffee, editRatio, editTemp, editBloomWater, editBloomTime, editTotalMin, editTotalSec;
     Spinner SpinnerInputGrindSize;
     StorageServiceSharedPref sharedPref = StorageServiceSharedPref.getInstance();
 
@@ -56,7 +56,8 @@ public class NewBrew extends AppCompatActivity {
         editTemp = findViewById(R.id.inputTemperature);
         editBloomWater = findViewById(R.id.inputBloomWater);
         editBloomTime = findViewById(R.id.inputBloomTime);
-        editTotal = findViewById(R.id.inputTotalTime);
+        editTotalMin = findViewById(R.id.inputTotalTimeMin);
+        editTotalSec = findViewById(R.id.inputTotalTimeSec);
 
         // dette er vores favorite knap, onclick er i bunden!
         favoriteBT = (ImageButton) findViewById(R.id.NewBrewFavoriteBT);
@@ -67,7 +68,8 @@ public class NewBrew extends AppCompatActivity {
         editTemp.setFilters(new InputFilter[]{new MinMaxFilter("1", "99")});
         editBloomWater.setFilters(new InputFilter[]{new MinMaxFilter("1", "99")});
         editBloomTime.setFilters(new InputFilter[]{new MinMaxFilter("1", "99")});
-        editTotal.setFilters(new InputFilter[]{new MinMaxFilter("1", "99")});
+        editTotalMin.setFilters(new InputFilter[]{new MinMaxFilter("0", "99")});
+        editTotalSec.setFilters(new InputFilter[]{new MinMaxFilter("0", "59")});
 
         //når der brygges
         brewNow.setOnClickListener(v -> {
@@ -112,13 +114,31 @@ public class NewBrew extends AppCompatActivity {
                 e.printStackTrace();
                 return;
             }
+
+            totalBrewingTime = 0.0;
+            // tiden skal blive lagt sammen
+            if(editTotalMin.getText().toString().isEmpty()){
+                totalBrewingTime = 0;
+            } else {
+                totalBrewingTime += Double.parseDouble(editTotalMin.getText().toString());
+            }
             try {
-                totalBrewingTime = Double.parseDouble(editTotal.getText().toString());
+                if(editTotalSec.getText().toString().isEmpty()){
+                    totalBrewingTime = 0;
+                } else {
+                    totalBrewingTime += 0.01 * (Double.parseDouble(editTotalSec.getText().toString()));
+                }
+
+                if(totalBrewingTime == 0.0){
+                    Toast.makeText(this, "time can't be 0.0", Toast.LENGTH_SHORT).show();
+                    return;
+                }
             } catch (Exception e) {
                 Toast.makeText(this, "Need input at total brewing time", Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
                 return;
             }
+
             // gemmer det i en newBrew
             setBrewValues();
 

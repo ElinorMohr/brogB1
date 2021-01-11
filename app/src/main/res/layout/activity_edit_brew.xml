@@ -148,9 +148,8 @@
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:layout_marginEnd="30dp"
                 android:layout_marginTop="2.5dp"
-                android:layout_marginBottom="2.5dp"
+                android:layout_marginEnd="30dp"
                 android:background="@drawable/textinputboarder"
                 android:ems="5"
                 android:gravity="center"
@@ -312,13 +311,12 @@
                 android:textColor="@color/colorplate2" />
 
             <EditText
-                android:id="@+id/edit_inputTotalTime"
-                android:layout_width="60dp"
+                android:id="@+id/edit_inputTotalTimeMin"
+                android:layout_width="40dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="30dp"
-
+                android:layout_alignEnd="@+id/edit_txtTotalmin"
                 android:layout_marginTop="2.5dp"
+                android:layout_marginEnd="28dp"
                 android:layout_marginBottom="2.5dp"
                 android:background="@drawable/textinputboarder"
                 android:ems="5"
@@ -327,14 +325,39 @@
                 android:textColor="@color/colorplate2" />
 
             <TextView
-                android:id="@+id/edit_txtmin"
+                android:id="@+id/edit_txtTotalmin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/edit_inputTotalTimeSec"
+                android:layout_alignBaseline="@id/edit_inputTotalTimeMin"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="45dp"
+                android:text="min"
+                android:textColor="@color/colorplate2" />
+
+            <EditText
+                android:id="@+id/edit_inputTotalTimeSec"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="30dp"
+                android:layout_marginTop="2.5dp"
+                android:layout_marginBottom="2.5dp"
+                android:inputType="number"
+                android:background="@drawable/textinputboarder"
+                android:ems="5"
+                android:gravity="center"
+                android:textColor="@color/colorplate2" />
+
+            <TextView
+                android:id="@+id/edit_txtTotalSec"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:layout_alignBaseline="@id/edit_inputTotalTime"
+                android:layout_marginEnd="19dp"
+                android:layout_alignBaseline="@id/edit_inputTotalTimeSec"
                 android:layout_marginTop="2dp"
-                android:layout_marginEnd="3dp"
-                android:text="min"
+                android:text="s"
                 android:textColor="@color/colorplate2" />
         </RelativeLayout>
 
