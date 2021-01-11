@@ -172,6 +172,7 @@ public class NewBrew extends AppCompatActivity {
                 favoriteBT.setBackground(getResources().getDrawable(R.drawable.ic_heart_empty));
                 setBrewValues();
                 try {
+                    //TODO
                     //sharedPref.deleteFavoriteBrew();
                 } catch (Exception e){
                     e.printStackTrace();

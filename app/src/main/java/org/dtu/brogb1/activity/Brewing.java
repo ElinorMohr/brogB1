@@ -90,8 +90,8 @@ public class Brewing extends AppCompatActivity {
                 if (brew != null){
                     brew.setLastBrewTime();
                     try {
-                        storageServiceSharedPref.saveBrew(brew);
-                    } catch (BrewException e){
+                        storageServiceSharedPref.saveBrewToHistory(brew);
+                    } catch (Exception e){
                         Toast.makeText(v.getContext(), "Fejl under gem", Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -142,9 +142,21 @@ public class Brewing extends AppCompatActivity {
             if (!buttonOn) {
                 buttonOn = true;
                 favoriteBT.setBackground(getResources().getDrawable(R.drawable.ic_heart));
+                try {
+                    storageServiceSharedPref.saveBrewToFavorites(brew);
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+
             } else {
                 buttonOn = false;
                 favoriteBT.setBackground(getResources().getDrawable(R.drawable.ic_heart_empty));
+                try {
+                    //TODO
+                    //storageServiceSharedPref.deleteFavoriteBrew(brew);
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
             }
         }
     };
