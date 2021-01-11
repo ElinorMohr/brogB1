@@ -25,7 +25,7 @@ public class EditBrew extends AppCompatActivity {
     Dialog dialogue;
     private String brewName, brewPics, grindSize;
     private double groundCoffee, coffeeWaterRatio, brewingTemperature, bloomWater, bloomTime, totalBrewingTime;
-    EditText Edit_ETBrewName, Edit_ETGroundCoffee, Edit_ETRatio, Edit_ETTemp, Edit_ETBloomWater, Edit_ETBloomTime, Edit_ETTotalMin, Edit_ETTotalSec, Edit_ETEdit;
+    EditText Edit_ETBrewName, Edit_ETGroundCoffee, Edit_ETRatio, Edit_ETTemp, Edit_ETBloomWater, Edit_ETBloomTime, Edit_ETTotalMin, Edit_ETTotalSec;
     Spinner Edit_SpinnerInputGrindSize;
     Brew brew;
     @Override
@@ -59,16 +59,6 @@ public class EditBrew extends AppCompatActivity {
         Edit_ETTotalMin = findViewById(R.id.edit_inputTotalTimeMin);
         Edit_ETTotalSec =findViewById(R.id.inputTotalTimeSec);
 
-
-        Edit_ETGroundCoffee.setFilters(new InputFilter[]{new MinMaxFilter("1", "99")});
-        Edit_ETRatio.setFilters(new InputFilter[]{new MinMaxFilter("1", "99")});
-        Edit_ETTemp.setFilters(new InputFilter[]{new MinMaxFilter("1", "99")});
-        Edit_ETBloomWater.setFilters(new InputFilter[]{new MinMaxFilter("1", "99")});
-        Edit_ETBloomTime.setFilters(new InputFilter[]{new MinMaxFilter("1", "99")});
-        Edit_ETTotalMin.setFilters(new InputFilter[]{new MinMaxFilter("0", "99")});
-        Edit_ETTotalSec.setFilters(new InputFilter[]{new MinMaxFilter("0", "59")});
-
-
         // Her lægges alle værdierne ind i edit teksene. Så de kommer frem.
         if (brew != null){
             if(!brew.getBrewName().isEmpty()) {
@@ -89,8 +79,23 @@ public class EditBrew extends AppCompatActivity {
             Edit_ETTemp.setText(Double.toString(brew.getBrewingTemperature()));
             Edit_ETBloomWater.setText(Double.toString(brew.getBloomWater()));
             Edit_ETBloomTime.setText(Double.toString(brew.getBloomTime()));
-            Edit_ETTotalMin.setText(Double.toString(brew.getTotalBrewingTime()));
+
+            if(!(brew.getTotalBrewingTime() == 0.0 )){
+                Edit_ETTotalMin.setText(Double.toString(brew.getTotalBrewingTime()));
+            }else
+            if(!(brew.getTotalBrewingTime() == 0.0 )) {
+                Edit_ETTotalSec.setText(Double.toString(brew.getTotalBrewingTime()));
+            }
         }
+        // intervallerne for hver af inputs
+
+        Edit_ETGroundCoffee.setFilters(new InputFilter[]{new MinMaxFilter("1", "99")});
+        Edit_ETRatio.setFilters(new InputFilter[]{new MinMaxFilter("1", "99")});
+        Edit_ETTemp.setFilters(new InputFilter[]{new MinMaxFilter("1", "99")});
+        Edit_ETBloomWater.setFilters(new InputFilter[]{new MinMaxFilter("1", "99")});
+        Edit_ETBloomTime.setFilters(new InputFilter[]{new MinMaxFilter("1", "99")});
+        Edit_ETTotalMin.setFilters(new InputFilter[]{new MinMaxFilter("0", "99")});
+        Edit_ETTotalSec.setFilters(new InputFilter[]{new MinMaxFilter("0", "59")});
 
         //når der brygges
         EditNow.setOnClickListener(v -> {
@@ -159,6 +164,7 @@ public class EditBrew extends AppCompatActivity {
 
 
                      //TODO den skal gemme brew hvis den er gemt ellers skal den bare gå videre med værdierne.
+            /*
                     // vi skal gemme ændringerne
                     IStorageService storage = StorageServiceSharedPref.getInstance();
                     if (brewName.isEmpty()) {
@@ -172,6 +178,7 @@ public class EditBrew extends AppCompatActivity {
                         e.printStackTrace();
                     }
 
+             */
 
 
                     // vores ændret brew bliver sendt til brewing
