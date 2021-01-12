@@ -100,7 +100,7 @@ public class NewBrew extends AppCompatActivity {
             // gemmer det i en newBrew
             setBrewValues();
             Intent intent = new Intent(this, Brewing.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             try {
                 intent.putExtra("Brew", newBrew.toJson());
             } catch (BrewException e) {

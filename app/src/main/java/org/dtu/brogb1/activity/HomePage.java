@@ -34,7 +34,8 @@ import org.dtu.brogb1.service.StorageServiceSharedPref;
 public class HomePage extends AppCompatActivity implements View.OnClickListener, PopupMenu.OnMenuItemClickListener {
     Button brew,list,quick,bsmquickBrew, bsmrecipes, bsmnewBrew;
     ImageButton settings;
-    IStorageService storage;
+    //TODO
+    //IStorageService storage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,11 +111,13 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener,
                 break;
             case R.id.quick_brew:
                 try {
-                    Brew quickbrew = storage.getQuickBrew();
+                    //TODO
+                    //Brew quickbrew = storage.getQuickBrew();
                     intent = new Intent(this, Brewing.class);
-                    intent.putExtra("Brew", quickbrew.toJson());
+                    Brew newBrew = new Brew();
+                    intent.putExtra("Brew", newBrew.toJson());
                     startActivity(intent);
-                } catch (StorageServiceException | BrewException e) {
+                } catch (Exception e) { //StorageServiceException | BrewException e
                     e.printStackTrace();
                     Toast.makeText(this, "Du har ikke valgt en quick-brew", Toast.LENGTH_LONG).show();
                 }
