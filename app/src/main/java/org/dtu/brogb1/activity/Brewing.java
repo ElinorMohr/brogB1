@@ -68,7 +68,7 @@ public class Brewing extends AppCompatActivity {
             finish();
         }
 
-        kaffebillede = findViewById(R.id.ny_opskrift);
+        kaffebillede = findViewById(R.id.new_brew_image);
 
 
         TVBrewName = findViewById(R.id.Opskriftens_navn);

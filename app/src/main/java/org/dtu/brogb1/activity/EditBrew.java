@@ -50,7 +50,7 @@ public class EditBrew extends AppCompatActivity implements View.OnClickListener 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_brew);
-        ImageButton info = findViewById(R.id.IGroundCoffee);
+        ImageButton info = findViewById(R.id.i_ground_coffee);
         StorageServiceSharedPref storageServiceSharedPref = StorageServiceSharedPref.getInstance();
 
         try {
@@ -66,7 +66,7 @@ public class EditBrew extends AppCompatActivity implements View.OnClickListener 
             finish();
         }
 
-        kaffebillede = findViewById(R.id.ny_opskrift);
+        kaffebillede = findViewById(R.id.new_brew_image);
         kaffebillede.setOnClickListener(this);
 
 
