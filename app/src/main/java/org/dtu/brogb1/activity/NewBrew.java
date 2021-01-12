@@ -160,13 +160,7 @@ public class NewBrew extends AppCompatActivity {
                 try {
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), image_uri);
                     coffeImageView.setImageBitmap(bitmap);
-                    ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
-                    byte[] byteArray = byteArrayOutputStream.toByteArray();
-                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-                        String encoded = Base64.getEncoder().encodeToString(byteArray);
-                        newBrew.setBrewPics(encoded);
-                    }
+                    newBrew.setBrewPics(image_uri.toString());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
