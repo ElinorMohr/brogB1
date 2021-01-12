@@ -34,6 +34,7 @@ import java.util.Base64;
  * @author Kristoffer Baumgarten s180500
  * @author Theis Villumsen s195461
  * @author Asim Raja s040727
+ * @author Betina Hansen s195389
  */
 
 public class NewBrew extends AppCompatActivity implements View.OnClickListener {

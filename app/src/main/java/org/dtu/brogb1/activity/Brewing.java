@@ -3,6 +3,8 @@ package org.dtu.brogb1.activity;
 import android.animation.ObjectAnimator;
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -11,6 +13,7 @@ import android.text.Html;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,6 +25,8 @@ import org.dtu.brogb1.model.Brew;
 import org.dtu.brogb1.model.BrewException;
 import org.dtu.brogb1.model.BrewFactory;
 import org.dtu.brogb1.service.StorageServiceSharedPref;
+
+import java.util.Base64;
 
 /**
  * @author Elinor Mikkelsen s191242
@@ -39,6 +44,8 @@ public class Brewing extends AppCompatActivity {
     boolean buttonOn;
     Brew brew;
     StorageServiceSharedPref storageServiceSharedPref = StorageServiceSharedPref.getInstance();
+
+    ImageView kaffebillede;
 
     private ProgressBar progressBarAnimation;
     private ObjectAnimator progressAnimator;
@@ -60,6 +67,8 @@ public class Brewing extends AppCompatActivity {
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
             finish();
         }
+
+        kaffebillede = findViewById(R.id.ny_opskrift);
 
 
         TVBrewName = findViewById(R.id.Opskriftens_navn);
@@ -83,6 +92,14 @@ public class Brewing extends AppCompatActivity {
             TVBloomTime.setText(Integer.toString(brew.getBloomTime()));
             TVTimeMin.setText(Integer.toString(brew.getBrewTimeMin()));
             TVTimeSec.setText(Integer.toString(brew.getBrewTimeSec()));
+            if(!brew.getBrewPics().isEmpty()){
+                byte[] decodedString = new byte[0];
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                    decodedString = Base64.getDecoder().decode(brew.getBrewPics());
+                }
+                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                kaffebillede.setImageBitmap(decodedByte);
+            }
 
         }
         favoriteBT = (ImageButton) findViewById(R.id.BrewingFavoriteBT);
