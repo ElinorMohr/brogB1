@@ -20,7 +20,7 @@
 
 
     <ImageButton
-        android:id="@+id/BrewingFavoriteBT"
+        android:id="@+id/trashcan"
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:layout_alignParentEnd="true"
@@ -29,9 +29,21 @@
         android:adjustViewBounds="true"
         android:layout_marginEnd="15dp"
         android:background="@null"
-        app:srcCompat="@drawable/ic_heart_empty">
+        app:srcCompat="@drawable/ic_trash">
     </ImageButton>
 
+    <ImageButton
+        android:id="@+id/BrewingFavoriteBT"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="241dp"
+        android:layout_marginEnd="70dp"
+        android:adjustViewBounds="true"
+        android:background="@null"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/ic_heart_empty" />
 
     <ImageView
         android:id="@+id/kaffebillede"
@@ -378,7 +390,7 @@
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <LinearLayout
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="70dp"
         android:id="@+id/layout_2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
