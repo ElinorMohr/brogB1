@@ -37,7 +37,8 @@ public class Recipes extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        storage = StorageServiceSharedPref.getInstance();
+        //TODO
+        //storage = StorageServiceSharedPref.getInstance();
         View root = inflater.inflate(R.layout.recipes_layout, container, false);
 
         return populateLists(root);
@@ -72,7 +73,6 @@ public class Recipes extends Fragment {
         try {
             // Henter gemte informationer om Brew fra storage
             recipeList = storage.getAllBrews();
-
             // Find elementerne, som der skal udfyldes med lister
             listSec = root.findViewById(R.id.list_view_sec_recipes);
 

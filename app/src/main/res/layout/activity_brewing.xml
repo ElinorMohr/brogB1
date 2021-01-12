@@ -87,7 +87,7 @@
 
             <TextView
                 android:id="@+id/valueGroundCoffee"
-                android:layout_width="wrap_content"
+                android:layout_width="113dp"
                 android:layout_height="wrap_content"
                 android:ems="5"
                 android:layout_alignParentEnd="true"
@@ -127,7 +127,7 @@
 
             <TextView
                 android:id="@+id/valuegrindsize"
-                android:layout_width="wrap_content"
+                android:layout_width="113dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:background="@drawable/textinputboarder"
@@ -157,18 +157,17 @@
 
             <TextView
                 android:id="@+id/valueRatio"
-                android:layout_width="wrap_content"
+                android:layout_width="113dp"
                 android:layout_height="wrap_content"
-                android:ems="5"
-                android:text="60"
-                android:textColor="@color/colorplate2"
-                android:background="@drawable/textinputboarder"
                 android:layout_alignParentRight="true"
                 android:layout_marginEnd="30dp"
-                android:layout_marginTop="2.5dp"
                 android:layout_marginBottom="2.5dp"
+                android:background="@drawable/textinputboarder"
+                android:ems="5"
+                android:gravity="right"
                 android:paddingEnd="6dp"
-                android:gravity="right"/>
+                android:text="60"
+                android:textColor="@color/colorplate2" />
 
             <TextView
                 android:id="@+id/txtGl"
@@ -199,16 +198,14 @@
 
             <TextView
                 android:id="@+id/valueTemperature"
-                android:layout_width="wrap_content"
+                android:layout_width="113dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="30dp"
-                android:layout_marginTop="2.5dp"
-                android:layout_marginBottom="2.5dp"
                 android:background="@drawable/textinputboarder"
                 android:ems="5"
-                android:paddingEnd="6dp"
                 android:gravity="right"
+                android:paddingEnd="6dp"
                 android:text="60"
                 android:textColor="@color/colorplate2" />
             <TextView
@@ -240,7 +237,7 @@
 
             <TextView
                 android:id="@+id/valueBloomWater"
-                android:layout_width="wrap_content"
+                android:layout_width="113dp"
                 android:layout_height="wrap_content"
                 android:ems="5"
                 android:layout_centerVertical="true"
@@ -283,7 +280,7 @@
 
             <TextView
                 android:id="@+id/valueBloomTime"
-                android:layout_width="wrap_content"
+                android:layout_width="113dp"
                 android:layout_height="wrap_content"
                 android:ems="5"
                 android:inputType="textPersonName"

@@ -6,13 +6,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Build;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.InputFilter;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -23,9 +29,17 @@ import org.dtu.brogb1.model.BrewException;
 import org.dtu.brogb1.model.BrewFactory;
 import org.dtu.brogb1.service.IStorageService;
 import org.dtu.brogb1.service.StorageServiceSharedPref;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.util.Base64;
+
 /**
  * @author Kristoffer Baumgarten s180500
+ * @author Betina Hansen s195389
+ * @author Elinor Mikkelsen s191242
  */
+
 public class EditBrew extends AppCompatActivity {
     private static final String TAG = EditBrew.class.getSimpleName();
     Dialog dialogue;
@@ -34,14 +48,16 @@ public class EditBrew extends AppCompatActivity {
     EditText Edit_ETBrewName, Edit_ETGroundCoffee, Edit_ETRatio, Edit_ETTemp, Edit_ETBloomWater, Edit_ETBloomTime, Edit_ETTotalMin, Edit_ETTotalSec;
     Spinner Edit_SpinnerInputGrindSize;
     Brew brew;
-
     @RequiresApi(api = Build.VERSION_CODES.O)
+    ImageView kaffebillede;
+  
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_brew);
-        ImageButton info = findViewById(R.id.IGroundCoffee);
-        StorageServiceSharedPref storageServiceSharedPref = StorageServiceSharedPref.getInstance();
+        ImageButton info = findViewById(R.id.i_ground_coffee);
+        //TODO
+        //StorageServiceSharedPref storageServiceSharedPref = StorageServiceSharedPref.getInstance();
 
         try {
             if (getIntent().hasExtra("Brew")) {
@@ -55,6 +71,10 @@ public class EditBrew extends AppCompatActivity {
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
             finish();
         }
+
+        kaffebillede = findViewById(R.id.new_brew_image);
+        kaffebillede.setOnClickListener(this);
+
 
         Edit_ETBrewName = findViewById(R.id.edit_Opskrifts_navn);
         Edit_ETGroundCoffee = findViewById(R.id.edit_inputGroundCoffee);
@@ -100,6 +120,14 @@ public class EditBrew extends AppCompatActivity {
             Edit_ETBloomTime.setText(Integer.toString(brew.getBloomTime()));
             Edit_ETTotalMin.setText(Integer.toString(brew.getBrewTimeMin()));
             Edit_ETTotalSec.setText(Integer.toString(brew.getBrewTimeSec()));
+            if(!brew.getBrewPics().isEmpty()){
+                byte[] decodedString = new byte[0];
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                    decodedString = Base64.getDecoder().decode(brew.getBrewPics());
+                }
+                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                kaffebillede.setImageBitmap(decodedByte);
+            }
         }
 
         Button EditNow = (Button) findViewById(R.id.editBT);
@@ -186,7 +214,8 @@ public class EditBrew extends AppCompatActivity {
 
             if(brew.getStorageKey() >= 0 || brew.getFavoriteKey() >= 0) {
                 // vi skal gemme ændringerne
-                IStorageService storage = StorageServiceSharedPref.getInstance();
+                //TODO
+                //IStorageService storage = StorageServiceSharedPref.getInstance();
                 if (brewName.isEmpty()) {
                     Toast.makeText(this, "your brew needs a name", Toast.LENGTH_SHORT).show();
                     return;
@@ -234,4 +263,42 @@ public class EditBrew extends AppCompatActivity {
         brewName = Edit_ETBrewName.getText().toString();
         brew.setBrewName(brewName);
     }
+
+    @Override
+    public void onClick(View v) {
+        Intent getIntent = new Intent(Intent.ACTION_GET_CONTENT);
+        getIntent.setType("image/");
+
+        Intent pickIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        pickIntent.setType("image/");
+
+        Intent chooserIntent = Intent.createChooser(getIntent, "Select Image");
+        chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[] {pickIntent});
+
+        startActivityForResult(chooserIntent, 1); //request code til det der sendes videre.
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == RESULT_OK){
+            if(requestCode == 1){
+                Uri image_uri = data.getData();
+                try {
+                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), image_uri);
+                    kaffebillede.setImageBitmap(bitmap);
+                    ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+                    byte[] byteArray = byteArrayOutputStream .toByteArray();
+                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                        String encoded = Base64.getEncoder().encodeToString(byteArray);
+                        brew.setBrewPics(encoded);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
 }

@@ -29,13 +29,15 @@ import java.util.ArrayList;
 
 public class RecipiesAdapter extends ArrayAdapter<Brew> {
     private String mode = "normal";
-    private final IStorageService storage;
+    //TODO
+    //private final IStorageService storage;
     private final Context context;
 
     // Adapteren kan states på 3 måder, i "favorit" og "normal"
     public RecipiesAdapter(@NonNull Context context, ArrayList<Brew> objects) {
         super(context, 0, objects);
-        this.storage = StorageServiceSharedPref.getInstance();
+        //TODO
+        //this.storage = StorageServiceSharedPref.getInstance();
         this.context = context;
     }
     public RecipiesAdapter(@NonNull Context context, ArrayList<Brew> objects, String mode) {
@@ -43,7 +45,8 @@ public class RecipiesAdapter extends ArrayAdapter<Brew> {
         if (!mode.equals("normal") && !mode.equals("favorite") && !mode.equals("history"))
             mode = "normal";
         this.mode = mode;
-        this.storage = StorageServiceSharedPref.getInstance();
+        //TODO
+        //this.storage = StorageServiceSharedPref.getInstance();
         this.context = context;
     }
 
@@ -70,14 +73,15 @@ public class RecipiesAdapter extends ArrayAdapter<Brew> {
             favCount.setText((position + 1) + ".");
             // Forsøg at sætte stjernen, hvis denne Brew er den samme som quick-brew
             try {
-                if (brew.equals(this.storage.getQuickBrew()))
-                    star.setImageDrawable(this.getContext().getDrawable(R.drawable.ic_star));
+                //TODO
+                //if (brew.equals(this.storage.getQuickBrew()))
+                //    star.setImageDrawable(this.getContext().getDrawable(R.drawable.ic_star));
 
                 // Gem noget data, så man kan trykke på stjernen
                 star.setTag(brew);
-                star.setOnClickListener(this.onStarClickListener);
-            } catch (StorageServiceException | BrewException e) {
-                e.printStackTrace();
+             //   star.setOnClickListener(this.onStarClickListener);
+            } catch (Exception e) { //(StorageServiceException | BrewException e
+            //    e.printStackTrace();
             }
             brewName.setText(brew.getBrewName());
         } else if (this.mode.equals("history")) {

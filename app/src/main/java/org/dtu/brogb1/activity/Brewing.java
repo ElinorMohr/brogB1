@@ -4,6 +4,8 @@ import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
@@ -13,6 +15,7 @@ import android.text.Html;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,6 +28,8 @@ import org.dtu.brogb1.model.Brew;
 import org.dtu.brogb1.model.BrewException;
 import org.dtu.brogb1.model.BrewFactory;
 import org.dtu.brogb1.service.StorageServiceSharedPref;
+
+import java.util.Base64;
 
 /**
  * @author Elinor Mikkelsen s191242
@@ -41,7 +46,10 @@ public class Brewing extends AppCompatActivity {
     ImageButton favoriteBT;
     boolean buttonOn;
     Brew brew;
-    StorageServiceSharedPref storageServiceSharedPref = StorageServiceSharedPref.getInstance();
+    //TODO
+    //StorageServiceSharedPref storageServiceSharedPref = StorageServiceSharedPref.getInstance();
+
+    ImageView kaffebillede;
 
     private ProgressBar progressBarAnimation;
     private ObjectAnimator progressAnimator;
@@ -65,6 +73,8 @@ public class Brewing extends AppCompatActivity {
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
             finish();
         }
+
+        kaffebillede = findViewById(R.id.new_brew_image);
 
 
         TVBrewName = findViewById(R.id.Opskriftens_navn);
@@ -98,6 +108,14 @@ public class Brewing extends AppCompatActivity {
             if (brew.getFavoriteKey() == -1 && brew.getStorageKey() == -1) {
                 favoriteBT.setVisibility(View.INVISIBLE);
             }
+            if(false && brew.getBrewPics().isEmpty()){
+                byte[] decodedString = new byte[0];
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                    decodedString = Base64.getDecoder().decode(brew.getBrewPics());
+                }
+                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                kaffebillede.setImageBitmap(decodedByte);
+            }
         }
 
         brewNow.setOnClickListener(new View.OnClickListener() {
@@ -106,7 +124,8 @@ public class Brewing extends AppCompatActivity {
                 if (brew != null){
                     brew.setLastBrewTime();
                     try {
-                        storageServiceSharedPref.saveBrewToHistory(brew);
+                        //TODO
+                        //storageServiceSharedPref.saveBrewToHistory(brew);
                     } catch (Exception e){
                         Toast.makeText(v.getContext(), "Fejl under gem", Toast.LENGTH_SHORT).show();
                     }
