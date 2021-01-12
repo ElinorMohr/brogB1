@@ -92,6 +92,7 @@ public class NewBrew extends AppCompatActivity {
                 bloomWater = getIntInput(editTemp, "bloom Water");
                 bloomTime = getIntInput(editTemp, "bloom Time");
                 getTimeInput();
+                brewName = editBrewName.getText().toString();
             } catch (Exception e) {
                 e.printStackTrace();
                 return;
@@ -185,10 +186,10 @@ public class NewBrew extends AppCompatActivity {
         newBrew.setBrewName(brewName);
     }
 
-    private int getIntInput(EditText V, String text) throws Exception {
+    private int getIntInput(EditText v, String text) throws Exception {
         int output;
         try {
-            output = Integer.parseInt(editRatio.getText().toString());
+            output = Integer.parseInt(v.getText().toString());
             if (output == 0) {
                 Toast.makeText(this, "input in " + text + " is 0", Toast.LENGTH_SHORT).show();
                 throw new Exception();
