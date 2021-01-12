@@ -11,9 +11,9 @@ import org.json.JSONObject;
 public class BrewFactory {
     public static Brew getBrew(String option){
         if(option.equals("Default")){
-            return new Brew(18,"Medium",60,93,45,30,180,"Standart bryg", "");
+            return new Brew(18,"Medium",60,93,45,30, 3 , 0, "Golden Cup", " ", false,false);
         }
-        return new Brew(1," ",1,1,1,1,1, " ", " ");
+        return new Brew(1," ",1,1,1,1, 1 , 1 ," "," ", false,false);
     }
 
     public static Brew fromJson(String input) throws BrewException {
@@ -23,15 +23,18 @@ public class BrewFactory {
         try {
             JSONObject jObject = new JSONObject(input);
             return new Brew(
-                    jObject.getDouble("groundCoffee"),
+                    jObject.getInt("groundCoffee"),
                     jObject.getString("grindSize"),
-                    jObject.getDouble("coffeeWaterRatio"),
-                    jObject.getDouble("brewingTemperature"),
-                    jObject.getDouble("bloomWater"),
-                    jObject.getDouble("bloomTime"),
-                    jObject.getDouble("totalBrewingTime"),
+                    jObject.getInt("coffeeWaterRatio"),
+                    jObject.getInt("brewingTemperature"),
+                    jObject.getInt("bloomWater"),
+                    jObject.getInt("bloomTime"),
+                    jObject.getInt("brewTimeMin"),
+                    jObject.getInt("brewTimeSec"),
                     jObject.getString("brewName"),
-                    jObject.getString("brewPics")
+                    jObject.getString("brewPics"),
+                    jObject.getBoolean("saveBrew"),
+                    jObject.getBoolean("favoriteBrew")
             );
         } catch (JSONException e) {
             System.out.println(input);

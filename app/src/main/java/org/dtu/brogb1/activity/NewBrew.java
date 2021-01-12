@@ -29,8 +29,8 @@ import org.dtu.brogb1.service.StorageServiceSharedPref;
 
 public class NewBrew extends AppCompatActivity {
     private String brewName, brewPics, grindSize;
-    private double groundCoffee, coffeeWaterRatio, brewingTemperature, bloomWater, bloomTime, totalBrewingTime;
-    EditText editBrewName, editGroundCoffee, editRatio, editTemp, editBloomWater, editBloomTime, editTotal;
+    private int brewTimeMin, brewTimeSec, groundCoffee, coffeeWaterRatio, brewingTemperature, bloomWater, bloomTime;
+    EditText editBrewName, editGroundCoffee, editRatio, editTemp, editBloomWater, editBloomTime, editTotalMin, editTotalSec;
     Spinner SpinnerInputGrindSize;
     StorageServiceSharedPref sharedPref = StorageServiceSharedPref.getInstance();
 
@@ -56,7 +56,8 @@ public class NewBrew extends AppCompatActivity {
         editTemp = findViewById(R.id.inputTemperature);
         editBloomWater = findViewById(R.id.inputBloomWater);
         editBloomTime = findViewById(R.id.inputBloomTime);
-        editTotal = findViewById(R.id.inputTotalTime);
+        editTotalMin = findViewById(R.id.inputTotalTimeMin);
+        editTotalSec = findViewById(R.id.inputTotalTimeSec);
 
         // dette er vores favorite knap, onclick er i bunden!
         favoriteBT = (ImageButton) findViewById(R.id.NewBrewFavoriteBT);
@@ -67,7 +68,8 @@ public class NewBrew extends AppCompatActivity {
         editTemp.setFilters(new InputFilter[]{new MinMaxFilter("1", "99")});
         editBloomWater.setFilters(new InputFilter[]{new MinMaxFilter("1", "99")});
         editBloomTime.setFilters(new InputFilter[]{new MinMaxFilter("1", "99")});
-        editTotal.setFilters(new InputFilter[]{new MinMaxFilter("1", "99")});
+        editTotalMin.setFilters(new InputFilter[]{new MinMaxFilter("0", "99")});
+        editTotalSec.setFilters(new InputFilter[]{new MinMaxFilter("0", "59")});
 
         //når der brygges
         brewNow.setOnClickListener(v -> {
@@ -75,7 +77,11 @@ public class NewBrew extends AppCompatActivity {
 
             // gemmer inputtet fra ui'en til værdierne
             try {
-                groundCoffee = Double.parseDouble(editGroundCoffee.getText().toString());
+                groundCoffee = Integer.parseInt(editGroundCoffee.getText().toString());
+                if(groundCoffee == 0){
+                    Toast.makeText(this, "input in ground coffee is 0", Toast.LENGTH_SHORT).show();
+                    return;
+                }
             } catch (Exception e) {
                 Toast.makeText(this, "Need input at ground coffee", Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
@@ -84,14 +90,24 @@ public class NewBrew extends AppCompatActivity {
             grindSize = SpinnerInputGrindSize.getSelectedItem().toString();
 
             try {
-                coffeeWaterRatio = Double.parseDouble(editRatio.getText().toString());
+                    coffeeWaterRatio = Integer.parseInt(editRatio.getText().toString());
+
+                if(coffeeWaterRatio == 0) {
+                    Toast.makeText(this, "input in coffee Water Ratio is 0", Toast.LENGTH_SHORT).show();
+                    return;
+                }
             } catch (Exception e) {
                 Toast.makeText(this, "Need input at Coffee/water ratio", Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
                 return;
             }
             try {
-                brewingTemperature = Double.parseDouble(editTemp.getText().toString());
+                brewingTemperature = Integer.parseInt(editTemp.getText().toString());
+
+                if(brewingTemperature == 0) {
+                    Toast.makeText(this, "input in brewing Temperature is 0", Toast.LENGTH_SHORT).show();
+                    return;
+                }
             } catch (Exception e) {
                 Toast.makeText(this, "Need input at brewing temperature", Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
@@ -99,26 +115,46 @@ public class NewBrew extends AppCompatActivity {
             }
 
             try {
-                bloomWater = Double.parseDouble(editBloomWater.getText().toString());
+                bloomWater = Integer.parseInt(editBloomWater.getText().toString());
+
+                if(bloomWater == 0) {
+                    Toast.makeText(this, "input in Bloom Water is 0", Toast.LENGTH_SHORT).show();
+                    return;
+                }
             } catch (Exception e) {
                 Toast.makeText(this, "Need input at bloom water", Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
                 return;
             }
             try {
-                bloomTime = Double.parseDouble(editBloomTime.getText().toString());
+                bloomTime = Integer.parseInt(editBloomTime.getText().toString());
+                if(bloomTime == 0) {
+                    Toast.makeText(this, "input in Bloom Time is 0", Toast.LENGTH_SHORT).show();
+                    return;
+                }
             } catch (Exception e) {
                 Toast.makeText(this, "Need input at bloom time", Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
                 return;
             }
-            try {
-                totalBrewingTime = Double.parseDouble(editTotal.getText().toString());
-            } catch (Exception e) {
-                Toast.makeText(this, "Need input at total brewing time", Toast.LENGTH_SHORT).show();
-                e.printStackTrace();
+
+            // tiden skal blive lagt sammen
+            if(editTotalMin.getText().toString().isEmpty()){
+                brewTimeMin = 0;
+            } else {
+                brewTimeMin = Integer.parseInt(editTotalMin.getText().toString());
+            }
+
+            if(editTotalSec.getText().toString().isEmpty()){
+                brewTimeSec = 0;
+            } else {
+                brewTimeSec = Integer.parseInt(editTotalSec.getText().toString());
+            }
+            if((editTotalMin.getText().toString().isEmpty() && editTotalSec.getText().toString().isEmpty()) || (brewTimeMin == 0 && brewTimeSec == 0) ){
+                Toast.makeText(this, "time can't be empty", Toast.LENGTH_SHORT).show();
                 return;
             }
+
             // gemmer det i en newBrew
             setBrewValues();
 
@@ -132,6 +168,7 @@ public class NewBrew extends AppCompatActivity {
                     return;
                 }
                 try {
+                    newBrew.setSaveBrew(true);
                     storage.saveBrew(newBrew);
                 } catch (BrewException e) {
                     Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -162,6 +199,7 @@ public class NewBrew extends AppCompatActivity {
                 buttonOn = true;
                 favoriteBT.setBackground(getResources().getDrawable(R.drawable.ic_heart));
                 setBrewValues();
+                newBrew.setFavoriteBrew(true);
                 try {
                     sharedPref.saveBrewToFavorites(newBrew);
                 } catch (Exception e){
@@ -170,6 +208,7 @@ public class NewBrew extends AppCompatActivity {
             } else {
                 buttonOn = false;
                 favoriteBT.setBackground(getResources().getDrawable(R.drawable.ic_heart_empty));
+                newBrew.setFavoriteBrew(false);
                 setBrewValues();
                 try {
                     //TODO
@@ -188,7 +227,8 @@ public class NewBrew extends AppCompatActivity {
         newBrew.setBrewingTemperature(brewingTemperature);
         newBrew.setBloomWater(bloomWater);
         newBrew.setBloomTime(bloomTime);
-        newBrew.setTotalBrewingTime(totalBrewingTime);
+        newBrew.setBrewTimeMin(brewTimeMin);
+        newBrew.setBrewTimeSec(brewTimeSec);
         brewName = editBrewName.getText().toString();
         newBrew.setBrewName(brewName);
     }
