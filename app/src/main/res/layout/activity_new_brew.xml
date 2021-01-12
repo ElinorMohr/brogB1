@@ -23,22 +23,21 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/new_brew_favorite_bt"
         android:layout_width="25dp"
         android:layout_height="25dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
+        android:layout_alignEnd="@id/new_brew_image"
         android:layout_marginTop="241dp"
-        android:layout_marginEnd="70dp"
+        android:layout_marginEnd="-30dp"
         android:adjustViewBounds="true"
         android:background="@null"
         android:scaleType="fitCenter"
         app:srcCompat="@drawable/ic_heart_empty" />
 
-        <ImageView
-            android:id="@+id/new_brew_image"
-            android:layout_width="220dp"
-            android:layout_height="236dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="30dp"
-            app:srcCompat="@drawable/kaffevinter" />
+    <ImageView
+        android:id="@+id/new_brew_image"
+        android:layout_width="220dp"
+        android:layout_height="236dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        app:srcCompat="@drawable/kaffevinter" />
 
     <EditText
         android:layout_below="@id/new_brew_image"

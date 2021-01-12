@@ -43,7 +43,7 @@ public class Brewing extends AppCompatActivity {
     Button brewNow;
     Dialog dialogue;
     TextView TVBrewName, TVGrindSize, TVGroundCoffee, TVRatio, TVTemp, TVBloomWater, TVBloomTime, TVTimeMin, TVTimeSec, TVEdit;
-    ImageButton favoriteBT;
+    ImageButton favoriteBT, trashBT;
     boolean buttonOn;
     Brew brew;
     StorageServiceSharedPref storageServiceSharedPref = StorageServiceSharedPref.getInstance();
@@ -86,7 +86,9 @@ public class Brewing extends AppCompatActivity {
         TVTimeMin = findViewById(R.id.valueTimeMin);
         TVTimeSec = findViewById(R.id.valueTimeSec);
 
-        favoriteBT = (ImageButton) findViewById(R.id.BrewingFavoriteBT);
+        trashBT = (ImageButton) findViewById(R.id.trashcan);
+
+        favoriteBT = (ImageButton) findViewById(R.id.brewing_favorite_bt);
         favoriteBT.setOnClickListener(imgButtonHandler);
         TVEdit = findViewById(R.id.EditBrewTxt);
 
