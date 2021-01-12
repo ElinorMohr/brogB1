@@ -39,7 +39,8 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener,
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        storage = StorageServiceSharedPref.getInstance();
+        //TODO
+        //storage = StorageServiceSharedPref.getInstance();
         setContentView(R.layout.activity_start_side);
         brew = findViewById(R.id.brew_now);
         list = findViewById(R.id.see_list);

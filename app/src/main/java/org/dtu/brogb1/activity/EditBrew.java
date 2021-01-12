@@ -51,7 +51,8 @@ public class EditBrew extends AppCompatActivity implements View.OnClickListener 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_brew);
         ImageButton info = findViewById(R.id.i_ground_coffee);
-        StorageServiceSharedPref storageServiceSharedPref = StorageServiceSharedPref.getInstance();
+        //TODO
+        //StorageServiceSharedPref storageServiceSharedPref = StorageServiceSharedPref.getInstance();
 
         try {
             if (getIntent().hasExtra("Brew")) {
@@ -208,15 +209,17 @@ public class EditBrew extends AppCompatActivity implements View.OnClickListener 
 
             if(brew.isSaveBrew() || brew.isFavoriteBrew()) {
                 // vi skal gemme ændringerne
-                IStorageService storage = StorageServiceSharedPref.getInstance();
+                //TODO
+                //IStorageService storage = StorageServiceSharedPref.getInstance();
                 if (brewName.isEmpty()) {
                     Toast.makeText(this, "your brew needs a name", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 try {
                     //TODO her skal vi tilføje den key som det skal overskrive
-                    storage.overwriteBrew(1,brew);
-                } catch (BrewException e) {
+                    //TODO
+                    //storage.overwriteBrew(1,brew);
+                } catch (Exception e) {//BrewException
                     Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
                 }

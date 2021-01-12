@@ -41,7 +41,8 @@ public class NewBrew extends AppCompatActivity {
     private int brewTimeMin, brewTimeSec, groundCoffee, coffeeWaterRatio, brewingTemperature, bloomWater, bloomTime;
     EditText editBrewName, editGroundCoffee, editRatio, editTemp, editBloomWater, editBloomTime, editTotalMin, editTotalSec;
     Spinner spinnerInputGrindSize;
-    StorageServiceSharedPref sharedPref = StorageServiceSharedPref.getInstance();
+    //TODO
+    //StorageServiceSharedPref sharedPref = StorageServiceSharedPref.getInstance();
 
     ImageButton favoriteBT;
     boolean buttonOn;
@@ -119,7 +120,8 @@ public class NewBrew extends AppCompatActivity {
                 setBrewValues();
                 newBrew.setFavoriteBrew(true);
                 try {
-                    sharedPref.saveBrewToFavorites(newBrew);
+                    //TODO
+                    //sharedPref.saveBrewToFavorites(newBrew);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -130,7 +132,8 @@ public class NewBrew extends AppCompatActivity {
                 setBrewValues();
                 try {
                     if (newBrew.getFavoriteKey() != -1){
-                        sharedPref.deleteFavoriteBrew(newBrew.getFavoriteKey());
+                        //TODO
+                        //sharedPref.deleteFavoriteBrew(newBrew.getFavoriteKey());
                     }
                 } catch (Exception e) {
                     e.printStackTrace();

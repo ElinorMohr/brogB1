@@ -26,7 +26,8 @@ import java.util.ArrayList;
  */
 
 public class History extends Fragment {
-    StorageServiceSharedPref sharedPref = StorageServiceSharedPref.getInstance();
+    //TODO
+    //StorageServiceSharedPref sharedPref = StorageServiceSharedPref.getInstance();
     ArrayList<Brew> viewMain;
 
     @Nullable
@@ -35,7 +36,9 @@ public class History extends Fragment {
         View root =  inflater.inflate(R.layout.history_layout, container, false);
         ListView listMain = root.findViewById(R.id.list_view_main_history);
         try {
-            viewMain = sharedPref.getBrewHistory();
+            //TODO
+            //viewMain = sharedPref.getBrewHistory();
+            viewMain = new ArrayList<Brew>();
         }catch (Exception e){
             viewMain = new ArrayList<Brew>();
             e.printStackTrace();
