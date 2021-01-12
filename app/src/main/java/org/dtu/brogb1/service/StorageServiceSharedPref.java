@@ -1,7 +1,10 @@
 package org.dtu.brogb1.service;
 
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.util.Log;
+
+import androidx.annotation.RequiresApi;
 
 import org.dtu.brogb1.activity.LandingPage;
 import org.dtu.brogb1.model.Brew;
@@ -213,6 +216,7 @@ public class    StorageServiceSharedPref implements IStorageService {
         return this.favoriteCount - 1;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public Brew getBrewFromFavorites(int key) throws StorageServiceException, BrewException {
         if (key >= this.favoriteCount)

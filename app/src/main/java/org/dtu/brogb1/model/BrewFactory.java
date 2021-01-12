@@ -33,7 +33,7 @@ public class BrewFactory {
             JSONObject jObject = new JSONObject(input);
             Brew brew = new Brew(
                     jObject.getInt("groundCoffee"),
-                    jObject.getString("grindSize"),
+                    jObject.has("grindSize") ? jObject.getString("grindSize") : "Fine",
                     jObject.getInt("coffeeWaterRatio"),
                     jObject.getInt("brewingTemperature"),
                     jObject.getInt("bloomWater"),

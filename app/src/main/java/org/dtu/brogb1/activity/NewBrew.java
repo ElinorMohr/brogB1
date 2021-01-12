@@ -35,7 +35,7 @@ public class NewBrew extends AppCompatActivity {
     StorageServiceSharedPref sharedPref = StorageServiceSharedPref.getInstance();
 
     ImageButton favoriteBT;
-    boolean buttonOn;
+    boolean favoriteOn;
 
     Brew newBrew = new Brew();
 
@@ -73,8 +73,6 @@ public class NewBrew extends AppCompatActivity {
 
         //når der brygges
         brewNow.setOnClickListener(v -> {
-
-
             // gemmer inputtet fra ui'en til værdierne
             try {
                 groundCoffee = Integer.parseInt(editGroundCoffee.getText().toString());
@@ -90,8 +88,7 @@ public class NewBrew extends AppCompatActivity {
             grindSize = SpinnerInputGrindSize.getSelectedItem().toString();
 
             try {
-                    coffeeWaterRatio = Integer.parseInt(editRatio.getText().toString());
-
+                coffeeWaterRatio = Integer.parseInt(editRatio.getText().toString());
                 if(coffeeWaterRatio == 0) {
                     Toast.makeText(this, "input in coffee Water Ratio is 0", Toast.LENGTH_SHORT).show();
                     return;
@@ -103,7 +100,6 @@ public class NewBrew extends AppCompatActivity {
             }
             try {
                 brewingTemperature = Integer.parseInt(editTemp.getText().toString());
-
                 if(brewingTemperature == 0) {
                     Toast.makeText(this, "input in brewing Temperature is 0", Toast.LENGTH_SHORT).show();
                     return;
@@ -116,7 +112,6 @@ public class NewBrew extends AppCompatActivity {
 
             try {
                 bloomWater = Integer.parseInt(editBloomWater.getText().toString());
-
                 if(bloomWater == 0) {
                     Toast.makeText(this, "input in Bloom Water is 0", Toast.LENGTH_SHORT).show();
                     return;
@@ -151,7 +146,7 @@ public class NewBrew extends AppCompatActivity {
                 brewTimeSec = Integer.parseInt(editTotalSec.getText().toString());
             }
             if((editTotalMin.getText().toString().isEmpty() && editTotalSec.getText().toString().isEmpty()) || (brewTimeMin == 0 && brewTimeSec == 0) ){
-                Toast.makeText(this, "time can't be empty", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Time can't be empty", Toast.LENGTH_SHORT).show();
                 return;
             }
 
@@ -164,12 +159,14 @@ public class NewBrew extends AppCompatActivity {
             if (saveBrew.isChecked()) {
                 IStorageService storage = StorageServiceSharedPref.getInstance();
                 if (brewName.isEmpty()) {
-                    Toast.makeText(this, "your brew needs a name", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Your brew needs a name", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 try {
-                    newBrew.setSaveBrew(true);
-                    storage.saveBrew(newBrew);
+                    if (favoriteOn)
+                        newBrew.setFavoriteKey(storage.saveBrewToFavorites(newBrew));
+                    else
+                        newBrew.setStorageKey(storage.saveBrew(newBrew));
                 } catch (BrewException e) {
                     Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
@@ -192,31 +189,13 @@ public class NewBrew extends AppCompatActivity {
     }
 
     View.OnClickListener imgButtonHandler = new View.OnClickListener() {
-
         public void onClick(View v) {
-
-            if (!buttonOn) {
-                buttonOn = true;
-                favoriteBT.setBackground(getResources().getDrawable(R.drawable.ic_heart));
-                setBrewValues();
-                newBrew.setFavoriteBrew(true);
-                try {
-                    sharedPref.saveBrewToFavorites(newBrew);
-                } catch (Exception e){
-                    e.printStackTrace();
-                }
+            if (!favoriteOn) {
+                favoriteBT.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart));
             } else {
-                buttonOn = false;
-                favoriteBT.setBackground(getResources().getDrawable(R.drawable.ic_heart_empty));
-                newBrew.setFavoriteBrew(false);
-                setBrewValues();
-                try {
-                    //TODO
-                    //sharedPref.deleteFavoriteBrew();
-                } catch (Exception e){
-                    e.printStackTrace();
-                }
+                favoriteBT.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart_empty));
             }
+            favoriteOn = !favoriteOn;
         }
     };
 
