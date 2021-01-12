@@ -1,15 +1,18 @@
 package org.dtu.brogb1.activity;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.os.Build;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.InputFilter;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -36,16 +39,18 @@ import java.util.Base64;
  * @author Betina Hansen s195389
  * @author Elinor Mikkelsen s191242
  */
-public class EditBrew extends AppCompatActivity implements View.OnClickListener {
+
+public class EditBrew extends AppCompatActivity {
+    private static final String TAG = EditBrew.class.getSimpleName();
     Dialog dialogue;
     private String brewName, brewPics, grindSize;
     private int brewTimeMin, brewTimeSec, groundCoffee, coffeeWaterRatio, brewingTemperature, bloomWater, bloomTime;
     EditText Edit_ETBrewName, Edit_ETGroundCoffee, Edit_ETRatio, Edit_ETTemp, Edit_ETBloomWater, Edit_ETBloomTime, Edit_ETTotalMin, Edit_ETTotalSec;
     Spinner Edit_SpinnerInputGrindSize;
     Brew brew;
-
+    @RequiresApi(api = Build.VERSION_CODES.O)
     ImageView kaffebillede;
-
+  
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -205,9 +210,9 @@ public class EditBrew extends AppCompatActivity implements View.OnClickListener 
                 return;
             }
 
-            //TODO den skal gemme brew hvis den er gemt ellers skal den bare gå videre med værdierne.
+            setBrewValues();
 
-            if(brew.isSaveBrew() || brew.isFavoriteBrew()) {
+            if(brew.getStorageKey() >= 0 || brew.getFavoriteKey() >= 0) {
                 // vi skal gemme ændringerne
                 //TODO
                 //IStorageService storage = StorageServiceSharedPref.getInstance();
@@ -216,30 +221,27 @@ public class EditBrew extends AppCompatActivity implements View.OnClickListener 
                     return;
                 }
                 try {
-                    //TODO her skal vi tilføje den key som det skal overskrive
-                    //TODO
-                    //storage.overwriteBrew(1,brew);
-                } catch (Exception e) {//BrewException
+                    if (brew.getFavoriteKey() >= 0)
+                        storage.overwriteFavoriteBrew(brew.getFavoriteKey(), brew);
+                    else
+                        storage.overwriteBrew(brew.getStorageKey(), brew);
+                } catch (BrewException e) {
                     Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
                 }
             }
 
-            setBrewValues();
-
             // vores ændret brew bliver sendt til brewing
             Intent intent = new Intent(this, Brewing.class);
             try {
                 intent.putExtra("Brew", brew.toJson());
+                Log.d(TAG, brew.toJson());
             } catch (BrewException e) {
                 e.printStackTrace();
             }
-            try {
-                System.out.println(brew.toJson());
-            } catch (BrewException e) {
-                e.printStackTrace();
-            }
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
+            finish();
         });
 
         // info knappen

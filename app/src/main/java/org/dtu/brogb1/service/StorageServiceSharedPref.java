@@ -1,6 +1,10 @@
 package org.dtu.brogb1.service;
 
 import android.content.SharedPreferences;
+import android.os.Build;
+import android.util.Log;
+
+import androidx.annotation.RequiresApi;
 
 import org.dtu.brogb1.activity.LandingPage;
 import org.dtu.brogb1.model.Brew;
@@ -11,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class    StorageServiceSharedPref implements IStorageService {
+    private static final String TAG = StorageServiceSharedPref.class.getSimpleName();
     private static StorageServiceSharedPref instance = null;
     public static StorageServiceSharedPref getInstance() {
         if (instance == null) {
@@ -41,6 +46,7 @@ public class    StorageServiceSharedPref implements IStorageService {
         this.favoriteCount = this.getInt(this.favoriteCountKey);
         if(this.favoriteCount < 0)
             this.favoriteCount = 0;
+        Log.d(TAG, "Der er " + this.brewCount + " opskrifter, " + this.favoriteCount + " favoritter og " + this.historyCount + " i historikken");
     }
 
     @Override
@@ -102,15 +108,18 @@ public class    StorageServiceSharedPref implements IStorageService {
             throw new StorageServiceException("Den brew findes ikke!");
         Brew brew = BrewFactory.fromJson(this.getString(this.brewKey + key));
         brew.setStorageKey(key);
+        brew.setFavoriteKey(-1);
         return brew;
     }
 
     @Override
     public ArrayList<Brew> getAllBrews() throws StorageServiceException, BrewException {
         ArrayList list = new ArrayList<Brew>();
+        Log.d(TAG, "Henter " + this.brewCount + " opskrifter");
         for (int i = 0; i < this.brewCount; i++) {
             Brew brew = BrewFactory.fromJson(this.getString(this.brewKey + i));
             brew.setStorageKey(i);
+            brew.setFavoriteKey(-1);
             list.add(brew);
         }
         return list;
@@ -139,6 +148,7 @@ public class    StorageServiceSharedPref implements IStorageService {
         }
         // Opdater antallet af gemte Brews
         this.saveInt(this.brewCountKey, this.brewCount - 1);
+        this.brewCount--;
     }
 
     @Override
@@ -174,14 +184,21 @@ public class    StorageServiceSharedPref implements IStorageService {
     public Brew getBrewFromHistory(int key) throws StorageServiceException, BrewException {
         if (key >= this.historyCount)
             throw new StorageServiceException("Den brew findes ikke!");
-        return BrewFactory.fromJson(this.getString(this.historyKey + key));
+        Brew brew = BrewFactory.fromJson(this.getString(this.historyKey + key));
+        brew.setFavoriteKey(-1);
+        brew.setStorageKey(-1);
+        return brew;
     }
 
     @Override
     public ArrayList<Brew> getBrewHistory() throws StorageServiceException, BrewException {
         ArrayList list = new ArrayList<Brew>();
+        Log.d(TAG, "Henter historik på " + this.historyCount + " elementer");
         for (int i = 0; i < this.historyCount; i++) {
-            list.add(BrewFactory.fromJson(this.getString(this.historyKey + i)));
+            Brew brew = BrewFactory.fromJson(this.getString(this.historyKey + i));
+            brew.setFavoriteKey(-1);
+            brew.setStorageKey(-1);
+            list.add(brew);
         }
         return list;
     }
@@ -195,25 +212,29 @@ public class    StorageServiceSharedPref implements IStorageService {
     public int saveBrewToFavorites(Brew value) throws BrewException {
         this.saveString(this.favoritesKey + this.favoriteCount, value.toJson());
         this.favoriteCount++;
-        this.saveInt(this.favoritesKey, this.favoriteCount);
+        this.saveInt(this.favoriteCountKey, this.favoriteCount);
         return this.favoriteCount - 1;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public Brew getBrewFromFavorites(int key) throws StorageServiceException, BrewException {
         if (key >= this.favoriteCount)
             throw new StorageServiceException("Den brew findes ikke!");
         Brew brew = BrewFactory.fromJson(this.getString(this.favoritesKey + key));
         brew.setFavoriteKey(key);
+        brew.setStorageKey(-1);
         return brew;
     }
 
     @Override
     public ArrayList<Brew> getFavoriteBrews() throws StorageServiceException, BrewException {
         ArrayList list = new ArrayList<Brew>();
+        Log.d(TAG, "Henter " + this.favoriteCount + " favoritter");
         for (int i = 0; i < this.favoriteCount; i++) {
             Brew brew = BrewFactory.fromJson(this.getString(this.favoritesKey + i));
             brew.setFavoriteKey(i);
+            brew.setStorageKey(-1);
             list.add(brew);
         }
         return list;
@@ -242,6 +263,7 @@ public class    StorageServiceSharedPref implements IStorageService {
         }
         // Opdater antallet af gemte Brews
         this.saveInt(this.favoriteCountKey, this.favoriteCount - 1);
+        this.favoriteCount--;
     }
 
     @Override

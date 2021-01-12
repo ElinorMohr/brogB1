@@ -3,6 +3,9 @@ package org.dtu.brogb1.adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
+import android.text.Html;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 
 import org.dtu.brogb1.R;
 import org.dtu.brogb1.activity.Brewing;
@@ -46,6 +50,7 @@ public class RecipiesAdapter extends ArrayAdapter<Brew> {
         this.context = context;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @SuppressLint("SetTextI18n")
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -78,15 +83,18 @@ public class RecipiesAdapter extends ArrayAdapter<Brew> {
             } catch (Exception e) { //(StorageServiceException | BrewException e
             //    e.printStackTrace();
             }
+            brewName.setText(brew.getBrewName());
         } else if (this.mode.equals("history")) {
-            favCount.setAlpha(0);
-            star.setImageAlpha(0);
+            favCount.setVisibility(View.INVISIBLE);
+            star.setVisibility(View.INVISIBLE);
+            brewName.setText(Html.fromHtml("<b>" + brew.getBrewName() + "</b>&nbsp;<small>(" + brew.getLastBrew() + ")</small>"));
+            brewName.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 14);
         } else {
-            favCount.setAlpha(0);
-            star.setImageAlpha(0);
+            favCount.setVisibility(View.INVISIBLE);
+            star.setVisibility(View.INVISIBLE);
+            brewName.setText(brew.getBrewName());
         }
         // Sæt navnet på Brew ind og tilføj data så man kan trykke på det
-        brewName.setText(brew.getBrewName());
         brewName.setTag(brew);
         brewName.setOnClickListener(this.onButtonClickListener);
 

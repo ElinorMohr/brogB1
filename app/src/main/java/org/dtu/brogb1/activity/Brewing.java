@@ -1,12 +1,14 @@
 package org.dtu.brogb1.activity;
 
 import android.animation.ObjectAnimator;
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Html;
@@ -18,6 +20,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import org.dtu.brogb1.R;
@@ -51,6 +54,8 @@ public class Brewing extends AppCompatActivity {
     private ProgressBar progressBarAnimation;
     private ObjectAnimator progressAnimator;
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,6 +87,10 @@ public class Brewing extends AppCompatActivity {
         TVTimeMin = findViewById(R.id.valueTimeMin);
         TVTimeSec = findViewById(R.id.valueTimeSec);
 
+        favoriteBT = (ImageButton) findViewById(R.id.BrewingFavoriteBT);
+        favoriteBT.setOnClickListener(imgButtonHandler);
+        TVEdit = findViewById(R.id.EditBrewTxt);
+
         // Edit teksten
         if (brew != null){
             TVBrewName.setText(Html.fromHtml("<u>" + brew.getBrewName() + "</u>"));
@@ -93,6 +102,12 @@ public class Brewing extends AppCompatActivity {
             TVBloomTime.setText(Integer.toString(brew.getBloomTime()));
             TVTimeMin.setText(Integer.toString(brew.getBrewTimeMin()));
             TVTimeSec.setText(Integer.toString(brew.getBrewTimeSec()));
+            if (brew.getFavoriteKey() >= 0) {
+                favoriteBT.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart));
+            }
+            if (brew.getFavoriteKey() == -1 && brew.getStorageKey() == -1) {
+                favoriteBT.setVisibility(View.INVISIBLE);
+            }
             if(false && brew.getBrewPics().isEmpty()){
                 byte[] decodedString = new byte[0];
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
@@ -101,10 +116,7 @@ public class Brewing extends AppCompatActivity {
                 Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
                 kaffebillede.setImageBitmap(decodedByte);
             }
-
         }
-        favoriteBT = (ImageButton) findViewById(R.id.BrewingFavoriteBT);
-        favoriteBT.setOnClickListener(imgButtonHandler);
 
         brewNow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,6 +141,7 @@ public class Brewing extends AppCompatActivity {
                         Intent intent = new Intent(v.getContext(), HomePage.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
+                        finish();
                     }
                 });
                 dialogue.setCancelable(true);
@@ -147,17 +160,16 @@ public class Brewing extends AppCompatActivity {
             }
         });
 
-        TVEdit = findViewById(R.id.EditBrewTxt);
         TVEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), EditBrew.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            try {
-               intent.putExtra("Brew", brew.toJson());
-             } catch (BrewException e) {
-               e.printStackTrace();
-            }
+                try {
+                    intent.putExtra("Brew", brew.toJson());
+                } catch (BrewException e) {
+                    e.printStackTrace();
+                }
                 startActivity(intent);
             }
         });
@@ -165,29 +177,31 @@ public class Brewing extends AppCompatActivity {
 
 
     View.OnClickListener imgButtonHandler = new View.OnClickListener() {
-
         public void onClick(View v) {
-
-            if (!buttonOn) {
-                buttonOn = true;
-                favoriteBT.setBackground(getResources().getDrawable(R.drawable.ic_heart));
+            if (brew.getFavoriteKey() < 0) {
+                favoriteBT.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart));
                 try {
-                    //TODO
-                    //storageServiceSharedPref.saveBrewToFavorites(brew);
+                    storageServiceSharedPref.saveBrewToFavorites(brew);
+                    storageServiceSharedPref.deleteBrew(brew.getStorageKey());
                 }catch (Exception e){
                     e.printStackTrace();
                 }
 
             } else {
-                buttonOn = false;
-                favoriteBT.setBackground(getResources().getDrawable(R.drawable.ic_heart_empty));
+                favoriteBT.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart_empty));
                 try {
-                    //TODO
-                    //storageServiceSharedPref.deleteFavoriteBrew(brew);
+                    storageServiceSharedPref.deleteFavoriteBrew(brew.getFavoriteKey());
+                    storageServiceSharedPref.saveBrew(brew);
                 }catch (Exception e){
                     e.printStackTrace();
                 }
             }
         }
     };
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
 }

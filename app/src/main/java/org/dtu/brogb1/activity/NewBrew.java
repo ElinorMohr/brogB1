@@ -45,7 +45,7 @@ public class NewBrew extends AppCompatActivity {
     //StorageServiceSharedPref sharedPref = StorageServiceSharedPref.getInstance();
 
     ImageButton favoriteBT;
-    boolean buttonOn;
+    boolean favoriteOn;
 
     Brew newBrew = new Brew();
 
@@ -97,6 +97,25 @@ public class NewBrew extends AppCompatActivity {
                 e.printStackTrace();
                 return;
             }
+
+            CheckBox saveBrew = (CheckBox) findViewById(R.id.savebox);
+            // her tjekker vi, hvis den er markeret som save. bliver denne bryg gemt i storage
+            if (saveBrew.isChecked()) {
+                IStorageService storage = StorageServiceSharedPref.getInstance();
+                if (brewName.isEmpty()) {
+                    Toast.makeText(this, "Your brew needs a name", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                try {
+                    if (favoriteOn)
+                        newBrew.setFavoriteKey(storage.saveBrewToFavorites(newBrew));
+                    else
+                        newBrew.setStorageKey(storage.saveBrew(newBrew));
+                } catch (BrewException e) {
+                    Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+                }
+            }
             // gemmer det i en newBrew
             setBrewValues();
             Intent intent = new Intent(this, Brewing.class);
@@ -113,37 +132,17 @@ public class NewBrew extends AppCompatActivity {
             BrewSheetMenu brygMenu = new BrewSheetMenu();
             brygMenu.show(getSupportFragmentManager(), "FragmentBrygMenu");
         });
+      
         favoriteBT.setOnClickListener(v -> {
-            if (!buttonOn) {
-                buttonOn = true;
-                favoriteBT.setBackground(getResources().getDrawable(R.drawable.ic_heart));
-                setBrewValues();
-                newBrew.setFavoriteBrew(true);
-                try {
-                    //TODO
-                    //sharedPref.saveBrewToFavorites(newBrew);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+            if (!favoriteOn) {
+                favoriteBT.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart));
             } else {
-                buttonOn = false;
-                favoriteBT.setBackground(getResources().getDrawable(R.drawable.ic_heart_empty));
-                newBrew.setFavoriteBrew(false);
-                setBrewValues();
-                try {
-                    if (newBrew.getFavoriteKey() != -1){
-                        //TODO
-                        //sharedPref.deleteFavoriteBrew(newBrew.getFavoriteKey());
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                favoriteBT.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart_empty));
             }
+            favoriteOn = !favoriteOn;
+        }
         });
         coffeImageView.setOnClickListener(v -> {
-            Intent getIntent = new Intent(Intent.ACTION_GET_CONTENT);
-            getIntent.setType("image/");
-
             Intent pickIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
             pickIntent.setType("image/");
 

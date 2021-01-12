@@ -30,8 +30,9 @@ import java.util.ArrayList;
 
 public class Recipes extends Fragment {
     IStorageService storage;
-    ArrayList<Brew> favoriteList;
-    ArrayList<Brew> recipeList;
+    ArrayList<Brew> favoriteList = new ArrayList<Brew>(), recipeList = new ArrayList<Brew>();
+    ListView listMain, listSec;
+    ArrayAdapter<Brew> adapterSec, adapterMain;
 
     @Nullable
     @Override
@@ -39,54 +40,59 @@ public class Recipes extends Fragment {
         //TODO
         //storage = StorageServiceSharedPref.getInstance();
         View root = inflater.inflate(R.layout.recipes_layout, container, false);
+
+        return populateLists(root);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        storage = StorageServiceSharedPref.getInstance();
+        View root = getLayoutInflater().inflate(R.layout.recipes_layout, ((ViewGroup)getView().getParent()), false);
+        populateLists(root);
+    }
+
+    private View populateLists(View root) {
         try {
             // Henter gemte informationer om Brew fra storage
-            //TODO
-            //favoriteList = storage.getFavoriteBrews();
-            //recipeList = storage.getAllBrews();
-            favoriteList = new ArrayList<Brew>();
-            recipeList = new ArrayList<Brew>();
-
+            favoriteList = storage.getFavoriteBrews();
 
             // Find elementerne, som der skal udfyldes med lister
-            ListView listMain = root.findViewById(R.id.list_view_favorites);
-            ListView listSec = root.findViewById(R.id.list_view_sec_recipes);
+            listMain = root.findViewById(R.id.list_view_favorites);
 
             // Sammenkobling af elementerne og data
-            ArrayAdapter<Brew> adapterMain = new RecipiesAdapter(getContext(), favoriteList, "favorite");
-            listMain.setAdapter(adapterMain);
-            listMain.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> adapter, View v, int position, long arg3) {
-                    Intent intent = new Intent(getContext(), Brewing.class);
-                    try {
-                        intent.putExtra("Brew", favoriteList.get(position).toJson());
-                    }catch (Exception e){
-                        e.printStackTrace();
-                    }
-                    startActivity(intent);
-                }
-            });
-            ArrayAdapter<Brew> adapterSec = new RecipiesAdapter(getContext(), recipeList);
-            listSec.setAdapter(adapterSec);
-            listSec.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> adapter, View v, int position, long arg3) {
-                    Intent intent = new Intent(getContext(), Brewing.class);
-                    try {
-                        intent.putExtra("Brew", recipeList.get(position).toJson());
-                    }catch (Exception e){
-                        e.printStackTrace();
-                    }
-                    startActivity(intent);
-                }
-            });
-        } catch (Exception e) { //StorageServiceException e
+            if (adapterMain == null) {
+                adapterMain = new RecipiesAdapter(getContext(), favoriteList, "favorite");
+                listMain.setAdapter(adapterMain);
+            } else {
+                adapterMain.notifyDataSetChanged();
+            }
+        } catch (StorageServiceException | BrewException e) {
             e.printStackTrace();
-        }// catch (Exception e) { //BrewException e
-           // e.printStackTrace();
-        //}
+        }
+        try {
+            // Henter gemte informationer om Brew fra storage
+            recipeList = storage.getAllBrews();
+            // Find elementerne, som der skal udfyldes med lister
+            listSec = root.findViewById(R.id.list_view_sec_recipes);
 
+            // Sammenkobling af elementerne og data
+            if (adapterSec == null) {
+                adapterSec = new RecipiesAdapter(getContext(), recipeList);
+                listSec.setAdapter(adapterSec);
+            } else {
+                adapterSec.notifyDataSetChanged();
+            }
+        } catch (StorageServiceException | BrewException e) {
+            e.printStackTrace();
+        }
         return root;
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        favoriteList.clear();
+        recipeList.clear();
     }
 }
