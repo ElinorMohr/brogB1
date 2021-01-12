@@ -107,6 +107,13 @@
     <string name="ssid_hint_text">Network Name</string>
     <string name="password_hint_text">Password</string>
     <string name="hint_key">Enter PIN</string>
+    <string name="prov_step_1">Sending Wi-Fi credentials</string>
+    <string name="prov_step_2">Applying Wi-Fi connection</string>
+    <string name="prov_step_3">Checking provisioning status</string>
+    <string name="error_session_creation">Failed to create session</string>
+    <string name="error_prov_step_1">Failed to send Wi-Fi credentials</string>
+    <string name="error_prov_step_2">Failed to apply Wi-Fi credentials</string>
+    <string name="error_prov_step_3">Failed to provisioning device</string>
     <string name="btn_reset_quick_brew">Reset quickbrew</string>
     <string name="recipe_menu_btn">Go to saved recipes og the history of your brews.</string>
     <string name="add_menu_btn">Add a new brew with your own measurements.</string>
