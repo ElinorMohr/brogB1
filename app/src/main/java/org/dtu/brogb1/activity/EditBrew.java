@@ -56,8 +56,7 @@ public class EditBrew extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_brew);
         ImageButton info = findViewById(R.id.i_ground_coffee);
-        //TODO
-        //StorageServiceSharedPref storageServiceSharedPref = StorageServiceSharedPref.getInstance();
+        StorageServiceSharedPref storageServiceSharedPref = StorageServiceSharedPref.getInstance();
 
         try {
             if (getIntent().hasExtra("Brew")) {
@@ -73,8 +72,6 @@ public class EditBrew extends AppCompatActivity {
         }
 
         kaffebillede = findViewById(R.id.new_brew_image);
-        kaffebillede.setOnClickListener(this);
-
 
         Edit_ETBrewName = findViewById(R.id.edit_Opskrifts_navn);
         Edit_ETGroundCoffee = findViewById(R.id.edit_inputGroundCoffee);
@@ -214,8 +211,7 @@ public class EditBrew extends AppCompatActivity {
 
             if(brew.getStorageKey() >= 0 || brew.getFavoriteKey() >= 0) {
                 // vi skal gemme ændringerne
-                //TODO
-                //IStorageService storage = StorageServiceSharedPref.getInstance();
+                IStorageService storage = StorageServiceSharedPref.getInstance();
                 if (brewName.isEmpty()) {
                     Toast.makeText(this, "your brew needs a name", Toast.LENGTH_SHORT).show();
                     return;
@@ -249,6 +245,18 @@ public class EditBrew extends AppCompatActivity {
             BrewSheetMenu brygMenu = new BrewSheetMenu();
             brygMenu.show(getSupportFragmentManager(), "FragmentBrygMenu");
         });
+        kaffebillede.setOnClickListener(v -> {
+            Intent getIntent = new Intent(Intent.ACTION_GET_CONTENT);
+            getIntent.setType("image/");
+
+            Intent pickIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            pickIntent.setType("image/");
+
+            Intent chooserIntent = Intent.createChooser(getIntent, "Select Image");
+            chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[] {pickIntent});
+
+            startActivityForResult(chooserIntent, 1); //request code til det der sendes videre.
+        });
     }
 
     private void setBrewValues(){
@@ -262,20 +270,6 @@ public class EditBrew extends AppCompatActivity {
         brew.setBrewTimeSec(brewTimeSec);
         brewName = Edit_ETBrewName.getText().toString();
         brew.setBrewName(brewName);
-    }
-
-    @Override
-    public void onClick(View v) {
-        Intent getIntent = new Intent(Intent.ACTION_GET_CONTENT);
-        getIntent.setType("image/");
-
-        Intent pickIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        pickIntent.setType("image/");
-
-        Intent chooserIntent = Intent.createChooser(getIntent, "Select Image");
-        chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[] {pickIntent});
-
-        startActivityForResult(chooserIntent, 1); //request code til det der sendes videre.
     }
 
     @Override

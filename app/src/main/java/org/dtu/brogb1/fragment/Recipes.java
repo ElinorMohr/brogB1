@@ -37,8 +37,7 @@ public class Recipes extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        //TODO
-        //storage = StorageServiceSharedPref.getInstance();
+        storage = StorageServiceSharedPref.getInstance();
         View root = inflater.inflate(R.layout.recipes_layout, container, false);
 
         return populateLists(root);

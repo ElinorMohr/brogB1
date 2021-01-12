@@ -46,8 +46,7 @@ public class Brewing extends AppCompatActivity {
     ImageButton favoriteBT;
     boolean buttonOn;
     Brew brew;
-    //TODO
-    //StorageServiceSharedPref storageServiceSharedPref = StorageServiceSharedPref.getInstance();
+    StorageServiceSharedPref storageServiceSharedPref = StorageServiceSharedPref.getInstance();
 
     ImageView kaffebillede;
 
@@ -124,8 +123,7 @@ public class Brewing extends AppCompatActivity {
                 if (brew != null){
                     brew.setLastBrewTime();
                     try {
-                        //TODO
-                        //storageServiceSharedPref.saveBrewToHistory(brew);
+                        storageServiceSharedPref.saveBrewToHistory(brew);
                     } catch (Exception e){
                         Toast.makeText(v.getContext(), "Fejl under gem", Toast.LENGTH_SHORT).show();
                     }

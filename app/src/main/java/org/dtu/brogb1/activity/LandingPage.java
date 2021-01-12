@@ -30,8 +30,7 @@ public class LandingPage extends AppCompatActivity implements View.OnClickListen
         setContentView(R.layout.activity_landing_page);
 
         mySharedPreferences = getApplicationContext().getSharedPreferences("preferences", Activity.MODE_PRIVATE);
-        //TODO
-        //IStorageService storage = StorageServiceSharedPref.getInstance();
+        IStorageService storage = StorageServiceSharedPref.getInstance();
 
         bluetooth = findViewById(R.id.bluetooth);
         bluetooth.setOnClickListener(this);

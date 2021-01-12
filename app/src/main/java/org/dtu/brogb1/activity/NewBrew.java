@@ -41,8 +41,7 @@ public class NewBrew extends AppCompatActivity {
     private int brewTimeMin, brewTimeSec, groundCoffee, coffeeWaterRatio, brewingTemperature, bloomWater, bloomTime;
     EditText editBrewName, editGroundCoffee, editRatio, editTemp, editBloomWater, editBloomTime, editTotalMin, editTotalSec;
     Spinner spinnerInputGrindSize;
-    //TODO
-    //StorageServiceSharedPref sharedPref = StorageServiceSharedPref.getInstance();
+    StorageServiceSharedPref sharedPref = StorageServiceSharedPref.getInstance();
 
     ImageButton favoriteBT;
     boolean favoriteOn;
@@ -140,13 +139,12 @@ public class NewBrew extends AppCompatActivity {
                 favoriteBT.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart_empty));
             }
             favoriteOn = !favoriteOn;
-        }
         });
         coffeImageView.setOnClickListener(v -> {
             Intent pickIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
             pickIntent.setType("image/");
 
-            Intent chooserIntent = Intent.createChooser(getIntent, "Select Image");
+            Intent chooserIntent = Intent.createChooser(pickIntent, "Select Image");
             chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[]{pickIntent});
 
             startActivityForResult(chooserIntent, 1); //request code til det der sendes videre.
