@@ -18,6 +18,7 @@ public class Brew {
     private int brewTimeMin, brewTimeSec, groundCoffee, coffeeWaterRatio, brewingTemperature, bloomWater, bloomTime;
     boolean saveBrew, favoriteBrew;
     private LocalDateTime lastBrew;
+    private int storageKey, favoriteKey;
 
     public Brew(){
         this.groundCoffee = 0;
@@ -32,7 +33,8 @@ public class Brew {
         this.brewPics = " ";
         this.saveBrew = false;
         this.favoriteBrew = false;
-
+        this.storageKey = -1;
+        this.favoriteKey = -1;
     }
 
     public Brew(int groundCoffee, String grindSize, int coffeeWaterRatio, int brewingTemperature,
@@ -49,7 +51,8 @@ public class Brew {
         this.brewPics = brewPics;
         this.saveBrew = saveBrew;
         this.favoriteBrew = favoriteBrew;
-
+        this.storageKey = -1;
+        this.favoriteKey = -1;
     }
 
 
@@ -174,6 +177,22 @@ public class Brew {
 
     public void setBloomTime(int bloomTime) {
         this.bloomTime = bloomTime;
+    }
+
+    public int getStorageKey() {
+        return storageKey;
+    }
+
+    public void setStorageKey(int storageKey) {
+        this.storageKey = storageKey;
+    }
+
+    public int getFavoriteKey() {
+        return favoriteKey;
+    }
+
+    public void setFavoriteKey(int favoriteKey) {
+        this.favoriteKey = favoriteKey;
     }
 
     public boolean equals(Brew brew) {

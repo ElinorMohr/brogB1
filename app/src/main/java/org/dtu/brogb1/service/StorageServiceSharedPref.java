@@ -100,14 +100,18 @@ public class    StorageServiceSharedPref implements IStorageService {
     public Brew getBrew(int key) throws StorageServiceException, BrewException {
         if (key >= this.brewCount)
             throw new StorageServiceException("Den brew findes ikke!");
-        return BrewFactory.fromJson(this.getString(this.brewKey + key));
+        Brew brew = BrewFactory.fromJson(this.getString(this.brewKey + key));
+        brew.setStorageKey(key);
+        return brew;
     }
 
     @Override
     public ArrayList<Brew> getAllBrews() throws StorageServiceException, BrewException {
         ArrayList list = new ArrayList<Brew>();
         for (int i = 0; i < this.brewCount; i++) {
-            list.add(BrewFactory.fromJson(this.getString(this.brewKey + i)));
+            Brew brew = BrewFactory.fromJson(this.getString(this.brewKey + i));
+            brew.setStorageKey(i);
+            list.add(brew);
         }
         return list;
     }
@@ -199,14 +203,18 @@ public class    StorageServiceSharedPref implements IStorageService {
     public Brew getBrewFromFavorites(int key) throws StorageServiceException, BrewException {
         if (key >= this.favoriteCount)
             throw new StorageServiceException("Den brew findes ikke!");
-        return BrewFactory.fromJson(this.getString(this.favoritesKey + key));
+        Brew brew = BrewFactory.fromJson(this.getString(this.favoritesKey + key));
+        brew.setFavoriteKey(key);
+        return brew;
     }
 
     @Override
     public ArrayList<Brew> getFavoriteBrews() throws StorageServiceException, BrewException {
         ArrayList list = new ArrayList<Brew>();
         for (int i = 0; i < this.favoriteCount; i++) {
-            list.add(BrewFactory.fromJson(this.getString(this.favoritesKey + i)));
+            Brew brew = BrewFactory.fromJson(this.getString(this.favoritesKey + i));
+            brew.setFavoriteKey(i);
+            list.add(brew);
         }
         return list;
     }
