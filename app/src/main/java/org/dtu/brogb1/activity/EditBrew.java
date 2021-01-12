@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputFilter;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,6 +25,7 @@ import org.dtu.brogb1.service.StorageServiceSharedPref;
  * @author Kristoffer Baumgarten s180500
  */
 public class EditBrew extends AppCompatActivity {
+    private static final String TAG = EditBrew.class.getSimpleName();
     Dialog dialogue;
     private String brewName, brewPics, grindSize;
     private int brewTimeMin, brewTimeSec, groundCoffee, coffeeWaterRatio, brewingTemperature, bloomWater, bloomTime;
@@ -176,9 +178,9 @@ public class EditBrew extends AppCompatActivity {
                 return;
             }
 
-            //TODO den skal gemme brew hvis den er gemt ellers skal den bare gå videre med værdierne.
+            setBrewValues();
 
-            if(brew.isSaveBrew() || brew.isFavoriteBrew()) {
+            if(brew.getStorageKey() >= 0 || brew.getFavoriteKey() >= 0) {
                 // vi skal gemme ændringerne
                 IStorageService storage = StorageServiceSharedPref.getInstance();
                 if (brewName.isEmpty()) {
@@ -186,29 +188,27 @@ public class EditBrew extends AppCompatActivity {
                     return;
                 }
                 try {
-                    //TODO her skal vi tilføje den key som det skal overskrive
-                    storage.overwriteBrew(1,brew);
+                    if (brew.getFavoriteKey() >= 0)
+                        storage.overwriteFavoriteBrew(brew.getFavoriteKey(), brew);
+                    else
+                        storage.overwriteBrew(brew.getStorageKey(), brew);
                 } catch (BrewException e) {
                     Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
                 }
             }
 
-            setBrewValues();
-
             // vores ændret brew bliver sendt til brewing
             Intent intent = new Intent(this, Brewing.class);
             try {
                 intent.putExtra("Brew", brew.toJson());
+                Log.d(TAG, brew.toJson());
             } catch (BrewException e) {
                 e.printStackTrace();
             }
-            try {
-                System.out.println(brew.toJson());
-            } catch (BrewException e) {
-                e.printStackTrace();
-            }
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
+            finish();
         });
 
         // info knappen

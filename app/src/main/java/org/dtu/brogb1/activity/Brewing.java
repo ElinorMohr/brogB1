@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Html;
@@ -16,6 +17,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import org.dtu.brogb1.R;
@@ -44,6 +46,7 @@ public class Brewing extends AppCompatActivity {
     private ProgressBar progressBarAnimation;
     private ObjectAnimator progressAnimator;
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,11 +92,11 @@ public class Brewing extends AppCompatActivity {
             TVBloomTime.setText(Integer.toString(brew.getBloomTime()));
             TVTimeMin.setText(Integer.toString(brew.getBrewTimeMin()));
             TVTimeSec.setText(Integer.toString(brew.getBrewTimeSec()));
-            if (brew.getFavoriteKey() >= 0)
+            if (brew.getFavoriteKey() >= 0) {
                 favoriteBT.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart));
+            }
             if (brew.getFavoriteKey() == -1 && brew.getStorageKey() == -1) {
                 favoriteBT.setVisibility(View.INVISIBLE);
-                TVEdit.setVisibility(View.INVISIBLE);
             }
         }
 

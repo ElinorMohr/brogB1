@@ -1,6 +1,9 @@
 package org.dtu.brogb1.model;
 
+import android.os.Build;
 import android.util.Log;
+
+import androidx.annotation.RequiresApi;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -20,6 +23,7 @@ public class BrewFactory {
         return new Brew(1," ",1,1,1,1, 1 , 1 ," "," ", false,false);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public static Brew fromJson(String input) throws BrewException {
         Log.d(TAG, "fromJson: " + input);
         if (input.isEmpty())
@@ -27,7 +31,7 @@ public class BrewFactory {
 
         try {
             JSONObject jObject = new JSONObject(input);
-            return new Brew(
+            Brew brew = new Brew(
                     jObject.getInt("groundCoffee"),
                     jObject.getString("grindSize"),
                     jObject.getInt("coffeeWaterRatio"),
@@ -42,7 +46,10 @@ public class BrewFactory {
                     jObject.getBoolean("favoriteBrew"),
                     jObject.has("storageKey") ? jObject.getInt("storageKey") : -1,
                     jObject.has("favoriteKey") ? jObject.getInt("favoriteKey") : -1
-                    );
+            );
+            if (jObject.has("lastBrew"))
+                brew.setLastBrewTime(jObject.getString("lastBrew"));
+            return brew;
         } catch (JSONException e) {
             e.printStackTrace();
             throw new BrewException("Fejl under parse af JSON");
