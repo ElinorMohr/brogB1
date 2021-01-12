@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="grind_array">
+    <string-array name="grind_array" >
         <item>Fine</item>
         <item>Medium</item>
         <item>Coarse</item>

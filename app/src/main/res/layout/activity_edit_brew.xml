@@ -118,6 +118,7 @@
                 android:layout_marginEnd="30dp"
                 android:layout_marginTop="2.5dp"
                 android:layout_marginBottom="2.5dp"
+                android:textAlignment="center"
                 android:background="@drawable/bg_spinner"
                 android:ems="5"
                 android:entries="@array/grind_array"
