@@ -275,9 +275,9 @@ public class NewBrew extends AppCompatActivity implements View.OnClickListener {
                     bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
                     byte[] byteArray = byteArrayOutputStream .toByteArray();
                     if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-                        String encoded = Base64.getEncoder().encodeToString(byteArray, Base64.getEncoder());
+                        String encoded = Base64.getEncoder().encodeToString(byteArray);
+                        newBrew.setBrewPics(encoded);
                     }
-                    newBrew.setBrewPics(Base64.en);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
