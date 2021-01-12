@@ -3,13 +3,17 @@ package org.dtu.brogb1.activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.InputFilter;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -20,6 +24,11 @@ import org.dtu.brogb1.model.BrewException;
 import org.dtu.brogb1.service.IStorageService;
 import org.dtu.brogb1.service.StorageServiceSharedPref;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.net.URI;
+import java.util.Base64;
+
 /**
  * @author Elinor Mikkelsen s191242
  * @author Kristoffer Baumgarten s180500
@@ -27,7 +36,7 @@ import org.dtu.brogb1.service.StorageServiceSharedPref;
  * @author Asim Raja s040727
  */
 
-public class NewBrew extends AppCompatActivity {
+public class NewBrew extends AppCompatActivity implements View.OnClickListener {
     private String brewName, brewPics, grindSize;
     private int brewTimeMin, brewTimeSec, groundCoffee, coffeeWaterRatio, brewingTemperature, bloomWater, bloomTime;
     EditText editBrewName, editGroundCoffee, editRatio, editTemp, editBloomWater, editBloomTime, editTotalMin, editTotalSec;
@@ -39,6 +48,8 @@ public class NewBrew extends AppCompatActivity {
 
     Brew newBrew = new Brew();
 
+    ImageView kaffebillede;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +57,9 @@ public class NewBrew extends AppCompatActivity {
 
         Button brewNow = (Button) findViewById(R.id.BrewNowRecipe);
         ImageButton info = findViewById(R.id.IGroundCoffee);
+
+        kaffebillede = findViewById(R.id.ny_opskrift);
+        kaffebillede.setOnClickListener(this);
 
         // instansere alle vores givende værdier til et bryg
 
@@ -231,5 +245,43 @@ public class NewBrew extends AppCompatActivity {
         newBrew.setBrewTimeSec(brewTimeSec);
         brewName = editBrewName.getText().toString();
         newBrew.setBrewName(brewName);
+    }
+
+    @Override
+    public void onClick(View v) {
+        Intent getIntent = new Intent(Intent.ACTION_GET_CONTENT);
+        getIntent.setType("image/");
+
+        Intent pickIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        pickIntent.setType("image/");
+
+        Intent chooserIntent = Intent.createChooser(getIntent, "Select Image");
+        chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[] {pickIntent});
+
+        startActivityForResult(chooserIntent, 1); //request code til det der sendes videre.
+    }
+
+    //metode til at få fat i uri via resultatet fra startActivity.
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == RESULT_OK){
+            if(requestCode == 1){
+                Uri image_uri = data.getData();
+                try {
+                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), image_uri);
+                    kaffebillede.setImageBitmap(bitmap);
+                    ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+                    byte[] byteArray = byteArrayOutputStream .toByteArray();
+                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                        String encoded = Base64.getEncoder().encodeToString(byteArray, Base64.getEncoder());
+                    }
+                    newBrew.setBrewPics(Base64.en);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 }
