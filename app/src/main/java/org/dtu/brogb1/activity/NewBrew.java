@@ -36,7 +36,7 @@ import java.util.Base64;
  * @author Betina Hansen s195389
  */
 
-public class NewBrew extends AppCompatActivity implements View.OnClickListener {
+public class NewBrew extends AppCompatActivity {
     private String brewName, brewPics, grindSize;
     private int brewTimeMin, brewTimeSec, groundCoffee, coffeeWaterRatio, brewingTemperature, bloomWater, bloomTime;
     EditText editBrewName, editGroundCoffee, editRatio, editTemp, editBloomWater, editBloomTime, editTotalMin, editTotalSec;
@@ -189,7 +189,7 @@ public class NewBrew extends AppCompatActivity implements View.OnClickListener {
         int output;
         try {
             output = Integer.parseInt(editRatio.getText().toString());
-            if (coffeeWaterRatio == 0) {
+            if (output == 0) {
                 Toast.makeText(this, "input in " + text + " is 0", Toast.LENGTH_SHORT).show();
                 throw new Exception();
             }
