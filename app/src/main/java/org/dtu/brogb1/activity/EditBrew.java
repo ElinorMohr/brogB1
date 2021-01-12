@@ -71,7 +71,7 @@ public class EditBrew extends AppCompatActivity {
             finish();
         }
 
-        kaffebillede = findViewById(R.id.new_brew_image);
+        kaffebillede = findViewById(R.id.edit_image);
 
         Edit_ETBrewName = findViewById(R.id.edit_Opskrifts_navn);
         Edit_ETGroundCoffee = findViewById(R.id.edit_inputGroundCoffee);
