@@ -55,6 +55,24 @@ public class Brew {
         this.favoriteKey = -1;
     }
 
+    public Brew(int groundCoffee, String grindSize, int coffeeWaterRatio, int brewingTemperature,
+                int bloomWater, int bloomTime, int brewTimeMin, int brewTimeSec,String brewName, String brewPics, boolean saveBrew, boolean favoriteBrew, int storageKey, int favoriteKey) {
+        this.groundCoffee = groundCoffee;
+        this.grindSize = grindSize;
+        this.coffeeWaterRatio = coffeeWaterRatio;
+        this.brewingTemperature = brewingTemperature;
+        this.bloomWater = bloomWater;
+        this.bloomTime = bloomTime;
+        this.brewTimeMin = brewTimeMin;
+        this.brewTimeSec = brewTimeSec;
+        this.brewName = brewName;
+        this.brewPics = brewPics;
+        this.saveBrew = saveBrew;
+        this.favoriteBrew = favoriteBrew;
+        this.storageKey = storageKey;
+        this.favoriteKey = favoriteKey;
+    }
+
 
     public String toJson() throws BrewException {
 
@@ -74,7 +92,8 @@ public class Brew {
             json.put("lastBrew", this.lastBrew);
             json.put("saveBrew", this.saveBrew);
             json.put("favoriteBrew", this.favoriteBrew);
-
+            json.put("storageKey", this.storageKey);
+            json.put("favoriteKey", this.favoriteKey);
         } catch (JSONException e) {
             e.printStackTrace();
             throw new BrewException("fejl under json");

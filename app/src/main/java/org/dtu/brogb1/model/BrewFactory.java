@@ -1,5 +1,7 @@
 package org.dtu.brogb1.model;
 
+import android.util.Log;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -9,6 +11,8 @@ import org.json.JSONObject;
  */
 
 public class BrewFactory {
+    private static final String TAG = BrewFactory.class.getSimpleName();
+
     public static Brew getBrew(String option){
         if(option.equals("Default")){
             return new Brew(18,"Medium",60,93,45,30, 3 , 0, "Golden Cup", " ", false,false);
@@ -17,6 +21,7 @@ public class BrewFactory {
     }
 
     public static Brew fromJson(String input) throws BrewException {
+        Log.d(TAG, "fromJson: " + input);
         if (input.isEmpty())
             throw new BrewException("Kan ikke oprette brew fra tomt input");
 
@@ -34,10 +39,11 @@ public class BrewFactory {
                     jObject.getString("brewName"),
                     jObject.getString("brewPics"),
                     jObject.getBoolean("saveBrew"),
-                    jObject.getBoolean("favoriteBrew")
-            );
+                    jObject.getBoolean("favoriteBrew"),
+                    jObject.has("storageKey") ? jObject.getInt("storageKey") : -1,
+                    jObject.has("favoriteKey") ? jObject.getInt("favoriteKey") : -1
+                    );
         } catch (JSONException e) {
-            System.out.println(input);
             e.printStackTrace();
             throw new BrewException("Fejl under parse af JSON");
         }

@@ -75,11 +75,11 @@ public class RecipiesAdapter extends ArrayAdapter<Brew> {
                 e.printStackTrace();
             }
         } else if (this.mode.equals("history")) {
-            favCount.setAlpha(0);
-            star.setImageAlpha(0);
+            favCount.setVisibility(View.INVISIBLE);
+            star.setVisibility(View.INVISIBLE);
         } else {
-            favCount.setAlpha(0);
-            star.setImageAlpha(0);
+            favCount.setVisibility(View.INVISIBLE);
+            star.setVisibility(View.INVISIBLE);
         }
         // Sæt navnet på Brew ind og tilføj data så man kan trykke på det
         brewName.setText(brew.getBrewName());
