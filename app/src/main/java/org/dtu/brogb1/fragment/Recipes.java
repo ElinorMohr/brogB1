@@ -36,12 +36,16 @@ public class Recipes extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        storage = StorageServiceSharedPref.getInstance();
+        //TODO
+        //storage = StorageServiceSharedPref.getInstance();
         View root = inflater.inflate(R.layout.recipes_layout, container, false);
         try {
             // Henter gemte informationer om Brew fra storage
-            favoriteList = storage.getFavoriteBrews();
-            recipeList = storage.getAllBrews();
+            //TODO
+            //favoriteList = storage.getFavoriteBrews();
+            //recipeList = storage.getAllBrews();
+            favoriteList = new ArrayList<Brew>();
+            recipeList = new ArrayList<Brew>();
 
 
             // Find elementerne, som der skal udfyldes med lister
@@ -77,11 +81,11 @@ public class Recipes extends Fragment {
                     startActivity(intent);
                 }
             });
-        } catch (StorageServiceException e) {
+        } catch (Exception e) { //StorageServiceException e
             e.printStackTrace();
-        } catch (BrewException e) {
-            e.printStackTrace();
-        }
+        }// catch (Exception e) { //BrewException e
+           // e.printStackTrace();
+        //}
 
         return root;
     }
