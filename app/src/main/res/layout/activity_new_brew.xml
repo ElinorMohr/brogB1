@@ -7,7 +7,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_height="match_parent">
 
     <ImageButton
-        android:id="@+id/IGroundCoffee"
+        android:id="@+id/i_ground_coffee"
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:layout_marginStart="15dp"
@@ -20,7 +20,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
 
 
     <ImageButton
-        android:id="@+id/NewBrewFavoriteBT"
+        android:id="@+id/new_brew_favorite_bt"
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:layout_alignParentEnd="true"
@@ -32,7 +32,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
         app:srcCompat="@drawable/ic_heart_empty" />
 
         <ImageView
-            android:id="@+id/ny_opskrift"
+            android:id="@+id/new_brew_image"
             android:layout_width="136dp"
             android:layout_height="139dp"
             android:layout_centerHorizontal="true"
@@ -40,8 +40,8 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
             app:srcCompat="@drawable/kaffevinter" />
 
     <EditText
-        android:layout_below="@id/ny_opskrift"
-        android:id="@+id/Opskrifts_navn"
+        android:layout_below="@id/new_brew_image"
+        android:id="@+id/brew_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="5"
@@ -60,7 +60,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/seekbarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/Opskrifts_navn"
+        android:layout_below="@id/brew_name"
         android:layout_marginStart="50dp"
         android:layout_marginEnd="21dp"
         android:layout_marginTop="40dp"
@@ -84,7 +84,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:textColor="@color/colorplate2" />
 
             <EditText
-                android:id="@+id/inputGroundCoffee"
+                android:id="@+id/input_ground_coffee"
                 android:layout_width="113dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -103,7 +103,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/txtG"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBaseline="@id/inputGroundCoffee"
+                android:layout_alignBaseline="@id/input_ground_coffee"
                 android:layout_marginEnd="19dp"
                 android:layout_alignParentEnd="true"
                 android:text="g"
@@ -125,11 +125,8 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_centerVertical="true"
                 android:text="@string/grind_size"
                 android:textColor="@color/colorplate2" />
-
-
-
                 <Spinner
-                    android:id="@+id/inputgrindsize"
+                    android:id="@+id/input_grind_size"
                     android:layout_width="113dp"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -142,9 +139,6 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:entries="@array/grind_array"
                     android:layout_marginLeft="5dp"
                     android:spinnerMode="dropdown" />
-
-
-
         </RelativeLayout>
 
         <RelativeLayout
@@ -163,7 +157,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:textColor="@color/colorplate2" />
 
             <EditText
-                android:id="@+id/inputRatio"
+                android:id="@+id/input_ratio"
                 android:layout_width="113dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -180,7 +174,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/txtGl"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBaseline="@id/inputRatio"
+                android:layout_alignBaseline="@id/input_ratio"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="2dp"
                 android:layout_marginEnd="5dp"
@@ -205,7 +199,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:textColor="@color/colorplate2" />
 
             <EditText
-                android:id="@+id/inputTemperature"
+                android:id="@+id/input_temperature"
                 android:layout_width="113dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -222,7 +216,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:layout_alignBaseline="@id/inputTemperature"
+                android:layout_alignBaseline="@id/input_temperature"
                 android:layout_marginTop="2dp"
                 android:layout_marginEnd="12dp"
                 android:text="°C"
@@ -246,7 +240,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:textColor="@color/colorplate2" />
 
             <EditText
-                android:id="@+id/inputBloomWater"
+                android:id="@+id/input_bloom_water"
                 android:layout_width="113dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -264,7 +258,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/txtml"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBaseline="@id/inputBloomWater"
+                android:layout_alignBaseline="@id/input_bloom_water"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="2dp"
                 android:layout_marginEnd="11dp"
@@ -289,7 +283,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:textColor="@color/colorplate2" />
 
             <EditText
-                android:id="@+id/inputBloomTime"
+                android:id="@+id/input_bloom_time"
                 android:layout_width="113dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -308,7 +302,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:layout_alignBaseline="@id/inputBloomTime"
+                android:layout_alignBaseline="@id/input_bloom_time"
                 android:layout_marginTop="2dp"
                 android:layout_marginEnd="19dp"
                 android:text="s"
@@ -332,7 +326,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:textColor="@color/colorplate2" />
 
             <EditText
-                android:id="@+id/inputTotalTimeMin"
+                android:id="@+id/input_total_time_min"
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
                 android:layout_alignEnd="@+id/txtTotalmin"
@@ -350,15 +344,15 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/txtTotalmin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignEnd="@+id/inputTotalTimeSec"
-                android:layout_alignBaseline="@id/inputTotalTimeMin"
+                android:layout_alignEnd="@+id/input_total_time_sec"
+                android:layout_alignBaseline="@id/input_total_time_min"
                 android:layout_marginTop="2dp"
                 android:layout_marginEnd="46dp"
                 android:text="min"
                 android:textColor="@color/colorplate2" />
 
             <EditText
-                android:id="@+id/inputTotalTimeSec"
+                android:id="@+id/input_total_time_sec"
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -378,7 +372,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="19dp"
-                android:layout_alignBaseline="@id/inputTotalTimeSec"
+                android:layout_alignBaseline="@id/input_total_time_sec"
                 android:layout_marginTop="2dp"
                 android:text="s"
                 android:textColor="@color/colorplate2" />
@@ -404,7 +398,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:text="@string/save" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/BrewNowRecipe"
+                android:id="@+id/brew_now_recipe"
                 style="@style/DefaultButton"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
