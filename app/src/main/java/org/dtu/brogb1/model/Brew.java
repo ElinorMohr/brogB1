@@ -1,12 +1,9 @@
 package org.dtu.brogb1.model;
 
 import android.os.Build;
-
 import androidx.annotation.RequiresApi;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -51,7 +48,6 @@ public class Brew {
         this.storageKey = storageKey;
         this.favoriteKey = favoriteKey;
     }
-
 
     public String toJson() throws BrewException {
         JSONObject json = new JSONObject();
