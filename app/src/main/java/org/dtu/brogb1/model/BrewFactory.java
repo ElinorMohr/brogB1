@@ -18,9 +18,9 @@ public class BrewFactory {
 
     public static Brew getBrew(String option){
         if(option.equals("Default")){
-            return new Brew(18,"Medium",60,93,45,30, 3 , 0, "Golden Cup", " ", false,false);
+            return new Brew(18,"Medium",60,93,45,30, 3 , 0, "Golden Cup", "", false,false);
         }
-        return new Brew(1," ",1,1,1,1, 1 , 1 ," "," ", false,false);
+        return new Brew(1," ",1,1,1,1, 1 , 1 ," ","", false,false);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
