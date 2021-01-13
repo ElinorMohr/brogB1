@@ -1,12 +1,9 @@
 package org.dtu.brogb1.activity;
 
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.os.Build;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.InputFilter;
@@ -18,6 +15,9 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
 
 import org.dtu.brogb1.R;
 import org.dtu.brogb1.filters.MinMaxFilter;
@@ -49,7 +49,6 @@ public class EditBrew extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_brew);
-        StorageServiceSharedPref storageServiceSharedPref = StorageServiceSharedPref.getInstance();
 
         try {
             if (getIntent().hasExtra("Brew")) {
@@ -76,8 +75,8 @@ public class EditBrew extends AppCompatActivity {
         editETTotalSec = findViewById(R.id.edit_inputTotalTimeSec);
         ImageButton info = findViewById(R.id.i_ground_coffee);
         Button EditNow = (Button) findViewById(R.id.editBT);
-        // intervallerne for hver af inputs
 
+        // intervallerne for hver af inputs
         editETGroundCoffee.setFilters(new InputFilter[]{new MinMaxFilter("1", "99")});
         editETRatio.setFilters(new InputFilter[]{new MinMaxFilter("1", "99")});
         editETTemp.setFilters(new InputFilter[]{new MinMaxFilter("1", "99")});
@@ -85,7 +84,6 @@ public class EditBrew extends AppCompatActivity {
         editETBloomTime.setFilters(new InputFilter[]{new MinMaxFilter("1", "99")});
         editETTotalMin.setFilters(new InputFilter[]{new MinMaxFilter("0", "99")});
         editETTotalSec.setFilters(new InputFilter[]{new MinMaxFilter("0", "59")});
-
 
         // Her lægges alle værdierne ind i edit teksene. Så de kommer frem.
         if (brew != null) {
@@ -121,87 +119,21 @@ public class EditBrew extends AppCompatActivity {
                 }
             }
 
-
             //når der brygges
             EditNow.setOnClickListener(v -> {
-                // gemmer inputtet fra ui'en til værdierne
                 try {
-                    groundCoffee = Integer.parseInt(editETGroundCoffee.getText().toString());
-                    if (groundCoffee == 0) {
-                        Toast.makeText(this, "input in ground coffee is 0", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
+                    groundCoffee = getIntInput(editETGroundCoffee, "ground coffee");
+                    grindSize = editSpinnerInputGrindSize.getSelectedItem().toString();
+                    coffeeWaterRatio = getIntInput(editETRatio, "coffee Water Ratio");
+                    brewingTemperature = getIntInput(editETTemp, "brewing Temperature");
+                    bloomWater = getIntInput(editETBloomWater, "Bloom Water");
+                    bloomTime = getIntInput(editETBloomWater, "Bloom Time");
+                    // tiden skal blive lagt sammen
+                    getTimeInput();
+                    setBrewValues();
                 } catch (Exception e) {
-                    Toast.makeText(this, "Need input at ground coffee", Toast.LENGTH_SHORT).show();
-                    e.printStackTrace();
                     return;
                 }
-                grindSize = editSpinnerInputGrindSize.getSelectedItem().toString();
-
-                try {
-                    coffeeWaterRatio = Integer.parseInt(editETRatio.getText().toString());
-                    if (coffeeWaterRatio == 0) {
-                        Toast.makeText(this, "input in coffee Water Ratio is 0", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                } catch (Exception e) {
-                    Toast.makeText(this, "Need input at Coffee/water ratio", Toast.LENGTH_SHORT).show();
-                    e.printStackTrace();
-                    return;
-                }
-                try {
-                    brewingTemperature = Integer.parseInt(editETTemp.getText().toString());
-                    if (brewingTemperature == 0) {
-                        Toast.makeText(this, "input in brewing Temperature is 0", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                } catch (Exception e) {
-                    Toast.makeText(this, "Need input at brewing temperature", Toast.LENGTH_SHORT).show();
-                    e.printStackTrace();
-                    return;
-                }
-
-                try {
-                    bloomWater = Integer.parseInt(editETBloomWater.getText().toString());
-                    if (bloomWater == 0) {
-                        Toast.makeText(this, "input in Bloom Water is 0", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                } catch (Exception e) {
-                    Toast.makeText(this, "Need input at bloom water", Toast.LENGTH_SHORT).show();
-                    e.printStackTrace();
-                    return;
-                }
-                try {
-                    bloomTime = Integer.parseInt(editETBloomTime.getText().toString());
-                    if (bloomTime == 0) {
-                        Toast.makeText(this, "input in Bloom Time is 0", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                } catch (Exception e) {
-                    Toast.makeText(this, "Need input at bloom time", Toast.LENGTH_SHORT).show();
-                    e.printStackTrace();
-                    return;
-                }
-
-                // tiden skal blive lagt sammen
-                if (editETTotalMin.getText().toString().isEmpty()) {
-                    brewTimeMin = 0;
-                } else {
-                    brewTimeMin = Integer.parseInt(editETTotalMin.getText().toString());
-                }
-
-                if (editETTotalSec.getText().toString().isEmpty()) {
-                    brewTimeSec = 0;
-                } else {
-                    brewTimeSec = Integer.parseInt(editETTotalSec.getText().toString());
-                }
-                if ((editETTotalMin.getText().toString().isEmpty() && editETTotalSec.getText().toString().isEmpty()) || (brewTimeMin == 0 && brewTimeSec == 0)) {
-                    Toast.makeText(this, "time can't be empty", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                setBrewValues();
 
                 if (brew.getStorageKey() >= 0 || brew.getFavoriteKey() >= 0) {
                     // vi skal gemme ændringerne
@@ -254,33 +186,68 @@ public class EditBrew extends AppCompatActivity {
         }
     }
 
-        private void setBrewValues () {
-            brew.setGroundCoffee(groundCoffee);
-            brew.setGrindSize(grindSize);
-            brew.setCoffeeWaterRatio(coffeeWaterRatio);
-            brew.setBrewingTemperature(brewingTemperature);
-            brew.setBloomWater(bloomWater);
-            brew.setBloomTime(bloomTime);
-            brew.setBrewTimeMin(brewTimeMin);
-            brew.setBrewTimeSec(brewTimeSec);
-            brewName = editETBrewName.getText().toString();
-            brew.setBrewName(brewName);
-        }
+    private void setBrewValues() {
+        brew.setGroundCoffee(groundCoffee);
+        brew.setGrindSize(grindSize);
+        brew.setCoffeeWaterRatio(coffeeWaterRatio);
+        brew.setBrewingTemperature(brewingTemperature);
+        brew.setBloomWater(bloomWater);
+        brew.setBloomTime(bloomTime);
+        brew.setBrewTimeMin(brewTimeMin);
+        brew.setBrewTimeSec(brewTimeSec);
+        brewName = editETBrewName.getText().toString();
+        brew.setBrewName(brewName);
+    }
 
-        @Override
-        public void onActivityResult ( int requestCode, int resultCode, Intent data){
-            super.onActivityResult(requestCode, resultCode, data);
-            if (resultCode == RESULT_OK) {
-                if (requestCode == 1) {
-                    Uri image_uri = data.getData();
-                    try {
-                        Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), image_uri);
-                        coffeeImage.setImageBitmap(bitmap);
-                        brew.setBrewPics(image_uri.toString());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            if (requestCode == 1) {
+                Uri image_uri = data.getData();
+                try {
+                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), image_uri);
+                    coffeeImage.setImageBitmap(bitmap);
+                    brew.setBrewPics(image_uri.toString());
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
             }
         }
+    }
+
+    private int getIntInput(EditText v, String text) throws Exception {
+        int output;
+        try {
+            output = Integer.parseInt(v.getText().toString());
+            if (output == 0) {
+                Toast.makeText(this, "input in " + text + " is 0", Toast.LENGTH_SHORT).show();
+                throw new Exception();
+            }
+        } catch (Exception e) {
+            Toast.makeText(this, "Need input at " + text, Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+            throw new Exception();
+        }
+        return output;
+    }
+
+    private void getTimeInput() throws Exception {
+        // tiden skal blive lagt sammen
+        if (editETTotalMin.getText().toString().isEmpty()) {
+            brewTimeMin = 0;
+        } else {
+            brewTimeMin = Integer.parseInt(editETTotalMin.getText().toString());
+        }
+
+        if (editETTotalSec.getText().toString().isEmpty()) {
+            brewTimeSec = 0;
+        } else {
+            brewTimeSec = Integer.parseInt(editETTotalSec.getText().toString());
+        }
+        if ((editETTotalMin.getText().toString().isEmpty() && editETTotalSec.getText().toString().isEmpty()) || (brewTimeMin == 0 && brewTimeSec == 0)) {
+            Toast.makeText(this, "time can't be empty", Toast.LENGTH_SHORT).show();
+            return;
+        }
+    }
 }
