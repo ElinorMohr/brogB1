@@ -21,6 +21,7 @@ import org.dtu.brogb1.model.BrewException;
 import org.dtu.brogb1.service.IStorageService;
 import org.dtu.brogb1.service.StorageServiceSharedPref;
 
+import java.io.File;
 import java.io.IOException;
 
 import static android.content.Intent.ACTION_OPEN_DOCUMENT;
@@ -154,10 +155,12 @@ public class NewBrew extends AppCompatActivity {
         if (resultCode == RESULT_OK) {
             if (requestCode == 1) {
                 Uri image_uri = data.getData();
+                File file = new File(image_uri.getPath());//create path from uri
+                final String[] split = file.getPath().split(":");//split the path.
+                newBrew.setBrewPics(split[1]);
                 try {
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), image_uri);
                     coffeeImageView.setImageBitmap(bitmap);
-                    newBrew.setBrewPics(image_uri.toString());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

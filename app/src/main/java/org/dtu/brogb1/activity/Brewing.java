@@ -25,6 +25,8 @@ import org.dtu.brogb1.model.Brew;
 import org.dtu.brogb1.model.BrewException;
 import org.dtu.brogb1.model.BrewFactory;
 import org.dtu.brogb1.service.StorageServiceSharedPref;
+
+import java.io.File;
 import java.io.IOException;
 
 
@@ -100,7 +102,7 @@ public class Brewing extends AppCompatActivity {
                 favoriteBT.setVisibility(View.INVISIBLE);
             }
             if(!brew.getBrewPics().isEmpty()){
-                Uri image_uri = Uri.parse(brew.getBrewPics());
+                Uri image_uri = Uri.fromFile(new File(brew.getBrewPics()));;
                 try {
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), image_uri);
                     coffeeImage.setImageBitmap(bitmap);

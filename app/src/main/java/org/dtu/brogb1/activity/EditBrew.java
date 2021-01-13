@@ -27,6 +27,7 @@ import org.dtu.brogb1.model.BrewFactory;
 import org.dtu.brogb1.service.IStorageService;
 import org.dtu.brogb1.service.StorageServiceSharedPref;
 
+import java.io.File;
 import java.io.IOException;
 
 /**
@@ -110,7 +111,7 @@ public class EditBrew extends AppCompatActivity {
             editETTotalMin.setText(Integer.toString(brew.getBrewTimeMin()));
             editETTotalSec.setText(Integer.toString(brew.getBrewTimeSec()));
             if (!brew.getBrewPics().isEmpty()) {
-                Uri image_uri = Uri.parse(brew.getBrewPics());
+                Uri image_uri = Uri.fromFile(new File(brew.getBrewPics()));
                 try {
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), image_uri);
                     coffeeImage.setImageBitmap(bitmap);
@@ -205,10 +206,12 @@ public class EditBrew extends AppCompatActivity {
         if (resultCode == RESULT_OK) {
             if (requestCode == 1) {
                 Uri image_uri = data.getData();
+                File file = new File(image_uri.getPath());//create path from uri
+                final String[] split = file.getPath().split(":");//split the path.
+                brew.setBrewPics(split[1]);
                 try {
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), image_uri);
                     coffeeImage.setImageBitmap(bitmap);
-                    brew.setBrewPics(image_uri.toString());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
