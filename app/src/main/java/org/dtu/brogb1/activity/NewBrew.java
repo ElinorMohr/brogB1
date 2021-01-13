@@ -23,6 +23,8 @@ import org.dtu.brogb1.service.StorageServiceSharedPref;
 
 import java.io.IOException;
 
+import static android.content.Intent.ACTION_OPEN_DOCUMENT;
+
 /**
  * @author Elinor Mikkelsen s191242
  * @author Kristoffer Baumgarten s180500
