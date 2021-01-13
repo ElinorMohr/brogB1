@@ -24,6 +24,8 @@ import org.dtu.brogb1.R;
 import org.dtu.brogb1.model.Brew;
 import org.dtu.brogb1.model.BrewException;
 import org.dtu.brogb1.model.BrewFactory;
+import org.dtu.brogb1.service.IStorageService;
+import org.dtu.brogb1.service.StorageServiceException;
 import org.dtu.brogb1.service.StorageServiceSharedPref;
 
 import java.io.File;
@@ -79,6 +81,43 @@ public class Brewing extends AppCompatActivity {
         tvTimeMin = findViewById(R.id.valueTimeMin);
         tvTimeSec = findViewById(R.id.valueTimeSec);
         trashBT = (ImageButton) findViewById(R.id.trashcan);
+
+        if((brew.getStorageKey() == -1) && (brew.getFavoriteKey() == -1)){
+            trashBT.setVisibility(View.GONE);
+        }
+        // Skraldespands knappen.
+        trashBT.setOnClickListener(new View.OnClickListener() {
+
+            // først skal vi have adgang til vores storage
+        IStorageService storage = StorageServiceSharedPref.getInstance();
+            @Override
+            public void onClick (View v) {
+
+                // her tjekker vi om denne brew lægger gemt i storage (recipes)
+           if (brew.getStorageKey() != -1) {
+               try {
+                   storage.deleteBrew(brew.getStorageKey());
+                   finish();
+               } catch (StorageServiceException e) {
+                   e.printStackTrace();
+               } catch (BrewException e) {
+                   e.printStackTrace();
+               }
+           }
+                // eller i favoritter.
+           if(brew.getFavoriteKey() != -1) {
+               try {
+                   storage.deleteBrew(brew.getFavoriteKey());
+                   finish();
+               } catch (StorageServiceException e) {
+                   e.printStackTrace();
+               } catch (BrewException e) {
+                   e.printStackTrace();
+               }
+           }
+           }
+        });
+
         favoriteBT = (ImageButton) findViewById(R.id.brewing_favorite_bt);
         tvEdit = findViewById(R.id.EditBrewTxt);
 
@@ -99,7 +138,8 @@ public class Brewing extends AppCompatActivity {
                 favoriteBT.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart));
             }
             if (brew.getFavoriteKey() == -1 && brew.getStorageKey() == -1) {
-                favoriteBT.setVisibility(View.INVISIBLE);
+                // tænker dette ikke er relevant
+                // favoriteBT.setVisibility(View.INVISIBLE);
             }
             if(!brew.getBrewPics().isEmpty()){
                 Uri image_uri = Uri.fromFile(new File(brew.getBrewPics()));;
@@ -116,11 +156,11 @@ public class Brewing extends AppCompatActivity {
         brewNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (brew != null){
+                if (brew != null) {
                     brew.setLastBrewTime();
                     try {
                         storageServiceSharedPref.saveBrewToHistory(brew);
-                    } catch (Exception e){
+                    } catch (Exception e) {
                         Toast.makeText(v.getContext(), "Fejl under gem", Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -138,6 +178,7 @@ public class Brewing extends AppCompatActivity {
                         finish();
                     }
                 });
+
                 dialogue.setCancelable(true);
                 dialogue.show();
                 new Handler().postDelayed(new Runnable() {
@@ -177,7 +218,7 @@ public class Brewing extends AppCompatActivity {
                 try {
                     storageServiceSharedPref.saveBrewToFavorites(brew);
                     storageServiceSharedPref.deleteBrew(brew.getStorageKey());
-                }catch (Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
 
@@ -186,12 +227,13 @@ public class Brewing extends AppCompatActivity {
                 try {
                     storageServiceSharedPref.deleteFavoriteBrew(brew.getFavoriteKey());
                     storageServiceSharedPref.saveBrew(brew);
-                }catch (Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         }
     };
+
 
     @Override
     public void onBackPressed() {
