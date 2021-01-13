@@ -156,6 +156,7 @@ public class NewBrew extends AppCompatActivity {
             if (requestCode == 1) {
                 Uri image_uri = data.getData();
                 File file = new File(image_uri.getPath());//create path from uri
+                System.out.println(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 System.out.println(file.getAbsolutePath());
                 System.out.println(image_uri.getPath());
                 final String[] split = file.getPath().split(":");//split the path.
