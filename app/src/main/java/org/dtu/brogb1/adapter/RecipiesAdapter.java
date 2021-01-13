@@ -13,10 +13,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
-
 import org.dtu.brogb1.R;
 import org.dtu.brogb1.activity.Brewing;
 import org.dtu.brogb1.model.Brew;

@@ -2,9 +2,7 @@ package org.dtu.brogb1.model;
 
 import android.os.Build;
 import android.util.Log;
-
 import androidx.annotation.RequiresApi;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 

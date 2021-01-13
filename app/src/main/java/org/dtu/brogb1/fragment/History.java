@@ -6,12 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
 import org.dtu.brogb1.R;
 import org.dtu.brogb1.activity.Brewing;
 import org.dtu.brogb1.adapter.RecipiesAdapter;
@@ -33,11 +30,11 @@ public class History extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View root =  inflater.inflate(R.layout.history_layout, container, false);
+        View root = inflater.inflate(R.layout.history_layout, container, false);
         ListView listMain = root.findViewById(R.id.list_view_main_history);
         try {
             viewMain = sharedPref.getBrewHistory();
-        }catch (Exception e){
+        } catch (Exception e) {
             viewMain = new ArrayList<Brew>();
             e.printStackTrace();
         }
@@ -52,7 +49,7 @@ public class History extends Fragment {
                 Intent intent = new Intent(getContext(), Brewing.class);
                 try {
                     intent.putExtra("Brew", viewMain.get(position).toJson());
-                }catch (Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
                 startActivity(intent);

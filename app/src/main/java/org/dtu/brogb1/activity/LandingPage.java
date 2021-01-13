@@ -6,13 +6,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import org.dtu.brogb1.R;
-import org.dtu.brogb1.service.IStorageService;
-import org.dtu.brogb1.service.StorageServiceSharedPref;
 
 /**
  * @author Elinor Mikkelsen s191242
@@ -22,7 +17,6 @@ import org.dtu.brogb1.service.StorageServiceSharedPref;
 public class LandingPage extends AppCompatActivity implements View.OnClickListener {
     public static SharedPreferences mySharedPreferences = null;
     Button bluetooth, offline;
-    TextView logo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +24,6 @@ public class LandingPage extends AppCompatActivity implements View.OnClickListen
         setContentView(R.layout.activity_landing_page);
 
         mySharedPreferences = getApplicationContext().getSharedPreferences("preferences", Activity.MODE_PRIVATE);
-        IStorageService storage = StorageServiceSharedPref.getInstance();
 
         bluetooth = findViewById(R.id.bluetooth);
         bluetooth.setOnClickListener(this);
