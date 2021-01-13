@@ -8,9 +8,11 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.MediaStore;
 import android.text.Html;
 import android.view.View;
 import android.widget.Button;
@@ -29,6 +31,8 @@ import org.dtu.brogb1.model.BrewException;
 import org.dtu.brogb1.model.BrewFactory;
 import org.dtu.brogb1.service.StorageServiceSharedPref;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.Base64;
 
 /**
@@ -73,7 +77,7 @@ public class Brewing extends AppCompatActivity {
             finish();
         }
 
-        kaffebillede = findViewById(R.id.new_brew_image);
+        kaffebillede = findViewById(R.id.kaffebillede);
 
 
         TVBrewName = findViewById(R.id.Opskriftens_navn);
@@ -109,13 +113,15 @@ public class Brewing extends AppCompatActivity {
             if (brew.getFavoriteKey() == -1 && brew.getStorageKey() == -1) {
                 favoriteBT.setVisibility(View.INVISIBLE);
             }
-            if(false && brew.getBrewPics().isEmpty()){
-                byte[] decodedString = new byte[0];
-                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-                    decodedString = Base64.getDecoder().decode(brew.getBrewPics());
+            if(!brew.getBrewPics().isEmpty()){
+                Uri image_uri = Uri.parse(brew.getBrewPics());
+                try {
+                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), image_uri);
+                    kaffebillede.setImageBitmap(bitmap);
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-                kaffebillede.setImageBitmap(decodedByte);
+
             }
         }
 
