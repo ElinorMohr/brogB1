@@ -103,16 +103,17 @@ public class Brewing extends AppCompatActivity {
                } catch (BrewException e) {
                    e.printStackTrace();
                }
-           }
-                // eller i favoritter.
-           if(brew.getFavoriteKey() != -1) {
-               try {
-                   storage.deleteBrew(brew.getFavoriteKey());
-                   finish();
-               } catch (StorageServiceException e) {
-                   e.printStackTrace();
-               } catch (BrewException e) {
-                   e.printStackTrace();
+           } else {
+               // eller i favoritter.
+               if (brew.getFavoriteKey() != -1) {
+                   try {
+                       storage.deleteFavoriteBrew(brew.getFavoriteKey());
+                       finish();
+                   } catch (StorageServiceException e) {
+                       e.printStackTrace();
+                   } catch (BrewException e) {
+                       e.printStackTrace();
+                   }
                }
            }
            }
