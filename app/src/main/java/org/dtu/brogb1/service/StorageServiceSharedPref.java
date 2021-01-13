@@ -3,20 +3,18 @@ package org.dtu.brogb1.service;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.util.Log;
-
 import androidx.annotation.RequiresApi;
-
 import org.dtu.brogb1.activity.LandingPage;
 import org.dtu.brogb1.model.Brew;
 import org.dtu.brogb1.model.BrewException;
 import org.dtu.brogb1.model.BrewFactory;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class    StorageServiceSharedPref implements IStorageService {
+public class StorageServiceSharedPref implements IStorageService {
     private static final String TAG = StorageServiceSharedPref.class.getSimpleName();
     private static StorageServiceSharedPref instance = null;
+
     public static StorageServiceSharedPref getInstance() {
         if (instance == null) {
             instance = new StorageServiceSharedPref();
@@ -35,16 +33,17 @@ public class    StorageServiceSharedPref implements IStorageService {
     private int historyCount = 0;
     private int favoriteCount = 0;
     private SharedPreferences preferences = null;
+
     private StorageServiceSharedPref() {
         this.preferences = LandingPage.mySharedPreferences;
         this.brewCount = this.getInt(this.brewCountKey);
-        if(this.brewCount < 0)
+        if (this.brewCount < 0)
             this.brewCount = 0;
         this.historyCount = this.getInt(this.historyCountKey);
-        if(this.historyCount < 0)
+        if (this.historyCount < 0)
             this.historyCount = 0;
         this.favoriteCount = this.getInt(this.favoriteCountKey);
-        if(this.favoriteCount < 0)
+        if (this.favoriteCount < 0)
             this.favoriteCount = 0;
         Log.d(TAG, "Der er " + this.brewCount + " opskrifter, " + this.favoriteCount + " favoritter og " + this.historyCount + " i historikken");
     }
@@ -141,7 +140,7 @@ public class    StorageServiceSharedPref implements IStorageService {
         if (key < this.brewCount - 1) {
             // Startende med den der lige er slettet, overskriv med den næste
             for (int i = key; i < this.brewCount - 1; i++) {
-                this.overwriteBrew(i, this.getBrew(i+1));
+                this.overwriteBrew(i, this.getBrew(i + 1));
             }
             // Slet den sidste Brew
             this.unset(this.brewKey + (this.brewCount - 1));
@@ -164,7 +163,7 @@ public class    StorageServiceSharedPref implements IStorageService {
     @Override
     public Brew getQuickBrew() throws StorageServiceException, BrewException {
         int id = this.preferences.getInt(this.quickKey, -1);
-        if (id == -1){
+        if (id == -1) {
             return BrewFactory.getBrew("Default");
         }
         return this.getBrew(id);
@@ -173,7 +172,7 @@ public class    StorageServiceSharedPref implements IStorageService {
     @Override
     public void saveBrewToHistory(Brew value) throws BrewException, StorageServiceException {
         for (int i = this.historyCount; i > 0; i--) {
-            this.saveString(this.historyKey + i, this.getBrewFromHistory(i-1).toJson());
+            this.saveString(this.historyKey + i, this.getBrewFromHistory(i - 1).toJson());
         }
         this.saveString(this.historyKey + "0", value.toJson());
         this.historyCount++;
@@ -256,7 +255,7 @@ public class    StorageServiceSharedPref implements IStorageService {
         if (key < this.favoriteCount - 1) {
             // Startende med den der lige er slettet, overskriv med den næste
             for (int i = key; i < this.favoriteCount - 1; i++) {
-                this.overwriteFavoriteBrew(i, this.getBrewFromFavorites(i+1));
+                this.overwriteFavoriteBrew(i, this.getBrewFromFavorites(i + 1));
             }
             // Slet den sidste Brew
             this.unset(this.favoritesKey + (this.favoriteCount - 1));

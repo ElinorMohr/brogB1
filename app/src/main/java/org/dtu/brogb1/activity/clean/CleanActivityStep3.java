@@ -3,9 +3,7 @@ package org.dtu.brogb1.activity.clean;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import org.dtu.brogb1.R;
 import org.dtu.brogb1.activity.HomePage;
 

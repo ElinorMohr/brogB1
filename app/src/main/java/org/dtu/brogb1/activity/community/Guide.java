@@ -1,9 +1,7 @@
 package org.dtu.brogb1.activity.community;
 
 import android.os.Bundle;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import org.dtu.brogb1.R;
 
 /**

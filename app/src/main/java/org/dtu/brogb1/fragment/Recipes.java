@@ -1,19 +1,14 @@
 package org.dtu.brogb1.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
 import org.dtu.brogb1.R;
-import org.dtu.brogb1.activity.Brewing;
 import org.dtu.brogb1.adapter.RecipiesAdapter;
 import org.dtu.brogb1.model.Brew;
 import org.dtu.brogb1.model.BrewException;
@@ -47,7 +42,7 @@ public class Recipes extends Fragment {
     public void onResume() {
         super.onResume();
         storage = StorageServiceSharedPref.getInstance();
-        View root = getLayoutInflater().inflate(R.layout.recipes_layout, ((ViewGroup)getView().getParent()), false);
+        View root = getLayoutInflater().inflate(R.layout.recipes_layout, ((ViewGroup) getView().getParent()), false);
         populateLists(root);
     }
 

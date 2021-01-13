@@ -1,14 +1,11 @@
 package org.dtu.brogb1.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.InputFilter;
-import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -16,7 +13,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
-
+import androidx.appcompat.app.AppCompatActivity;
 import org.dtu.brogb1.R;
 import org.dtu.brogb1.filters.MinMaxFilter;
 import org.dtu.brogb1.model.Brew;
@@ -24,9 +21,7 @@ import org.dtu.brogb1.model.BrewException;
 import org.dtu.brogb1.service.IStorageService;
 import org.dtu.brogb1.service.StorageServiceSharedPref;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.util.Base64;
 
 /**
  * @author Elinor Mikkelsen s191242
@@ -37,18 +32,17 @@ import java.util.Base64;
  */
 
 public class NewBrew extends AppCompatActivity {
-    private String brewName, brewPics, grindSize;
+    private String brewName, grindSize;
     private int brewTimeMin, brewTimeSec, groundCoffee, coffeeWaterRatio, brewingTemperature, bloomWater, bloomTime;
     EditText editBrewName, editGroundCoffee, editRatio, editTemp, editBloomWater, editBloomTime, editTotalMin, editTotalSec;
     Spinner spinnerInputGrindSize;
-    StorageServiceSharedPref sharedPref = StorageServiceSharedPref.getInstance();
 
     ImageButton favoriteBT;
+    ImageView coffeeImageView;
+
     boolean favoriteOn;
 
     Brew newBrew = new Brew();
-
-    ImageView coffeImageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +52,7 @@ public class NewBrew extends AppCompatActivity {
         Button brewNow = (Button) findViewById(R.id.brew_now_recipe);
         ImageButton info = findViewById(R.id.i_ground_coffee);
 
-        coffeImageView = findViewById(R.id.new_brew_image);
+        coffeeImageView = findViewById(R.id.new_brew_image);
 
         // instansere alle vores givende værdier til et bryg
         editBrewName = findViewById(R.id.brew_name);
@@ -71,6 +65,7 @@ public class NewBrew extends AppCompatActivity {
         editTotalMin = findViewById(R.id.input_total_time_min);
         editTotalSec = findViewById(R.id.input_total_time_sec);
         favoriteBT = findViewById(R.id.new_brew_favorite_bt);
+        CheckBox saveBrew = (CheckBox) findViewById(R.id.savebox);
 
 
         editGroundCoffee.setFilters(new InputFilter[]{new MinMaxFilter("1", "99")});
@@ -97,8 +92,8 @@ public class NewBrew extends AppCompatActivity {
                 e.printStackTrace();
                 return;
             }
+            setBrewValues();
 
-            CheckBox saveBrew = (CheckBox) findViewById(R.id.savebox);
             // her tjekker vi, hvis den er markeret som save. bliver denne bryg gemt i storage
             if (saveBrew.isChecked()) {
                 IStorageService storage = StorageServiceSharedPref.getInstance();
@@ -116,8 +111,7 @@ public class NewBrew extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
-            // gemmer det i en newBrew
-            setBrewValues();
+
             Intent intent = new Intent(this, Brewing.class);
             //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             try {
@@ -132,7 +126,7 @@ public class NewBrew extends AppCompatActivity {
             BrewSheetMenu brygMenu = new BrewSheetMenu();
             brygMenu.show(getSupportFragmentManager(), "FragmentBrygMenu");
         });
-      
+
         favoriteBT.setOnClickListener(v -> {
             if (!favoriteOn) {
                 favoriteBT.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart));
@@ -141,7 +135,7 @@ public class NewBrew extends AppCompatActivity {
             }
             favoriteOn = !favoriteOn;
         });
-        coffeImageView.setOnClickListener(v -> {
+        coffeeImageView.setOnClickListener(v -> {
             Intent pickIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
             pickIntent.setType("image/");
 
@@ -151,6 +145,7 @@ public class NewBrew extends AppCompatActivity {
             startActivityForResult(chooserIntent, 1); //request code til det der sendes videre.
         });
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -159,7 +154,7 @@ public class NewBrew extends AppCompatActivity {
                 Uri image_uri = data.getData();
                 try {
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), image_uri);
-                    coffeImageView.setImageBitmap(bitmap);
+                    coffeeImageView.setImageBitmap(bitmap);
                     newBrew.setBrewPics(image_uri.toString());
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -167,6 +162,7 @@ public class NewBrew extends AppCompatActivity {
             }
         }
     }
+
     private void setBrewValues() {
         newBrew.setGroundCoffee(groundCoffee);
         newBrew.setGrindSize(grindSize);

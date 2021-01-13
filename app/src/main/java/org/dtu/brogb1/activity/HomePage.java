@@ -1,11 +1,8 @@
 package org.dtu.brogb1.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.ContextMenu;
-import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,7 +10,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
 import android.widget.Toast;
-
+import androidx.appcompat.app.AppCompatActivity;
 import org.dtu.brogb1.R;
 import org.dtu.brogb1.activity.clean.CleanActivityStep1;
 import org.dtu.brogb1.activity.community.About;
@@ -32,7 +29,7 @@ import org.dtu.brogb1.service.StorageServiceSharedPref;
  */
 
 public class HomePage extends AppCompatActivity implements View.OnClickListener, PopupMenu.OnMenuItemClickListener {
-    Button brew,list,quick,bsmquickBrew, bsmrecipes, bsmnewBrew;
+    Button brew, list, quick;
     ImageButton settings;
     IStorageService storage;
 
@@ -46,10 +43,10 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener,
         quick = findViewById(R.id.quick_brew);
         settings = findViewById(R.id.Settings);
 
-
         brew.setOnClickListener(this);
         list.setOnClickListener(this);
         quick.setOnClickListener(this);
+
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,7 +64,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener,
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu, menu);
     }
-    
+
     @Override
     public boolean onContextItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -98,7 +95,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener,
     @Override
     public void onClick(View v) {
         Intent intent;
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.brew_now:
                 intent = new Intent(this, NewBrew.class);
                 startActivity(intent);
@@ -113,7 +110,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener,
                     intent = new Intent(this, Brewing.class);
                     intent.putExtra("Brew", quickbrew.toJson());
                     startActivity(intent);
-                } catch (Exception e) { //StorageServiceException | BrewException e
+                } catch (StorageServiceException | BrewException e) {
                     e.printStackTrace();
                     Toast.makeText(this, "Du har ikke valgt en quick-brew", Toast.LENGTH_LONG).show();
                 }
