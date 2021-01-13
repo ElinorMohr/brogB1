@@ -160,7 +160,7 @@ public class NewBrew extends AppCompatActivity {
                 System.out.println(file.getAbsolutePath());
                 System.out.println(image_uri.getPath());
                 final String[] split = file.getPath().split(":");//split the path.
-                newBrew.setBrewPics(split[1]);
+                newBrew.setBrewPics("/"+split[1]);
                 try {
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), image_uri);
                     coffeeImageView.setImageBitmap(bitmap);
