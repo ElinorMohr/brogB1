@@ -1,11 +1,9 @@
 package org.dtu.brogb1.activity;
 
-import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
@@ -18,22 +16,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-
 import org.dtu.brogb1.R;
 import org.dtu.brogb1.model.Brew;
 import org.dtu.brogb1.model.BrewException;
 import org.dtu.brogb1.model.BrewFactory;
 import org.dtu.brogb1.service.StorageServiceSharedPref;
-
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.util.Base64;
+
 
 /**
  * @author Elinor Mikkelsen s191242
@@ -46,16 +39,12 @@ import java.util.Base64;
 public class Brewing extends AppCompatActivity {
     Button brewNow;
     Dialog dialogue;
-    TextView TVBrewName, TVGrindSize, TVGroundCoffee, TVRatio, TVTemp, TVBloomWater, TVBloomTime, TVTimeMin, TVTimeSec, TVEdit;
+    TextView tvBrewName, tvGrindSize, tvGroundCoffe, tvRatio, tvTemp, tvBloomWater, tvBloomTime, tvTimeMin, tvTimeSec, tvEdit;
     ImageButton favoriteBT, trashBT;
-    boolean buttonOn;
     Brew brew;
     StorageServiceSharedPref storageServiceSharedPref = StorageServiceSharedPref.getInstance();
 
-    ImageView kaffebillede;
-
-    private ProgressBar progressBarAnimation;
-    private ObjectAnimator progressAnimator;
+    ImageView coffeeImage;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @SuppressLint("SetTextI18n")
@@ -77,36 +66,33 @@ public class Brewing extends AppCompatActivity {
             finish();
         }
 
-        kaffebillede = findViewById(R.id.kaffebillede);
-
-
-        TVBrewName = findViewById(R.id.Opskriftens_navn);
-        TVGroundCoffee = findViewById(R.id.valueGroundCoffee);
-        TVGrindSize = findViewById(R.id.valuegrindsize);
-        TVRatio = findViewById(R.id.valueRatio);
-        TVTemp = findViewById(R.id.valueTemperature);
-        TVBloomWater = findViewById(R.id.valueBloomWater);
-        TVBloomTime = findViewById(R.id.valueBloomTime);
-        TVTimeMin = findViewById(R.id.valueTimeMin);
-        TVTimeSec = findViewById(R.id.valueTimeSec);
-
+        coffeeImage = findViewById(R.id.kaffebillede);
+        tvBrewName = findViewById(R.id.Opskriftens_navn);
+        tvGroundCoffe = findViewById(R.id.valueGroundCoffee);
+        tvGrindSize = findViewById(R.id.valuegrindsize);
+        tvRatio = findViewById(R.id.valueRatio);
+        tvTemp = findViewById(R.id.valueTemperature);
+        tvBloomWater = findViewById(R.id.valueBloomWater);
+        tvBloomTime = findViewById(R.id.valueBloomTime);
+        tvTimeMin = findViewById(R.id.valueTimeMin);
+        tvTimeSec = findViewById(R.id.valueTimeSec);
         trashBT = (ImageButton) findViewById(R.id.trashcan);
-
         favoriteBT = (ImageButton) findViewById(R.id.brewing_favorite_bt);
+        tvEdit = findViewById(R.id.EditBrewTxt);
+
         favoriteBT.setOnClickListener(imgButtonHandler);
-        TVEdit = findViewById(R.id.EditBrewTxt);
 
         // Edit teksten
         if (brew != null){
-            TVBrewName.setText(Html.fromHtml("<u>" + brew.getBrewName() + "</u>"));
-            TVGroundCoffee.setText(Integer.toString(brew.getGroundCoffee()));
-            TVGrindSize.setText(brew.getGrindSize());
-            TVRatio.setText(Integer.toString(brew.getCoffeeWaterRatio()));
-            TVTemp.setText(Integer.toString(brew.getBrewingTemperature()));
-            TVBloomWater.setText(Integer.toString(brew.getBloomWater()));
-            TVBloomTime.setText(Integer.toString(brew.getBloomTime()));
-            TVTimeMin.setText(Integer.toString(brew.getBrewTimeMin()));
-            TVTimeSec.setText(Integer.toString(brew.getBrewTimeSec()));
+            tvBrewName.setText(Html.fromHtml("<u>" + brew.getBrewName() + "</u>"));
+            tvGroundCoffe.setText(Integer.toString(brew.getGroundCoffee()));
+            tvGrindSize.setText(brew.getGrindSize());
+            tvRatio.setText(Integer.toString(brew.getCoffeeWaterRatio()));
+            tvTemp.setText(Integer.toString(brew.getBrewingTemperature()));
+            tvBloomWater.setText(Integer.toString(brew.getBloomWater()));
+            tvBloomTime.setText(Integer.toString(brew.getBloomTime()));
+            tvTimeMin.setText(Integer.toString(brew.getBrewTimeMin()));
+            tvTimeSec.setText(Integer.toString(brew.getBrewTimeSec()));
             if (brew.getFavoriteKey() >= 0) {
                 favoriteBT.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart));
             }
@@ -117,7 +103,7 @@ public class Brewing extends AppCompatActivity {
                 Uri image_uri = Uri.parse(brew.getBrewPics());
                 try {
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), image_uri);
-                    kaffebillede.setImageBitmap(bitmap);
+                    coffeeImage.setImageBitmap(bitmap);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -166,7 +152,7 @@ public class Brewing extends AppCompatActivity {
             }
         });
 
-        TVEdit.setOnClickListener(new View.OnClickListener() {
+        tvEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), EditBrew.class);

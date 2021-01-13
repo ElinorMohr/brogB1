@@ -3,17 +3,14 @@ package org.dtu.brogb1.activity;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Dialog;
 import android.content.Intent;
 import android.os.Build;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.InputFilter;
 import android.util.Log;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -30,9 +27,7 @@ import org.dtu.brogb1.model.BrewFactory;
 import org.dtu.brogb1.service.IStorageService;
 import org.dtu.brogb1.service.StorageServiceSharedPref;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.util.Base64;
 
 /**
  * @author Kristoffer Baumgarten s180500
@@ -42,20 +37,18 @@ import java.util.Base64;
 
 public class EditBrew extends AppCompatActivity {
     private static final String TAG = EditBrew.class.getSimpleName();
-    Dialog dialogue;
-    private String brewName, brewPics, grindSize;
+    private String brewName, grindSize;
     private int brewTimeMin, brewTimeSec, groundCoffee, coffeeWaterRatio, brewingTemperature, bloomWater, bloomTime;
-    EditText Edit_ETBrewName, Edit_ETGroundCoffee, Edit_ETRatio, Edit_ETTemp, Edit_ETBloomWater, Edit_ETBloomTime, Edit_ETTotalMin, Edit_ETTotalSec;
-    Spinner Edit_SpinnerInputGrindSize;
+    EditText editETBrewName, editETGroundCoffee, editETRatio, editETTemp, editETBloomWater, editETBloomTime, editETTotalMin, editETTotalSec;
+    Spinner editSpinnerInputGrindSize;
     Brew brew;
-    ImageView kaffebillede;
+    ImageView coffeeImage;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_brew);
-        ImageButton info = findViewById(R.id.i_ground_coffee);
         StorageServiceSharedPref storageServiceSharedPref = StorageServiceSharedPref.getInstance();
 
         try {
@@ -71,68 +64,69 @@ public class EditBrew extends AppCompatActivity {
             finish();
         }
 
-        kaffebillede = findViewById(R.id.edit_image);
-
-        Edit_ETBrewName = findViewById(R.id.edit_Opskrifts_navn);
-        Edit_ETGroundCoffee = findViewById(R.id.edit_inputGroundCoffee);
-        Edit_SpinnerInputGrindSize = findViewById(R.id.edit_inputgrindsize);
-        Edit_ETRatio = findViewById(R.id.edit_inputRatio);
-        Edit_ETTemp = findViewById(R.id.edit_inputTemperature);
-        Edit_ETBloomWater = findViewById(R.id.edit_inputBloomWater);
-        Edit_ETBloomTime = findViewById(R.id.edit_inputBloomTime);
-        Edit_ETTotalMin = findViewById(R.id.edit_inputTotalTimeMin);
-        Edit_ETTotalSec = findViewById(R.id.edit_inputTotalTimeSec);
+        coffeeImage = findViewById(R.id.edit_image);
+        editETBrewName = findViewById(R.id.edit_Opskrifts_navn);
+        editETGroundCoffee = findViewById(R.id.edit_inputGroundCoffee);
+        editSpinnerInputGrindSize = findViewById(R.id.edit_inputgrindsize);
+        editETRatio = findViewById(R.id.edit_inputRatio);
+        editETTemp = findViewById(R.id.edit_inputTemperature);
+        editETBloomWater = findViewById(R.id.edit_inputBloomWater);
+        editETBloomTime = findViewById(R.id.edit_inputBloomTime);
+        editETTotalMin = findViewById(R.id.edit_inputTotalTimeMin);
+        editETTotalSec = findViewById(R.id.edit_inputTotalTimeSec);
+        ImageButton info = findViewById(R.id.i_ground_coffee);
+        Button EditNow = (Button) findViewById(R.id.editBT);
         // intervallerne for hver af inputs
 
-        Edit_ETGroundCoffee.setFilters(new InputFilter[]{new MinMaxFilter("1", "99")});
-        Edit_ETRatio.setFilters(new InputFilter[]{new MinMaxFilter("1", "99")});
-        Edit_ETTemp.setFilters(new InputFilter[]{new MinMaxFilter("1", "99")});
-        Edit_ETBloomWater.setFilters(new InputFilter[]{new MinMaxFilter("1", "99")});
-        Edit_ETBloomTime.setFilters(new InputFilter[]{new MinMaxFilter("1", "99")});
-        Edit_ETTotalMin.setFilters(new InputFilter[]{new MinMaxFilter("0", "99")});
-        Edit_ETTotalSec.setFilters(new InputFilter[]{new MinMaxFilter("0", "59")});
+        editETGroundCoffee.setFilters(new InputFilter[]{new MinMaxFilter("1", "99")});
+        editETRatio.setFilters(new InputFilter[]{new MinMaxFilter("1", "99")});
+        editETTemp.setFilters(new InputFilter[]{new MinMaxFilter("1", "99")});
+        editETBloomWater.setFilters(new InputFilter[]{new MinMaxFilter("1", "99")});
+        editETBloomTime.setFilters(new InputFilter[]{new MinMaxFilter("1", "99")});
+        editETTotalMin.setFilters(new InputFilter[]{new MinMaxFilter("0", "99")});
+        editETTotalSec.setFilters(new InputFilter[]{new MinMaxFilter("0", "59")});
 
 
         // Her lægges alle værdierne ind i edit teksene. Så de kommer frem.
         if (brew != null) {
             if (!(brew.getBrewName().isEmpty())) {
-                Edit_ETBrewName.setText(brew.getBrewName());
+                editETBrewName.setText(brew.getBrewName());
             }
-            Edit_ETGroundCoffee.setText(Integer.toString(brew.getGroundCoffee()));
-            System.out.println(Edit_ETGroundCoffee);
+            editETGroundCoffee.setText(Integer.toString(brew.getGroundCoffee()));
+            System.out.println(editETGroundCoffee);
 
             // vi tjekker for hvilken en i spinneren er valgt
             grindSize = brew.getGrindSize();
             ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.grind_array, android.R.layout.simple_spinner_item);
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            Edit_SpinnerInputGrindSize.setAdapter(adapter);
+            editSpinnerInputGrindSize.setAdapter(adapter);
             if (grindSize != null) {
                 int spinnerPosition = adapter.getPosition(grindSize);
-                Edit_SpinnerInputGrindSize.setSelection(spinnerPosition);
+                editSpinnerInputGrindSize.setSelection(spinnerPosition);
             }
 
-            Edit_ETRatio.setText(Integer.toString(brew.getCoffeeWaterRatio()));
-            Edit_ETTemp.setText(Integer.toString(brew.getBrewingTemperature()));
-            Edit_ETBloomWater.setText(Integer.toString(brew.getBloomWater()));
-            Edit_ETBloomTime.setText(Integer.toString(brew.getBloomTime()));
-            Edit_ETTotalMin.setText(Integer.toString(brew.getBrewTimeMin()));
-            Edit_ETTotalSec.setText(Integer.toString(brew.getBrewTimeSec()));
+            editETRatio.setText(Integer.toString(brew.getCoffeeWaterRatio()));
+            editETTemp.setText(Integer.toString(brew.getBrewingTemperature()));
+            editETBloomWater.setText(Integer.toString(brew.getBloomWater()));
+            editETBloomTime.setText(Integer.toString(brew.getBloomTime()));
+            editETTotalMin.setText(Integer.toString(brew.getBrewTimeMin()));
+            editETTotalSec.setText(Integer.toString(brew.getBrewTimeSec()));
             if (!brew.getBrewPics().isEmpty()) {
                 Uri image_uri = Uri.parse(brew.getBrewPics());
                 try {
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), image_uri);
-                    kaffebillede.setImageBitmap(bitmap);
+                    coffeeImage.setImageBitmap(bitmap);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
 
-            Button EditNow = (Button) findViewById(R.id.editBT);
+
             //når der brygges
             EditNow.setOnClickListener(v -> {
                 // gemmer inputtet fra ui'en til værdierne
                 try {
-                    groundCoffee = Integer.parseInt(Edit_ETGroundCoffee.getText().toString());
+                    groundCoffee = Integer.parseInt(editETGroundCoffee.getText().toString());
                     if (groundCoffee == 0) {
                         Toast.makeText(this, "input in ground coffee is 0", Toast.LENGTH_SHORT).show();
                         return;
@@ -142,10 +136,10 @@ public class EditBrew extends AppCompatActivity {
                     e.printStackTrace();
                     return;
                 }
-                grindSize = Edit_SpinnerInputGrindSize.getSelectedItem().toString();
+                grindSize = editSpinnerInputGrindSize.getSelectedItem().toString();
 
                 try {
-                    coffeeWaterRatio = Integer.parseInt(Edit_ETRatio.getText().toString());
+                    coffeeWaterRatio = Integer.parseInt(editETRatio.getText().toString());
                     if (coffeeWaterRatio == 0) {
                         Toast.makeText(this, "input in coffee Water Ratio is 0", Toast.LENGTH_SHORT).show();
                         return;
@@ -156,7 +150,7 @@ public class EditBrew extends AppCompatActivity {
                     return;
                 }
                 try {
-                    brewingTemperature = Integer.parseInt(Edit_ETTemp.getText().toString());
+                    brewingTemperature = Integer.parseInt(editETTemp.getText().toString());
                     if (brewingTemperature == 0) {
                         Toast.makeText(this, "input in brewing Temperature is 0", Toast.LENGTH_SHORT).show();
                         return;
@@ -168,7 +162,7 @@ public class EditBrew extends AppCompatActivity {
                 }
 
                 try {
-                    bloomWater = Integer.parseInt(Edit_ETBloomWater.getText().toString());
+                    bloomWater = Integer.parseInt(editETBloomWater.getText().toString());
                     if (bloomWater == 0) {
                         Toast.makeText(this, "input in Bloom Water is 0", Toast.LENGTH_SHORT).show();
                         return;
@@ -179,7 +173,7 @@ public class EditBrew extends AppCompatActivity {
                     return;
                 }
                 try {
-                    bloomTime = Integer.parseInt(Edit_ETBloomTime.getText().toString());
+                    bloomTime = Integer.parseInt(editETBloomTime.getText().toString());
                     if (bloomTime == 0) {
                         Toast.makeText(this, "input in Bloom Time is 0", Toast.LENGTH_SHORT).show();
                         return;
@@ -191,18 +185,18 @@ public class EditBrew extends AppCompatActivity {
                 }
 
                 // tiden skal blive lagt sammen
-                if (Edit_ETTotalMin.getText().toString().isEmpty()) {
+                if (editETTotalMin.getText().toString().isEmpty()) {
                     brewTimeMin = 0;
                 } else {
-                    brewTimeMin = Integer.parseInt(Edit_ETTotalMin.getText().toString());
+                    brewTimeMin = Integer.parseInt(editETTotalMin.getText().toString());
                 }
 
-                if (Edit_ETTotalSec.getText().toString().isEmpty()) {
+                if (editETTotalSec.getText().toString().isEmpty()) {
                     brewTimeSec = 0;
                 } else {
-                    brewTimeSec = Integer.parseInt(Edit_ETTotalSec.getText().toString());
+                    brewTimeSec = Integer.parseInt(editETTotalSec.getText().toString());
                 }
-                if ((Edit_ETTotalMin.getText().toString().isEmpty() && Edit_ETTotalSec.getText().toString().isEmpty()) || (brewTimeMin == 0 && brewTimeSec == 0)) {
+                if ((editETTotalMin.getText().toString().isEmpty() && editETTotalSec.getText().toString().isEmpty()) || (brewTimeMin == 0 && brewTimeSec == 0)) {
                     Toast.makeText(this, "time can't be empty", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -245,7 +239,7 @@ public class EditBrew extends AppCompatActivity {
                 BrewSheetMenu brygMenu = new BrewSheetMenu();
                 brygMenu.show(getSupportFragmentManager(), "FragmentBrygMenu");
             });
-            kaffebillede.setOnClickListener(v -> {
+            coffeeImage.setOnClickListener(v -> {
                 Intent getIntent = new Intent(Intent.ACTION_GET_CONTENT);
                 getIntent.setType("image/");
 
@@ -269,7 +263,7 @@ public class EditBrew extends AppCompatActivity {
             brew.setBloomTime(bloomTime);
             brew.setBrewTimeMin(brewTimeMin);
             brew.setBrewTimeSec(brewTimeSec);
-            brewName = Edit_ETBrewName.getText().toString();
+            brewName = editETBrewName.getText().toString();
             brew.setBrewName(brewName);
         }
 
@@ -281,7 +275,7 @@ public class EditBrew extends AppCompatActivity {
                     Uri image_uri = data.getData();
                     try {
                         Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), image_uri);
-                        kaffebillede.setImageBitmap(bitmap);
+                        coffeeImage.setImageBitmap(bitmap);
                         brew.setBrewPics(image_uri.toString());
                     } catch (IOException e) {
                         e.printStackTrace();
