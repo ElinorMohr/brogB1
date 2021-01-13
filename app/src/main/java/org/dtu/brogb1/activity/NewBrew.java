@@ -180,6 +180,8 @@ public class NewBrew extends AppCompatActivity {
         newBrew.setBloomTime(bloomTime);
         newBrew.setBrewTimeMin(brewTimeMin);
         newBrew.setBrewTimeSec(brewTimeSec);
+        newBrew.setFavoriteKey(-1);
+        newBrew.setStorageKey(-1);
         brewName = editBrewName.getText().toString();
         newBrew.setBrewName(brewName);
     }
