@@ -135,7 +135,7 @@ public class    StorageServiceSharedPref implements IStorageService {
         if (key >= this.brewCount)
             throw new StorageServiceException("Den brew findes ikke!");
 
-        // Slet den Brew der ønsked slettet
+        // Slet den Brew der ønskes slettet
         this.unset(this.brewKey + key);
         // Hvis det ikke var den sidste Brew, så skal alle efterfølgende Brew's rykkes
         if (key < this.brewCount - 1) {
@@ -250,7 +250,7 @@ public class    StorageServiceSharedPref implements IStorageService {
         if (key >= this.favoriteCount)
             throw new StorageServiceException("Den brew findes ikke!");
 
-        // Slet den Brew der ønsked slettet
+        // Slet den Brew der ønskes slettet
         this.unset(this.favoritesKey + key);
         // Hvis det ikke var den sidste Brew, så skal alle efterfølgende Brew's rykkes
         if (key < this.favoriteCount - 1) {

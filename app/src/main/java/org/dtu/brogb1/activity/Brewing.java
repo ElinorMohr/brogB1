@@ -29,6 +29,8 @@ import org.dtu.brogb1.R;
 import org.dtu.brogb1.model.Brew;
 import org.dtu.brogb1.model.BrewException;
 import org.dtu.brogb1.model.BrewFactory;
+import org.dtu.brogb1.service.IStorageService;
+import org.dtu.brogb1.service.StorageServiceException;
 import org.dtu.brogb1.service.StorageServiceSharedPref;
 
 import java.io.ByteArrayOutputStream;
@@ -91,13 +93,41 @@ public class Brewing extends AppCompatActivity {
         TVTimeSec = findViewById(R.id.valueTimeSec);
 
         trashBT = (ImageButton) findViewById(R.id.trashcan);
+        trashBT.setOnClickListener(new View.OnClickListener() {
+        IStorageService storage = StorageServiceSharedPref.getInstance();
+            @Override
+            public void onClick (View v) {
+                System.out.println(brew.getStorageKey());
+                System.out.println(brew.getFavoriteKey());
+           if (brew.getStorageKey() != -1) {
+               try {
+                   storage.deleteBrew(brew.getStorageKey());
+                   finish();
+               } catch (StorageServiceException e) {
+                   e.printStackTrace();
+               } catch (BrewException e) {
+                   e.printStackTrace();
+               }
+           }
+           if(brew.getFavoriteKey() != -1) {
+               try {
+                   storage.deleteBrew(brew.getFavoriteKey());
+                   finish();
+               } catch (StorageServiceException e) {
+                   e.printStackTrace();
+               } catch (BrewException e) {
+                   e.printStackTrace();
+               }
+           }
+           }
+        });
 
         favoriteBT = (ImageButton) findViewById(R.id.brewing_favorite_bt);
         favoriteBT.setOnClickListener(imgButtonHandler);
         TVEdit = findViewById(R.id.EditBrewTxt);
 
         // Edit teksten
-        if (brew != null){
+        if (brew != null) {
             TVBrewName.setText(Html.fromHtml("<u>" + brew.getBrewName() + "</u>"));
             TVGroundCoffee.setText(Integer.toString(brew.getGroundCoffee()));
             TVGrindSize.setText(brew.getGrindSize());
@@ -113,7 +143,7 @@ public class Brewing extends AppCompatActivity {
             if (brew.getFavoriteKey() == -1 && brew.getStorageKey() == -1) {
                 favoriteBT.setVisibility(View.INVISIBLE);
             }
-            if(!brew.getBrewPics().isEmpty()){
+            if (!brew.getBrewPics().isEmpty()) {
                 Uri image_uri = Uri.parse(brew.getBrewPics());
                 try {
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), image_uri);
@@ -128,11 +158,11 @@ public class Brewing extends AppCompatActivity {
         brewNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (brew != null){
+                if (brew != null) {
                     brew.setLastBrewTime();
                     try {
                         storageServiceSharedPref.saveBrewToHistory(brew);
-                    } catch (Exception e){
+                    } catch (Exception e) {
                         Toast.makeText(v.getContext(), "Fejl under gem", Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -150,6 +180,7 @@ public class Brewing extends AppCompatActivity {
                         finish();
                     }
                 });
+
                 dialogue.setCancelable(true);
                 dialogue.show();
                 new Handler().postDelayed(new Runnable() {
@@ -189,7 +220,7 @@ public class Brewing extends AppCompatActivity {
                 try {
                     storageServiceSharedPref.saveBrewToFavorites(brew);
                     storageServiceSharedPref.deleteBrew(brew.getStorageKey());
-                }catch (Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
 
@@ -198,12 +229,13 @@ public class Brewing extends AppCompatActivity {
                 try {
                     storageServiceSharedPref.deleteFavoriteBrew(brew.getFavoriteKey());
                     storageServiceSharedPref.saveBrew(brew);
-                }catch (Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         }
     };
+
 
     @Override
     public void onBackPressed() {

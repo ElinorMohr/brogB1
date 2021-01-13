@@ -20,6 +20,8 @@
 
 
     <ImageButton
+
+        android:clickable="true"
         android:id="@+id/trashcan"
         android:layout_width="25dp"
         android:layout_height="25dp"
@@ -29,7 +31,8 @@
         android:adjustViewBounds="true"
         android:layout_marginEnd="15dp"
         android:background="@null"
-        app:srcCompat="@drawable/ic_trash"/>
+        app:srcCompat="@drawable/ic_trash"
+        android:focusable="true" />
 
     <ImageButton
         android:id="@+id/brewing_favorite_bt"
