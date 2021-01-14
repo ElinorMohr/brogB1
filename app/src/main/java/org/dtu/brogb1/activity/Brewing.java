@@ -236,7 +236,7 @@ public class Brewing extends AppCompatActivity {
                 favoriteBT.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart));
                 try {
                     int k = storageServiceSharedPref.saveBrewToFavorites(brew);
-                    storageServiceSharedPref.deleteBrew(brew.getStorageKey());
+                    storageServiceSharedPref.deleteBrew(brew);
                     if (brew.equals(defaultBrew) && brew.getFavoriteKey() == -1 && brew.getStorageKey() == -1) {
                         storageServiceSharedPref.setQuickBrew(k);
                     }
@@ -248,7 +248,7 @@ public class Brewing extends AppCompatActivity {
             } else {
                 favoriteBT.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart_empty));
                 try {
-                    storageServiceSharedPref.deleteFavoriteBrew(brew.getFavoriteKey());
+                    storageServiceSharedPref.deleteFavoriteBrew(brew);
                     storageServiceSharedPref.saveBrew(brew);
                 } catch (Exception e) {
                     e.printStackTrace();
