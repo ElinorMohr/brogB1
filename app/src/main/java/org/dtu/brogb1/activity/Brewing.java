@@ -124,8 +124,6 @@ public class Brewing extends AppCompatActivity {
         favoriteBT = (ImageButton) findViewById(R.id.brewing_favorite_bt);
         tvEdit = findViewById(R.id.EditBrewTxt);
 
-        favoriteBT.setOnClickListener(imgButtonHandler);
-
         // Edit teksten
         if (brew != null){
             tvBrewName.setText(Html.fromHtml("<u>" + brew.getBrewName() + "</u>"));
@@ -212,10 +210,6 @@ public class Brewing extends AppCompatActivity {
             }
         });
     }
-
-
-    
-
 
     @Override
     public void onBackPressed() {
