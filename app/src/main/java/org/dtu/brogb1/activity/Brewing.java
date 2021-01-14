@@ -222,6 +222,7 @@ public class Brewing extends AppCompatActivity {
                     storageServiceSharedPref.saveBrewToFavorites(brew);
                     storageServiceSharedPref.deleteBrew(brew.getStorageKey());
                 } catch (Exception e) {
+                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
                 }
 
