@@ -15,6 +15,7 @@ import android.os.Handler;
 import android.provider.MediaStore;
 import android.text.Html;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -45,6 +46,7 @@ import java.io.IOException;
  */
 
 public class Brewing extends AppCompatActivity {
+    private static final String TAG = Brewing.class.getSimpleName();
     Button brewNow;
     Dialog dialogue;
     TextView tvBrewName, tvGrindSize, tvGroundCoffe, tvRatio, tvTemp, tvBloomWater, tvBloomTime, tvTimeMin, tvTimeSec, tvEdit;
@@ -153,15 +155,18 @@ public class Brewing extends AppCompatActivity {
                 }
             } else if (brew.equals(defaultBrew)) {
                 // Henter ikon fra drawable og viser det, hvis det er goldencup og der ikke er sat et billede
-                Drawable img = getDrawable(R.drawable.ic_mug_marshmallows);
-                coffeeImage.setImageDrawable(img);
+                coffeeImage.setImageDrawable(getDrawable(R.drawable.ic_mug_marshmallows));
                 // Konverterer drawable til bitmat, konverterer det til base64 og gemmer det på brew, så billedet bliver gemt, hvis man trykker "favorit"
-                Bitmap bitmap = BitmapFactory.decodeResource(getApplicationContext().getResources(), R.drawable.ic_mug_marshmallows);
-                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
-                byte[] byteArray = byteArrayOutputStream.toByteArray();
-                String encoded = Base64.encodeToString(byteArray, Base64.DEFAULT);
-                brew.setBrewPics(encoded);
+                try {
+                    Bitmap bitmap = BitmapFactory.decodeResource(getApplicationContext().getResources(), R.drawable.ic_mug_marshmallows);
+                    ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+                    byte[] byteArray = byteArrayOutputStream.toByteArray();
+                    String encoded = Base64.encodeToString(byteArray, Base64.DEFAULT);
+                    brew.setBrewPics(encoded);
+                } catch(Exception e) {
+                    Log.e(TAG, e.getMessage());
+                }
             }
         }
 
