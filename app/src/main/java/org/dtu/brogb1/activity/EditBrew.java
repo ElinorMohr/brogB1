@@ -25,6 +25,7 @@ import org.dtu.brogb1.model.Brew;
 import org.dtu.brogb1.model.BrewException;
 import org.dtu.brogb1.model.BrewFactory;
 import org.dtu.brogb1.service.IStorageService;
+import org.dtu.brogb1.service.StorageServiceException;
 import org.dtu.brogb1.service.StorageServiceSharedPref;
 
 import java.io.File;
@@ -45,12 +46,14 @@ public class EditBrew extends AppCompatActivity {
     Brew brew;
     ImageView coffeeImage;
     boolean favoriteOn;
+    IStorageService storage;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_brew);
+        storage = StorageServiceSharedPref.getInstance();
 
         try {
             if (getIntent().hasExtra("Brew")) {
@@ -141,9 +144,8 @@ public class EditBrew extends AppCompatActivity {
                     return;
                 }
 
-                if (brew.getStorageKey() >= 0 || brew.getFavoriteKey() >= 0 || favoriteOn) {
+                if (brew.getStorageKey() >= 0 ||  favoriteOn) {
                     // vi skal gemme ændringerne
-                    IStorageService storage = StorageServiceSharedPref.getInstance();
                     if (brewName.isEmpty()) {
                         Toast.makeText(this, "your brew needs a name", Toast.LENGTH_SHORT).show();
                         return;
@@ -161,8 +163,17 @@ public class EditBrew extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 }
+                if (brew.getFavoriteKey() >= 0 && !favoriteOn) {
+                    try {
+                        storage.deleteFavoriteBrew(brew.getFavoriteKey());
+                    } catch (StorageServiceException e) {
+                        e.printStackTrace();
+                    } catch (BrewException e) {
+                        e.printStackTrace();
+                    }
+                }
 
-                // vores ændret brew bliver sendt til brewing
+                    // vores ændret brew bliver sendt til brewing
                 Intent intent = new Intent(this, Brewing.class);
                 try {
                     intent.putExtra("Brew", brew.toJson());
