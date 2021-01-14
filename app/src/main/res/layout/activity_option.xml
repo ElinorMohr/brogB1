@@ -1,33 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/logo2"
+    <include layout="@layout/background"/>
+
+    <include layout="@layout/logo_big"/>
+
+    <LinearLayout
+        android:id="@+id/layout_1"
+        android:layout_below="@+id/logo"
         android:layout_width="match_parent"
-        android:layout_height="275dp"
-        android:layout_marginTop="32dp"
-        android:contentDescription="@string/logo_with_text_description"
-        app:srcCompat="@drawable/ic_logo_w_text" />
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:orientation="vertical">
 
-    <com.google.android.material.button.MaterialButton
-        app:cornerRadius="70dp"
-        style="@style/DefaultButton"
-        android:id="@+id/language"
-        android:text="@string/language"
-        android:layout_gravity="center"/>
+        <com.google.android.material.button.MaterialButton
+            app:cornerRadius="70dp"
+            style="@style/DefaultButton"
+            android:id="@+id/language"
+            android:text="@string/language"
+            android:layout_gravity="center"/>
 
-    <com.google.android.material.button.MaterialButton
-        app:cornerRadius="70dp"
-        style="@style/DefaultButton"
-        android:id="@+id/connections"
-        android:text="@string/connections"
-        android:layout_gravity="center"/>
+        <com.google.android.material.button.MaterialButton
+            app:cornerRadius="70dp"
+            style="@style/DefaultButton"
+            android:id="@+id/connections"
+            android:text="@string/connections"
+            android:layout_gravity="center"/>
 
+    </LinearLayout>
 
+    <include layout="@layout/footer"/>
 
-</LinearLayout>
+</RelativeLayout>

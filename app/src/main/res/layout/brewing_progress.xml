@@ -34,5 +34,5 @@
         android:textColor="@color/black"
         android:layout_margin="10dp"
         android:visibility="invisible"
-        android:background = "@drawable/roundedbutton"/>
+        android:background = "@drawable/rounded_button"/>
 </LinearLayout>

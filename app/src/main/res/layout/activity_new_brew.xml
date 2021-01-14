@@ -384,46 +384,33 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
-        <LinearLayout
-            android:layout_marginTop="10dp"
-            android:id="@+id/saveboxandbrew"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/seekbarLayout"
-            android:layout_gravity="center"
-            android:orientation="vertical">
-            <CheckBox
-                android:id="@+id/savebox"
-                android:layout_width="wrap_content"
-                android:buttonTint="@color/colorplate3"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/save" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/brew_now_recipe"
-                style="@style/DefaultButton"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/brew"
-                android:textAllCaps="false"
-                app:cornerRadius="70dp" />
-        </LinearLayout>
-
-    <ImageView
-        android:id="@+id/footer3"
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:id="@+id/saveboxandbrew"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd="0dp"
-        android:layout_marginBottom="-65dp"
-        android:contentDescription="@string/footer_with_copyright_description"
-        app:srcCompat="@drawable/ic_footer_copyright" />
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/seekbarLayout"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+        <CheckBox
+            android:id="@+id/savebox"
+            android:layout_width="wrap_content"
+            android:buttonTint="@color/colorplate3"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/save" />
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/brew_now_recipe"
+            style="@style/DefaultButton"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/brew"
+            android:textAllCaps="false"
+            app:cornerRadius="70dp" />
+    </LinearLayout>
 
-
+    <include layout="@layout/footer"/>
 
 </RelativeLayout>
