@@ -101,6 +101,7 @@ public class StorageServiceSharedPref implements IStorageService {
         return this.brewCount - 1;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public Brew getBrew(int key) throws StorageServiceException, BrewException {
         if (key >= this.brewCount)
@@ -111,6 +112,7 @@ public class StorageServiceSharedPref implements IStorageService {
         return brew;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public ArrayList<Brew> getAllBrews() throws StorageServiceException, BrewException {
         ArrayList list = new ArrayList<Brew>();
@@ -129,6 +131,7 @@ public class StorageServiceSharedPref implements IStorageService {
         return this.brewCount;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void deleteBrew(Brew brew) throws StorageServiceException, BrewException {
         int key = brew.getStorageKey();
@@ -163,15 +166,21 @@ public class StorageServiceSharedPref implements IStorageService {
         this.saveInt(this.quickKey, value);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public Brew getQuickBrew() throws StorageServiceException, BrewException {
         int id = this.preferences.getInt(this.quickKey, -1);
         if (id == -1) {
             return BrewFactory.getBrew("Default");
         }
-        return this.getBrew(id);
+        try {
+            return this.getBrewFromFavorites(id);
+        } catch (Exception e) {
+            return BrewFactory.getBrew("Default");
+        }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void saveBrewToHistory(Brew value) throws BrewException, StorageServiceException {
         for (int i = this.historyCount; i > 0; i--) {
@@ -182,6 +191,7 @@ public class StorageServiceSharedPref implements IStorageService {
         this.saveInt(this.historyCountKey, this.historyCount);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public Brew getBrewFromHistory(int key) throws StorageServiceException, BrewException {
         if (key >= this.historyCount)
@@ -192,6 +202,7 @@ public class StorageServiceSharedPref implements IStorageService {
         return brew;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public ArrayList<Brew> getBrewHistory() throws StorageServiceException, BrewException {
         ArrayList list = new ArrayList<Brew>();
@@ -229,6 +240,7 @@ public class StorageServiceSharedPref implements IStorageService {
         return brew;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public ArrayList<Brew> getFavoriteBrews() throws StorageServiceException, BrewException {
         ArrayList list = new ArrayList<Brew>();
@@ -247,6 +259,7 @@ public class StorageServiceSharedPref implements IStorageService {
         return this.favoriteCount;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void deleteFavoriteBrew(Brew brew) throws StorageServiceException, BrewException {
         int key = brew.getFavoriteKey();

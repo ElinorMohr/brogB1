@@ -14,8 +14,8 @@ import org.json.JSONObject;
 public class BrewFactory {
     private static final String TAG = BrewFactory.class.getSimpleName();
 
-    public static Brew getBrew(String option){
-        if(option.equals("Default")){
+    public static Brew getBrew(String option) {
+        if (option.equals("Default")) {
             return new Brew(18,"Medium",60,93,45,30, 3 , 0, "Golden Cup", "", false,false);
         }
         return new Brew(1," ",1,1,1,1, 1 , 1 ," ","", false,false);

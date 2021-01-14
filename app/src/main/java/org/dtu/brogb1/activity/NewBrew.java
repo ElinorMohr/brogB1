@@ -164,6 +164,7 @@ public class NewBrew extends AppCompatActivity {
                 try {
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), image_uri);
                     coffeeImageView.setImageBitmap(bitmap);
+                    coffeeImageView.setPadding(0,0,0,0);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
