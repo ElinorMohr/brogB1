@@ -130,7 +130,8 @@ public class StorageServiceSharedPref implements IStorageService {
     }
 
     @Override
-    public void deleteBrew(int key) throws StorageServiceException, BrewException {
+    public void deleteBrew(Brew brew) throws StorageServiceException, BrewException {
+        int key = brew.getStorageKey();
         if (key >= this.brewCount)
             throw new StorageServiceException("Den brew findes ikke!");
 
@@ -148,6 +149,8 @@ public class StorageServiceSharedPref implements IStorageService {
         // Opdater antallet af gemte Brews
         this.saveInt(this.brewCountKey, this.brewCount - 1);
         this.brewCount--;
+        brew.setSaveBrew(false);
+        brew.setStorageKey(-1);
     }
 
     @Override
@@ -245,7 +248,8 @@ public class StorageServiceSharedPref implements IStorageService {
     }
 
     @Override
-    public void deleteFavoriteBrew(int key) throws StorageServiceException, BrewException {
+    public void deleteFavoriteBrew(Brew brew) throws StorageServiceException, BrewException {
+        int key = brew.getFavoriteKey();
         if (key >= this.favoriteCount)
             throw new StorageServiceException("Den brew findes ikke!");
 
@@ -263,6 +267,8 @@ public class StorageServiceSharedPref implements IStorageService {
         // Opdater antallet af gemte Brews
         this.saveInt(this.favoriteCountKey, this.favoriteCount - 1);
         this.favoriteCount--;
+        brew.setFavoriteBrew(false);
+        brew.setFavoriteKey(-1);
     }
 
     @Override
