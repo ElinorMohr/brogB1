@@ -21,7 +21,9 @@ public class LandingPage extends AppCompatActivity implements View.OnClickListen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_landing_page);
+        try {
+            setContentView(R.layout.activity_landing_page);
+        } catch(Exception ignored) {}
 
         mySharedPreferences = getApplicationContext().getSharedPreferences("preferences", Activity.MODE_PRIVATE);
 

@@ -61,7 +61,7 @@ public class RecipiesAdapter extends ArrayAdapter<Brew> {
         // Find de steder i template hvor der skal sættes data ind
         TextView favCount = (TextView) convertView.findViewById(R.id.favNumber);
         Button brewName = (Button) convertView.findViewById(R.id.brewName);
-        ImageView star = (ImageView) convertView.findViewById(R.id.quickBrew);
+        ImageView btnQuickBrew = (ImageView) convertView.findViewById(R.id.quickBrew);
 
         // Put data ind i templaten der er valgt tidligere
         // Hvis det er en "favorit"-liste, så skal der gøres noget ekstra, ellers så skal tælleren og stjernen bare skjules
@@ -72,28 +72,29 @@ public class RecipiesAdapter extends ArrayAdapter<Brew> {
             try {
                 Brew quick = this.storage.getQuickBrew();
                 Log.d(TAG, "Sammenligner " + brew.getFavoriteKey() + " og " + quick.getFavoriteKey());
-                if (brew.getFavoriteKey() == quick.getFavoriteKey())
-                    star.setImageDrawable(this.getContext().getDrawable(R.drawable.ic_star));
-                else
-                    star.setImageDrawable(this.getContext().getDrawable(R.drawable.ic_star_empty));
+                if (brew.getFavoriteKey() == quick.getFavoriteKey()) {
+                    btnQuickBrew.setImageDrawable(this.getContext().getDrawable(R.drawable.ic_mug_hot));
+                } else {
+                    btnQuickBrew.setImageDrawable(this.getContext().getDrawable(R.drawable.ic_mug_hot_light));
+                }
 
                 // Gem noget data, så man kan trykke på stjernen
                 {
-                    star.setTag(brew);
+                    btnQuickBrew.setTag(brew);
                 }
-                star.setOnClickListener(this.onStarClickListener);
+                btnQuickBrew.setOnClickListener(this.onQuickBrewClickListener);
             } catch (StorageServiceException | BrewException e) {
                 e.printStackTrace();
             }
             brewName.setText(brew.getBrewName());
         } else if (this.mode.equals("history")) {
             favCount.setVisibility(View.INVISIBLE);
-            star.setVisibility(View.INVISIBLE);
+            btnQuickBrew.setVisibility(View.INVISIBLE);
             brewName.setText(Html.fromHtml("<b>" + brew.getBrewName() + "</b>&nbsp;<small>(" + brew.getLastBrew() + ")</small>"));
             brewName.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 14);
         } else {
             favCount.setVisibility(View.INVISIBLE);
-            star.setVisibility(View.INVISIBLE);
+            btnQuickBrew.setVisibility(View.INVISIBLE);
             brewName.setText(brew.getBrewName());
         }
         // Sæt navnet på Brew ind og tilføj data så man kan trykke på det
@@ -128,7 +129,7 @@ public class RecipiesAdapter extends ArrayAdapter<Brew> {
     };
 
     // Håndterer at der bliver trykket på stjernen i templaten og gemmer at det er gen der er quick-brew
-    private View.OnClickListener onStarClickListener = new View.OnClickListener() {
+    private View.OnClickListener onQuickBrewClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             Brew brew = (Brew) v.getTag();

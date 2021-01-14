@@ -27,7 +27,7 @@
     <color name="info">@color/brown_3</color>
     <color name="heart">#F82C2D</color>
     <color name="heart_empty">@color/brown_3</color>
-    <color name="star">#E6A52E</color>
+    <color name="star">#15AABF</color>
     <color name="star_empty">#000000</color>
     <color name="trash">#000000</color>
 </resources>
