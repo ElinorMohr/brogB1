@@ -23,7 +23,9 @@
         android:layout_height="236dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
-        app:srcCompat="@drawable/kaffevinter" />
+        android:background="@drawable/picture_border"
+        android:padding="12dp"
+        app:srcCompat="@drawable/ic_mug_plus_light" />
 
     <ImageButton
         android:id="@+id/edit_BrewingFavoriteBT"

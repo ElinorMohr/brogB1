@@ -5,8 +5,11 @@
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="dark_grey">#1E1E1E</color>
+    <color name="grey">#787878</color>
+    <color name="light_grey">#DEDEDE</color>
+    <color name="white">#FFFFFF</color>
     <color name="colorplate1">#DCCEC4</color>
     <color name="colorplate2">#8B5A39</color>
     <color name="colorplate3">#4E321F</color>
@@ -15,4 +18,16 @@
     <color name="brown_2">#DCCEC4</color>
     <color name="brown_1">#EEE6E1</color>
     <color name="brown">#a4c639</color>
+    <color name="golden_cup">#FF9A00</color>
+    <color name="home_cog">@color/brown_4</color>
+    <color name="home_list">@color/brown_3</color>
+    <color name="home_plus">@color/brown_4</color>
+    <color name="home_mug">@color/brown_4</color>
+    <color name="home_mug_smoke">@color/brown_3</color>
+    <color name="info">@color/brown_3</color>
+    <color name="heart">#F82C2D</color>
+    <color name="heart_empty">@color/brown_3</color>
+    <color name="star">#E6A52E</color>
+    <color name="star_empty">#000000</color>
+    <color name="trash">#000000</color>
 </resources>
