@@ -214,28 +214,7 @@ public class Brewing extends AppCompatActivity {
     }
 
 
-    View.OnClickListener imgButtonHandler = new View.OnClickListener() {
-        public void onClick(View v) {
-            if (brew.getFavoriteKey() < 0) {
-                favoriteBT.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart));
-                try {
-                    storageServiceSharedPref.saveBrewToFavorites(brew);
-                    storageServiceSharedPref.deleteBrew(brew.getStorageKey());
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-            } else {
-                favoriteBT.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart_empty));
-                try {
-                    storageServiceSharedPref.deleteFavoriteBrew(brew.getFavoriteKey());
-                    storageServiceSharedPref.saveBrew(brew);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    };
+    
 
 
     @Override
