@@ -166,6 +166,10 @@ public class EditBrew extends AppCompatActivity {
                 if (brew.getFavoriteKey() >= 0 && !favoriteOn) {
                     try {
                         storage.deleteFavoriteBrew(brew);
+                        if (brew.getStorageKey() >= 0)
+                            storage.overwriteBrew(brew.getStorageKey(), brew);
+                        else
+                            brew.setStorageKey(storage.saveBrew(brew));
                     } catch (StorageServiceException e) {
                         e.printStackTrace();
                     } catch (BrewException e) {
