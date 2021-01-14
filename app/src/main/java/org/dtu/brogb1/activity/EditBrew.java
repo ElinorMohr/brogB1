@@ -121,7 +121,9 @@ public class EditBrew extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
-
+            if (brew.getFavoriteKey() >= 0) {
+                favoriteBt.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart));
+            }
             //når der brygges
             EditNow.setOnClickListener(v -> {
                 try {
