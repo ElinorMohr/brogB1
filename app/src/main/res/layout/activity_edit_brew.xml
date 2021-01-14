@@ -28,7 +28,7 @@
         app:srcCompat="@drawable/ic_mug_plus_light" />
 
     <ImageButton
-        android:id="@+id/edit_BrewingFavoriteBT"
+        android:id="@+id/edit_brewing_favorite_bt"
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:layout_alignEnd="@id/edit_image"

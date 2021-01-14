@@ -92,39 +92,8 @@ public class Brewing extends AppCompatActivity {
         if((brew.getStorageKey() == -1) && (brew.getFavoriteKey() == -1)){
             trashBT.setVisibility(View.GONE);
         }
-        // Skraldespands knappen.
-        trashBT.setOnClickListener(new View.OnClickListener() {
-            // først skal vi have adgang til vores storage
-            IStorageService storage = StorageServiceSharedPref.getInstance();
-            @Override
-            public void onClick (View v) {
-                // her tjekker vi om denne brew lægger gemt i storage (recipes)
-                if (brew.getStorageKey() >= 0) {
-                    try {
-                        storage.deleteBrew(brew.getStorageKey());
-                        brew.setStorageKey(-1);
-                        finish();
-                    } catch (StorageServiceException | BrewException e) {
-                        e.printStackTrace();
-                    }
-                } else if (brew.getFavoriteKey() >= 0) {
-                    try {
-                        storage.deleteFavoriteBrew(brew.getFavoriteKey());
-                        if (brew.getFavoriteKey() == this.storage.getQuickBrew().getFavoriteKey())
-                            this.storage.setQuickBrew(-1);
-                        brew.setFavoriteKey(-1);
-                        finish();
-                    } catch (StorageServiceException | BrewException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        });
-
         favoriteBT = (ImageButton) findViewById(R.id.brewing_favorite_bt);
         tvEdit = findViewById(R.id.EditBrewTxt);
-
-        favoriteBT.setOnClickListener(imgButtonHandler);
 
         // Edit teksten
         if (brew != null){
@@ -140,10 +109,7 @@ public class Brewing extends AppCompatActivity {
             if (brew.getFavoriteKey() >= 0) {
                 favoriteBT.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart));
             }
-            if (brew.getFavoriteKey() == -1 && brew.getStorageKey() == -1) {
-                // tænker dette ikke er relevant
-                // favoriteBT.setVisibility(View.INVISIBLE);
-            }
+
             if(!brew.getBrewPics().isEmpty()){
                 Uri image_uri = Uri.fromFile(new File(brew.getBrewPics()));;
                 try {
@@ -169,6 +135,40 @@ public class Brewing extends AppCompatActivity {
                 }
             }
         }
+
+        trashBT.setOnClickListener(new View.OnClickListener() {
+
+            // først skal vi have adgang til vores storage
+            @Override
+            public void onClick (View v) {
+
+                // her tjekker vi om denne brew lægger gemt i storage (recipes)
+                if (brew.getStorageKey() != -1) {
+                    try {
+                        storageServiceSharedPref.deleteBrew(brew);
+                        brew.setStorageKey(-1);
+                        finish();
+                    } catch (StorageServiceException e) {
+                        e.printStackTrace();
+                    } catch (BrewException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    // eller i favoritter.
+                    if (brew.getFavoriteKey() != -1) {
+                        try {
+                            storageServiceSharedPref.deleteFavoriteBrew(brew);
+                            brew.setFavoriteKey(-1);
+                            finish();
+                        } catch (StorageServiceException e) {
+                            e.printStackTrace();
+                        } catch (BrewException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+        });
 
         brewNow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -217,6 +217,7 @@ public class Brewing extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), EditBrew.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
                 try {
                     intent.putExtra("Brew", brew.toJson());
                 } catch (BrewException e) {
