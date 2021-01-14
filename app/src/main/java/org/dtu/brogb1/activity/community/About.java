@@ -24,6 +24,11 @@ public class About extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
         tv = findViewById(R.id.text_about);
+        try {
+            ReadTextFile(getCurrentFocus());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     public void ReadTextFile(View v) throws IOException {
         String string = "";
@@ -41,7 +46,6 @@ public class About extends AppCompatActivity {
             tv.setText(stringBuilder);
         }
         is.close();
-        Toast.makeText(getBaseContext(), stringBuilder.toString(),
-                Toast.LENGTH_LONG).show();
+        //Toast.makeText(getBaseContext(), stringBuilder.toString(), Toast.LENGTH_LONG).show();
     }
 }
