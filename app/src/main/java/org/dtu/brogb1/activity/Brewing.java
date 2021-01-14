@@ -4,14 +4,17 @@ import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.MediaStore;
 import android.text.Html;
+import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -28,6 +31,7 @@ import org.dtu.brogb1.service.IStorageService;
 import org.dtu.brogb1.service.StorageServiceException;
 import org.dtu.brogb1.service.StorageServiceSharedPref;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 
@@ -45,7 +49,7 @@ public class Brewing extends AppCompatActivity {
     Dialog dialogue;
     TextView tvBrewName, tvGrindSize, tvGroundCoffe, tvRatio, tvTemp, tvBloomWater, tvBloomTime, tvTimeMin, tvTimeSec, tvEdit;
     ImageButton favoriteBT, trashBT;
-    Brew brew;
+    Brew brew, defaultBrew;
     StorageServiceSharedPref storageServiceSharedPref = StorageServiceSharedPref.getInstance();
 
     ImageView coffeeImage;
@@ -58,6 +62,7 @@ public class Brewing extends AppCompatActivity {
         setContentView(R.layout.activity_brewing);
         brewNow = findViewById(R.id.BrewNow);
         try {
+            defaultBrew = BrewFactory.getBrew("Default");
             if (getIntent().hasExtra("Brew")) {
                 brew = BrewFactory.fromJson(getIntent().getExtras().getString("Brew"));
             } else {
@@ -146,7 +151,17 @@ public class Brewing extends AppCompatActivity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
+            } else if (brew.equals(defaultBrew)) {
+                // Henter ikon fra drawable og viser det, hvis det er goldencup og der ikke er sat et billede
+                Drawable img = getDrawable(R.drawable.ic_mug_marshmallows);
+                coffeeImage.setImageDrawable(img);
+                // Konverterer drawable til bitmat, konverterer det til base64 og gemmer det på brew, så billedet bliver gemt, hvis man trykker "favorit"
+                Bitmap bitmap = BitmapFactory.decodeResource(getApplicationContext().getResources(), R.drawable.ic_mug_marshmallows);
+                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+                byte[] byteArray = byteArrayOutputStream.toByteArray();
+                String encoded = Base64.encodeToString(byteArray, Base64.DEFAULT);
+                brew.setBrewPics(encoded);
             }
         }
 
@@ -209,13 +224,14 @@ public class Brewing extends AppCompatActivity {
 
 
     View.OnClickListener imgButtonHandler = new View.OnClickListener() {
+        @RequiresApi(api = Build.VERSION_CODES.O)
         public void onClick(View v) {
             if (brew.getFavoriteKey() < 0) {
                 favoriteBT.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart));
                 try {
                     int k = storageServiceSharedPref.saveBrewToFavorites(brew);
                     storageServiceSharedPref.deleteBrew(brew.getStorageKey());
-                    if (brew.equals(BrewFactory.getBrew("Default")) && brew.getFavoriteKey() == -1 && brew.getStorageKey() == -1) {
+                    if (brew.equals(defaultBrew) && brew.getFavoriteKey() == -1 && brew.getStorageKey() == -1) {
                         storageServiceSharedPref.setQuickBrew(k);
                     }
                 } catch (Exception e) {
