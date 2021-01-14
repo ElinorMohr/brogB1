@@ -391,10 +391,10 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/editBT"
             style="@style/DefaultButton"
-            android:layout_width="100dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="@string/edit"
+            android:text="@string/btn_save_edit"
             android:textAllCaps="false"
             app:cornerRadius="70dp" />
     </LinearLayout>
