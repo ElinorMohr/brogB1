@@ -22,11 +22,18 @@ public class CleanActivityStep1Working extends AppCompatActivity {
                     public void run() {
                         Intent intent = new Intent(CleanActivityStep1Working.this, CleanActivityStep2.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_TASK_ON_HOME);
+                        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                         startActivity(intent);
                         CleanActivityStep1Working.this.finish();
                     }
                 },
                 1500
         );
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 }

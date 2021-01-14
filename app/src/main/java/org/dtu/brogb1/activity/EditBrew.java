@@ -186,6 +186,7 @@ public class EditBrew extends AppCompatActivity {
                 } catch (BrewException e) {
                     e.printStackTrace();
                 }
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 finish();
@@ -198,13 +199,13 @@ public class EditBrew extends AppCompatActivity {
             });
 
             favoriteBt.setOnClickListener(v -> {
-                    if (!favoriteOn) {
-                        favoriteBt.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart));
-                    } else {
-                        favoriteBt.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart_empty));
-                    }
-                    favoriteOn = !favoriteOn;
-                });
+                if (!favoriteOn) {
+                    favoriteBt.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart));
+                } else {
+                    favoriteBt.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart_empty));
+                }
+                favoriteOn = !favoriteOn;
+            });
 
             coffeeImage.setOnClickListener(v -> {
                 Intent getIntent = new Intent(Intent.ACTION_GET_CONTENT);
@@ -286,5 +287,11 @@ public class EditBrew extends AppCompatActivity {
             Toast.makeText(this, "time can't be empty", Toast.LENGTH_SHORT).show();
             return;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 }
