@@ -123,6 +123,7 @@ public class EditBrew extends AppCompatActivity {
             }
             if (brew.getFavoriteKey() >= 0) {
                 favoriteBt.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart));
+                favoriteOn = true;
             }
             //når der brygges
             EditNow.setOnClickListener(v -> {
