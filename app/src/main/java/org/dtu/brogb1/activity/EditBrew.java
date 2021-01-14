@@ -25,6 +25,7 @@ import org.dtu.brogb1.model.Brew;
 import org.dtu.brogb1.model.BrewException;
 import org.dtu.brogb1.model.BrewFactory;
 import org.dtu.brogb1.service.IStorageService;
+import org.dtu.brogb1.service.StorageServiceException;
 import org.dtu.brogb1.service.StorageServiceSharedPref;
 
 import java.io.File;
@@ -44,12 +45,15 @@ public class EditBrew extends AppCompatActivity {
     Spinner editSpinnerInputGrindSize;
     Brew brew;
     ImageView coffeeImage;
+    boolean favoriteOn;
+    IStorageService storage;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_brew);
+        storage = StorageServiceSharedPref.getInstance();
 
         try {
             if (getIntent().hasExtra("Brew")) {
@@ -75,6 +79,7 @@ public class EditBrew extends AppCompatActivity {
         editETTotalMin = findViewById(R.id.edit_inputTotalTimeMin);
         editETTotalSec = findViewById(R.id.edit_inputTotalTimeSec);
         ImageButton info = findViewById(R.id.i_ground_coffee);
+        ImageButton favoriteBt = findViewById(R.id.edit_brewing_favorite_bt);
         Button EditNow = (Button) findViewById(R.id.editBT);
 
         // intervallerne for hver af inputs
@@ -119,7 +124,10 @@ public class EditBrew extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
-
+            if (brew.getFavoriteKey() >= 0) {
+                favoriteBt.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart));
+                favoriteOn = true;
+            }
             //når der brygges
             EditNow.setOnClickListener(v -> {
                 try {
@@ -136,16 +144,18 @@ public class EditBrew extends AppCompatActivity {
                     return;
                 }
 
-                if (brew.getStorageKey() >= 0 || brew.getFavoriteKey() >= 0) {
+                if (brew.getStorageKey() >= 0 ||  favoriteOn) {
                     // vi skal gemme ændringerne
-                    IStorageService storage = StorageServiceSharedPref.getInstance();
                     if (brewName.isEmpty()) {
                         Toast.makeText(this, "your brew needs a name", Toast.LENGTH_SHORT).show();
                         return;
                     }
                     try {
-                        if (brew.getFavoriteKey() >= 0)
-                            storage.overwriteFavoriteBrew(brew.getFavoriteKey(), brew);
+                        if (favoriteOn)
+                            if (brew.getFavoriteKey() >= 0)
+                                storage.overwriteFavoriteBrew(brew.getFavoriteKey(), brew);
+                            else
+                                brew.setFavoriteKey(storage.saveBrewToFavorites(brew));
                         else
                             storage.overwriteBrew(brew.getStorageKey(), brew);
                     } catch (BrewException e) {
@@ -153,8 +163,21 @@ public class EditBrew extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 }
+                if (brew.getFavoriteKey() >= 0 && !favoriteOn) {
+                    try {
+                        storage.deleteFavoriteBrew(brew);
+                        if (brew.getStorageKey() >= 0)
+                            storage.overwriteBrew(brew.getStorageKey(), brew);
+                        else
+                            brew.setStorageKey(storage.saveBrew(brew));
+                    } catch (StorageServiceException e) {
+                        e.printStackTrace();
+                    } catch (BrewException e) {
+                        e.printStackTrace();
+                    }
+                }
 
-                // vores ændret brew bliver sendt til brewing
+                    // vores ændret brew bliver sendt til brewing
                 Intent intent = new Intent(this, Brewing.class);
                 try {
                     intent.putExtra("Brew", brew.toJson());
@@ -172,6 +195,16 @@ public class EditBrew extends AppCompatActivity {
                 BrewSheetMenu brygMenu = new BrewSheetMenu();
                 brygMenu.show(getSupportFragmentManager(), "FragmentBrygMenu");
             });
+
+            favoriteBt.setOnClickListener(v -> {
+                    if (!favoriteOn) {
+                        favoriteBt.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart));
+                    } else {
+                        favoriteBt.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart_empty));
+                    }
+                    favoriteOn = !favoriteOn;
+                });
+
             coffeeImage.setOnClickListener(v -> {
                 Intent getIntent = new Intent(Intent.ACTION_GET_CONTENT);
                 getIntent.setType("image/");

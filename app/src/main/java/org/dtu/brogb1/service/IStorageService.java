@@ -31,7 +31,7 @@ public interface IStorageService {
 
     int getBrewCount();
 
-    void deleteBrew(int key) throws StorageServiceException, BrewException;
+    void deleteBrew(Brew brew) throws StorageServiceException, BrewException;
 
     void overwriteBrew(int key, Brew value) throws BrewException;
 
@@ -55,7 +55,7 @@ public interface IStorageService {
 
     int getBrewFavoriteCount();
 
-    void deleteFavoriteBrew(int key) throws StorageServiceException, BrewException;
+    void deleteFavoriteBrew(Brew brew) throws StorageServiceException, BrewException;
 
     void overwriteFavoriteBrew(int key, Brew value) throws BrewException;
 }
