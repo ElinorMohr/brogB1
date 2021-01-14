@@ -18,16 +18,16 @@ public class CleanActivityStep1Working extends AppCompatActivity {
         setContentView(R.layout.activity_clean_step1_working);
 
         new android.os.Handler().postDelayed(
-                new Runnable() {
-                    public void run() {
-                        Intent intent = new Intent(CleanActivityStep1Working.this, CleanActivityStep2.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_TASK_ON_HOME);
-                        startActivity(intent);
-                        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-                        CleanActivityStep1Working.this.finish();
-                    }
-                },
-                1500
+            new Runnable() {
+                public void run() {
+                    Intent intent = new Intent(CleanActivityStep1Working.this, CleanActivityStep2.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_TASK_ON_HOME);
+                    startActivity(intent);
+                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                    CleanActivityStep1Working.this.finish();
+                }
+            },
+            1500
         );
     }
 

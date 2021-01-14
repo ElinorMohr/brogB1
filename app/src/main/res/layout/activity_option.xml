@@ -36,6 +36,13 @@
             android:text="@string/connections"
             android:layout_gravity="center"/>
 
+        <com.google.android.material.button.MaterialButton
+            app:cornerRadius="70dp"
+            style="@style/DefaultButton"
+            android:id="@+id/btn_reset_quick_brew"
+            android:text="@string/btn_reset_quick_brew"
+            android:layout_gravity="center"/>
+
     </LinearLayout>
 
     <include layout="@layout/footer"/>
