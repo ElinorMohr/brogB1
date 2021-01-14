@@ -48,12 +48,9 @@ public class Recipes extends Fragment {
             listMain = root.findViewById(R.id.list_view_favorites);
 
             // Sammenkobling af elementerne og data
-            if (adapterMain == null) {
-                adapterMain = new RecipiesAdapter(getContext(), favoriteList, "favorite");
-                listMain.setAdapter(adapterMain);
-            } else {
-                adapterMain.notifyDataSetChanged();
-            }
+            adapterMain = new RecipiesAdapter(getContext(), favoriteList, "favorite");
+            listMain.setAdapter(adapterMain);
+
         } catch (StorageServiceException | BrewException e) {
             e.printStackTrace();
         }
@@ -64,12 +61,9 @@ public class Recipes extends Fragment {
             listSec = root.findViewById(R.id.list_view_sec_recipes);
 
             // Sammenkobling af elementerne og data
-            if (adapterSec == null) {
-                adapterSec = new RecipiesAdapter(getContext(), recipeList);
-                listSec.setAdapter(adapterSec);
-            } else {
-                adapterSec.notifyDataSetChanged();
-            }
+
+            adapterSec = new RecipiesAdapter(getContext(), recipeList);
+            listSec.setAdapter(adapterSec);
         } catch (StorageServiceException | BrewException e) {
             e.printStackTrace();
         }
@@ -91,10 +85,5 @@ public class Recipes extends Fragment {
         }
         adapterMain.notifyDataSetChanged();
         adapterSec.notifyDataSetChanged();
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
     }
 }
