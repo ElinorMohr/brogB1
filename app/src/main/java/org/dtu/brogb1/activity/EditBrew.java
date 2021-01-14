@@ -44,6 +44,7 @@ public class EditBrew extends AppCompatActivity {
     Spinner editSpinnerInputGrindSize;
     Brew brew;
     ImageView coffeeImage;
+    boolean favoriteOn;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -75,6 +76,7 @@ public class EditBrew extends AppCompatActivity {
         editETTotalMin = findViewById(R.id.edit_inputTotalTimeMin);
         editETTotalSec = findViewById(R.id.edit_inputTotalTimeSec);
         ImageButton info = findViewById(R.id.i_ground_coffee);
+        ImageButton favoriteBt = findViewById(R.id.edit_brewing_favorite_bt);
         Button EditNow = (Button) findViewById(R.id.editBT);
 
         // intervallerne for hver af inputs
@@ -136,7 +138,7 @@ public class EditBrew extends AppCompatActivity {
                     return;
                 }
 
-                if (brew.getStorageKey() >= 0 || brew.getFavoriteKey() >= 0) {
+                if (brew.getStorageKey() >= 0 || brew.getFavoriteKey() >= 0 || favoriteOn) {
                     // vi skal gemme ændringerne
                     IStorageService storage = StorageServiceSharedPref.getInstance();
                     if (brewName.isEmpty()) {
@@ -144,8 +146,11 @@ public class EditBrew extends AppCompatActivity {
                         return;
                     }
                     try {
-                        if (brew.getFavoriteKey() >= 0)
-                            storage.overwriteFavoriteBrew(brew.getFavoriteKey(), brew);
+                        if (favoriteOn)
+                            if (brew.getFavoriteKey() >= 0)
+                                storage.overwriteFavoriteBrew(brew.getFavoriteKey(), brew);
+                            else
+                                brew.setFavoriteKey(storage.saveBrewToFavorites(brew));
                         else
                             storage.overwriteBrew(brew.getStorageKey(), brew);
                     } catch (BrewException e) {
@@ -172,6 +177,16 @@ public class EditBrew extends AppCompatActivity {
                 BrewSheetMenu brygMenu = new BrewSheetMenu();
                 brygMenu.show(getSupportFragmentManager(), "FragmentBrygMenu");
             });
+
+            favoriteBt.setOnClickListener(v -> {
+                    if (!favoriteOn) {
+                        favoriteBt.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart));
+                    } else {
+                        favoriteBt.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart_empty));
+                    }
+                    favoriteOn = !favoriteOn;
+                });
+
             coffeeImage.setOnClickListener(v -> {
                 Intent getIntent = new Intent(Intent.ACTION_GET_CONTENT);
                 getIntent.setType("image/");
