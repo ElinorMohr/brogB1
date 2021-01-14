@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.text.Html;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +27,7 @@ import org.dtu.brogb1.service.StorageServiceSharedPref;
 import java.util.ArrayList;
 
 public class RecipiesAdapter extends ArrayAdapter<Brew> {
+    private static final String TAG = RecipiesAdapter.class.getSimpleName();
     private String mode = "normal";
     private final IStorageService storage;
     private final Context context;
@@ -59,7 +61,7 @@ public class RecipiesAdapter extends ArrayAdapter<Brew> {
         // Find de steder i template hvor der skal sættes data ind
         TextView favCount = (TextView) convertView.findViewById(R.id.favNumber);
         Button brewName = (Button) convertView.findViewById(R.id.brewName);
-        ImageView star = convertView.findViewById(R.id.quickBrew);
+        ImageView star = (ImageView) convertView.findViewById(R.id.quickBrew);
 
         // Put data ind i templaten der er valgt tidligere
         // Hvis det er en "favorit"-liste, så skal der gøres noget ekstra, ellers så skal tælleren og stjernen bare skjules
@@ -68,11 +70,17 @@ public class RecipiesAdapter extends ArrayAdapter<Brew> {
             favCount.setText((position + 1) + ".");
             // Forsøg at sætte stjernen, hvis denne Brew er den samme som quick-brew
             try {
-                if (brew.equals(this.storage.getQuickBrew()))
+                Brew quick = this.storage.getQuickBrew();
+                Log.d(TAG, "Sammenligner " + brew.getFavoriteKey() + " og " + quick.getFavoriteKey());
+                if (brew.getFavoriteKey() == quick.getFavoriteKey())
                     star.setImageDrawable(this.getContext().getDrawable(R.drawable.ic_star));
+                else
+                    star.setImageDrawable(this.getContext().getDrawable(R.drawable.ic_star_empty));
 
                 // Gem noget data, så man kan trykke på stjernen
-                star.setTag(brew);
+                {
+                    star.setTag(brew);
+                }
                 star.setOnClickListener(this.onStarClickListener);
             } catch (StorageServiceException | BrewException e) {
                 e.printStackTrace();
@@ -125,7 +133,7 @@ public class RecipiesAdapter extends ArrayAdapter<Brew> {
         public void onClick(View v) {
             Brew brew = (Brew) v.getTag();
             System.out.println("Star clicked, row " + brew.getBrewName());
-            //storage.setQuickBrew(brew);
+            storage.setQuickBrew(brew.getFavoriteKey());
         }
     };
 }
