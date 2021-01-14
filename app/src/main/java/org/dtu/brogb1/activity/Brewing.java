@@ -85,7 +85,7 @@ public class Brewing extends AppCompatActivity {
         if((brew.getStorageKey() == -1) && (brew.getFavoriteKey() == -1)){
             trashBT.setVisibility(View.GONE);
         }
-        // Skraldespands knappen.
+       
         favoriteBT = (ImageButton) findViewById(R.id.brewing_favorite_bt);
         tvEdit = findViewById(R.id.EditBrewTxt);
 
