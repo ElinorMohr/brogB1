@@ -20,8 +20,8 @@ public class CleanActivityStep1 extends AppCompatActivity {
         Button next = (Button) findViewById(R.id.clean_step1_button);
         next.setOnClickListener(v -> {
             Intent intent = new Intent(this, CleanActivityStep1Working.class);
-            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             startActivity(intent);
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         });
     }
 

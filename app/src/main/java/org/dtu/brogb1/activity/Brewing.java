@@ -217,7 +217,6 @@ public class Brewing extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), EditBrew.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
 
                 try {
                     intent.putExtra("Brew", brew.toJson());
@@ -225,6 +224,7 @@ public class Brewing extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 startActivity(intent);
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         });
     }

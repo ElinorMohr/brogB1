@@ -186,9 +186,9 @@ public class EditBrew extends AppCompatActivity {
                 } catch (BrewException e) {
                     e.printStackTrace();
                 }
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 finish();
             });
 

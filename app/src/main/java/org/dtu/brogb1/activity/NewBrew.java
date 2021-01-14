@@ -146,6 +146,7 @@ public class NewBrew extends AppCompatActivity {
             chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[]{pickIntent});
 
             startActivityForResult(chooserIntent, 1); //request code til det der sendes videre.
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         });
     }
 
