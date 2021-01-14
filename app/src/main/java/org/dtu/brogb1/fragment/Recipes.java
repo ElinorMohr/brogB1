@@ -80,14 +80,15 @@ public class Recipes extends Fragment {
     public void onResume() {
         super.onResume();
         try {
-            favoriteList = storage.getFavoriteBrews();
-            recipeList = storage.getAllBrews();
+            favoriteList.clear();
+            favoriteList.addAll(storage.getFavoriteBrews());
+            recipeList.clear();
+            recipeList.addAll(storage.getAllBrews());
         } catch (StorageServiceException e) {
             e.printStackTrace();
         } catch (BrewException e) {
             e.printStackTrace();
         }
-
         adapterMain.notifyDataSetChanged();
         adapterSec.notifyDataSetChanged();
     }
