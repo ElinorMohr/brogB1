@@ -241,6 +241,7 @@ public class Brewing extends AppCompatActivity {
                         storageServiceSharedPref.setQuickBrew(k);
                     }
                 } catch (Exception e) {
+                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
                 }
 

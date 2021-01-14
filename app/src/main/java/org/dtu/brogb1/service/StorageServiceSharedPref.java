@@ -8,7 +8,6 @@ import org.dtu.brogb1.activity.LandingPage;
 import org.dtu.brogb1.model.Brew;
 import org.dtu.brogb1.model.BrewException;
 import org.dtu.brogb1.model.BrewFactory;
-
 import java.util.ArrayList;
 
 public class StorageServiceSharedPref implements IStorageService {
@@ -223,6 +222,9 @@ public class StorageServiceSharedPref implements IStorageService {
 
     @Override
     public int saveBrewToFavorites(Brew value) throws BrewException {
+        if (favoriteCount >= 5){
+            throw new BrewException("Too many Favorite, delete one to save a new one");
+        }
         this.saveString(this.favoritesKey + this.favoriteCount, value.toJson());
         this.favoriteCount++;
         this.saveInt(this.favoriteCountKey, this.favoriteCount);
