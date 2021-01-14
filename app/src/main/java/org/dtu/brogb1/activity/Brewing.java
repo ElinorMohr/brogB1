@@ -97,7 +97,6 @@ public class Brewing extends AppCompatActivity {
            if (brew.getStorageKey() != -1) {
                try {
                    storage.deleteBrew(brew.getStorageKey());
-                   brew.setStorageKey(-1);
                    finish();
                } catch (StorageServiceException e) {
                    e.printStackTrace();
@@ -109,7 +108,6 @@ public class Brewing extends AppCompatActivity {
                if (brew.getFavoriteKey() != -1) {
                    try {
                        storage.deleteFavoriteBrew(brew.getFavoriteKey());
-                       brew.setFavoriteKey(-1);
                        finish();
                    } catch (StorageServiceException e) {
                        e.printStackTrace();
@@ -140,10 +138,7 @@ public class Brewing extends AppCompatActivity {
             if (brew.getFavoriteKey() >= 0) {
                 favoriteBT.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart));
             }
-            if (brew.getFavoriteKey() == -1 && brew.getStorageKey() == -1) {
-                // tænker dette ikke er relevant
-                // favoriteBT.setVisibility(View.INVISIBLE);
-            }
+
             if(!brew.getBrewPics().isEmpty()){
                 Uri image_uri = Uri.fromFile(new File(brew.getBrewPics()));;
                 try {

@@ -6,8 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
 import org.dtu.brogb1.R;
 import org.dtu.brogb1.adapter.RecipiesAdapter;
 import org.dtu.brogb1.model.Brew;
@@ -34,16 +36,7 @@ public class Recipes extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         storage = StorageServiceSharedPref.getInstance();
         View root = inflater.inflate(R.layout.recipes_layout, container, false);
-
         return populateLists(root);
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        storage = StorageServiceSharedPref.getInstance();
-        View root = getLayoutInflater().inflate(R.layout.recipes_layout, ((ViewGroup) getView().getParent()), false);
-        populateLists(root);
     }
 
     private View populateLists(View root) {
@@ -84,9 +77,23 @@ public class Recipes extends Fragment {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        try {
+            favoriteList = storage.getFavoriteBrews();
+            recipeList = storage.getAllBrews();
+        } catch (StorageServiceException e) {
+            e.printStackTrace();
+        } catch (BrewException e) {
+            e.printStackTrace();
+        }
+
+        adapterMain.notifyDataSetChanged();
+        adapterSec.notifyDataSetChanged();
+    }
+
+    @Override
     public void onPause() {
         super.onPause();
-        favoriteList.clear();
-        recipeList.clear();
     }
 }
