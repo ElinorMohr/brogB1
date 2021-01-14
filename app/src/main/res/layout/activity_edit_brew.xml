@@ -47,7 +47,7 @@
         android:inputType="textPersonName"
         android:hint="(Enter name)"
         android:textColorHint="@color/colorplate2"
-        android:maxLength="20"
+        android:maxLength="15"
         android:layout_marginTop="10dp"
         android:layout_gravity="center"
         android:backgroundTint="@color/colorplate3"

@@ -90,7 +90,7 @@ public class RecipiesAdapter extends ArrayAdapter<Brew> {
         } else if (this.mode.equals("history")) {
             favCount.setVisibility(View.INVISIBLE);
             btnQuickBrew.setVisibility(View.INVISIBLE);
-            brewName.setText(Html.fromHtml("<b>" + brew.getBrewName() + "</b>&nbsp;<small>(" + brew.getLastBrew() + ")</small>"));
+            brewName.setText(Html.fromHtml("<b>" + brew.getBrewName() + "</b> <br\n> <small>(" + brew.getLastBrew() + ")</small>"));
             brewName.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 14);
         } else {
             favCount.setVisibility(View.INVISIBLE);
