@@ -125,7 +125,7 @@ public class Brewing extends AppCompatActivity {
                 // her tjekker vi om denne brew lægger gemt i storage (recipes)
                 if (brew.getStorageKey() != -1) {
                     try {
-                        storageServiceSharedPref.deleteBrew(brew.getStorageKey());
+                        storageServiceSharedPref.deleteBrew(brew);
                         brew.setStorageKey(-1);
                         finish();
                     } catch (StorageServiceException e) {
@@ -137,7 +137,7 @@ public class Brewing extends AppCompatActivity {
                     // eller i favoritter.
                     if (brew.getFavoriteKey() != -1) {
                         try {
-                            storageServiceSharedPref.deleteFavoriteBrew(brew.getFavoriteKey());
+                            storageServiceSharedPref.deleteFavoriteBrew(brew);
                             brew.setFavoriteKey(-1);
                             finish();
                         } catch (StorageServiceException e) {
