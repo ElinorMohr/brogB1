@@ -6,6 +6,12 @@ import android.os.Bundle;
 
 import org.dtu.brogb1.R;
 
+/**
+ * Basically en carbon-copy af esp-idf-provisioning-android/WiFiScanActivity
+ * https://github.com/espressif/esp-idf-provisioning-android/blob/master/app/src/main/java/com/espressif/ui/activities/WiFiScanActivity.java
+ *
+ * @author Theis Villumsen s195461
+ */
 public class ConnectStep3WifiScanActivity extends AppCompatActivity {
 
     @Override

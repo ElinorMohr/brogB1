@@ -8,7 +8,19 @@ import com.espressif.provisioning.ESPProvisionManager;
 
 import org.dtu.brogb1.R;
 
+/**
+ * Basically en carbon-copy af esp-idf-provisioning-android/AddDeviceActivity
+ * https://github.com/espressif/esp-idf-provisioning-android/blob/master/app/src/main/java/com/espressif/ui/activities/AddDeviceActivity.java
+ *
+ * @author Theis Villumsen s195461
+ */
 public class ConnectStep2QrActivity extends AppCompatActivity {
+    private static final String TAG = ConnectStep2QrActivity.class.getSimpleName();
+
+    private static final int REQUEST_CAMERA_PERMISSION = 1;
+    private static final int REQUEST_ACCESS_FINE_LOCATION = 2;
+    private static final int REQUEST_ENABLE_BT = 3;
+
     private ESPProvisionManager provisionManager;
 
     @Override

@@ -33,12 +33,9 @@ import java.util.ArrayList;
 public class ConnectStep2ManualPopActivity extends AppCompatActivity {
     private static final String TAG = ConnectStep2ManualPopActivity.class.getSimpleName();
 
-    private TextView tvTitle, tvBack, tvCancel;
     private CardView btnNext;
-    private TextView txtNextBtn;
 
     private String deviceName;
-    private TextView tvPopInstruction;
     private EditText etPop;
     private ESPProvisionManager provisionManager;
 
@@ -136,7 +133,6 @@ public class ConnectStep2ManualPopActivity extends AppCompatActivity {
 
         // Set up the buttons
         builder.setPositiveButton(R.string.btn_ok, new DialogInterface.OnClickListener() {
-
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();

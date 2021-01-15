@@ -23,6 +23,7 @@ import org.dtu.brogb1.model.BrewException;
 import org.dtu.brogb1.service.IStorageService;
 import org.dtu.brogb1.service.StorageServiceException;
 import org.dtu.brogb1.service.StorageServiceSharedPref;
+import org.dtu.brogb1.service.Util;
 
 import java.util.ArrayList;
 
@@ -84,6 +85,7 @@ public class RecipiesAdapter extends ArrayAdapter<Brew> {
                 }
                 btnQuickBrew.setOnClickListener(this.onQuickBrewClickListener);
             } catch (StorageServiceException | BrewException e) {
+                Util.log(TAG, e);
                 e.printStackTrace();
             }
             brewName.setText(brew.getBrewName());
@@ -123,6 +125,7 @@ public class RecipiesAdapter extends ArrayAdapter<Brew> {
                 intent.putExtra("Brew", brew.toJson());
                 context.startActivity(intent);
             } catch (BrewException e) {
+                Util.log(TAG, e);
                 e.printStackTrace();
             }
         }

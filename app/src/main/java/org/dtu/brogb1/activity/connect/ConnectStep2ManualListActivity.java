@@ -111,7 +111,6 @@ public class ConnectStep2ManualListActivity extends AppCompatActivity {
             Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
         } else {
-
             if (!isDeviceConnected && !isConnecting) {
                 startScan();
             }
@@ -218,14 +217,10 @@ public class ConnectStep2ManualListActivity extends AppCompatActivity {
     }
 
     private boolean hasPermissions() {
-
         if (bleAdapter == null || !bleAdapter.isEnabled()) {
-
             requestBluetoothEnable();
             return false;
-
         } else if (!hasLocationPermissions()) {
-
             requestLocationPermission();
             return false;
         }
@@ -309,7 +304,6 @@ public class ConnectStep2ManualListActivity extends AppCompatActivity {
         builder.setPositiveButton(R.string.btn_ok, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
                 finish();
             }
         });
