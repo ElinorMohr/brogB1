@@ -137,6 +137,7 @@ public class NewBrew extends AppCompatActivity {
         favoriteBT.setOnClickListener(v -> {
             if (!favoriteOn) {
                 favoriteBT.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart));
+                Toast.makeText(this,"saved as favorite.", Toast.LENGTH_SHORT).show();
             } else {
                 favoriteBT.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart_empty));
             }
