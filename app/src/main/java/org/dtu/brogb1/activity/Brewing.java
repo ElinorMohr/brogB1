@@ -31,6 +31,7 @@ import org.dtu.brogb1.model.BrewFactory;
 import org.dtu.brogb1.service.IStorageService;
 import org.dtu.brogb1.service.StorageServiceException;
 import org.dtu.brogb1.service.StorageServiceSharedPref;
+import org.dtu.brogb1.service.Util;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -52,6 +53,7 @@ public class Brewing extends AppCompatActivity {
     TextView tvBrewName, tvGrindSize, tvGroundCoffe, tvRatio, tvTemp, tvBloomWater, tvBloomTime, tvTimeMin, tvTimeSec, tvEdit;
     ImageButton favoriteBT, trashBT;
     Brew brew, defaultBrew;
+    boolean favoriteOn;
     StorageServiceSharedPref storageServiceSharedPref = StorageServiceSharedPref.getInstance();
 
     ImageView coffeeImage;
@@ -108,6 +110,7 @@ public class Brewing extends AppCompatActivity {
             tvTimeSec.setText(Integer.toString(brew.getBrewTimeSec()));
             if (brew.getFavoriteKey() >= 0) {
                 favoriteBT.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart));
+                favoriteOn = true;
             }
 
             if(!brew.getBrewPics().isEmpty()){
@@ -249,12 +252,12 @@ public class Brewing extends AppCompatActivity {
             } else {
                 favoriteBT.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart_empty));
                 try {
-                    storageServiceSharedPref.deleteFavoriteBrew(brew);
-                    storageServiceSharedPref.saveBrew(brew);
+                    Util.setStorage(brew, favoriteOn, storageServiceSharedPref, TAG);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
+            favoriteOn = !favoriteOn;
         }
     };
 

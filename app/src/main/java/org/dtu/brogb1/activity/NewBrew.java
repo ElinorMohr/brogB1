@@ -19,6 +19,7 @@ import org.dtu.brogb1.filters.MinMaxFilter;
 import org.dtu.brogb1.model.Brew;
 import org.dtu.brogb1.model.BrewException;
 import org.dtu.brogb1.service.IStorageService;
+import org.dtu.brogb1.service.StorageServiceException;
 import org.dtu.brogb1.service.StorageServiceSharedPref;
 import org.dtu.brogb1.service.Util;
 
@@ -43,18 +44,17 @@ public class NewBrew extends AppCompatActivity {
     private int brewTimeMin, brewTimeSec, groundCoffee, coffeeWaterRatio, brewingTemperature, bloomWater, bloomTime;
     EditText editBrewName, editGroundCoffee, editRatio, editTemp, editBloomWater, editBloomTime, editTotalMin, editTotalSec;
     Spinner spinnerInputGrindSize;
-
     ImageButton favoriteBT;
     ImageView coffeeImageView;
-
     boolean favoriteOn;
-
+    IStorageService storage;
     Brew newBrew = new Brew();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_brew);
+        storage = StorageServiceSharedPref.getInstance();
 
         Button brewNow = (Button) findViewById(R.id.brew_now_recipe);
         ImageButton info = findViewById(R.id.i_ground_coffee);
@@ -87,35 +87,20 @@ public class NewBrew extends AppCompatActivity {
         brewNow.setOnClickListener(v -> {
             // gemmer inputtet fra ui'en til værdierne
             try {
-                groundCoffee = getIntInput(editGroundCoffee, "ground Coffee");
-                grindSize = spinnerInputGrindSize.getSelectedItem().toString();
-                coffeeWaterRatio = getIntInput(editRatio, "ratio");
-                brewingTemperature = getIntInput(editTemp, "Temperature");
-                bloomWater = getIntInput(editTemp, "bloom Water");
-                bloomTime = getIntInput(editTemp, "bloom Time");
-                getTimeInput();
-                brewName = editBrewName.getText().toString();
+                getBrewValuesFromUI();
+                setBrewValues();
             } catch (Exception e) {
                 e.printStackTrace();
                 return;
             }
-            setBrewValues();
 
             // her tjekker vi, hvis den er markeret som save. bliver denne bryg gemt i storage
             if (saveBrew.isChecked()) {
-                IStorageService storage = StorageServiceSharedPref.getInstance();
-                if (brewName.isEmpty()) {
-                    Toast.makeText(this, "Your brew needs a name", Toast.LENGTH_SHORT).show();
-                    return;
-                }
                 try {
-                    if (favoriteOn)
-                        newBrew.setFavoriteKey(storage.saveBrewToFavorites(newBrew));
-                    else
-                        newBrew.setStorageKey(storage.saveBrew(newBrew));
-                } catch (BrewException e) {
-                    Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Util.setStorage(newBrew, favoriteOn, storage, TAG);
+                } catch (StorageServiceException e) {
                     e.printStackTrace();
+                    Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -137,6 +122,16 @@ public class NewBrew extends AppCompatActivity {
         favoriteBT.setOnClickListener(v -> {
             if (!favoriteOn) {
                 favoriteBT.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart));
+                try {
+                    getBrewValuesFromUI();
+                    setBrewValues();
+                    Util.setStorage(newBrew, favoriteOn, storage, TAG);
+                } catch (Exception e) {
+                    Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+                }
+
+
             } else {
                 favoriteBT.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart_empty));
             }
@@ -191,6 +186,16 @@ public class NewBrew extends AppCompatActivity {
         newBrew.setStorageKey(-1);
         brewName = editBrewName.getText().toString();
         newBrew.setBrewName(brewName);
+    }
+    private void getBrewValuesFromUI() throws Exception {
+        groundCoffee = getIntInput(editGroundCoffee, "ground Coffee");
+        grindSize = spinnerInputGrindSize.getSelectedItem().toString();
+        coffeeWaterRatio = getIntInput(editRatio, "ratio");
+        brewingTemperature = getIntInput(editTemp, "Temperature");
+        bloomWater = getIntInput(editTemp, "bloom Water");
+        bloomTime = getIntInput(editTemp, "bloom Time");
+        getTimeInput();
+        brewName = editBrewName.getText().toString();
     }
 
     private int getIntInput(EditText v, String text) throws Exception {
