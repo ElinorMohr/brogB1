@@ -31,7 +31,8 @@ public class ConnectStep1Activity extends AppCompatActivity implements View.OnCl
         manual.setOnClickListener(this);
 
         provisionManager = ESPProvisionManager.getInstance(getApplicationContext());
-        provisionManager.createESPDevice(ESPConstants.TransportType.TRANSPORT_BLE, ESPConstants.SecurityType.SECURITY_0);
+        provisionManager.createESPDevice(ESPConstants.TransportType.TRANSPORT_BLE, ESPConstants.SecurityType.SECURITY_1);
+        provisionManager.getEspDevice().setProofOfPossession("abcd1234");
     }
 
     @Override

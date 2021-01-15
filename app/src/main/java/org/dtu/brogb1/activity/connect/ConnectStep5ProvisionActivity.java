@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.espressif.provisioning.DeviceConnectionEvent;
 import com.espressif.provisioning.ESPConstants;
 import com.espressif.provisioning.ESPProvisionManager;
@@ -39,6 +40,7 @@ public class ConnectStep5ProvisionActivity extends AppCompatActivity {
     private ImageView tick1, tick2, tick3;
     private ContentLoadingProgressBar progress1, progress2, progress3;
     private TextView tvErrAtStep1, tvErrAtStep2, tvErrAtStep3, tvProvError;
+    private LottieAnimationView lottie;
 
     private Button btnOk;
     private TextView txtOkBtn;
@@ -99,6 +101,8 @@ public class ConnectStep5ProvisionActivity extends AppCompatActivity {
     };
 
     private void initViews() {
+        lottie = findViewById(R.id.provisionBeansAnimation);
+
         tick1 = findViewById(R.id.iv_tick_1);
         tick2 = findViewById(R.id.iv_tick_2);
         tick3 = findViewById(R.id.iv_tick_3);
@@ -264,6 +268,8 @@ public class ConnectStep5ProvisionActivity extends AppCompatActivity {
     public void hideLoading() {
         btnOk.setEnabled(true);
         btnOk.setAlpha(1f);
+        lottie.pauseAnimation();
+        lottie.setProgress(0);
     }
 
     private void showAlertForDeviceDisconnected() {

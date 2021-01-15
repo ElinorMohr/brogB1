@@ -6,26 +6,15 @@
     android:layout_height="match_parent"
     android:paddingTop="0dp">
 
-    <ImageView
-        android:id="@+id/bagground"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        app:srcCompat="@drawable/bg" />
+    <include layout="@layout/background"/>
 
-    <ImageView
-        android:id="@+id/logo3"
-        android:layout_width="match_parent"
-        android:layout_height="175dp"
-        android:layout_marginTop="32dp"
-        android:contentDescription="@string/logo_with_text_description"
-        app:srcCompat="@drawable/ic_logo_w_text" />
+    <include layout="@layout/logo_small"/>
 
     <LinearLayout
         android:id="@+id/layout_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/logo3"
+        android:layout_below="@+id/logo"
         android:layout_marginStart="10dp"
         android:layout_marginTop="0dp"
         android:layout_marginEnd="10dp"
@@ -59,16 +48,6 @@
 
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/footer"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd="0dp"
-        android:layout_marginBottom="-65dp"
-        android:contentDescription="@string/footer_with_copyright_description"
-        app:srcCompat="@drawable/ic_footer_copyright" />
+    <include layout="@layout/footer"/>
 
 </RelativeLayout>

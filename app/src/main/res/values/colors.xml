@@ -19,6 +19,7 @@
     <color name="brown_1">#EEE6E1</color>
     <color name="brown">#a4c639</color>
     <color name="orange">#ff5207</color>
+    <color name="error">#FF5207</color>
     <color name="transparent">#00000000</color>
     <color name="colorPrimary">@color/brown_3</color>
     <color name="colorAccent">@color/brown_2</color>
