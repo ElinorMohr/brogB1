@@ -1,6 +1,7 @@
 package org.dtu.brogb1.fragment;
 
 import android.os.Bundle;
+import android.text.style.UpdateLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -75,6 +76,7 @@ public class Recipes extends Fragment {
         return root;
     }
 
+
     @Override
     public void onResume() {
         super.onResume();
@@ -90,4 +92,5 @@ public class Recipes extends Fragment {
         adapterMain.notifyDataSetChanged();
         adapterSec.notifyDataSetChanged();
     }
+
 }
