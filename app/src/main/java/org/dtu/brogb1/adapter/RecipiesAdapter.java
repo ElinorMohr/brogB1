@@ -1,6 +1,7 @@
 package org.dtu.brogb1.adapter;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -18,6 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import org.dtu.brogb1.R;
 import org.dtu.brogb1.activity.Brewing;
+import org.dtu.brogb1.activity.Sections;
 import org.dtu.brogb1.model.Brew;
 import org.dtu.brogb1.model.BrewException;
 import org.dtu.brogb1.service.IStorageService;
@@ -135,6 +137,12 @@ public class RecipiesAdapter extends ArrayAdapter<Brew> {
             Brew brew = (Brew) v.getTag();
             System.out.println("Star clicked, row " + brew.getBrewName());
             storage.setQuickBrew(brew.getFavoriteKey());
+            Intent intent = new Intent(new Intent(getContext(), Sections.class));
+            context.startActivity(intent);
+            ((Activity) context).overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+            ((Activity) context).finish();
+
         }
     };
+
 }
