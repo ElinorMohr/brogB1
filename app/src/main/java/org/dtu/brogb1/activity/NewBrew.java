@@ -162,6 +162,7 @@ public class NewBrew extends AppCompatActivity {
                     Uri image_uri = data.getData();
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), image_uri);
                     Util.saveImageFrom(newBrew,bitmap,this.getApplicationContext(), TAG);
+                    coffeeImageView.setImageBitmap(bitmap);
                 } catch (IOException e) {
                     Util.log(TAG, e);
                 }

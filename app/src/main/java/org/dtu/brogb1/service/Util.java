@@ -78,6 +78,7 @@ public class Util {
             v.setPadding(0,0,0,0);
         } catch (IOException e) {
             Util.log(TAG, e);
+            e.printStackTrace();
         }
     }
 
@@ -103,6 +104,7 @@ public class Util {
 
         } catch(Exception e) {
             Log.e(TAG, e.getMessage());
+            e.printStackTrace();
         }
     }
 }
