@@ -108,7 +108,6 @@ public class NewBrew extends AppCompatActivity {
             }
 
             Intent intent = new Intent(this, Brewing.class);
-            //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             try {
                 intent.putExtra("Brew", newBrew.toJson());
             } catch (BrewException e) {
@@ -156,28 +155,14 @@ public class NewBrew extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
             if (requestCode == 1) {
-                Uri image_uri = data.getData();
-                String root = Environment.getExternalStorageDirectory().toString();
-                File saveLocation = new File(root + "/saved_images_brog");;
-                Random generator = new Random();
-                int n = 10000;
-                n = generator.nextInt(n);
-                String filename = "Image-"+ n +".jpg";
-                File fileTo = new File (saveLocation, filename);
                 try {
+                    Uri image_uri = data.getData();
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), image_uri);
-                    coffeeImageView.setImageBitmap(bitmap);
-                    coffeeImageView.setPadding(0,0,0,0);
-                    FileOutputStream out = new FileOutputStream(fileTo);
-                    bitmap.compress(Bitmap.CompressFormat.JPEG, 90, out);
-                    out.flush();
-                    out.close();
-                    newBrew.setBrewPics(Uri.fromFile(fileTo).toString());
-
+                    Util.saveImageFrom(newBrew,bitmap,this.getApplicationContext(), TAG);
                 } catch (IOException e) {
                     Util.log(TAG, e);
-                    e.printStackTrace();
                 }
+
             }
         }
     }

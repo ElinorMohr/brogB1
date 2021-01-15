@@ -120,15 +120,7 @@ public class EditBrew extends AppCompatActivity {
             editETTotalMin.setText(Integer.toString(brew.getBrewTimeMin()));
             editETTotalSec.setText(Integer.toString(brew.getBrewTimeSec()));
             if (!brew.getBrewPics().isEmpty()) {
-                Uri image_uri = Uri.fromFile(new File(brew.getBrewPics()));
-                try {
-                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), image_uri);
-                    coffeeImage.setImageBitmap(bitmap);
-                    coffeeImage.setPadding(0,0,0,0);
-                } catch (IOException e) {
-                    Util.log(TAG, e);
-                    e.printStackTrace();
-                }
+                Util.setImageFromBrew(brew, coffeeImage, this.getContentResolver(), TAG);
             }
             if (brew.getFavoriteKey() >= 0) {
                 favoriteBt.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart));
@@ -193,7 +185,6 @@ public class EditBrew extends AppCompatActivity {
 
                 Intent pickIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 pickIntent.setType("image/");
-
                 Intent chooserIntent = Intent.createChooser(getIntent, "Select Image");
                 chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[]{pickIntent});
 
@@ -230,17 +221,14 @@ public class EditBrew extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
             if (requestCode == 1) {
-                Uri image_uri = data.getData();
-                File file = new File(image_uri.getPath());//create path from uri
-                final String[] split = file.getPath().split(":");//split the path.
-                brew.setBrewPics(split[1]);
                 try {
+                    Uri image_uri = data.getData();
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), image_uri);
-                    coffeeImage.setImageBitmap(bitmap);
+                    Util.saveImageFrom(brew,bitmap,this.getApplicationContext(), TAG);
                 } catch (IOException e) {
                     Util.log(TAG, e);
-                    e.printStackTrace();
                 }
+
             }
         }
     }

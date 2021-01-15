@@ -119,15 +119,7 @@ public class Brewing extends AppCompatActivity {
             }
 
             if (!brew.getBrewPics().isEmpty()) {
-                Uri image_uri = Uri.fromFile(new File(brew.getBrewPics()));
-                ;
-                try {
-                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), image_uri);
-                    coffeeImage.setImageBitmap(bitmap);
-                    coffeeImage.setPadding(0, 0, 0, 0);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                Util.setImageFromBrew(brew, coffeeImage, this.getContentResolver(), TAG);
             } else if (brew.equals(defaultBrew)) {
                 // Henter ikon fra drawable og viser det, hvis det er goldencup og der ikke er sat et billede
                 coffeeImage.setImageDrawable(getDrawable(R.drawable.ic_mug_marshmallows));
@@ -137,35 +129,7 @@ public class Brewing extends AppCompatActivity {
                 Canvas canvas = new Canvas(bitmap);
                 drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
                 drawable.draw(canvas);
-
-                // Konverterer drawable til bitmat, konverterer det til base64 og gemmer det på brew, så billedet bliver gemt, hvis man trykker "favorit"
-                File folder;
-                try {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
-                        folder = new File(getApplicationContext().getExternalFilesDir(null), File.separator + "brog/");
-                    else
-                        folder = new File(Environment.getExternalStorageState(), File.separator + "brog/");
-                    System.out.println(folder);
-
-                    boolean success = true;
-                    if (!folder.exists()) {
-                        success = folder.mkdirs();
-                    }
-                    if (success) {
-                        File file = new File (folder, System.currentTimeMillis() + ".jpg");
-                        FileOutputStream out = new FileOutputStream(file);
-                        bitmap.compress(Bitmap.CompressFormat.JPEG, 90, out);
-                        out.flush();
-                        out.close();
-                        System.out.println(file.getAbsolutePath());
-                        System.out.println(Uri.fromFile(folder).toString());
-                        brew.setBrewPics(file.getAbsolutePath());
-                    }
-
-                } catch(Exception e) {
-                    Log.e(TAG, e.getMessage());
-                    e.printStackTrace();
-                }
+                Util.saveImageFrom(brew, bitmap, this.getApplicationContext(), TAG);
             }
         }
 
