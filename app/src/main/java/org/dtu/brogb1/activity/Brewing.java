@@ -5,16 +5,17 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.provider.MediaStore;
 import android.text.Html;
-import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -22,19 +23,24 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.core.graphics.drawable.DrawableCompat;
+
 import org.dtu.brogb1.R;
 import org.dtu.brogb1.model.Brew;
 import org.dtu.brogb1.model.BrewException;
 import org.dtu.brogb1.model.BrewFactory;
-import org.dtu.brogb1.service.IStorageService;
 import org.dtu.brogb1.service.StorageServiceException;
 import org.dtu.brogb1.service.StorageServiceSharedPref;
+import org.dtu.brogb1.service.Util;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Random;
 
 
 /**
@@ -52,6 +58,7 @@ public class Brewing extends AppCompatActivity {
     TextView tvBrewName, tvGrindSize, tvGroundCoffe, tvRatio, tvTemp, tvBloomWater, tvBloomTime, tvTimeMin, tvTimeSec, tvEdit;
     ImageButton favoriteBT, trashBT;
     Brew brew, defaultBrew;
+    boolean favoriteOn;
     StorageServiceSharedPref storageServiceSharedPref = StorageServiceSharedPref.getInstance();
 
     ImageView coffeeImage;
@@ -89,14 +96,14 @@ public class Brewing extends AppCompatActivity {
         tvTimeSec = findViewById(R.id.valueTimeSec);
         trashBT = (ImageButton) findViewById(R.id.trashcan);
 
-        if((brew.getStorageKey() == -1) && (brew.getFavoriteKey() == -1)){
+        if ((brew.getStorageKey() == -1) && (brew.getFavoriteKey() == -1)) {
             trashBT.setVisibility(View.GONE);
         }
         favoriteBT = (ImageButton) findViewById(R.id.brewing_favorite_bt);
         tvEdit = findViewById(R.id.EditBrewTxt);
 
         // Edit teksten
-        if (brew != null){
+        if (brew != null) {
             tvBrewName.setText(Html.fromHtml("<u>" + brew.getBrewName() + "</u>"));
             tvGroundCoffe.setText(Integer.toString(brew.getGroundCoffee()));
             tvGrindSize.setText(brew.getGrindSize());
@@ -108,31 +115,21 @@ public class Brewing extends AppCompatActivity {
             tvTimeSec.setText(Integer.toString(brew.getBrewTimeSec()));
             if (brew.getFavoriteKey() >= 0) {
                 favoriteBT.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart));
+                favoriteOn = true;
             }
 
-            if(!brew.getBrewPics().isEmpty()){
-                Uri image_uri = Uri.fromFile(new File(brew.getBrewPics()));;
-                try {
-                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), image_uri);
-                    coffeeImage.setImageBitmap(bitmap);
-                    coffeeImage.setPadding(0,0,0,0);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+            if (!brew.getBrewPics().isEmpty()) {
+                Util.setImageFromBrew(brew, coffeeImage, this.getContentResolver(), TAG);
             } else if (brew.equals(defaultBrew)) {
                 // Henter ikon fra drawable og viser det, hvis det er goldencup og der ikke er sat et billede
                 coffeeImage.setImageDrawable(getDrawable(R.drawable.ic_mug_marshmallows));
-                // Konverterer drawable til bitmat, konverterer det til base64 og gemmer det på brew, så billedet bliver gemt, hvis man trykker "favorit"
-                try {
-                    Bitmap bitmap = BitmapFactory.decodeResource(getApplicationContext().getResources(), R.drawable.ic_mug_marshmallows);
-                    ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
-                    byte[] byteArray = byteArrayOutputStream.toByteArray();
-                    String encoded = Base64.encodeToString(byteArray, Base64.DEFAULT);
-                    brew.setBrewPics(encoded);
-                } catch(Exception e) {
-                    Log.e(TAG, e.getMessage());
-                }
+                Drawable drawable = ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_mug_marshmallows);
+                Bitmap bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(),
+                        drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+                Canvas canvas = new Canvas(bitmap);
+                drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+                drawable.draw(canvas);
+                Util.saveImageFrom(brew, bitmap, this.getApplicationContext(), TAG);
             }
         }
 
@@ -140,7 +137,7 @@ public class Brewing extends AppCompatActivity {
 
             // først skal vi have adgang til vores storage
             @Override
-            public void onClick (View v) {
+            public void onClick(View v) {
 
                 // her tjekker vi om denne brew lægger gemt i storage (recipes)
                 if (brew.getStorageKey() != -1) {
@@ -227,36 +224,24 @@ public class Brewing extends AppCompatActivity {
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         });
-    }
 
-
-    View.OnClickListener imgButtonHandler = new View.OnClickListener() {
-        @RequiresApi(api = Build.VERSION_CODES.O)
-        public void onClick(View v) {
-            if (brew.getFavoriteKey() < 0) {
-                favoriteBT.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart));
+        favoriteBT.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
+            public void onClick(View v) {
                 try {
-                    int k = storageServiceSharedPref.saveBrewToFavorites(brew);
-                    storageServiceSharedPref.deleteBrew(brew);
-                    if (brew.equals(defaultBrew) && brew.getFavoriteKey() == -1 && brew.getStorageKey() == -1) {
-                        storageServiceSharedPref.setQuickBrew(k);
-                    }
-                } catch (Exception e) {
-                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                    e.printStackTrace();
-                }
-
-            } else {
-                favoriteBT.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart_empty));
-                try {
-                    storageServiceSharedPref.deleteFavoriteBrew(brew);
-                    storageServiceSharedPref.saveBrew(brew);
+                    Util.setStorage(brew, !favoriteOn, storageServiceSharedPref, TAG);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                if (!favoriteOn) {
+                    favoriteBT.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart));
+                } else {
+                    favoriteBT.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart_empty));
+                }
+                favoriteOn = !favoriteOn;
             }
-        }
-    };
+        });
+    }
 
 
     @Override

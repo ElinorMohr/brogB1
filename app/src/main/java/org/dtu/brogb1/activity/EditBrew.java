@@ -19,6 +19,8 @@ import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.airbnb.lottie.utils.Utils;
+
 import org.dtu.brogb1.R;
 import org.dtu.brogb1.filters.MinMaxFilter;
 import org.dtu.brogb1.model.Brew;
@@ -118,15 +120,7 @@ public class EditBrew extends AppCompatActivity {
             editETTotalMin.setText(Integer.toString(brew.getBrewTimeMin()));
             editETTotalSec.setText(Integer.toString(brew.getBrewTimeSec()));
             if (!brew.getBrewPics().isEmpty()) {
-                Uri image_uri = Uri.fromFile(new File(brew.getBrewPics()));
-                try {
-                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), image_uri);
-                    coffeeImage.setImageBitmap(bitmap);
-                    coffeeImage.setPadding(0,0,0,0);
-                } catch (IOException e) {
-                    Util.log(TAG, e);
-                    e.printStackTrace();
-                }
+                Util.setImageFromBrew(brew, coffeeImage, this.getContentResolver(), TAG);
             }
             if (brew.getFavoriteKey() >= 0) {
                 favoriteBt.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart));
@@ -135,53 +129,19 @@ public class EditBrew extends AppCompatActivity {
             //når der brygges
             EditNow.setOnClickListener(v -> {
                 try {
-                    groundCoffee = getIntInput(editETGroundCoffee, "ground coffee");
-                    grindSize = editSpinnerInputGrindSize.getSelectedItem().toString();
-                    coffeeWaterRatio = getIntInput(editETRatio, "coffee Water Ratio");
-                    brewingTemperature = getIntInput(editETTemp, "brewing Temperature");
-                    bloomWater = getIntInput(editETBloomWater, "Bloom Water");
-                    bloomTime = getIntInput(editETBloomWater, "Bloom Time");
-                    // tiden skal blive lagt sammen
-                    getTimeInput();
+                    getBrewValuesFromUI();
                     setBrewValues();
                 } catch (Exception e) {
                     return;
                 }
-
-                if (brew.getStorageKey() >= 0 ||  favoriteOn) {
-                    // vi skal gemme ændringerne
-                    if (brewName.isEmpty()) {
-                        Toast.makeText(this, "your brew needs a name", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                    try {
-                        if (favoriteOn)
-                            if (brew.getFavoriteKey() >= 0)
-                                storage.overwriteFavoriteBrew(brew.getFavoriteKey(), brew);
-                            else
-                                brew.setFavoriteKey(storage.saveBrewToFavorites(brew));
-                        else
-                            storage.overwriteBrew(brew.getStorageKey(), brew);
-                    } catch (BrewException e) {
-                        Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                        Util.log(TAG, e);
-                        e.printStackTrace();
-                    }
-                }
-                if (brew.getFavoriteKey() >= 0 && !favoriteOn) {
-                    try {
-                        storage.deleteFavoriteBrew(brew);
-                        if (brew.getStorageKey() >= 0)
-                            storage.overwriteBrew(brew.getStorageKey(), brew);
-                        else
-                            brew.setStorageKey(storage.saveBrew(brew));
-                    } catch (StorageServiceException | BrewException e) {
-                        Util.log(TAG, e);
-                        e.printStackTrace();
-                    }
+                try {
+                    Util.setStorage(brew, favoriteOn, storage, TAG);
+                } catch (StorageServiceException e) {
+                    Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
                 }
 
-                    // vores ændret brew bliver sendt til brewing
+                // vores ændret brew bliver sendt til brewing
                 Intent intent = new Intent(this, Brewing.class);
                 try {
                     intent.putExtra("Brew", brew.toJson());
@@ -204,6 +164,14 @@ public class EditBrew extends AppCompatActivity {
 
             favoriteBt.setOnClickListener(v -> {
                 if (!favoriteOn) {
+                    try {
+                        getBrewValuesFromUI();
+                        setBrewValues();
+                        Util.setStorage(brew, favoriteOn, storage, TAG);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        return;
+                    }
                     favoriteBt.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart));
                 } else {
                     favoriteBt.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart_empty));
@@ -217,7 +185,6 @@ public class EditBrew extends AppCompatActivity {
 
                 Intent pickIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 pickIntent.setType("image/");
-
                 Intent chooserIntent = Intent.createChooser(getIntent, "Select Image");
                 chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[]{pickIntent});
 
@@ -238,23 +205,30 @@ public class EditBrew extends AppCompatActivity {
         brewName = editETBrewName.getText().toString();
         brew.setBrewName(brewName);
     }
-
+    private void getBrewValuesFromUI() throws Exception {
+        groundCoffee = getIntInput(editETGroundCoffee, "ground coffee");
+        grindSize = editSpinnerInputGrindSize.getSelectedItem().toString();
+        coffeeWaterRatio = getIntInput(editETRatio, "coffee Water Ratio");
+        brewingTemperature = getIntInput(editETTemp, "brewing Temperature");
+        bloomWater = getIntInput(editETBloomWater, "Bloom Water");
+        bloomTime = getIntInput(editETBloomWater, "Bloom Time");
+        // tiden skal blive lagt sammen
+        getTimeInput();
+        brewName = editETBrewName.getText().toString();
+    }
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
             if (requestCode == 1) {
-                Uri image_uri = data.getData();
-                File file = new File(image_uri.getPath());//create path from uri
-                final String[] split = file.getPath().split(":");//split the path.
-                brew.setBrewPics(split[1]);
                 try {
+                    Uri image_uri = data.getData();
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), image_uri);
-                    coffeeImage.setImageBitmap(bitmap);
+                    Util.saveImageFrom(brew,bitmap,this.getApplicationContext(), TAG);
                 } catch (IOException e) {
                     Util.log(TAG, e);
-                    e.printStackTrace();
                 }
+
             }
         }
     }
