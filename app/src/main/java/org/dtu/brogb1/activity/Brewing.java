@@ -230,15 +230,16 @@ public class Brewing extends AppCompatActivity {
             public void onClick(View v) {
                 try {
                     Util.setStorage(brew, !favoriteOn, storageServiceSharedPref, TAG);
+                    if (!favoriteOn) {
+                        favoriteBT.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart));
+                    } else {
+                        favoriteBT.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart_empty));
+                    }
+                    favoriteOn = !favoriteOn;
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                if (!favoriteOn) {
-                    favoriteBT.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart));
-                } else {
-                    favoriteBT.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart_empty));
-                }
-                favoriteOn = !favoriteOn;
+
             }
         });
     }

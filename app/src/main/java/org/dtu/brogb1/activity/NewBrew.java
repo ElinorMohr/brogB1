@@ -127,17 +127,18 @@ public class NewBrew extends AppCompatActivity {
                     getBrewValuesFromUI();
                     setBrewValues();
                     Util.setStorage(newBrew, !favoriteOn, storage, TAG);
+                    favoriteBT.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart));
+                    Toast.makeText(this,"saved as favorite.", Toast.LENGTH_SHORT).show();
                 } catch (Exception e) {
                     Toast.makeText(this, "Error in save", Toast.LENGTH_SHORT).show();
+                    favoriteOn = !favoriteOn;
                     e.printStackTrace();
                     return;
                 }
-                favoriteBT.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart));
-                Toast.makeText(this,"saved as favorite.", Toast.LENGTH_SHORT).show();
             } else {
                 favoriteBT.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart_empty));
+                favoriteOn = !favoriteOn;
             }
-            favoriteOn = !favoriteOn;
         });
         coffeeImageView.setOnClickListener(v -> {
             Intent getIntent = new Intent(Intent.ACTION_GET_CONTENT);
