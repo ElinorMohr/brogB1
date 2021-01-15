@@ -19,7 +19,6 @@ public class BrewFactory {
     public static Brew getBrew(String option) {
         if (option.equals("Default")) {
             Brew brew = new Brew(18,"Medium",60,93,45,30, 3 , 0, "Golden Cup", "", false,false);
-            //brew.setFavoriteKey(10000);
             return brew;
         }
         return new Brew(1," ",1,1,1,1, 1 , 1 ," ","", false,false);

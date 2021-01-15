@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.text.InputFilter;
 import android.widget.Button;
@@ -24,7 +25,9 @@ import org.dtu.brogb1.service.StorageServiceSharedPref;
 import org.dtu.brogb1.service.Util;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Random;
 
 import io.sentry.Sentry;
 
@@ -154,16 +157,23 @@ public class NewBrew extends AppCompatActivity {
         if (resultCode == RESULT_OK) {
             if (requestCode == 1) {
                 Uri image_uri = data.getData();
-                File file = new File(image_uri.getPath());//create path from uri
-                System.out.println(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                System.out.println(file.getAbsolutePath());
-                System.out.println(image_uri.getPath());
-                final String[] split = file.getPath().split(":");//split the path.
-                newBrew.setBrewPics("/"+split[1]);
+                String root = Environment.getExternalStorageDirectory().toString();
+                File saveLocation = new File(root + "/saved_images_brog");;
+                Random generator = new Random();
+                int n = 10000;
+                n = generator.nextInt(n);
+                String filename = "Image-"+ n +".jpg";
+                File fileTo = new File (saveLocation, filename);
                 try {
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), image_uri);
                     coffeeImageView.setImageBitmap(bitmap);
                     coffeeImageView.setPadding(0,0,0,0);
+                    FileOutputStream out = new FileOutputStream(fileTo);
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 90, out);
+                    out.flush();
+                    out.close();
+                    newBrew.setBrewPics(Uri.fromFile(fileTo).toString());
+
                 } catch (IOException e) {
                     Util.log(TAG, e);
                     e.printStackTrace();
