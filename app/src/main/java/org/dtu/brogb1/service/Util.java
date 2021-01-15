@@ -63,7 +63,7 @@ public class Util {
                 if (brew.getStorageKey() >= 0) {
                     storage.overwriteBrew(brew.getStorageKey(), brew);
                 } else
-                    storage.saveBrew(brew);
+                    brew.setStorageKey(storage.saveBrew(brew));
             }
         } catch (StorageServiceException | BrewException e) {
             Util.log(TAG, e);

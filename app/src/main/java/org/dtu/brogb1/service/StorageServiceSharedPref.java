@@ -92,8 +92,10 @@ public class StorageServiceSharedPref implements IStorageService {
         this.preferences.edit().remove(key).apply();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public int saveBrew(Brew value) throws BrewException {
+        value.setStorageKey(this.brewCount);
         this.saveString(this.brewKey + this.brewCount, value.toJson());
         this.brewCount++;
         this.saveInt(this.brewCountKey, this.brewCount);
