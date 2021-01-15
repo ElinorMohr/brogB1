@@ -5,7 +5,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
 
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
+    <include layout="@layout/footer"/>
     <ImageButton
         android:id="@+id/i_ground_coffee"
         android:layout_width="25dp"
@@ -409,7 +409,4 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
             android:textAllCaps="false"
             app:cornerRadius="70dp" />
     </LinearLayout>
-
-    <include layout="@layout/footer"/>
-
 </RelativeLayout>

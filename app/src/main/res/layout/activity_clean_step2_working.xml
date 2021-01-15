@@ -6,9 +6,8 @@
     android:layout_height="match_parent">
 
     <include layout="@layout/background"/>
-
     <include layout="@layout/logo_big"/>
-
+    <include layout="@layout/footer"/>
     <LinearLayout
         android:id="@+id/layout_1"
         android:layout_below="@+id/logo"
@@ -39,7 +38,4 @@
             app:lottie_rawRes="@raw/beans" />
 
     </LinearLayout>
-
-    <include layout="@layout/footer"/>
-
 </RelativeLayout>

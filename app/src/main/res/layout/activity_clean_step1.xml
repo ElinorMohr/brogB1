@@ -8,7 +8,7 @@
     <include layout="@layout/background"/>
 
     <include layout="@layout/logo_big"/>
-
+    <include layout="@layout/footer"/>
     <LinearLayout
         android:id="@+id/layout_1"
         android:layout_below="@+id/logo"
@@ -37,7 +37,4 @@
             app:cornerRadius="70dp" />
 
     </LinearLayout>
-
-    <include layout="@layout/footer"/>
-
 </RelativeLayout>

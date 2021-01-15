@@ -10,6 +10,7 @@
 
     <include layout="@layout/logo_big"/>
 
+    <include layout="@layout/footer"/>
     <LinearLayout
         android:id="@+id/layout_1"
         android:layout_width="match_parent"
@@ -46,7 +47,5 @@
             app:layout_constraintTop_toBottomOf="@+id/logotekst" />
 
     </LinearLayout>
-
-    <include layout="@layout/footer"/>
 
 </RelativeLayout>

@@ -8,7 +8,7 @@
     <include layout="@layout/background"/>
 
     <include layout="@layout/logo_big"/>
-
+    <include layout="@layout/footer"/>
     <LinearLayout
         android:id="@+id/layout_1"
         android:layout_width="match_parent"
@@ -37,7 +37,4 @@
             android:text="@string/clean_step3_button" />
 
     </LinearLayout>
-
-    <include layout="@layout/footer"/>
-
 </RelativeLayout>

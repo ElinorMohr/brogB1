@@ -3,6 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <include layout="@layout/footer"/>
+
     <TextView
         android:id="@+id/EditBrewTxt"
         android:layout_marginStart="15dp"
@@ -413,18 +415,6 @@
             android:textAllCaps="false"
            />
     </LinearLayout>
-
-    <ImageView
-        android:id="@+id/footer3"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd="0dp"
-        android:layout_marginBottom="-65dp"
-        android:contentDescription="@string/footer_with_copyright_description"
-        app:srcCompat="@drawable/ic_footer_copyright" />
 
 
 
