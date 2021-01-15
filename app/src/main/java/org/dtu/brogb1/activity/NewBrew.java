@@ -121,17 +121,16 @@ public class NewBrew extends AppCompatActivity {
 
         favoriteBT.setOnClickListener(v -> {
             if (!favoriteOn) {
-                favoriteBT.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart));
                 try {
                     getBrewValuesFromUI();
                     setBrewValues();
-                    Util.setStorage(newBrew, favoriteOn, storage, TAG);
+                    Util.setStorage(newBrew, !favoriteOn, storage, TAG);
                 } catch (Exception e) {
-                    Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Error in save", Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
+                    return;
                 }
-
-
+                favoriteBT.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart));
             } else {
                 favoriteBT.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart_empty));
             }

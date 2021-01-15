@@ -172,15 +172,15 @@ public class EditBrew extends AppCompatActivity {
 
             favoriteBt.setOnClickListener(v -> {
                 if (!favoriteOn) {
-                    favoriteBt.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart));
                     try {
                         getBrewValuesFromUI();
                         setBrewValues();
                         Util.setStorage(brew, favoriteOn, storage, TAG);
                     } catch (Exception e) {
                         e.printStackTrace();
+                        return;
                     }
-
+                    favoriteBt.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart));
                 } else {
                     favoriteBt.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart_empty));
                 }

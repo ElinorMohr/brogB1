@@ -230,36 +230,24 @@ public class Brewing extends AppCompatActivity {
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         });
-    }
 
-
-    View.OnClickListener imgButtonHandler = new View.OnClickListener() {
-        @RequiresApi(api = Build.VERSION_CODES.O)
-        public void onClick(View v) {
-            if (brew.getFavoriteKey() < 0) {
-                favoriteBT.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart));
+        favoriteBT.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
+            public void onClick(View v) {
                 try {
-                    int k = storageServiceSharedPref.saveBrewToFavorites(brew);
-                    storageServiceSharedPref.deleteBrew(brew);
-                    if (brew.equals(defaultBrew) && brew.getFavoriteKey() == -1 && brew.getStorageKey() == -1) {
-                        storageServiceSharedPref.setQuickBrew(k);
-                    }
-                } catch (Exception e) {
-                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                    e.printStackTrace();
-                }
-
-            } else {
-                favoriteBT.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart_empty));
-                try {
-                    Util.setStorage(brew, favoriteOn, storageServiceSharedPref, TAG);
+                    Util.setStorage(brew, !favoriteOn, storageServiceSharedPref, TAG);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                if (!favoriteOn) {
+                    favoriteBT.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart));
+                } else {
+                    favoriteBT.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart_empty));
+                }
+                favoriteOn = !favoriteOn;
             }
-            favoriteOn = !favoriteOn;
-        }
-    };
+        });
+    }
 
 
     @Override
