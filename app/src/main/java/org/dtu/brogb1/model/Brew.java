@@ -67,7 +67,7 @@ public class Brew {
             json.put("brewTimeSec", this.brewTimeSec);
             json.put("brewName", this.brewName);
             json.put("brewPics", this.brewPics);
-            json.put("lastBrew", this.getLastBrew());
+            json.put("lastBrew", this.lastBrew);
             json.put("saveBrew", this.saveBrew);
             json.put("favoriteBrew", this.favoriteBrew);
             json.put("storageKey", this.storageKey);
