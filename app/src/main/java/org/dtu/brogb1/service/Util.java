@@ -45,13 +45,14 @@ public class Util {
         }
         try {
             if (favoriteOn) {
-                if (brew.getStorageKey() >= 0) {
-                    storage.deleteBrew(brew);
-                }
                 if (brew.getFavoriteKey() >= 0)
                     storage.overwriteFavoriteBrew(brew.getFavoriteKey(), brew);
                 else
                     brew.setFavoriteKey(storage.saveBrewToFavorites(brew));
+                // Slet fra almindelig liste, hvis Brew er på den liste, efter den er tilføjet til favorit, da det kan være der ikke er plads og det fejler
+                if (brew.getStorageKey() >= 0) {
+                    storage.deleteBrew(brew);
+                }
             } else if (!favoriteOn && brew.getFavoriteKey() >= 0) {
                 storage.deleteFavoriteBrew(brew);
                 if (brew.getStorageKey() >= 0)
@@ -62,7 +63,7 @@ public class Util {
                 if (brew.getStorageKey() >= 0) {
                     storage.overwriteBrew(brew.getStorageKey(), brew);
                 } else
-                    storage.saveBrew(brew);
+                    brew.setStorageKey(storage.saveBrew(brew));
             }
         } catch (StorageServiceException | BrewException e) {
             Util.log(TAG, e);

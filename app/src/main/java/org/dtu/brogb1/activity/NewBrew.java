@@ -3,6 +3,7 @@ package org.dtu.brogb1.activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -14,6 +15,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import org.dtu.brogb1.R;
 import org.dtu.brogb1.filters.MinMaxFilter;
@@ -53,6 +56,7 @@ public class NewBrew extends AppCompatActivity {
     IStorageService storage;
     Brew newBrew = new Brew();
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,23 +101,36 @@ public class NewBrew extends AppCompatActivity {
                 return;
             }
 
-            // her tjekker vi, hvis den er markeret som save. bliver denne bryg gemt i storage
+            // her tjekker vi, hvis den er markeret som save eller favorit, bliver denne bryg gemt i storage
             if (saveBrew.isChecked()) {
                 try {
                     Util.setStorage(newBrew, favoriteOn, storage, TAG);
                 } catch (StorageServiceException e) {
                     e.printStackTrace();
+                    Util.log(TAG, e);
+                    Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            } else if (!saveBrew.isChecked() && favoriteOn) {
+                try {
+                    Toast.makeText(this, "Gemmer som favorit", Toast.LENGTH_SHORT).show();
+                    Util.setStorage(newBrew, favoriteOn, storage, TAG);
+                } catch (StorageServiceException e) {
+                    e.printStackTrace();
+                    Util.log(TAG, e);
                     Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
 
-            Intent intent = new Intent(this, Brewing.class);
             try {
+                Intent intent = new Intent(this, Brewing.class);
                 intent.putExtra("Brew", newBrew.toJson());
+                startActivity(intent);
+                finish();
             } catch (BrewException e) {
                 e.printStackTrace();
+                Util.log(TAG, e);
+                Toast.makeText(this, "Kunne ikke gå til bryg", Toast.LENGTH_SHORT).show();
             }
-            startActivity(intent);
         });
 
         info.setOnClickListener(v -> {
@@ -122,22 +139,12 @@ public class NewBrew extends AppCompatActivity {
         });
 
         favoriteBT.setOnClickListener(v -> {
-            if (!favoriteOn) {
-                try {
-                    getBrewValuesFromUI();
-                    setBrewValues();
-                    Util.setStorage(newBrew, !favoriteOn, storage, TAG);
-                } catch (Exception e) {
-                    Toast.makeText(this, "Error in save", Toast.LENGTH_SHORT).show();
-                    e.printStackTrace();
-                    return;
-                }
+            favoriteOn = !favoriteOn;
+            if (favoriteOn) {
                 favoriteBT.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart));
-                Toast.makeText(this,"saved as favorite.", Toast.LENGTH_SHORT).show();
             } else {
                 favoriteBT.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart_empty));
             }
-            favoriteOn = !favoriteOn;
         });
         coffeeImageView.setOnClickListener(v -> {
             Intent getIntent = new Intent(Intent.ACTION_GET_CONTENT);
