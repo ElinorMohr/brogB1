@@ -52,6 +52,7 @@ public class Brew {
         this.favoriteKey = favoriteKey;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public String toJson() throws BrewException {
         JSONObject json = new JSONObject();
 
@@ -66,7 +67,7 @@ public class Brew {
             json.put("brewTimeSec", this.brewTimeSec);
             json.put("brewName", this.brewName);
             json.put("brewPics", this.brewPics);
-            json.put("lastBrew", this.lastBrew);
+            json.put("lastBrew", this.getLastBrew());
             json.put("saveBrew", this.saveBrew);
             json.put("favoriteBrew", this.favoriteBrew);
             json.put("storageKey", this.storageKey);
@@ -206,24 +207,27 @@ public class Brew {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public void setLastBrewTime(String time){
-        lastBrew = LocalDateTime.parse(time);
+    public void setLastBrewTime(String time) {
+        if (!time.equals("Unknown")) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            lastBrew = LocalDateTime.parse(time, formatter);
+        }
     }
 
     public boolean equals(Brew brew) {
         return (
             this.groundCoffee == brew.getGroundCoffee() &&
-                this.grindSize.equals(brew.getGrindSize()) &&
-                this.coffeeWaterRatio == brew.getCoffeeWaterRatio() &&
-                this.brewingTemperature == brew.getBrewingTemperature() &&
-                this.bloomWater == brew.getBloomWater() &&
-                this.bloomTime == brew.getBloomTime() &&
-                this.brewTimeMin == brew.getBrewTimeMin() &&
-                this.brewTimeSec == brew.getBrewTimeSec() &&
-                this.brewName.equals(brew.getBrewName()) &&
-                this.brewPics.equals(brew.getBrewPics()) &&
-                this.saveBrew == brew.isSaveBrew() &&
-                this.favoriteBrew == brew.isFavoriteBrew()
+            this.grindSize.equals(brew.getGrindSize()) &&
+            this.coffeeWaterRatio == brew.getCoffeeWaterRatio() &&
+            this.brewingTemperature == brew.getBrewingTemperature() &&
+            this.bloomWater == brew.getBloomWater() &&
+            this.bloomTime == brew.getBloomTime() &&
+            this.brewTimeMin == brew.getBrewTimeMin() &&
+            this.brewTimeSec == brew.getBrewTimeSec() &&
+            this.brewName.equals(brew.getBrewName()) &&
+            this.brewPics.equals(brew.getBrewPics()) &&
+            this.saveBrew == brew.isSaveBrew() &&
+            this.favoriteBrew == brew.isFavoriteBrew()
         );
     }
 }
