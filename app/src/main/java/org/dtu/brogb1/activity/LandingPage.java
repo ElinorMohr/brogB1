@@ -9,12 +9,15 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 import org.dtu.brogb1.R;
 
+import io.sentry.Sentry;
+
 /**
  * @author Elinor Mikkelsen s191242
  * @author Betina Hansen s195389
  */
 
 public class LandingPage extends AppCompatActivity implements View.OnClickListener {
+    private static final String TAG = LandingPage.class.getSimpleName();
     public static SharedPreferences mySharedPreferences = null;
     Button bluetooth, offline;
 

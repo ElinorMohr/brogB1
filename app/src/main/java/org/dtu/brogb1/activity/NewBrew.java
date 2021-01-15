@@ -20,9 +20,12 @@ import org.dtu.brogb1.model.Brew;
 import org.dtu.brogb1.model.BrewException;
 import org.dtu.brogb1.service.IStorageService;
 import org.dtu.brogb1.service.StorageServiceSharedPref;
+import org.dtu.brogb1.service.Util;
 
 import java.io.File;
 import java.io.IOException;
+
+import io.sentry.Sentry;
 
 import static android.content.Intent.ACTION_OPEN_DOCUMENT;
 
@@ -35,6 +38,7 @@ import static android.content.Intent.ACTION_OPEN_DOCUMENT;
  */
 
 public class NewBrew extends AppCompatActivity {
+    private static final String TAG = NewBrew.class.getSimpleName();
     private String brewName, grindSize;
     private int brewTimeMin, brewTimeSec, groundCoffee, coffeeWaterRatio, brewingTemperature, bloomWater, bloomTime;
     EditText editBrewName, editGroundCoffee, editRatio, editTemp, editBloomWater, editBloomTime, editTotalMin, editTotalSec;
@@ -167,6 +171,7 @@ public class NewBrew extends AppCompatActivity {
                     coffeeImageView.setImageBitmap(bitmap);
                     coffeeImageView.setPadding(0,0,0,0);
                 } catch (IOException e) {
+                    Util.log(TAG, e);
                     e.printStackTrace();
                 }
             }

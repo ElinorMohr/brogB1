@@ -6,16 +6,22 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import org.dtu.brogb1.R;
+import org.dtu.brogb1.activity.EditBrew;
+import org.dtu.brogb1.service.Util;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+
+import io.sentry.Sentry;
 
 /**
  * @author Betina Hansen s195389
  */
 
 public class About extends AppCompatActivity {
+    private static final String TAG = About.class.getSimpleName();
 
     TextView tv;
 
@@ -40,6 +46,7 @@ public class About extends AppCompatActivity {
                 if ((string = reader.readLine()) == null) break;
             }
             catch (IOException e) {
+                Util.log(TAG, e);
                 e.printStackTrace();
             }
             stringBuilder.append(string).append("\n");

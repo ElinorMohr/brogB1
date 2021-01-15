@@ -2,6 +2,9 @@ package org.dtu.brogb1.model;
 
 import android.os.Build;
 import androidx.annotation.RequiresApi;
+
+import org.dtu.brogb1.activity.EditBrew;
+import org.dtu.brogb1.service.Util;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.time.LocalDateTime;
@@ -13,7 +16,7 @@ import java.time.format.DateTimeFormatter;
  */
 
 public class Brew {
-
+    private static final String TAG = Brew.class.getSimpleName();
     private String brewName, brewPics, grindSize;
     private int brewTimeMin, brewTimeSec, groundCoffee, coffeeWaterRatio, brewingTemperature, bloomWater, bloomTime;
     boolean saveBrew, favoriteBrew;
@@ -70,6 +73,7 @@ public class Brew {
             json.put("favoriteKey", this.favoriteKey);
         } catch (JSONException e) {
             e.printStackTrace();
+            Util.log(TAG, e);
             throw new BrewException("fejl under json");
         }
 
@@ -208,18 +212,18 @@ public class Brew {
 
     public boolean equals(Brew brew) {
         return (
-                this.groundCoffee == brew.getGroundCoffee() &&
-                        this.grindSize.equals(brew.getGrindSize()) &&
-                        this.coffeeWaterRatio == brew.getCoffeeWaterRatio() &&
-                        this.brewingTemperature == brew.getBrewingTemperature() &&
-                        this.bloomWater == brew.getBloomWater() &&
-                        this.bloomTime == brew.getBloomTime() &&
-                        this.brewTimeMin == brew.getBrewTimeMin() &&
-                        this.brewTimeSec == brew.getBrewTimeSec() &&
-                        this.brewName.equals(brew.getBrewName()) &&
-                        this.brewPics.equals(brew.getBrewPics()) &&
-                        this.saveBrew == brew.isSaveBrew() &&
-                        this.favoriteBrew == brew.isFavoriteBrew()
+            this.groundCoffee == brew.getGroundCoffee() &&
+                this.grindSize.equals(brew.getGrindSize()) &&
+                this.coffeeWaterRatio == brew.getCoffeeWaterRatio() &&
+                this.brewingTemperature == brew.getBrewingTemperature() &&
+                this.bloomWater == brew.getBloomWater() &&
+                this.bloomTime == brew.getBloomTime() &&
+                this.brewTimeMin == brew.getBrewTimeMin() &&
+                this.brewTimeSec == brew.getBrewTimeSec() &&
+                this.brewName.equals(brew.getBrewName()) &&
+                this.brewPics.equals(brew.getBrewPics()) &&
+                this.saveBrew == brew.isSaveBrew() &&
+                this.favoriteBrew == brew.isFavoriteBrew()
         );
     }
 }

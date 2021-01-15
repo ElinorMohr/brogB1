@@ -27,6 +27,7 @@ import org.dtu.brogb1.model.BrewFactory;
 import org.dtu.brogb1.service.IStorageService;
 import org.dtu.brogb1.service.StorageServiceException;
 import org.dtu.brogb1.service.StorageServiceSharedPref;
+import org.dtu.brogb1.service.Util;
 
 import java.io.File;
 import java.io.IOException;
@@ -65,6 +66,7 @@ public class EditBrew extends AppCompatActivity {
         } catch (BrewException e) {
             e.printStackTrace();
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+            Util.log(TAG, e);
             finish();
         }
 
@@ -122,6 +124,7 @@ public class EditBrew extends AppCompatActivity {
                     coffeeImage.setImageBitmap(bitmap);
                     coffeeImage.setPadding(0,0,0,0);
                 } catch (IOException e) {
+                    Util.log(TAG, e);
                     e.printStackTrace();
                 }
             }
@@ -161,6 +164,7 @@ public class EditBrew extends AppCompatActivity {
                             storage.overwriteBrew(brew.getStorageKey(), brew);
                     } catch (BrewException e) {
                         Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                        Util.log(TAG, e);
                         e.printStackTrace();
                     }
                 }
@@ -171,9 +175,8 @@ public class EditBrew extends AppCompatActivity {
                             storage.overwriteBrew(brew.getStorageKey(), brew);
                         else
                             brew.setStorageKey(storage.saveBrew(brew));
-                    } catch (StorageServiceException e) {
-                        e.printStackTrace();
-                    } catch (BrewException e) {
+                    } catch (StorageServiceException | BrewException e) {
+                        Util.log(TAG, e);
                         e.printStackTrace();
                     }
                 }
@@ -184,6 +187,7 @@ public class EditBrew extends AppCompatActivity {
                     intent.putExtra("Brew", brew.toJson());
                     Log.d(TAG, brew.toJson());
                 } catch (BrewException e) {
+                    Util.log(TAG, e);
                     e.printStackTrace();
                 }
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -248,6 +252,7 @@ public class EditBrew extends AppCompatActivity {
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), image_uri);
                     coffeeImage.setImageBitmap(bitmap);
                 } catch (IOException e) {
+                    Util.log(TAG, e);
                     e.printStackTrace();
                 }
             }

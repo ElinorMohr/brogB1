@@ -2,6 +2,10 @@ plugins {
     id 'com.android.application'
 }
 
+repositories {
+    jcenter()
+}
+
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
@@ -45,6 +49,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     def lottieVersion = "3.5.0"
     implementation "com.airbnb.android:lottie:$lottieVersion"
+    implementation 'io.sentry:sentry-android:3.1.0'
 
     testImplementation "org.mockito:mockito-core:1.9.5"
     testImplementation 'org.json:json:20201115'

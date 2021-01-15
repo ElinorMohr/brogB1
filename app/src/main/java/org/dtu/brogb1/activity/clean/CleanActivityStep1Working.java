@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import org.dtu.brogb1.R;
+import org.dtu.brogb1.activity.EditBrew;
 
 /**
  * @author Elinor Mikkelsen s191242
@@ -11,6 +12,7 @@ import org.dtu.brogb1.R;
  */
 
 public class CleanActivityStep1Working extends AppCompatActivity {
+    private static final String TAG = CleanActivityStep1Working.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

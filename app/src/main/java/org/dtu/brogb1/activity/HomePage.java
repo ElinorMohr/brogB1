@@ -29,6 +29,7 @@ import org.dtu.brogb1.service.StorageServiceSharedPref;
  */
 
 public class HomePage extends AppCompatActivity implements View.OnClickListener, PopupMenu.OnMenuItemClickListener {
+    private static final String TAG = HomePage.class.getSimpleName();
     Button brew, list, quick;
     ImageButton settings;
     IStorageService storage;

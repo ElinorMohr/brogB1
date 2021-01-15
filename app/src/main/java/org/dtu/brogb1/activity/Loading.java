@@ -13,6 +13,7 @@ import org.dtu.brogb1.R;
  */
 
 public class Loading extends AppCompatActivity {
+    private static final String TAG = Loading.class.getSimpleName();
 
     TextView loading;
 
@@ -24,14 +25,14 @@ public class Loading extends AppCompatActivity {
         loading = findViewById(R.id.loading);
 
         new android.os.Handler().postDelayed(
-                () -> {
-                    Intent intent = new Intent(Loading.this, HomePage.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_TASK_ON_HOME);
-                    startActivity(intent);
-                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-                    Loading.this.finish();
-                },
-                1500
+            () -> {
+                Intent intent = new Intent(Loading.this, HomePage.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_TASK_ON_HOME);
+                startActivity(intent);
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                Loading.this.finish();
+            },
+            1500
         );
 
     }

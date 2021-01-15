@@ -19,6 +19,7 @@ import org.dtu.brogb1.service.StorageServiceSharedPref;
  */
 
 public class Option extends AppCompatActivity {
+    private static final String TAG = Option.class.getSimpleName();
 
     Button language, connections, btn_reset_quick_brew;
     IStorageService storage;

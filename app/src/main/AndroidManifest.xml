@@ -65,6 +65,7 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+        <meta-data android:name="io.sentry.dsn" android:value="https://d4f03219a991444a88d9435bfdf8222f@o505463.ingest.sentry.io/5593780" />
 
         <activity android:name=".activity.Loading"></activity>
     </application>

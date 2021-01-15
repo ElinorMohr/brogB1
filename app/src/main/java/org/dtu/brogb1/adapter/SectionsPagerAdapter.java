@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import org.dtu.brogb1.R;
+import org.dtu.brogb1.activity.EditBrew;
 import org.dtu.brogb1.fragment.History;
 import org.dtu.brogb1.fragment.Recipes;
 
@@ -20,6 +21,7 @@ import org.dtu.brogb1.fragment.Recipes;
  * one of the sections/tabs/pages.
  */
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
+    private static final String TAG = SectionsPagerAdapter.class.getSimpleName();
 
     @StringRes
     private static final int[] TAB_TITLES = new int[]{R.string.tab_text_1, R.string.tab_text_2};

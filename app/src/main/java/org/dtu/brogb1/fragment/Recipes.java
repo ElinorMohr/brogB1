@@ -11,12 +11,14 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import org.dtu.brogb1.R;
+import org.dtu.brogb1.activity.EditBrew;
 import org.dtu.brogb1.adapter.RecipiesAdapter;
 import org.dtu.brogb1.model.Brew;
 import org.dtu.brogb1.model.BrewException;
 import org.dtu.brogb1.service.IStorageService;
 import org.dtu.brogb1.service.StorageServiceException;
 import org.dtu.brogb1.service.StorageServiceSharedPref;
+import org.dtu.brogb1.service.Util;
 
 import java.util.ArrayList;
 
@@ -26,6 +28,7 @@ import java.util.ArrayList;
  */
 
 public class Recipes extends Fragment {
+    private static final String TAG = Recipes.class.getSimpleName();
     IStorageService storage;
     ArrayList<Brew> favoriteList = new ArrayList<Brew>(), recipeList = new ArrayList<Brew>();
     ListView listMain, listSec;
@@ -52,6 +55,7 @@ public class Recipes extends Fragment {
             listMain.setAdapter(adapterMain);
 
         } catch (StorageServiceException | BrewException e) {
+            Util.log(TAG, e);
             e.printStackTrace();
         }
         try {
@@ -65,6 +69,7 @@ public class Recipes extends Fragment {
             adapterSec = new RecipiesAdapter(getContext(), recipeList);
             listSec.setAdapter(adapterSec);
         } catch (StorageServiceException | BrewException e) {
+            Util.log(TAG, e);
             e.printStackTrace();
         }
         return root;
@@ -78,9 +83,8 @@ public class Recipes extends Fragment {
             favoriteList.addAll(storage.getFavoriteBrews());
             recipeList.clear();
             recipeList.addAll(storage.getAllBrews());
-        } catch (StorageServiceException e) {
-            e.printStackTrace();
-        } catch (BrewException e) {
+        } catch (StorageServiceException | BrewException e) {
+            Util.log(TAG, e);
             e.printStackTrace();
         }
         adapterMain.notifyDataSetChanged();

@@ -13,6 +13,7 @@ import org.dtu.brogb1.adapter.SectionsPagerAdapter;
  */
 
 public class Sections extends AppCompatActivity {
+    private static final String TAG = Sections.class.getSimpleName();
 
     @Override
     //højre og venstre side i vores fragment
