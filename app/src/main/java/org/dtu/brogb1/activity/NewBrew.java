@@ -107,6 +107,7 @@ public class NewBrew extends AppCompatActivity {
                     Util.setStorage(newBrew, favoriteOn, storage, TAG);
                 } catch (StorageServiceException e) {
                     e.printStackTrace();
+                    Util.log(TAG, e);
                     Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             } else if (!saveBrew.isChecked() && favoriteOn) {
@@ -115,17 +116,21 @@ public class NewBrew extends AppCompatActivity {
                     Util.setStorage(newBrew, favoriteOn, storage, TAG);
                 } catch (StorageServiceException e) {
                     e.printStackTrace();
+                    Util.log(TAG, e);
                     Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
 
-            Intent intent = new Intent(this, Brewing.class);
             try {
+                Intent intent = new Intent(this, Brewing.class);
                 intent.putExtra("Brew", newBrew.toJson());
+                startActivity(intent);
+                finish();
             } catch (BrewException e) {
                 e.printStackTrace();
+                Util.log(TAG, e);
+                Toast.makeText(this, "Kunne ikke gå til bryg", Toast.LENGTH_SHORT).show();
             }
-            startActivity(intent);
         });
 
         info.setOnClickListener(v -> {
