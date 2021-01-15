@@ -209,8 +209,7 @@ public class Brew {
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void setLastBrewTime(String time) {
         if (!time.equals("Unknown")) {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-            lastBrew = LocalDateTime.parse(time, formatter);
+            lastBrew = LocalDateTime.parse(time);
         }
     }
 

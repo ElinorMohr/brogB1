@@ -111,7 +111,7 @@ public class BrewJsonTest {
             json.put("brewTimeSec", 7);
             json.put("brewName", "name");
             json.put("brewPics", "pic");
-            json.put("lastBrew", "2020-01-01 01:01:01");
+            json.put("lastBrew", "2020-01-01T01:01:01.000");
             json.put("saveBrew", true);
             json.put("favoriteBrew", false);
             json.put("storageKey", 8);
@@ -127,7 +127,7 @@ public class BrewJsonTest {
             assertEquals(json.getInt("brewTimeSec"), brew.getBrewTimeSec());
             assertEquals(json.getString("brewName"), brew.getBrewName());
             assertEquals(json.getString("brewPics"), brew.getBrewPics());
-            assertEquals(json.getString("lastBrew"), brew.getLastBrew());
+            assertEquals("2020-01-01 01:01:01", brew.getLastBrew());
             assertEquals(json.getBoolean("saveBrew"), brew.isSaveBrew());
             assertEquals(json.getBoolean("favoriteBrew"), brew.isFavoriteBrew());
             assertEquals(json.getInt("storageKey"), brew.getStorageKey());
