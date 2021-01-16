@@ -1,7 +1,6 @@
 package org.dtu.brogb1.fragment;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import org.dtu.brogb1.R;
 import org.dtu.brogb1.activity.Brewing;
@@ -30,7 +28,6 @@ public class History extends Fragment {
     StorageServiceSharedPref sharedPref = StorageServiceSharedPref.getInstance();
     ArrayList<Brew> viewMain;
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

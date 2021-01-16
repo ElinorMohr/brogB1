@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 import org.dtu.brogb1.R;
-import org.dtu.brogb1.activity.EditBrew;
 import org.dtu.brogb1.activity.HomePage;
 
 /**

@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.text.Html;
 import android.util.Log;
 import android.util.TypedValue;
@@ -16,7 +15,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import org.dtu.brogb1.R;
 import org.dtu.brogb1.activity.Brewing;
 import org.dtu.brogb1.activity.Sections;
@@ -50,7 +48,6 @@ public class RecipiesAdapter extends ArrayAdapter<Brew> {
         this.context = context;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     @SuppressLint("SetTextI18n")
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {

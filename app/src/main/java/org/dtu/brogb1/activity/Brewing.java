@@ -8,7 +8,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Html;
@@ -19,7 +18,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
@@ -51,7 +49,6 @@ public class Brewing extends AppCompatActivity {
 
     ImageView coffeeImage;
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,20 +119,17 @@ public class Brewing extends AppCompatActivity {
         }
 
         trashBT.setOnClickListener(new View.OnClickListener() {
-
             // først skal vi have adgang til vores storage
             @Override
             public void onClick(View v) {
-
                 // her tjekker vi om denne brew lægger gemt i storage (recipes)
                 if (brew.getStorageKey() != -1) {
                     try {
                         storageServiceSharedPref.deleteBrew(brew);
                         brew.setStorageKey(-1);
                         finish();
-                    } catch (StorageServiceException e) {
-                        e.printStackTrace();
-                    } catch (BrewException e) {
+                    } catch (StorageServiceException | BrewException e) {
+                        Util.log(TAG, e);
                         e.printStackTrace();
                     }
                 } else {
@@ -145,9 +139,8 @@ public class Brewing extends AppCompatActivity {
                             storageServiceSharedPref.deleteFavoriteBrew(brew);
                             brew.setFavoriteKey(-1);
                             finish();
-                        } catch (StorageServiceException e) {
-                            e.printStackTrace();
-                        } catch (BrewException e) {
+                        } catch (StorageServiceException | BrewException e) {
+                            Util.log(TAG, e);
                             e.printStackTrace();
                         }
                     }
@@ -200,21 +193,20 @@ public class Brewing extends AppCompatActivity {
         tvEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), EditBrew.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-
                 try {
+                    Intent intent = new Intent(view.getContext(), EditBrew.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     intent.putExtra("Brew", brew.toJson());
+                    startActivity(intent);
+                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 } catch (BrewException e) {
+                    Util.log(TAG, e);
                     e.printStackTrace();
                 }
-                startActivity(intent);
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         });
 
         favoriteBT.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.O)
             public void onClick(View v) {
                 try {
                     Util.setStorage(brew, !favoriteOn, storageServiceSharedPref, TAG);
@@ -231,7 +223,6 @@ public class Brewing extends AppCompatActivity {
             }
         });
     }
-
 
     @Override
     public void onBackPressed() {

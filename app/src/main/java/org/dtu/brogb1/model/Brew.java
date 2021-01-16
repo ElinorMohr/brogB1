@@ -1,13 +1,10 @@
 package org.dtu.brogb1.model;
 
-import android.os.Build;
-import androidx.annotation.RequiresApi;
-
 import org.dtu.brogb1.service.Util;
 import org.json.JSONException;
 import org.json.JSONObject;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import org.threeten.bp.LocalDateTime;
+import org.threeten.bp.format.DateTimeFormatter;
 
 /**
  * @author Elinor Mikkelsen s191242
@@ -51,7 +48,6 @@ public class Brew {
         this.favoriteKey = favoriteKey;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     public String toJson() throws BrewException {
         JSONObject json = new JSONObject();
 
@@ -192,7 +188,6 @@ public class Brew {
         this.favoriteKey = favoriteKey;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     public String getLastBrew() {
         if (lastBrew != null)
             return lastBrew.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
@@ -200,12 +195,10 @@ public class Brew {
             return "Unknown";
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     public void setLastBrewTime(){
         lastBrew = LocalDateTime.now();
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     public void setLastBrewTime(String time) {
         if (!time.equals("Unknown")) {
             lastBrew = LocalDateTime.parse(time);

@@ -3,18 +3,14 @@ package org.dtu.brogb1.activity.community;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import org.dtu.brogb1.R;
-import org.dtu.brogb1.activity.EditBrew;
 import org.dtu.brogb1.service.Util;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-
-import io.sentry.Sentry;
 
 /**
  * @author Betina Hansen s195389
@@ -36,6 +32,7 @@ public class About extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
     public void ReadTextFile(View v) throws IOException {
         String string = "";
         StringBuilder stringBuilder = new StringBuilder();

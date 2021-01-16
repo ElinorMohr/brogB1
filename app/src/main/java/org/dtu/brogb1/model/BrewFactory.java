@@ -1,8 +1,6 @@
 package org.dtu.brogb1.model;
 
-import android.os.Build;
 import android.util.Log;
-import androidx.annotation.RequiresApi;
 
 import org.dtu.brogb1.service.Util;
 import org.json.JSONException;
@@ -24,7 +22,6 @@ public class BrewFactory {
         return new Brew(1," ",1,1,1,1, 1 , 1 ," ","", false,false);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     public static Brew fromJson(String input) throws BrewException {
         Log.d(TAG, "fromJson: " + input);
         if (input.isEmpty())

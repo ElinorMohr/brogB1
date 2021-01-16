@@ -3,7 +3,6 @@ package org.dtu.brogb1.activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.InputFilter;
@@ -15,7 +14,6 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import org.dtu.brogb1.R;
 import org.dtu.brogb1.filters.MinMaxFilter;
@@ -48,7 +46,6 @@ public class NewBrew extends AppCompatActivity {
     IStorageService storage;
     Brew newBrew = new Brew();
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
