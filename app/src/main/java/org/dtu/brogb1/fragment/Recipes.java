@@ -1,7 +1,6 @@
 package org.dtu.brogb1.fragment;
 
 import android.os.Bundle;
-import android.text.style.UpdateLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +11,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import org.dtu.brogb1.R;
-import org.dtu.brogb1.activity.EditBrew;
 import org.dtu.brogb1.adapter.RecipiesAdapter;
 import org.dtu.brogb1.model.Brew;
 import org.dtu.brogb1.model.BrewException;

@@ -1,7 +1,6 @@
 package org.dtu.brogb1.activity.connect;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;

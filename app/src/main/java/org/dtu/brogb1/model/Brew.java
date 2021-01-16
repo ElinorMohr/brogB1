@@ -3,7 +3,6 @@ package org.dtu.brogb1.model;
 import android.os.Build;
 import androidx.annotation.RequiresApi;
 
-import org.dtu.brogb1.activity.EditBrew;
 import org.dtu.brogb1.service.Util;
 import org.json.JSONException;
 import org.json.JSONObject;

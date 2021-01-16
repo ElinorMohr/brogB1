@@ -10,8 +10,6 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.widget.ImageView;
 
-import com.airbnb.lottie.animation.content.Content;
-
 import org.dtu.brogb1.model.Brew;
 import org.dtu.brogb1.model.BrewException;
 
@@ -20,6 +18,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import io.sentry.Sentry;
+
+/**
+ * @author Elinor Mikkelsen s191242
+ * @author Theis Villumsen s195461
+ */
 
 public class Util {
     /**

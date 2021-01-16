@@ -10,6 +10,11 @@ import org.dtu.brogb1.model.BrewException;
 import org.dtu.brogb1.model.BrewFactory;
 import java.util.ArrayList;
 
+/**
+ * @author Elinor Mikkelsen s191242
+ * @author Theis Villumsen s195461
+ */
+
 public class StorageServiceSharedPref implements IStorageService {
     private static final String TAG = StorageServiceSharedPref.class.getSimpleName();
     private static StorageServiceSharedPref instance = null;

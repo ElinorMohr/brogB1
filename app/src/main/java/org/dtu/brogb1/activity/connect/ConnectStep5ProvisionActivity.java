@@ -1,7 +1,6 @@
 package org.dtu.brogb1.activity.connect;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 import androidx.core.widget.ContentLoadingProgressBar;
 
 import android.app.AlertDialog;
@@ -21,8 +20,6 @@ import com.espressif.provisioning.ESPProvisionManager;
 import com.espressif.provisioning.listeners.ProvisionListener;
 
 import org.dtu.brogb1.R;
-import org.dtu.brogb1.activity.HomePage;
-import org.dtu.brogb1.activity.Loading;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;

@@ -9,11 +9,8 @@ import android.widget.Button;
 
 import androidx.annotation.NonNull;
 
-import com.espressif.provisioning.ESPDevice;
-
 import org.dtu.brogb1.R;
 import org.dtu.brogb1.model.BleDevice;
-import org.dtu.brogb1.model.Brew;
 import org.dtu.brogb1.service.IStorageService;
 import org.dtu.brogb1.service.StorageServiceSharedPref;
 

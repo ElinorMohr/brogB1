@@ -1,14 +1,11 @@
 package org.dtu.brogb1.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import org.dtu.brogb1.R;
-import org.dtu.brogb1.activity.clean.CleanActivityStep1Working;
 import org.dtu.brogb1.service.IStorageService;
 import org.dtu.brogb1.service.StorageServiceSharedPref;
 

@@ -11,9 +11,10 @@ import com.espressif.provisioning.ESPConstants;
 import com.espressif.provisioning.ESPProvisionManager;
 
 import org.dtu.brogb1.R;
-import org.dtu.brogb1.activity.HomePage;
-import org.dtu.brogb1.activity.Loading;
 
+/**
+ * @author Theis Villumsen s195461
+ */
 public class ConnectStep1Activity extends AppCompatActivity implements View.OnClickListener {
     Button qr, manual;
     private ESPProvisionManager provisionManager;

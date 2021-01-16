@@ -5,7 +5,6 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.text.InputFilter;
 import android.widget.Button;
@@ -27,14 +26,7 @@ import org.dtu.brogb1.service.StorageServiceException;
 import org.dtu.brogb1.service.StorageServiceSharedPref;
 import org.dtu.brogb1.service.Util;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Random;
-
-import io.sentry.Sentry;
-
-import static android.content.Intent.ACTION_OPEN_DOCUMENT;
 
 /**
  * @author Elinor Mikkelsen s191242

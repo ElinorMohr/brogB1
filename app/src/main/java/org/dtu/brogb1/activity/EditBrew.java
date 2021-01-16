@@ -19,8 +19,6 @@ import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.airbnb.lottie.utils.Utils;
-
 import org.dtu.brogb1.R;
 import org.dtu.brogb1.filters.MinMaxFilter;
 import org.dtu.brogb1.model.Brew;
@@ -31,7 +29,6 @@ import org.dtu.brogb1.service.StorageServiceException;
 import org.dtu.brogb1.service.StorageServiceSharedPref;
 import org.dtu.brogb1.service.Util;
 
-import java.io.File;
 import java.io.IOException;
 
 /**

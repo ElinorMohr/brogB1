@@ -9,10 +9,6 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 import org.dtu.brogb1.R;
 import org.dtu.brogb1.activity.connect.ConnectStep1Activity;
-import org.dtu.brogb1.service.IStorageService;
-import org.dtu.brogb1.service.StorageServiceSharedPref;
-
-import io.sentry.Sentry;
 
 /**
  * @author Elinor Mikkelsen s191242

@@ -13,7 +13,6 @@ import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import org.dtu.brogb1.R;
 import org.dtu.brogb1.activity.Brewing;
-import org.dtu.brogb1.activity.EditBrew;
 import org.dtu.brogb1.adapter.RecipiesAdapter;
 import org.dtu.brogb1.model.Brew;
 import org.dtu.brogb1.service.StorageServiceSharedPref;
