@@ -48,6 +48,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_height="wrap_content"
         android:ems="5"
         android:inputType="textPersonName"
+        android:textSize="25dp"
         android:hint="(Enter name)"
         android:textColorHint="@color/colorplate2"
         android:maxLength="15"
@@ -62,8 +63,9 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/scrollableContents"
         android:layout_below="@id/brew_name"
         android:layout_width="fill_parent"
+        android:layout_marginTop="40dp"
         android:layout_above="@id/footer"
-        android:layout_height="wrap_content">
+        android:layout_height="fill_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -75,9 +77,8 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/seekbarLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="50dp"
+                android:layout_marginStart="35dp"
                 android:layout_marginEnd="21dp"
-                android:layout_marginTop="40dp"
                 android:gravity="center"
                 android:orientation="vertical">
 
@@ -397,19 +398,17 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <LinearLayout
-                android:layout_marginTop="10dp"
                 android:id="@+id/saveboxandbrew"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/seekbarLayout"
-                android:layout_gravity="center"
+                android:layout_marginBottom="-20dp"
+                android:gravity="center"
                 android:orientation="vertical">
                 <CheckBox
                     android:id="@+id/savebox"
                     android:layout_width="wrap_content"
                     android:buttonTint="@color/colorplate3"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
                     android:text="@string/save" />
 
                 <com.google.android.material.button.MaterialButton
@@ -417,7 +416,6 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                     style="@style/DefaultButton"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
                     android:text="@string/brew"
                     android:textAllCaps="false"
                     app:cornerRadius="70dp" />
