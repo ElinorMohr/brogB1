@@ -105,8 +105,9 @@ public class Brewing extends AppCompatActivity {
 
             if (!brew.getBrewPics().isEmpty()) {
                 Bitmap bitmap = Util.setImageFromBrew(brew, coffeeImage, this.getContentResolver(), TAG);
-                assert bitmap != null;
-                Util.setImageViewSize(coffeeImage, bitmap, getResources().getDisplayMetrics().density);
+                if(bitmap != null){
+                    Util.setImageViewSize(coffeeImage, bitmap, getResources().getDisplayMetrics().density);
+                }
             } else if (brew.equals(defaultBrew)) {
                 // Henter ikon fra drawable og viser det, hvis det er goldencup og der ikke er sat et billede
                 coffeeImage.setImageDrawable(getDrawable(R.drawable.ic_mug_marshmallows));

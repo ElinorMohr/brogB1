@@ -197,6 +197,7 @@ public abstract class EditBrewValuesActivity extends AppCompatActivity {
                     Uri image_uri = data.getData();
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), image_uri);
                     coffeeImage.setImageBitmap(bitmap);
+                    Util.setImageViewSize(coffeeImage, bitmap, getResources().getDisplayMetrics().density);
                     new AsyncTaskSaveImage(brew, bitmap, this.getApplicationContext(), TAG).execute();
                 } catch (IOException e) {
                     Util.log(TAG, e);
