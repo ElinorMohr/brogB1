@@ -5,24 +5,16 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.text.InputFilter;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.Spinner;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import org.dtu.brogb1.EditBrewValues;
 import org.dtu.brogb1.R;
-import org.dtu.brogb1.filters.MinMaxFilter;
-import org.dtu.brogb1.model.Brew;
 import org.dtu.brogb1.model.BrewException;
 import org.dtu.brogb1.model.BrewFactory;
-import org.dtu.brogb1.service.IStorageService;
 import org.dtu.brogb1.service.StorageServiceException;
 import org.dtu.brogb1.service.StorageServiceSharedPref;
 import org.dtu.brogb1.service.Util;
@@ -35,22 +27,13 @@ import java.io.IOException;
  * @author Elinor Mikkelsen s191242
  */
 
-public class EditBrew extends AppCompatActivity {
-    private static final String TAG = EditBrew.class.getSimpleName();
-    private String brewName, grindSize;
-    private int brewTimeMin, brewTimeSec, groundCoffee, coffeeWaterRatio, brewingTemperature, bloomWater, bloomTime;
-    EditText editETBrewName, editETGroundCoffee, editETRatio, editETTemp, editETBloomWater, editETBloomTime, editETTotalMin, editETTotalSec;
-    Spinner editSpinnerInputGrindSize;
-    Brew brew;
-    ImageView coffeeImage;
-    boolean favoriteOn;
-    IStorageService storage;
-
+public class EditBrew extends EditBrewValues {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_brew);
         storage = StorageServiceSharedPref.getInstance();
+        TAG = EditBrew.class.getSimpleName();
 
         try {
             if (getIntent().hasExtra("Brew")) {
@@ -80,14 +63,7 @@ public class EditBrew extends AppCompatActivity {
         ImageButton favoriteBt = findViewById(R.id.edit_brewing_favorite_bt);
         Button EditNow = (Button) findViewById(R.id.editBT);
 
-        // intervallerne for hver af inputs
-        editETGroundCoffee.setFilters(new InputFilter[]{new MinMaxFilter("1", "99")});
-        editETRatio.setFilters(new InputFilter[]{new MinMaxFilter("1", "99")});
-        editETTemp.setFilters(new InputFilter[]{new MinMaxFilter("1", "99")});
-        editETBloomWater.setFilters(new InputFilter[]{new MinMaxFilter("1", "99")});
-        editETBloomTime.setFilters(new InputFilter[]{new MinMaxFilter("1", "99")});
-        editETTotalMin.setFilters(new InputFilter[]{new MinMaxFilter("0", "99")});
-        editETTotalSec.setFilters(new InputFilter[]{new MinMaxFilter("0", "59")});
+        setFilters();
 
         // Her lægges alle værdierne ind i edit teksene. Så de kommer frem.
         if (brew != null) {
@@ -114,7 +90,7 @@ public class EditBrew extends AppCompatActivity {
             editETTotalMin.setText(Integer.toString(brew.getBrewTimeMin()));
             editETTotalSec.setText(Integer.toString(brew.getBrewTimeSec()));
             if (!brew.getBrewPics().isEmpty()) {
-                Util.setImageFromBrew(brew, coffeeImage, this.getContentResolver(), TAG);
+                new AsyncTaskGetImage(brew, coffeeImage, this.getContentResolver(), TAG).execute();
             }
             if (brew.getFavoriteKey() >= 0) {
                 favoriteBt.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart));
@@ -182,84 +158,8 @@ public class EditBrew extends AppCompatActivity {
                 Intent chooserIntent = Intent.createChooser(getIntent, "Select Image");
                 chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[]{pickIntent});
 
-                startActivityForResult(chooserIntent, 1); //request code til det der sendes videre.
+                startActivityForResult(chooserIntent, GET_IMAGE_CODE); //request code til det der sendes videre.
             });
-        }
-    }
-
-    private void setBrewValues() {
-        brew.setGroundCoffee(groundCoffee);
-        brew.setGrindSize(grindSize);
-        brew.setCoffeeWaterRatio(coffeeWaterRatio);
-        brew.setBrewingTemperature(brewingTemperature);
-        brew.setBloomWater(bloomWater);
-        brew.setBloomTime(bloomTime);
-        brew.setBrewTimeMin(brewTimeMin);
-        brew.setBrewTimeSec(brewTimeSec);
-        brewName = editETBrewName.getText().toString();
-        brew.setBrewName(brewName);
-    }
-    private void getBrewValuesFromUI() throws Exception {
-        groundCoffee = getIntInput(editETGroundCoffee, "ground coffee");
-        grindSize = editSpinnerInputGrindSize.getSelectedItem().toString();
-        coffeeWaterRatio = getIntInput(editETRatio, "coffee Water Ratio");
-        brewingTemperature = getIntInput(editETTemp, "brewing Temperature");
-        bloomWater = getIntInput(editETBloomWater, "Bloom Water");
-        bloomTime = getIntInput(editETBloomWater, "Bloom Time");
-        // tiden skal blive lagt sammen
-        getTimeInput();
-        brewName = editETBrewName.getText().toString();
-    }
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK) {
-            if (requestCode == 1) {
-                try {
-                    Uri image_uri = data.getData();
-                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), image_uri);
-                    Util.saveImageFrom(brew,bitmap,this.getApplicationContext(), TAG);
-                    coffeeImage.setImageBitmap(bitmap);
-                } catch (IOException e) {
-                    Util.log(TAG, e);
-                }
-
-            }
-        }
-    }
-
-    private int getIntInput(EditText v, String text) throws Exception {
-        int output;
-        try {
-            output = Integer.parseInt(v.getText().toString());
-            if (output == 0) {
-                Toast.makeText(this, "input in " + text + " is 0", Toast.LENGTH_SHORT).show();
-                throw new Exception();
-            }
-        } catch (Exception e) {
-            Toast.makeText(this, "Need input at " + text, Toast.LENGTH_SHORT).show();
-            e.printStackTrace();
-            throw new Exception();
-        }
-        return output;
-    }
-
-    private void getTimeInput() throws Exception {
-        // tiden skal blive lagt sammen
-        if (editETTotalMin.getText().toString().isEmpty()) {
-            brewTimeMin = 0;
-        } else {
-            brewTimeMin = Integer.parseInt(editETTotalMin.getText().toString());
-        }
-
-        if (editETTotalSec.getText().toString().isEmpty()) {
-            brewTimeSec = 0;
-        } else {
-            brewTimeSec = Integer.parseInt(editETTotalSec.getText().toString());
-        }
-        if ((editETTotalMin.getText().toString().isEmpty() && editETTotalSec.getText().toString().isEmpty()) || (brewTimeMin == 0 && brewTimeSec == 0)) {
-            Toast.makeText(this, "time can't be empty", Toast.LENGTH_SHORT).show();
-            return;
         }
     }
 
