@@ -421,6 +421,7 @@
         <com.google.android.material.button.MaterialButton
             app:cornerRadius="70dp"
             style="@style/DefaultButton"
+            android:layout_marginBottom="50dp"
             android:id="@+id/BrewNow"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
