@@ -220,6 +220,7 @@ public class EditBrew extends AppCompatActivity {
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), image_uri);
                     Util.saveImageFrom(brew,bitmap,this.getApplicationContext(), TAG);
                     coffeeImage.setImageBitmap(bitmap);
+                    Util.setImageViewSize(coffeeImage, bitmap, getResources().getDisplayMetrics().density);
                 } catch (IOException e) {
                     Util.log(TAG, e);
                 }
