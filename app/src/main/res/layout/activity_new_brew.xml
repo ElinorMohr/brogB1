@@ -32,7 +32,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
 
     <ImageView
         android:id="@+id/new_brew_image"
-        android:layout_width="220dp"
+        android:layout_width="wrap_content"
         android:layout_height="236dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"

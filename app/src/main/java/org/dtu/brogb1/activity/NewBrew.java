@@ -159,6 +159,17 @@ public class NewBrew extends AppCompatActivity {
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), image_uri);
                     Util.saveImageFrom(newBrew,bitmap,this.getApplicationContext(), TAG);
                     coffeeImageView.setImageBitmap(bitmap);
+                    // Sætter padding på billedet
+                    int padding_in_dp = 5;
+                    final float scale = getResources().getDisplayMetrics().density;
+                    int padding_in_px = (int) (padding_in_dp * scale + 0.5f);
+                    coffeeImageView.setPadding(padding_in_px,padding_in_px,padding_in_px,padding_in_px);
+                    // Beregner hvor bredt billedet skal være og opdaterer view
+                    int h = coffeeImageView.getHeight();
+                    int w = bitmap.getWidth();
+                    float r = ((float) w) / (float) bitmap.getHeight();
+                    coffeeImageView.getLayoutParams().width = (int) (Math.ceil(h*r)+(padding_in_dp*2));
+                    coffeeImageView.requestLayout();
                 } catch (IOException e) {
                     Util.log(TAG, e);
                 }
