@@ -117,6 +117,7 @@
     <string name="btn_reset_quick_brew">Reset quickbrew</string>
     <string name="recipe_menu_btn">Go to saved recipes og the history of your brews.</string>
     <string name="add_menu_btn">Add a new brew with your own measurements.</string>
-    <string name="quick_menu_btn">Quick brew in order to get a quick cup of coffee with your own pre-installed measurements.</string>
+    <string name="quick_menu_btn">"Quick brew" in order to get a quick cup of coffee with your own pre-installed measurements. On favoritelist under option "Recipes", choose quick brew by clicking this item.</string>
+    <string name="fav_menu_btn">Add brew to list over favorite brews (max. 5).</string>
     <string name="toast_saved">Saved.</string>
 </resources>
