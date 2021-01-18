@@ -65,7 +65,11 @@ public class NewBrew extends EditBrewValues {
             // her tjekker vi, hvis den er markeret som save eller favorit, bliver denne bryg gemt i storage
             if (saveBrew.isChecked()) {
                 try {
-                    Util.setStorage(brew, favoriteOn, storage, TAG);
+                    if (!brew.getBrewName().isEmpty()){
+                        Util.setStorage(brew, favoriteOn, storage, TAG);
+                    }
+                    else
+                        Toast.makeText(this, "Giv bryg et navn", Toast.LENGTH_SHORT).show();
                 } catch (StorageServiceException e) {
                     e.printStackTrace();
                     Util.log(TAG, e);
@@ -73,12 +77,12 @@ public class NewBrew extends EditBrewValues {
                 }
             } else if (!saveBrew.isChecked() && favoriteOn) {
                 try {
-                    Toast.makeText(this, "Gemmer som favorit", Toast.LENGTH_SHORT).show();
                     Util.setStorage(brew, favoriteOn, storage, TAG);
+                    Toast.makeText(this, "Gemmer som favorit", Toast.LENGTH_SHORT).show();
                 } catch (StorageServiceException e) {
+                    Toast.makeText(this, "Kan ikke gemme favorit, har du flere end 5?", Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
                     Util.log(TAG, e);
-                    Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
 

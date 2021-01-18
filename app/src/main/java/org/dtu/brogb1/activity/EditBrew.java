@@ -139,7 +139,9 @@ public class EditBrew extends EditBrewValues {
                         setBrewValues();
                         Util.setStorage(brew, favoriteOn, storage, TAG);
                         favoriteBt.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart));
+                        Toast.makeText(this, "Gemmer som favorit", Toast.LENGTH_SHORT).show();
                     } catch (Exception e) {
+                        Toast.makeText(this, "Kan ikke gemme favorit, har du flere end 5?", Toast.LENGTH_SHORT).show();
                         e.printStackTrace();
                         return;
                     }
