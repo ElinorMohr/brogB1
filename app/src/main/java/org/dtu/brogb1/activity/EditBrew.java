@@ -8,7 +8,6 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import org.dtu.brogb1.EditBrewValues;
 import org.dtu.brogb1.R;
 import org.dtu.brogb1.model.BrewException;
 import org.dtu.brogb1.model.BrewFactory;
@@ -22,7 +21,7 @@ import org.dtu.brogb1.service.Util;
  * @author Elinor Mikkelsen s191242
  */
 
-public class EditBrew extends EditBrewValues {
+public class EditBrew extends EditBrewValuesActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -136,6 +135,7 @@ public class EditBrew extends EditBrewValues {
             });
         }
     }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();

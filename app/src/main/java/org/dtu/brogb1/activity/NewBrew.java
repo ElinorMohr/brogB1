@@ -6,7 +6,6 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Toast;
 
-import org.dtu.brogb1.EditBrewValues;
 import org.dtu.brogb1.R;
 import org.dtu.brogb1.model.Brew;
 import org.dtu.brogb1.model.BrewException;
@@ -22,7 +21,7 @@ import org.dtu.brogb1.service.Util;
  * @author Betina Hansen s195389
  */
 
-public class NewBrew extends EditBrewValues {
+public class NewBrew extends EditBrewValuesActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,10 +64,9 @@ public class NewBrew extends EditBrewValues {
             // her tjekker vi, hvis den er markeret som save eller favorit, bliver denne bryg gemt i storage
             if (saveBrew.isChecked()) {
                 try {
-                    if (!brew.getBrewName().isEmpty()){
+                    if (!brew.getBrewName().isEmpty()) {
                         Util.setStorage(brew, favoriteOn, storage, TAG);
-                    }
-                    else
+                    } else
                         Toast.makeText(this, "Giv bryg et navn", Toast.LENGTH_SHORT).show();
                 } catch (StorageServiceException e) {
                     e.printStackTrace();

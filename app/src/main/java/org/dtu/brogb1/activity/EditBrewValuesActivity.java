@@ -1,10 +1,9 @@
-package org.dtu.brogb1;
+package org.dtu.brogb1.activity;
 
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.media.Image;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.provider.MediaStore;
@@ -17,6 +16,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.dtu.brogb1.R;
 import org.dtu.brogb1.filters.MinMaxFilter;
 import org.dtu.brogb1.model.Brew;
 import org.dtu.brogb1.service.IStorageService;
@@ -24,7 +24,7 @@ import org.dtu.brogb1.service.Util;
 
 import java.io.IOException;
 
-public abstract class EditBrewValues extends AppCompatActivity {
+public abstract class EditBrewValuesActivity extends AppCompatActivity {
     protected String brewName, grindSize;
     protected int brewTimeMin, brewTimeSec, groundCoffee, coffeeWaterRatio, brewingTemperature, bloomWater, bloomTime;
     protected EditText editETGroundCoffee, editETBrewName;
@@ -114,7 +114,8 @@ public abstract class EditBrewValues extends AppCompatActivity {
             return;
         }
     }
-    protected void getCoffeeImageFromUserInput(){
+
+    protected void getCoffeeImageFromUserInput() {
         Intent getIntent = new Intent(Intent.ACTION_GET_CONTENT);
         getIntent.setType("image/");
 
@@ -125,7 +126,8 @@ public abstract class EditBrewValues extends AppCompatActivity {
 
         startActivityForResult(chooserIntent, GET_IMAGE_CODE); //request code til det der sendes videre.
     }
-    protected void saveFavorite(){
+
+    protected void saveFavorite() {
         if (!favoriteOn) {
             try {
                 getBrewValuesFromUI();
@@ -143,6 +145,7 @@ public abstract class EditBrewValues extends AppCompatActivity {
         }
         favoriteOn = !favoriteOn;
     }
+
     protected class AsyncTaskSaveImage extends AsyncTask<Void, Void, Void> {
         private Bitmap bitmap;
         private Context context;
@@ -163,6 +166,7 @@ public abstract class EditBrewValues extends AppCompatActivity {
             return null;
         }
     }
+
     protected class AsyncTaskGetImage extends AsyncTask<Void, Void, Void> {
         private ImageView imageView;
         private ContentResolver contentResolver;
@@ -183,6 +187,7 @@ public abstract class EditBrewValues extends AppCompatActivity {
             return null;
         }
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
