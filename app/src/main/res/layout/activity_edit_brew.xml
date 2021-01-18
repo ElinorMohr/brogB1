@@ -9,7 +9,8 @@
     <ScrollView
         android:id="@+id/scrollableContents"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/saveboxandbrew">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -393,12 +394,13 @@
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
+        </RelativeLayout>
+    </ScrollView>
     <LinearLayout
-        android:layout_marginTop="40dp"
         android:id="@+id/saveboxandbrew"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/edit_seekbarLayout"
+        android:layout_above="@+id/footer"
         android:layout_marginBottom="-20dp"
         android:gravity="center"
         android:orientation="vertical">
@@ -412,6 +414,4 @@
             android:textAllCaps="false"
             app:cornerRadius="70dp" />
     </LinearLayout>
-        </RelativeLayout>
-    </ScrollView>
 </RelativeLayout>

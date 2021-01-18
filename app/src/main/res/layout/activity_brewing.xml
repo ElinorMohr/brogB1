@@ -8,7 +8,9 @@
     <ScrollView
         android:id="@+id/scrollableContents"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/layout_2"
+        >
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -403,9 +405,11 @@
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
+        </RelativeLayout>
+    </ScrollView>
     <LinearLayout
-        android:layout_marginTop="70dp"
-        android:layout_below="@+id/brew_resume"
+
+        android:layout_above="@+id/footer"
         android:id="@+id/layout_2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -423,10 +427,8 @@
             android:gravity="center"
             android:text="@string/brew"
             android:textAllCaps="false"
-           />
+            />
     </LinearLayout>
-        </RelativeLayout>
-    </ScrollView>
 </RelativeLayout>
 
 

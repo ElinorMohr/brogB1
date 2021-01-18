@@ -11,7 +11,8 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
     <ScrollView
         android:id="@+id/scrollableContents"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/saveboxandbrew">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -396,30 +397,32 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
-            <LinearLayout
-                android:id="@+id/saveboxandbrew"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="-20dp"
-                android:layout_below="@+id/seekbarLayout"
-                android:gravity="center"
-                android:orientation="vertical">
-                <CheckBox
-                    android:id="@+id/savebox"
-                    android:layout_width="wrap_content"
-                    android:buttonTint="@color/colorplate3"
-                    android:layout_height="wrap_content"
-                    android:text="@string/save" />
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/brew_now_recipe"
-                    style="@style/DefaultButton"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/brew"
-                    android:textAllCaps="false"
-                    app:cornerRadius="70dp" />
-            </LinearLayout>
         </RelativeLayout>
     </ScrollView>
+    <LinearLayout
+        android:id="@+id/saveboxandbrew"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="-20dp"
+        android:layout_above="@+id/footer"
+        android:gravity="center"
+        android:orientation="vertical">
+        <CheckBox
+            android:id="@+id/savebox"
+            android:layout_width="wrap_content"
+            android:buttonTint="@color/colorplate3"
+            android:layout_height="wrap_content"
+            android:text="@string/save" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/brew_now_recipe"
+            style="@style/DefaultButton"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="@string/brew"
+
+            android:textAllCaps="false"
+            app:cornerRadius="70dp" />
+    </LinearLayout>
 </RelativeLayout>
