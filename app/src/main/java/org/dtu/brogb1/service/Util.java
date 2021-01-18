@@ -74,16 +74,34 @@ public class Util {
         }
     }
 
-    public static void setImageFromBrew(Brew brew, ImageView v, ContentResolver resolver, String TAG){
+    public static void setImageViewSize(ImageView view, Bitmap bitmap, float scale) {
+        Util.setImagePadding(view, scale);
+        // Beregner hvor bredt billedet skal være og opdaterer view
+        int h = view.getLayoutParams().height;
+        int w = bitmap.getWidth();
+        float r = ((float) w) / (float) bitmap.getHeight();
+        view.getLayoutParams().width = (int) (Math.ceil(h*r)+(padding_in_dp*2));
+        view.requestLayout();
+    }
+
+    private final static int padding_in_dp = 5;
+    public static void setImagePadding(ImageView view, float scale) {
+        // Sætter padding på billedet
+        int padding_in_px = (int) (padding_in_dp * scale + 0.5f);
+        view.setPadding(padding_in_px,padding_in_px,padding_in_px,padding_in_px);
+    }
+
+    public static Bitmap setImageFromBrew(Brew brew, ImageView v, ContentResolver resolver, String TAG){
         Uri image_uri = Uri.fromFile(new File(brew.getBrewPics()));
         try {
             Bitmap bitmap = MediaStore.Images.Media.getBitmap(resolver, image_uri);
             v.setImageBitmap(bitmap);
-            v.setPadding(0,0,0,0);
+            return bitmap;
         } catch (IOException e) {
             Util.log(TAG, e);
             e.printStackTrace();
         }
+        return null;
     }
 
     public static void saveImageFrom(Brew brew, Bitmap bitmap, Context conext, String TAG){

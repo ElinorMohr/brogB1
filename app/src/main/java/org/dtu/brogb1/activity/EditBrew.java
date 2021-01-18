@@ -135,7 +135,6 @@ public class EditBrew extends EditBrewValuesActivity {
             });
         }
     }
-
     @Override
     public void onBackPressed() {
         super.onBackPressed();
