@@ -76,14 +76,7 @@ public class NewBrew extends EditBrewValues {
                     Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             } else if (!saveBrew.isChecked() && favoriteOn) {
-                try {
-                    Util.setStorage(brew, favoriteOn, storage, TAG);
-                    Toast.makeText(this, "Gemmer som favorit", Toast.LENGTH_SHORT).show();
-                } catch (StorageServiceException e) {
-                    Toast.makeText(this, "Kan ikke gemme favorit, har du flere end 5?", Toast.LENGTH_SHORT).show();
-                    e.printStackTrace();
-                    Util.log(TAG, e);
-                }
+                saveFavorite();
             }
 
             try {
@@ -104,23 +97,10 @@ public class NewBrew extends EditBrewValues {
         });
 
         favoriteBt.setOnClickListener(v -> {
-            favoriteOn = !favoriteOn;
-            if (favoriteOn) {
-                favoriteBt.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart));
-            } else {
-                favoriteBt.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart_empty));
-            }
+            saveFavorite();
         });
         coffeeImage.setOnClickListener(v -> {
-            Intent getIntent = new Intent(Intent.ACTION_GET_CONTENT);
-            getIntent.setType("image/");
-
-            Intent pickIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-            pickIntent.setType("image/");
-            Intent chooserIntent = Intent.createChooser(getIntent, "Select Image");
-            chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[]{pickIntent});
-
-            startActivityForResult(chooserIntent, GET_IMAGE_CODE); //request code til det der sendes videre.
+            getCoffeeImageFromUserInput();
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         });
     }

@@ -1,10 +1,7 @@
 package org.dtu.brogb1.activity;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -18,8 +15,6 @@ import org.dtu.brogb1.model.BrewFactory;
 import org.dtu.brogb1.service.StorageServiceException;
 import org.dtu.brogb1.service.StorageServiceSharedPref;
 import org.dtu.brogb1.service.Util;
-
-import java.io.IOException;
 
 /**
  * @author Kristoffer Baumgarten s180500
@@ -133,38 +128,14 @@ public class EditBrew extends EditBrewValues {
             });
 
             favoriteBt.setOnClickListener(v -> {
-                if (!favoriteOn) {
-                    try {
-                        getBrewValuesFromUI();
-                        setBrewValues();
-                        Util.setStorage(brew, favoriteOn, storage, TAG);
-                        favoriteBt.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart));
-                        Toast.makeText(this, "Gemmer som favorit", Toast.LENGTH_SHORT).show();
-                    } catch (Exception e) {
-                        Toast.makeText(this, "Kan ikke gemme favorit, har du flere end 5?", Toast.LENGTH_SHORT).show();
-                        e.printStackTrace();
-                        return;
-                    }
-                } else {
-                    favoriteBt.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart_empty));
-                }
-                favoriteOn = !favoriteOn;
+                saveFavorite();
             });
 
             coffeeImage.setOnClickListener(v -> {
-                Intent getIntent = new Intent(Intent.ACTION_GET_CONTENT);
-                getIntent.setType("image/");
-
-                Intent pickIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                pickIntent.setType("image/");
-                Intent chooserIntent = Intent.createChooser(getIntent, "Select Image");
-                chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[]{pickIntent});
-
-                startActivityForResult(chooserIntent, GET_IMAGE_CODE); //request code til det der sendes videre.
+                getCoffeeImageFromUserInput();
             });
         }
     }
-
     @Override
     public void onBackPressed() {
         super.onBackPressed();

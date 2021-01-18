@@ -74,7 +74,7 @@ public abstract class EditBrewValues extends AppCompatActivity {
         coffeeWaterRatio = getIntInput(editETRatio, "coffee Water Ratio");
         brewingTemperature = getIntInput(editETTemp, "brewing Temperature");
         bloomWater = getIntInput(editETBloomWater, "Bloom Water");
-        bloomTime = getIntInput(editETBloomWater, "Bloom Time");
+        bloomTime = getIntInput(editETBloomTime, "Bloom Time");
         // tiden skal blive lagt sammen
         getTimeInput();
         brewName = editETBrewName.getText().toString();
@@ -114,7 +114,35 @@ public abstract class EditBrewValues extends AppCompatActivity {
             return;
         }
     }
+    protected void getCoffeeImageFromUserInput(){
+        Intent getIntent = new Intent(Intent.ACTION_GET_CONTENT);
+        getIntent.setType("image/");
 
+        Intent pickIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        pickIntent.setType("image/");
+        Intent chooserIntent = Intent.createChooser(getIntent, "Select Image");
+        chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[]{pickIntent});
+
+        startActivityForResult(chooserIntent, GET_IMAGE_CODE); //request code til det der sendes videre.
+    }
+    protected void saveFavorite(){
+        if (!favoriteOn) {
+            try {
+                getBrewValuesFromUI();
+                setBrewValues();
+                Util.setStorage(brew, favoriteOn, storage, TAG);
+                favoriteBt.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart));
+                Toast.makeText(this, "Gemmer som favorit", Toast.LENGTH_SHORT).show();
+            } catch (Exception e) {
+                Toast.makeText(this, "Kan ikke gemme favorit, har du flere end 5?", Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
+                return;
+            }
+        } else {
+            favoriteBt.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart_empty));
+        }
+        favoriteOn = !favoriteOn;
+    }
     protected class AsyncTaskSaveImage extends AsyncTask<Void, Void, Void> {
         private Bitmap bitmap;
         private Context context;
