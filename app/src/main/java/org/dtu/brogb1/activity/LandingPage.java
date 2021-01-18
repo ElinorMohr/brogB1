@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.jakewharton.threetenabp.AndroidThreeTen;
+
 import org.dtu.brogb1.R;
 import org.dtu.brogb1.activity.connect.ConnectStep1Activity;
 
@@ -23,6 +26,7 @@ public class LandingPage extends AppCompatActivity implements View.OnClickListen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AndroidThreeTen.init(this);
         try {
             setContentView(R.layout.activity_landing_page);
         } catch(Exception ignored) {}
