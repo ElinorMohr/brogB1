@@ -5,36 +5,46 @@
 
     <include layout="@layout/footer"/>
 
-    <TextView
-        android:id="@+id/EditBrewTxt"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="17sp"
-        android:textStyle="bold"
-        android:onClick="onClick"
-        android:clickable="true"
-        android:textColor="@color/black"
-        android:text="@string/EditUnderline" />
+    <ScrollView
+        android:id="@+id/scrollableContents"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/layout_2"
+        >
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
 
+            <TextView
+                android:id="@+id/EditBrewTxt"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:onClick="onClick"
+                android:clickable="true"
+                android:textColor="@color/black"
+                android:text="@string/EditUnderline" />
 
+            <ImageButton
 
-    <ImageButton
-
-        android:clickable="true"
-        android:id="@+id/trashcan"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="15dp"
-        android:scaleType="fitCenter"
-        android:adjustViewBounds="true"
-        android:layout_marginEnd="15dp"
-        android:background="@null"
-        app:srcCompat="@drawable/ic_trash"
-        android:focusable="true" />
+                android:clickable="true"
+                android:id="@+id/trashcan"
+                android:layout_marginTop="15dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_alignParentEnd="true"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
+                android:layout_marginEnd="15dp"
+                android:background="@null"
+                app:srcCompat="@drawable/ic_trash"
+                android:focusable="true" />
 
     <ImageButton
         android:id="@+id/brewing_favorite_bt"
@@ -66,7 +76,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:ems="5"
-        android:textSize="25sp"
+        android:textSize="25dp"
         android:text="@string/brewName"
 
         android:maxLength="20"
@@ -75,16 +85,18 @@
         android:layout_marginHorizontal="50dp"
         android:gravity="center" />
 
+
     <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_marginTop="40dp"
         android:id="@+id/brew_resume"
         android:layout_width="match_parent"
+        android:layout_below="@+id/Opskriftens_navn"
         android:layout_height="wrap_content"
-        android:layout_below="@id/Opskriftens_navn"
         android:layout_marginStart="50dp"
         android:layout_marginEnd="21dp"
         android:gravity="center"
-        android:layout_marginTop="50dp"
         android:orientation="vertical">
+
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -393,15 +405,17 @@
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
+        </RelativeLayout>
+    </ScrollView>
     <LinearLayout
-        android:layout_marginTop="70dp"
+
+        android:layout_above="@+id/footer"
         android:id="@+id/layout_2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:orientation="vertical"
-        android:layout_below="@id/brew_resume">
-
+        android:layout_marginBottom="-20dp"
+        android:orientation="vertical">
 
 
         <com.google.android.material.button.MaterialButton
@@ -410,15 +424,11 @@
             android:id="@+id/BrewNow"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:gravity="center"
             android:text="@string/brew"
             android:textAllCaps="false"
-           />
+            />
     </LinearLayout>
-
-
-
-
 </RelativeLayout>
 
 
