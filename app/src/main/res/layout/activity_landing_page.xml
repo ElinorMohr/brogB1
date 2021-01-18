@@ -11,15 +11,16 @@
     <include layout="@layout/logo_big"/>
 
     <include layout="@layout/footer"/>
+
+    <ScrollView
+        android:layout_marginTop="72dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/logo">
     <LinearLayout
         android:id="@+id/layout_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/logo"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -27,7 +28,6 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/connect"
             style="@style/DefaultButton"
-            android:layout_marginTop="72dp"
             android:text="@string/connect"
             app:cornerRadius="70dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -47,5 +47,5 @@
             app:layout_constraintTop_toBottomOf="@+id/logotekst" />
 
     </LinearLayout>
-
+    </ScrollView>
 </RelativeLayout>
