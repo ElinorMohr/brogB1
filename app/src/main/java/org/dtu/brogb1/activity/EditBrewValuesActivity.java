@@ -132,7 +132,7 @@ public abstract class EditBrewValuesActivity extends AppCompatActivity {
             try {
                 getBrewValuesFromUI();
                 setBrewValues();
-                Util.setStorage(brew, favoriteOn, storage, TAG);
+                Util.setStorage(brew, !favoriteOn, storage, TAG);
                 favoriteBt.setImageDrawable(getResources().getDrawable(R.drawable.ic_heart));
                 Toast.makeText(this, "Gemmer som favorit", Toast.LENGTH_SHORT).show();
             } catch (Exception e) {
